@@ -52,3 +52,5 @@ function getListItem(array, arrayIndex) {
 
 let firstGoal = getListItem(onlineCourse.goals, 0);
 alert(firstGoal);
+
+testtesttesttesttesttesttest;
