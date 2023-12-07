@@ -53,5 +53,6 @@ function getListItem(array, arrayIndex) {
 let firstGoal = getListItem(onlineCourse.goals, 0);
 alert(firstGoal);
 
-testtesttesttesttesttesttest;
+testtesttesttesttedfgdfgfdgdfgfdgsttesttest;
+sdfdsdsfsdfdsfdsfdsfsdfsdf;
 //영우 브랜치 테스트
