@@ -32,4 +32,39 @@ public class AdminController {
     public void memberdetail() {
         System.out.println("memberdetail.jsp호출");
     }
+
+    @RequestMapping("/book")
+    public void book() {
+        System.out.println("book.jsp호출");
+    }
+
+    @RequestMapping("/notice")
+    public void notice() {
+        System.out.println("notice.jsp호출");
+    }
+
+    @RequestMapping("/termsconditions")
+    public void termsconditions() {
+        System.out.println("termsconditions.jsp호출");
+    }
+
+    @RequestMapping("/faq")
+    public void faq() {
+        System.out.println("faq.jsp호출");
+    }
+
+    @RequestMapping("/community")
+    public void community() {
+        System.out.println("community.jsp호출");
+    }
+
+    @RequestMapping("/charts")
+    public void charts() {
+        System.out.println("charts.jsp호출");
+    }
+
+    @RequestMapping("/adminlibrary")
+    public void adminlibrary() {
+        System.out.println("adminlibrary.jsp호출");
+    }
 }

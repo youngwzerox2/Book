@@ -47,7 +47,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>회원관리</h1>
+                                <h1>도서관리</h1>
                             </div>
                         </div>
                     </div>
@@ -62,24 +62,25 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">회원리스트</strong>
+                                <strong class="card-title">도서리스트</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>아이디</th>
-                                            <th>이름</th>
-                                            <th>닉네임</th>
-                                            <th>프로필사진</th>
-                                            <th>성별</th>
-                                            <th>생년월일</th>
+                                            <th>책 이미지</th>
+                                            <th>책 제목</th>
+                                            <th>청구기호13자리</th>
+                                            <th>책 저자</th>
+                                            <th>출판사</th>
+                                            <th>발행년도</th>
+                                            <th>청구기호5자리</th>
                                             <th>전화번호</th>
                                             <th>책장방문허용여부</th>
-                                            <th>등급</th>
-                                            <th>프리미엄 결제 여부</th>
-                                            <th>프리미엄 결제 일자</th>
-                                            <th>프리미엄 종료 일자</th>
+                                            <th>책 이미지 url</th>
+                                            <th>책 데이터 url</th>
+                                            <th>책 대출건수</th>
+                                            <th>책 소개</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -96,6 +97,22 @@
                                             <td>10</td>
                                             <td>11</td>
                                             <td>12</td>
+                                            <td>13</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td>9</td>
+                                            <td>15</td>
+                                            <td>11</td>
+                                            <td>12</td>
+                                            <td>13</td>
                                         </tr>
                                     </tbody>
                                 </table>
