@@ -41,9 +41,9 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                            <button class="btn btn-warning btn-sm float-right" onclick="editAction()">수정</button>
-                            <button class="btn btn-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
+                            <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+                            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+                            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
 
                         </div><!-- .content -->
 
@@ -60,7 +60,6 @@
 
             </div>
 
-             <!-- 부트스트랩 JS 및 jQuery CDN 링크 (선택적으로 사용) -->
              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 

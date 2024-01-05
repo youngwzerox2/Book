@@ -21,8 +21,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-        <link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
         <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
         <link rel="stylesheet" href="assets/css/style.css">
@@ -33,7 +32,7 @@
         <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
-        <!-- <style>
+        <style>
     #weatherWidget .currentDesc {
         color: #ffffff!important;
     }
@@ -68,7 +67,7 @@
             height: 160px;
         }
 
-    </style> -->
+    </style>
     </head>
 
     <body>
@@ -112,7 +111,7 @@
                                                 <div class="stat-content">
                                                     <div class="text-left dib">
                                                         <div class="stat-heading">오늘 총 매출</div>
-                                                        <div class="stat-text"><span class="count">349</span></div>
+                                                        <div class="stat-text">390000 원</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,7 +129,7 @@
                                                 <div class="stat-content">
                                                     <div class="text-left dib">
                                                         <div class="stat-heading">오늘 접속자 수</div>
-                                                        <div class="stat-text"><span class="count">2986</span></div>
+                                                        <div class="stat-text">2986</span></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,7 +147,7 @@
                                                 <div class="stat-content">
                                                     <div class="text-left dib">
                                                         <div class="stat-heading">신규 가입자 수</div>
-                                                        <div class="stat-text"><span class="count">45</span></div>
+                                                        <div class="stat-text">45</span></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +194,7 @@
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
 
-                                <div class="col-lg-4">
+                                <div  class="col-lg-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="mb-3">연령대 분석</h4>
@@ -211,7 +210,113 @@
                     <!-- /.content -->
 
                     <!-- Content -->
+                    <div class="content" style="display:none;">
+                        <!-- Animated -->
+                        <div class="animated fadeIn">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="mb-3">Real Chart</h4>
+                                            <div class="flot-container">
+                                                <div id="cpu-load" class="cpu-load"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /# column -->
+
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="mb-3">Line Chart</h4>
+                                            <div class="flot-container">
+                                                <div id="flot-line" class="flot-line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /# column -->
+                            </div><!-- /# row -->
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="mb-3">Line Chart</h4>
+                                            <div class="flot-container">
+                                                <div id="chart1" style="width:100%;height:275px;"></div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /# card -->
+                                </div><!-- /# column -->
+                            </div><!-- /# row -->
+                        </div><!-- .animated -->
+                    </div>
+                    <!-- /.content -->
+
+                    <!-- Content -->
                     <div class="content">
+                        <!-- Animated -->
+                        <div class="animated fadeIn">    
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="mb-3">도서 조회수 랭킹</h4>
+                                        <div class="flot-container">
+                                            <div id="flotBar2" style="width:100%;height:275px;"></div>
+                                        </div>
+                                    </div>
+                                </div><!-- /# card -->
+                            </div><!-- /# column -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">제재 회원 명단</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">아이디</th>
+                                                    <th scope="col">이름</th>
+                                                    <th scope="col">제재 날짜</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>그해 우리는</td>
+                                                    <td>고오 작가</td>
+                                                    <td>24.1.21</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>스물다섯 스물하나</td>
+                                                    <td>비비</td>
+                                                    <td>23.12.21</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>마이 데몬</td>
+                                                    <td>정구원</td>
+                                                    <td>23.11.21</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div><!-- /# row -->
+                    </div><!-- .animated -->
+                </div><!-- /.content -->
+
+                <!-- Content -->
+                    <div class="content" style="display:none;">
                         <!-- Animated -->
                         <div class="animated fadeIn">
                             <div class="row">
@@ -257,7 +362,6 @@
 
             </div>
             <!-- 푸터 -->
-      
 
                 <!-- /#right-panel -->
                 <!-- Scripts -->

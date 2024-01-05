@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ela Admin - HTML5 Admin Template</title>
+    <title>도서 관리</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -110,9 +110,9 @@
                                             <td>8</td>
                                             <td>9</td>
                                             <td>15</td>
-                                            <td>11</td>
-                                            <td>12</td>
-                                            <td>13</td>
+                                            <td>16</td>
+                                            <td>17</td>
+                                            <td>18</td>
                                         </tr>
                                     </tbody>
                                 </table>

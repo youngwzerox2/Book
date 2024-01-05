@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>회원 상세 정보</title>
-    <!-- 필요한 경우 추가 스타일 또는 스크립트 포함 -->
 </head>
 <body>
 

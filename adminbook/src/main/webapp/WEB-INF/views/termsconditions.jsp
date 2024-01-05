@@ -32,7 +32,7 @@
                 <!-- 헤더 -->
                 <%@ include file="header.jsp" %>
                     <div class="content">
-                        <div class="container">
+                        <!-- <div class="container">
                             <h2 class="mt-4 mb-4">이용약관</h2>
 
                             <div class="card">
@@ -42,11 +42,53 @@
                                     </pre>
                                 </div>
                             </div>
+                        </div> -->
+
+                        <div class="card-body">
+                            <h3>이용 약관</h3>
+
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">서비스 이용 약관 동의</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">개인정보 처리방침 동의</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">개인정보 처리 위탁 동의</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <h3>Read Me 서비스 이용 약관 동의</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
+                                    </p>
+                                 </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <h3>Read Me 개인정보 처리 방침 동의</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <h3>Read Me 개인정보 처리 위탁 동의</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+
                         </div>
 
-                        <button class="btn btn-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                        <button class="btn btn-warning btn-sm float-right" onclick="editAction()">수정</button>
-                        <button class="btn btn-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
+                        <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+                        <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+                        <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
                     </div><!-- .content -->
 
                     <!-- 푸터 -->
@@ -54,7 +96,6 @@
 
             </div><!-- /#right-panel -->
 
-             <!-- 부트스트랩 JS 및 jQuery CDN 링크 (선택적으로 사용) -->
              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 

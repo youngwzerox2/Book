@@ -300,6 +300,55 @@
 
     },
 
+    barFlot: function(){
+
+        // second chart
+        var flotBarOptions = {
+            series: {
+                bars: {
+                    show: true,
+                    barWidth: 43200000
+                }
+            },
+            xaxis: {
+                mode: "time",
+                timeformat: "%m/%d",
+                minTickSize: [ 1, "day" ]
+            },
+            grid: {
+                hoverable: true
+            },
+            legend: {
+                show: false
+            },
+            grid: {
+                color: "#fff",
+                hoverable: true,
+                borderWidth: 0,
+                backgroundColor: 'transparent'
+            },
+            tooltip: {
+                show: true,
+                content: "x: %x, y: %y"
+            }
+        };
+        var flotBarData = {
+            label: "flotBar",
+            color: "#007BFF",
+            data: [
+          [ 1354921600000, 1000 ],
+          [ 1355040000000, 1500 ],
+          [ 1355223600000, 2000 ],
+          [ 1355306400000, 2500 ],
+          [ 1355487300000, 3000 ],
+          [ 1355571900000, 4000 ]
+        ]
+        };
+        $.plot( $( "#flotBar2" ), [ flotBarData ], flotBarOptions );
+
+    },
+
+
     plotting: function(){
 
         var d1 = [ [ 20, 20 ], [ 30, 34 ], [ 42, 60 ], [ 54, 20 ], [ 80, 90 ] ];
