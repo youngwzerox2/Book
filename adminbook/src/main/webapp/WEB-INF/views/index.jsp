@@ -32,6 +32,8 @@
         <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
+        
+
         <style>
     #weatherWidget .currentDesc {
         color: #ffffff!important;
@@ -157,6 +159,88 @@
                             </div>
                             <!-- /Widgets -->
 
+                               
+                            <div class="row">
+                                
+
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>문의 건수</h3>
+                                            <canvas id="myChart" style="height:35vh; width: 25vw; float: left;"></canvas>
+                                        </div>
+                                    </div><!-- /# card -->
+                                </div><!-- /# column -->
+
+
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>연령대 분석</h3>
+                                            <canvas id="pie-chart" style="height:10vh; width:25vw; float: left;"></canvas>
+                                        </div>
+                                    </div><!-- /# card -->
+                                </div><!-- /# column -->
+
+                            </div><!-- row -->
+
+                            <div class="row">
+                                
+                           
+
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>도서 조회수 랭킹</h3>
+                                            <canvas id="line-chart" width="300" height="250"></canvas>
+                                        </div>
+                                    </div><!-- /# card -->
+                                </div><!-- /# column -->
+
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="card-title">제재 회원 명단</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">아이디</th>
+                                                        <th scope="col">이름</th>
+                                                        <th scope="col">제재 날짜</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>그해 우리는</td>
+                                                        <td>고오 작가</td>
+                                                        <td>24.1.21</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>스물다섯 스물하나</td>
+                                                        <td>비비</td>
+                                                        <td>23.12.21</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>마이 데몬</td>
+                                                        <td>정구원</td>
+                                                        <td>23.11.21</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+
+                            </div><!-- row -->
+
+
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="card">
@@ -259,16 +343,6 @@
                         <div class="animated fadeIn">    
 
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="mb-3">도서 조회수 랭킹</h4>
-                                        <div class="flot-container">
-                                            <div id="flotBar2" style="width:100%;height:275px;"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- /# card -->
-                            </div><!-- /# column -->
 
                             <div class="col-lg-6">
                                 <div class="card">
@@ -308,56 +382,16 @@
                                         </table>
                                     </div>
                                 </div>
+
                             </div>
 
-
                         </div><!-- /# row -->
+
+                        <canvas id="realtimeChart" width="800" height="400"></canvas>
+
                     </div><!-- .animated -->
                 </div><!-- /.content -->
 
-                <!-- Content -->
-                    <div class="content" style="display:none;">
-                        <!-- Animated -->
-                        <div class="animated fadeIn">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="mb-3">Real Chart</h4>
-                                            <div class="flot-container">
-                                                <div id="cpu-load" class="cpu-load"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /# column -->
-
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="mb-3">Line Chart</h4>
-                                            <div class="flot-container">
-                                                <div id="flot-line" class="flot-line"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /# column -->
-                            </div><!-- /# row -->
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="mb-3">Line Chart</h4>
-                                            <div class="flot-container">
-                                                <div id="chart1" style="width:100%;height:275px;"></div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /# card -->
-                                </div><!-- /# column -->
-                            </div><!-- /# row -->
-                        </div><!-- .animated -->
-                    </div>
-                    <!-- /.content -->
                 <%@ include file="footer.jsp" %>
 
             </div>
@@ -386,7 +420,11 @@
                 <script src="assets/js/init/flot-chart-init.js"></script>
 
                 <!--  Chart js -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+                <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script> -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+                <script src="assets/js/mainchart.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
 
                 <!--Chartist Chart-->
                 <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
@@ -400,7 +438,6 @@
                 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
                 <script src="assets/js/init/fullcalendar-init.js"></script>
-
 
     </body>
 

@@ -43,6 +43,11 @@ public class AdminController {
         System.out.println("notice.jsp호출");
     }
 
+    @RequestMapping("/noticedetail")
+    public void noticedetail() {
+        System.out.println("noticedetail.jsp호출");
+    }
+
     @RequestMapping("/termsconditions")
     public void termsconditions() {
         System.out.println("termsconditions.jsp호출");

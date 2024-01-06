@@ -46,7 +46,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>회원상세정보</h1>
+                                <h1>도서상세정보</h1>
                             </div>
                         </div>
                     </div>
@@ -62,18 +62,16 @@
                     
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-header"><strong>회원상세정보</strong></div>
+                            <div class="card-header"><strong>도서상세정보</strong></div>
                             <div class="card-body card-block">
-                                <div class="form-group"><label for="company" class=" form-control-label">고객아이디</label><input type="text" id="company" placeholder="아이디" class="form-control"></div>
-                                <div class="form-group"><label for="vat" class=" form-control-label">이름</label><input type="text" id="vat" placeholder="이름" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">이메일</label><input type="text" id="street" placeholder="이메일" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">닉네임</label><input type="text" id="street" placeholder="닉네임" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">성별</label><input type="text" id="street" placeholder="성별" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">생년월일</label><input type="text" id="street" placeholder="생년월일" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">전화번호</label><input type="text" id="street" placeholder="전화번호" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">가입일</label><input type="text" id="street" placeholder="가입일" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">회원상태</label><input type="text" id="street" placeholder="회원상태" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">책장방문 허용여부</label><input type="text" id="street" placeholder="책장방문 허용여부" class="form-control"></div>
+                                <div class="form-group"><label for="company" class=" form-control-label">책 이미지</label><input type="text" id="company" placeholder="아이디" class="form-control"></div>
+                                <div class="form-group"><label for="company" class=" form-control-label">책 제목</label><input type="text" id="company" placeholder="아이디" class="form-control"></div>
+                                <div class="form-group"><label for="street" class=" form-control-label">청구기호13자리</label><input type="text" id="street" placeholder="성별" class="form-control"></div>
+                                <div class="form-group"><label for="vat" class=" form-control-label">책 저자</label><input type="text" id="vat" placeholder="이름" class="form-control"></div>
+                                <div class="form-group"><label for="street" class=" form-control-label">출판사</label><input type="text" id="street" placeholder="이메일" class="form-control"></div>
+                                <div class="form-group"><label for="street" class=" form-control-label">발행년도</label><input type="text" id="street" placeholder="닉네임" class="form-control"></div>
+                                <div class="form-group"><label for="street" class=" form-control-label">청구기호5자리</label><input type="text" id="street" placeholder="성별" class="form-control"></div>
+                                <div class="form-group"><label for="street" class=" form-control-label">책 소개</label><input type="text" id="street" placeholder="책장방문 허용여부" class="form-control"></div>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,6 @@
     <head>
         <meta charset="UTF-8">
         <title>FAQ 페이지</title>
-        <!-- 부트스트랩 CDN 링크 (선택적으로 사용) -->
         <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
     </head>
 
@@ -26,13 +25,13 @@
                             <h2>자주 묻는 질문 (FAQ)</h2>
 
                             <div class="accordion" id="faqAccordion">
-                                <!-- 질문과 답변 아이템 -->
+
                                 <div class="card">
                                     <div class="card-header" id="question1">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse"
                                                 data-target="#answer1" aria-expanded="true" aria-controls="answer1">
-                                                질문 1: 집에 가고 싶나요?
+                                                질문 1: 오늘은 무슨 요일?
                                             </button>
                                         </h5>
                                     </div>
@@ -40,7 +39,7 @@
                                     <div id="answer1" class="collapse show" aria-labelledby="question1"
                                         data-parent="#faqAccordion">
                                         <div class="card-body">
-                                            네, 가고 싶어요
+                                            <a href="/faqdetail">토요일</a>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +49,7 @@
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse"
                                                 data-target="#answer2" aria-expanded="false" aria-controls="answer2">
-                                                질문 2: 취업할 수 있을까요?
+                                                질문 2: 오늘의 상태는?
                                             </button>
                                         </h5>
                                     </div>
@@ -58,15 +57,15 @@
                                     <div id="answer2" class="collapse" aria-labelledby="question2"
                                         data-parent="#faqAccordion">
                                         <div class="card-body">
-                                            ...나는 할 수 있다
+                                            피곤하다
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                        <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+                        <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+                        <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
                         <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
 
                     </div><!-- .content -->

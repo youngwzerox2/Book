@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -84,7 +85,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
+                                            <td><a href="/memberdetail">123</a></td>
                                             <td>2</td>
                                             <td>3</td>
                                             <td>4</td>

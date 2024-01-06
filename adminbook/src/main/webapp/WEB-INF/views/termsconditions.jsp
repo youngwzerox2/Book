@@ -88,7 +88,7 @@
 
                         <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
                         <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
-                        <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
+                        <!-- <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button> -->
                     </div><!-- .content -->
 
                     <!-- 푸터 -->

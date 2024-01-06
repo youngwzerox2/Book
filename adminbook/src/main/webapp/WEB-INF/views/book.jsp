@@ -75,17 +75,12 @@
                                             <th>출판사</th>
                                             <th>발행년도</th>
                                             <th>청구기호5자리</th>
-                                            <th>전화번호</th>
-                                            <th>책장방문허용여부</th>
-                                            <th>책 이미지 url</th>
-                                            <th>책 데이터 url</th>
-                                            <th>책 대출건수</th>
                                             <th>책 소개</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
+                                            <td><a href="/bookdetail">123</a></td>
                                             <td>2</td>
                                             <td>3</td>
                                             <td>4</td>
@@ -93,11 +88,6 @@
                                             <td>6</td>
                                             <td>7</td>
                                             <td>8</td>
-                                            <td>9</td>
-                                            <td>10</td>
-                                            <td>11</td>
-                                            <td>12</td>
-                                            <td>13</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
@@ -108,11 +98,6 @@
                                             <td>6</td>
                                             <td>7</td>
                                             <td>8</td>
-                                            <td>9</td>
-                                            <td>15</td>
-                                            <td>16</td>
-                                            <td>17</td>
-                                            <td>18</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -120,8 +105,12 @@
                         </div>
                     </div>
             </div><!-- .animated -->
+            <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">도서 등록</button>
         </div><!-- .content -->
 
+        
 
         <div class="clearfix"></div>
 
@@ -157,6 +146,23 @@
           $('#bootstrap-data-table-export').DataTable();
       } );
   </script>
+
+    <script>
+        function writeAction() {
+            // 글쓰기 버튼 클릭 시 동작
+            alert("도서를 등록합니다.");
+        }
+
+        function editAction() {
+            // 수정 버튼 클릭 시 동작
+            alert("글을 수정합니다.");
+        }
+
+        function deleteAction() {
+            // 삭제 버튼 클릭 시 동작
+            alert("글을 삭제합니다.");
+        }
+    </script>
 
 
 </body>

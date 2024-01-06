@@ -29,7 +29,7 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">2024년 1월 1일 공지</h5>
+                                    <h5 class="card-title"><a href="/noticedetail">2024년 1월 1일 공지</a></h5>
                                     <p class="card-text">새해 복 많이 받으세요</p>
                                 </div>
                             </div>
@@ -41,8 +41,8 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+                            <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+                            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
                             <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
 
                         </div><!-- .content -->
