@@ -83,7 +83,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Pie Chart</h4>
+                                <h4 class="mb-3">연령대 분석</h4>
                                 <div class="flot-container">
                                     <div id="flot-pie" class="flot-pie-container"></div>
                                 </div>
@@ -94,7 +94,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Line Chart</h4>
+                                <h4 class="mb-3">총 매출</h4>
                                 <div class="flot-container">
                                     <div id="chart1" style="width:100%;height:275px;"></div>
                                 </div>
@@ -106,7 +106,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Bar Chart</h4>
+                                <h4 class="mb-3">도서 조회수</h4>
                                 <div class="flot-container">
                                     <div id="flotBar" style="width:100%;height:275px;"></div>
                                 </div>

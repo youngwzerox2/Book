@@ -126,79 +126,22 @@ new Chart(document.getElementById("line-chart"), {
 
 // 수평 바 차트
 new Chart(document.getElementById("bar-chart-horizontal"), {
-    type: 'horizontalBar',
-    data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-      datasets: [
-        {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-          data: [2478,5267,734,784,433]
-        }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Predicted world population (millions) in 2050'
+  type: 'horizontalBar',
+  data: {
+    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+    datasets: [
+      {
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: [2478,5267,734,784,433]
       }
+    ]
+  },
+  options: {
+    legend: { display: false },
+    title: {
+      display: true,
+      text: 'Predicted world population (millions) in 2050'
     }
+  }
 });
-
-
- //실시간 그래프
-// Chart 설정
-var realtimeCtx = document.getElementById('realtimeChart').getContext('2d');
-var realtimeData = {
-    labels: [],
-    datasets: [{
-        label: 'Realtime Data',
-        borderColor: 'rgb(75, 192, 192)',
-        borderWidth: 2,
-        data: [],
-    }]
-};
-
-var realtimeConfig = {
-    type: 'line',
-    data: realtimeData,
-    options: {
-        scales: {
-            x: {
-                type: 'linear',
-                position: 'bottom'
-            },
-            y: {
-                min: 0,
-                max: 100
-            }
-        }
-    }
-};
-
-var myRealtimeChart = new Chart(realtimeCtx, realtimeConfig);
-
-// 데이터 업데이트
-function updateRealtimeData() {
-    // 매 초마다 무작위 데이터 생성 및 업데이트
-    var newDataPoint = Math.floor(Math.random() * 100);
-    realtimeData.labels.push(realtimeData.labels.length);
-    realtimeData.datasets[0].data.push(newDataPoint);
-
-    // 데이터의 길이를 제한하여 너무 많은 데이터가 쌓이지 않도록 함
-    var maxDataLength = 20;
-    if (realtimeData.labels.length > maxDataLength) {
-        realtimeData.labels.shift();
-        realtimeData.datasets[0].data.shift();
-    }
-
-    // 그래프 업데이트
-    myRealtimeChart.update();
-
-    // 1초마다 업데이트
-    setTimeout(updateRealtimeData, 1000);
-}
-
-// 초기 데이터 업데이트 시작
-updateRealtimeData();

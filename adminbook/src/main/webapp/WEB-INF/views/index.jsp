@@ -21,7 +21,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
         <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
         <link rel="stylesheet" href="assets/css/style.css">
@@ -32,44 +33,50 @@
         <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
-        
+
 
         <style>
-    #weatherWidget .currentDesc {
-        color: #ffffff!important;
-    }
-        .traffic-chart {
-            min-height: 335px;
-        }
-        #flotPie1  {
-            height: 150px;
-        }
-        #flotPie1 td {
-            padding:3px;
-        }
-        #flotPie1 table {
-            top: 20px!important;
-            right: -10px!important;
-        }
-        .chart-container {
-            display: table;
-            min-width: 270px ;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        #flotLine5  {
-             height: 105px;
-        }
+            #weatherWidget .currentDesc {
+                color: #ffffff !important;
+            }
 
-        #flotBarChart {
-            height: 150px;
-        }
-        #cellPaiChart{
-            height: 160px;
-        }
+            .traffic-chart {
+                min-height: 335px;
+            }
 
-    </style>
+            #flotPie1 {
+                height: 150px;
+            }
+
+            #flotPie1 td {
+                padding: 3px;
+            }
+
+            #flotPie1 table {
+                top: 20px !important;
+                right: -10px !important;
+            }
+
+            .chart-container {
+                display: table;
+                min-width: 270px;
+                text-align: left;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            #flotLine5 {
+                height: 105px;
+            }
+
+            #flotBarChart {
+                height: 150px;
+            }
+
+            #cellPaiChart {
+                height: 160px;
+            }
+        </style>
     </head>
 
     <body>
@@ -159,15 +166,16 @@
                             </div>
                             <!-- /Widgets -->
 
-                               
+
                             <div class="row">
-                                
+
 
                                 <div class="col-lg-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <h3>문의 건수</h3>
-                                            <canvas id="myChart" style="height:35vh; width: 25vw; float: left;"></canvas>
+                                            <canvas id="myChart"
+                                                style="height:35vh; width: 25vw; float: left;"></canvas>
                                         </div>
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
@@ -177,7 +185,8 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h3>연령대 분석</h3>
-                                            <canvas id="pie-chart" style="height:10vh; width:25vw; float: left;"></canvas>
+                                            <canvas id="pie-chart"
+                                                style="height:10vh; width:25vw; float: left;"></canvas>
                                         </div>
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
@@ -185,8 +194,8 @@
                             </div><!-- row -->
 
                             <div class="row">
-                                
-                           
+
+
 
                                 <div class="col-lg-6">
                                     <div class="card">
@@ -236,7 +245,9 @@
                                         </div>
                                     </div>
                                 </div>
-                             
+
+
+                                <canvas id="bar-chart-horizontal" width="600" height="250"></canvas>
 
                             </div><!-- row -->
 
@@ -278,7 +289,7 @@
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
 
-                                <div  class="col-lg-4">
+                                <div class="col-lg-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="mb-3">연령대 분석</h4>
@@ -340,104 +351,126 @@
                     <!-- Content -->
                     <div class="content">
                         <!-- Animated -->
-                        <div class="animated fadeIn">    
+                        <div class="animated fadeIn">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title">제재 회원 명단</strong>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="card-title">제재 회원 명단</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">아이디</th>
+                                                        <th scope="col">이름</th>
+                                                        <th scope="col">제재 날짜</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>그해 우리는</td>
+                                                        <td>고오 작가</td>
+                                                        <td>24.1.21</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>스물다섯 스물하나</td>
+                                                        <td>비비</td>
+                                                        <td>23.12.21</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>마이 데몬</td>
+                                                        <td>정구원</td>
+                                                        <td>23.11.21</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">아이디</th>
-                                                    <th scope="col">이름</th>
-                                                    <th scope="col">제재 날짜</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>그해 우리는</td>
-                                                    <td>고오 작가</td>
-                                                    <td>24.1.21</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>스물다섯 스물하나</td>
-                                                    <td>비비</td>
-                                                    <td>23.12.21</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>마이 데몬</td>
-                                                    <td>정구원</td>
-                                                    <td>23.11.21</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+
                                 </div>
 
-                            </div>
+                            </div><!-- /# row -->
 
-                        </div><!-- /# row -->
 
-                        <canvas id="realtimeChart" width="800" height="400"></canvas>
+                        </div><!-- .animated -->
+                    </div><!-- /.content -->
 
-                    </div><!-- .animated -->
-                </div><!-- /.content -->
-
-                <%@ include file="footer.jsp" %>
+                    <%@ include file="footer.jsp" %>
 
             </div>
             <!-- 푸터 -->
 
-                <!-- /#right-panel -->
-                <!-- Scripts -->
-                <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-                <script
-                    src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-                <script src="assets/js/main.js"></script>
+            <!-- /#right-panel -->
+            <!-- Scripts -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+            <script src="assets/js/main.js"></script>
 
-                <!-- flot 차트 -->
-                <script src="https://cdn.jsdelivr.net/npm/flot-charts@0.8.3/excanvas.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/flot-charts@0.8.3/jquery.flot.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.pie.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.time.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.stack.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.resize.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.crosshair.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/flot.curvedlines@1.1.1/curvedLines.min.js"></script>
-                <script
-                    src="https://cdn.jsdelivr.net/npm/jquery.flot.tooltip@0.9.0/js/jquery.flot.tooltip.min.js"></script>
-                <script src="assets/js/init/flot-chart-init.js"></script>
+            <!-- flot 차트 -->
+            <script src="https://cdn.jsdelivr.net/npm/flot-charts@0.8.3/excanvas.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flot-charts@0.8.3/jquery.flot.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.pie.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.time.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.stack.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.resize.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.crosshair.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flot.curvedlines@1.1.1/curvedLines.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery.flot.tooltip@0.9.0/js/jquery.flot.tooltip.min.js"></script>
+            <script src="assets/js/init/flot-chart-init.js"></script>
 
-                <!--  Chart js -->
-                <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script> -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-                <script src="assets/js/mainchart.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <!--  Chart js -->
+            <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script> -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+            <script src="assets/js/mainchart.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-                <!--Chartist Chart-->
-                <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-                <script
-                    src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+            <!--Chartist Chart-->
+            <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
-                <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-                <script src="assets/js/init/weather-init.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+            <script src="assets/js/init/weather-init.js"></script>
 
-                <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-                <script src="assets/js/init/fullcalendar-init.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+            <script src="assets/js/init/fullcalendar-init.js"></script>
+
+            <script>
+                new Chart(document.getElementById("bar-chart-horizontal"), {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                        datasets: [
+                            {
+                                label: "Population (millions)",
+                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: [2478,5267,734,784,433]
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Predicted world population (millions) in 2050'
+                        }
+                    }
+                });
+            </script>
 
     </body>
 
