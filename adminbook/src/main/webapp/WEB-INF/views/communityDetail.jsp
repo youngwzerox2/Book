@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>도서상세정보</title>
+        <title>커뮤니티상세정보</title>
         <meta name="description" content="Ela Admin - HTML5 Admin Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,7 +50,7 @@
                                 <div class="col-sm-4">
                                     <div class="page-header float-left">
                                         <div class="page-title">
-                                            <h1>도서상세정보</h1>
+                                            <h1>커뮤니티상세정보</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -66,81 +66,66 @@
 
                                 <div class="col-lg-6">
                                     <div class="card">
-                                        <div class="card-header"><strong>도서상세정보</strong></div>
-                                        <form action="updateBook" method="post">
+                                        <div class="card-header"><strong>커뮤니티상세정보</strong></div>
+                                        <form action="updateCommunity" method="post">
                                             <div class="card-body card-block">
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">번호</label><input type="text"
-                                                        value="${book.NO}" class="form-control" name="NO">
+                                                        class=" form-control-label">회원아이디</label><input type="text"
+                                                        value="${community.member_id}" class="form-control" name="member_id">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">랭킹</label><input type="text"
-                                                        value="${book.ranking}" class="form-control" name="ranking">
+                                                        class=" form-control-label">신고글 번호</label><input type="text"
+                                                        value="${community.complain_id}" class="form-control" name="complain_id">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">책
-                                                        제목</label><input type="text" value="${book.bookname}"
-                                                        class="form-control" name="bookname">
+                                                        class=" form-control-label">신고항목
+                                                        </label><input type="text" value="${community.complain_type}"
+                                                        class="form-control" name="complain_type">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">책
-                                                        저자</label><input type="text" value="${book.authors}"
+                                                        class=" form-control-label">신고받은 글 번호
+                                                        </label><input type="text" value="${community.complain_target_id}"
                                                         class="form-control">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">출판사</label><input type="text"
-                                                        value="${book.publisher}" class="form-control">
+                                                        class=" form-control-label">신고내용</label><input type="text"
+                                                        value="${community.complain_content}" class="form-control">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">발행년도</label><input type="text"
-                                                        value="${book.publication_year}" class="form-control">
+                                                        class=" form-control-label">신고글 작성시간</label><input type="text"
+                                                        value="${community.complain_date}" class="form-control">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">청구기호 13자리</label><input type="text"
-                                                        value="${book.book_isbn13}" class="form-control">
+                                                        class=" form-control-label">신고글 처리여부</label>
+                                                        <select class="form-control" name="complain_done">
+                                                            <option value="yes" <c:if test="${community.complain_done eq 'yes'}"></c:if>yes</option>
+                                                            <option value="no" <c:if test="${community.complain_done eq 'no'}"></c:if>no</option>
+                                                        </select>
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">청구기호 5자리</label><input type="text"
-                                                        value="${book.addition_symbol}" class="form-control">
+                                                        class=" form-control-label">신고글 답변</label><input type="text"
+                                                        value="${community.complain_reply}" class="form-control">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">권수</label><input type="text"
-                                                        value="${book.vol}" class="form-control" name="vol">
+                                                        class=" form-control-label">신고글 답변 작성시간</label><input type="text"
+                                                        value="${community.complain_reply_date}" class="form-control" name="vol">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">분류번호</label><input type="text"
-                                                        value="${book.class_no}" class="form-control">
+                                                        class=" form-control-label">신고받은 글 작성자</label><input type="text"
+                                                        value="${community.complain_target_user}" class="form-control">
                                                 </div>
                                                 <div class="form-group"><label for="company"
-                                                        class=" form-control-label">책
-                                                        분류</label><input type="text" value="${book.class_nm}"
+                                                        class=" form-control-label">처리담당자
+                                                        </label><input type="text" value="${community.complain_reply_admin}"
                                                         class="form-control">
                                                 </div>
-                                                <div class="form-group"><label for="company"
-                                                        class=" form-control-label">대출권수</label><input type="text"
-                                                        value="${book.loan_count}" class="form-control">
-                                                </div>
-                                                <div class="form-group"><label for="company"
-                                                        class=" form-control-label">책
-                                                        이미지 링크</label><input type="text" value="${book.bookImageURL}"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="form-group"><label for="company"
-                                                        class=" form-control-label">책
-                                                        데이터 링크</label><input type="text" value="${book.bookDtlUrl}"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="form-group"><label for="company"
-                                                    class=" form-control-label">책
-                                                    소개</label><input type="text" value="${book.description}"
-                                                    class="form-control">
-                                            </div>
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-outline-primary">수정</button>
-                                                <a href="deleteBook?NO=${book.NO}" class="btn btn-outline-danger"
+                                                <a href="deleteCommunity?complain_id=${community.complain_id}" class="btn btn-outline-danger"
                                                     onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
-                                                <a href="book" class="btn btn-outline-secondary">뒤로가기</a>
+                                                <a href="community" class="btn btn-outline-secondary">뒤로가기</a>
                                             </div>
                                         </form>
                                     </div>

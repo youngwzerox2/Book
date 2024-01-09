@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -68,45 +69,51 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>책 이미지</th>
+                                            <th>번호</th>
+                                            <th>랭킹</th>
                                             <th>책 제목</th>
-                                            <th>청구기호13자리</th>
                                             <th>책 저자</th>
                                             <th>출판사</th>
                                             <th>발행년도</th>
-                                            <th>청구기호5자리</th>
+                                            <th>청구기호 13자리</th>
+                                            <th>청구기호 5자리</th>
+                                            <th>권수</th>
+                                            <th>분류번호</th>
+                                            <th>책 분류</th>
+                                            <th>대출권수</th>
+                                            <th>책 이미지 링크</th>
+                                            <th>책 데이터 링크</th>
                                             <th>책 소개</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <c:forEach items="${bookList }" var="book">
                                         <tr>
-                                            <td><a href="/bookdetail">123</a></td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td><a href="bookDetail?NO=${book.NO}">${book.NO}</a></td>
+                                            <td>${book.ranking}</td>
+                                            <td>${book.bookname}</td>
+                                            <td>${book.authors}</td>
+                                            <td>${book.publisher}</td>
+                                            <td>${book.publication_year}</td>
+                                            <td>${book.book_isbn13}</td>
+                                            <td>${book.addition_symbol}</td>
+                                            <td>${book.vol}</td>
+                                            <td>${book.class_no}</td>
+                                            <td>${book.class_nm}</td>
+                                            <td>${book.loan_count}</td>
+                                            <td><a href="${book.bookImageURL}" target="_blank">${book.bookImageURL}</a></td>
+                                            <td><a href="${book.bookDtlUrl}" target="_blank">${book.bookDtlUrl}</a></td>
+                                            <td>${book.description}</td>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>7</td>
-                                            <td>8</td>
-                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
             </div><!-- .animated -->
-            <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button>
+            <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
+            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
             <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">도서 등록</button>
         </div><!-- .content -->
 
