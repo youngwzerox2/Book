@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
     <!DOCTYPE html>
     <html>
 
@@ -29,21 +31,20 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="/noticedetail">2024년 1월 1일 공지</a></h5>
-                                    <p class="card-text">새해 복 많이 받으세요</p>
+                                    <c:forEach items="${noticeList }" var="notice">
+                                    <h5 class="card-title">${notice.notice_date}</h5>
+                                    <h3 class="card-title"><a href="noticeDetail?notice_number=${notice.notice_number}">${notice.notice_title}</a></h3>
+                                    <p class="card-text">${notice.notice_content}</p>
+                                    <hr/>
+                                    </c:forEach>
                                 </div>
                             </div>
 
-                            <div class="card mt-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">2023년 12월 1일 공지</h5>
-                                    <p class="card-text">12월이 되었습니다</p>
-                                </div>
-                            </div>
+                          
 
                             <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
                             <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
-                            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
+                            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
 
                         </div><!-- .content -->
 
@@ -80,5 +81,3 @@
                 }
             </script>
     </body>
-
-    </html>

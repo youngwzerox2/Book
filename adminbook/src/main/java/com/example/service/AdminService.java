@@ -22,22 +22,42 @@ public interface AdminService {
     // 도서리스트
     List<AdminVO> bookList();
 
-    // 회원상세정보
+    // 회원 상세정보
     AdminVO bookDetail(AdminVO vo);
 
-    // 도서정보수정
+    // 도서정보 수정
     void updateBook(AdminVO vo);
 
-    // 도서정보삭제
+    // 도서정보 삭제
     void deleteBook(AdminVO vo);
 
     // *************************커뮤니티***************************
     // 커뮤니티 신고 전체리스트
     List<AdminVO> communityList();
 
-    // 커뮤니티상세정보
+    // 커뮤니티 상세정보
     AdminVO communityDetail(AdminVO vo);
 
-    // 커뮤니티정보수정
+    // 커뮤니티정보 수정
     void updateCommunity(AdminVO vo);
+
+    // *************************공지사항***************************
+    // 공지사항 전체리스트
+    List<AdminVO> noticeList();
+
+    // 공지사항 상세정보
+    AdminVO noticeDetail(AdminVO vo);
+
+    // 공지사항정보 수정
+    void updateNotice(AdminVO vo);
+
+     // *************************FAQ***************************
+    // 공지사항 전체리스트
+    List<AdminVO> faqList();
+
+    // 공지사항 상세정보
+    AdminVO faqDetail(AdminVO vo);
+
+    // 공지사항정보 수정
+    void updateFaq(AdminVO vo);
 }

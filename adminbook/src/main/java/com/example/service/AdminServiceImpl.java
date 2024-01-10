@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService{
         adminDAO.deleteBook(vo);
     }
 
-    // *************************도서***************************
+    // *************************커뮤니티***************************
     // 커뮤니티 신고 전체 리스트
     @Override
     public List<AdminVO> communityList() {
@@ -82,6 +82,44 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void updateCommunity(AdminVO vo) {
         adminDAO.updateCommunity(vo);
+    }
+
+    // *************************공지사항***************************
+    // 공지사항 전체 리스트
+    @Override
+    public List<AdminVO> noticeList() {
+        return adminDAO.noticeList();
+    }
+
+    // 공지사항 상세정보
+    @Override
+    public AdminVO noticeDetail(AdminVO vo) {
+        return adminDAO.noticeDetail(vo);
+    }
+
+    // 공지사항 수정
+    @Override
+    public void updateNotice(AdminVO vo) {
+        adminDAO.updateNotice(vo);
+    }
+
+    // *************************FAQ***************************
+    // FAQ 전체 리스트
+    @Override
+    public List<AdminVO> faqList() {
+        return adminDAO.faqList();
+    }
+
+    // FAQ 상세정보
+    @Override
+    public AdminVO faqDetail(AdminVO vo) {
+        return adminDAO.faqDetail(vo);
+    }
+
+    // FAQ 수정
+    @Override
+    public void updateFaq(AdminVO vo) {
+        adminDAO.updateFaq(vo); 
     }
    
 

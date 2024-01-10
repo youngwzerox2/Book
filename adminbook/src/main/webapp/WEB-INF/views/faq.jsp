@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
     <!DOCTYPE html>
     <html>
 
@@ -27,11 +29,12 @@
                             <div class="accordion" id="faqAccordion">
 
                                 <div class="card">
+                                    <c:forEach items="${faqList }" var="faq">
                                     <div class="card-header" id="question1">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse"
                                                 data-target="#answer1" aria-expanded="true" aria-controls="answer1">
-                                                질문 1: 오늘은 무슨 요일?
+                                                <a href="faqDetail?notice_number=${faq.notice_number}">${notice.notice_title}</a>
                                             </button>
                                         </h5>
                                     </div>
@@ -39,28 +42,13 @@
                                     <div id="answer1" class="collapse show" aria-labelledby="question1"
                                         data-parent="#faqAccordion">
                                         <div class="card-body">
-                                            <a href="/faqdetail">토요일</a>
+                                            ${notice.notice_content}
                                         </div>
                                     </div>
+                                    </c:forEach>
                                 </div>
 
-                                <div class="card">
-                                    <div class="card-header" id="question2">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" type="button" data-toggle="collapse"
-                                                data-target="#answer2" aria-expanded="false" aria-controls="answer2">
-                                                질문 2: 오늘의 상태는?
-                                            </button>
-                                        </h5>
-                                    </div>
-
-                                    <div id="answer2" class="collapse" aria-labelledby="question2"
-                                        data-parent="#faqAccordion">
-                                        <div class="card-body">
-                                            피곤하다
-                                        </div>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
 
@@ -81,16 +69,6 @@
                 function writeAction() {
                     // 글쓰기 버튼 클릭 시 동작
                     alert("글을 작성합니다.");
-                }
-        
-                function editAction() {
-                    // 수정 버튼 클릭 시 동작
-                    alert("글을 수정합니다.");
-                }
-        
-                function deleteAction() {
-                    // 삭제 버튼 클릭 시 동작
-                    alert("글을 삭제합니다.");
                 }
             </script>
 

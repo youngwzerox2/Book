@@ -82,6 +82,52 @@
 		SET complain_done=#{complain_done}
 		WHERE complain_id=#{complain_id}
 	</update>
+
+	<!-- ******************************공지사항******************************** -->
+	<!-- 공지사항 전체 리스트 -->
+	<select id="noticeList" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		WHERE notice_type = 'notice'
+		ORDER BY notice_date DESC
+	</select>
+
+	<!-- 공지사항 상세정보 -->
+	<select id="noticeDetail" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
+	</select>
+
+	<!-- 공지사항 정보수정 -->
+	<update id="updateNotice" parameterType="AdminVO">
+		UPDATE notice
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}
+		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
+	</update>
+
+	<!-- ******************************FAQ******************************** -->
+	<!-- FAQ 전체 리스트 -->
+	<select id="faqList" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		<!-- WHERE notice_type=#{notice_type}  -->
+		ORDER BY notice_date DESC
+	</select>
+
+	<!-- FAQ 상세정보 -->
+	<select id="faqDetail" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		WHERE notice_number=#{notice_number}
+	</select>
+
+	<!-- FAQ 정보수정 -->
+	<update id="updateFaq" parameterType="AdminVO">
+		UPDATE notice
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}
+		WHERE notice_number=#{notice_number}
+	</update>
 	
 
 	<!-- <select id="getBoard" resultType="BoardVO">

@@ -44,4 +44,24 @@ public interface AdminDAO {
 
     // 커뮤니티 정보수정
     public void updateCommunity(AdminVO vo);
+
+    // *************************공지사항***************************
+    // 공지사항 전체 리스트
+    public List<AdminVO> noticeList();
+
+    // 공지사항 상세정보
+    public AdminVO noticeDetail(AdminVO vo);
+
+    // 공지사항 정보수정
+    public void updateNotice(AdminVO vo);
+
+    // *************************FAQ***************************
+    // 공지사항 전체 리스트
+    public List<AdminVO> faqList();
+
+    // 공지사항 상세정보
+    public AdminVO faqDetail(AdminVO vo);
+
+    // 공지사항 정보수정
+    public void updateFaq(AdminVO vo);
 }

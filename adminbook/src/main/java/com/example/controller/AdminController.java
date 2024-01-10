@@ -121,29 +121,65 @@ public class AdminController {
         return "redirect:community";
     }
 
-    // 공지사항
+    // ***************************************공지사항****************************************
+    // 공지사항 관리
     @RequestMapping("/notice")
-    public void notice() {
+    public void noticeList(Model m) {
+        // AdminVO vo = new AdminVO();
+        List<AdminVO> list = adminService.noticeList();
+        m.addAttribute("noticeList", list);
         System.out.println("notice.jsp호출");
     }
 
-    // 공지상세정보
-    @RequestMapping("/noticedetail")
-    public void noticedetail() {
-        System.out.println("noticedetail.jsp호출");
+    // 공지사항 상세정보
+    @RequestMapping("/noticeDetail")
+    public void noticeDetail(Model m, AdminVO vo) {
+        AdminVO notice = adminService.noticeDetail(vo);
+        System.out.println("noticeDetail.jsp호출");
+        m.addAttribute("notice", notice);
     }
 
+    // 공지사항 정보수정
+    @RequestMapping("/updateNotice")
+    public String updateNotice(AdminVO vo) {
+        System.out.println("공지사항정보수정:"+vo);
+        adminService.updateNotice(vo);
+        return "redirect:notice";
+    }
+
+    // ***************************************이용약관****************************************
     // 이용약관
     @RequestMapping("/termsconditions")
     public void termsconditions() {
         System.out.println("termsconditions.jsp호출");
     }
 
-    // FAQ
+    // ***************************************FAQ****************************************
+    // FAQ 관리
     @RequestMapping("/faq")
-    public void faq() {
+    public void faqList(Model m) {
+        // AdminVO vo = new AdminVO();
+        List<AdminVO> list = adminService.faqList();
+        m.addAttribute("faqList", list);
         System.out.println("faq.jsp호출");
     }
+
+    // FAQ 상세정보
+    @RequestMapping("/faqDetail")
+    public void faqDetail(Model m, AdminVO vo) {
+        AdminVO faq = adminService.faqDetail(vo);
+        System.out.println("faqDetail.jsp호출");
+        m.addAttribute("faq", faq);
+    }
+
+    // FAQ 정보수정
+    @RequestMapping("/updateFaq")
+    public String updateFaq(AdminVO vo) {
+        System.out.println("FAQ 정보수정:"+vo);
+        adminService.updateFaq(vo);
+        return "redirect:faq";
+    }
+
 
    
 

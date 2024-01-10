@@ -51,4 +51,12 @@ public class AdminVO {
     private String complain_reply_date;
     private String complain_target_user;
     private String complain_reply_admin;
+
+    // ****************************** 공지사항, FAQ, 이용약관 *******************************
+    private Integer notice_number;
+    private String notice_type;
+    private String notice_title;
+    private String notice_content;
+    private String notice_date;
+    private Integer notice_display;
 }
