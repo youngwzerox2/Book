@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>공지사항 상세 페이지</title>
+        <title>이용약관 상세 페이지</title>
         <!-- 부트스트랩 CDN 사용 -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,29 +37,29 @@
 
                     <div class="content">
                         <div class="container mt-5">
-                            <h2>공지사항 상세 페이지</h2>
+                            <h2>이용약관 상세 페이지</h2>
                             <hr>
 
                             <div class="card">
-                                <form action="updateNotice" method="post">
-                                    <input name="notice_number" type="hidden" value="${notice.notice_number}" />
-                                    <input name="notice_date" type="hidden" value="${notice.notice_date}" />
+                                <form action="updateTerms" method="post">
+                                    <input name="notice_number" type="hidden" value="${terms.notice_number}" />
+                                    <input name="notice_date" type="hidden" value="${terms.notice_date}" />
                                     <div class="card-body card-block">
                                         <div class="form-group"><label for="company"
                                                 class=" form-control-label">제목</label><input type="text"
-                                                value="${notice.notice_title}" class="form-control" name="notice_title">
+                                                value="${terms.notice_title}" class="form-control" name="notice_title">
                                         </div>
                                         <div class="form-group">
                                             <label for="company" class="form-control-label">내용</label>
-                                            <textarea class="form-control" name="notice_content" style="height: 200px;">${notice.notice_content}</textarea>
+                                            <textarea class="form-control" name="notice_content" style="height: 200px;">${terms.notice_content}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-outline-primary">수정</button>
-                                        <a href="deleteNotice?notice_number=${notice.notice_number}"
+                                        <!-- <a href="deleteNotice?notice_number=${notice.notice_number}"
                                             class="btn btn-outline-danger"
-                                            onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
-                                        <a href="notice" class="btn btn-outline-secondary">뒤로가기</a>
+                                            onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
+                                        <a href="terms" class="btn btn-outline-secondary">뒤로가기</a>
                                     </div>
                                 </form>
                             </div>

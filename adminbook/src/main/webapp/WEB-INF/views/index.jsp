@@ -92,7 +92,7 @@
                         <div class="animated fadeIn">
                             <!-- Widgets  -->
                             <div class="row">
-                                <div class="col-lg-3 col-md-6">
+                                <!-- <div class="col-lg-3 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="stat-widget-five">
@@ -101,14 +101,13 @@
                                                 </div>
                                                 <div class="stat-content">
                                                     <div class="text-left dib">
-                                                        <!-- <div class="stat-heading">오늘도 좋은 하루!</div> -->
                                                         <div class="stat-text">오늘도 좋은 하루!</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-lg-3 col-md-6">
                                     <div class="card">

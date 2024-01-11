@@ -24,33 +24,25 @@
                 <h2>FAQ 상세 페이지</h2>
 
                 <div class="card">
-                    <!-- <div class="card-header">
-                        <h5 class="mb-0">
-                            ${notice.notice_title}
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">질문1: 오늘은 무슨 요일?</h5>
-                        <p class="card-text">답변: 토요일</p>
-                    </div> -->
                     <form action="updateFaq" method="post">
-                        <input name="notice_number" type="hidden" value="${notice.notice_number}" />
+                        <input name="notice_number" type="hidden" value="${faq.notice_number}" />
+                        <input name="notice_date" type="hidden" value="${faq.notice_date}" />
                         <div class="card-body card-block">
                             <div class="form-group"><label for="company"
                                     class=" form-control-label">질문</label><input type="text"
-                                    value="${notice.notice_title}" class="form-control" name="notice_title">
+                                    value="${faq.notice_title}" class="form-control" name="notice_title">
                             </div>
                             <div class="form-group">
                                 <label for="company" class="form-control-label">답변</label>
-                                <textarea class="form-control" name="notice_content" style="height: 200px;">${notice.notice_content}</textarea>
+                                <textarea class="form-control" name="notice_content" style="height: 200px;">${faq.notice_content}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary">수정</button>
-                            <a href="deleteNotice?notice_content=${notice.notice_content}"
+                            <a href="deleteFaq?notice_number=${faq.notice_number}"
                                 class="btn btn-outline-danger"
                                 onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
-                            <a href="notice" class="btn btn-outline-secondary">뒤로가기</a>
+                            <a href="faq" class="btn btn-outline-secondary">뒤로가기</a>
                         </div>
                     </form>
                 </div>

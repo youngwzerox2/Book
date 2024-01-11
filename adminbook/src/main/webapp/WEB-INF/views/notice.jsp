@@ -40,10 +40,6 @@
                                 </div>
                             </div>
 
-                          
-
-                            <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
                             <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
 
                         </div><!-- .content -->
@@ -66,18 +62,7 @@
 
              <script>
                 function writeAction() {
-                    // 글쓰기 버튼 클릭 시 동작
-                    alert("글을 작성합니다.");
-                }
-        
-                function editAction() {
-                    // 수정 버튼 클릭 시 동작
-                    alert("글을 수정합니다.");
-                }
-        
-                function deleteAction() {
-                    // 삭제 버튼 클릭 시 동작
-                    alert("글을 삭제합니다.");
+                    window.location.href = 'insertNotice';
                 }
             </script>
     </body>

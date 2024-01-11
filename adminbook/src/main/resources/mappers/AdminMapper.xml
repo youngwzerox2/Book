@@ -102,43 +102,76 @@
 	<!-- 공지사항 정보수정 -->
 	<update id="updateNotice" parameterType="AdminVO">
 		UPDATE notice
-		SET notice_title=#{notice_title}, notice_content=#{notice_content}
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
 		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
 	</update>
+
+	<!-- 공지사항 정보삭제 -->
+	<delete id="deleteNotice" parameterType="AdminVO">
+		DELETE FROM notice
+		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
+	</delete>
+
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="AdminVO">
+		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) VALUES (#{notice_type}, #{notice_title}, #{notice_content}, now(), 1, #{member_id})
+	</insert>
 
 	<!-- ******************************FAQ******************************** -->
 	<!-- FAQ 전체 리스트 -->
 	<select id="faqList" resultType="AdminVO">
 		SELECT *
 		FROM notice
-		<!-- WHERE notice_type=#{notice_type}  -->
-		ORDER BY notice_date DESC
+		WHERE notice_type = 'faq'
+		<!-- ORDER BY notice_date DESC -->
 	</select>
 
 	<!-- FAQ 상세정보 -->
 	<select id="faqDetail" resultType="AdminVO">
 		SELECT *
 		FROM notice
-		WHERE notice_number=#{notice_number}
+		WHERE notice_number=#{notice_number} AND notice_type = 'faq'
 	</select>
 
 	<!-- FAQ 정보수정 -->
 	<update id="updateFaq" parameterType="AdminVO">
 		UPDATE notice
-		SET notice_title=#{notice_title}, notice_content=#{notice_content}
-		WHERE notice_number=#{notice_number}
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
+		WHERE notice_number=#{notice_number} AND notice_type = 'faq'
 	</update>
-	
 
-	<!-- <select id="getBoard" resultType="BoardVO">
-		SELECT *
-		FROM BOARD
-		WHERE SEQ=#{seq}
-	</select>
-	
-	<insert id="insertBoard" parameterType="BoardVO">
-		INSERT INTO BOARD (title, writer, content, regdate, cnt) VALUES (#{title}, #{writer}, #{content}, now(), 0)
+	<!-- FAQ 정보삭제 -->
+	<delete id="deleteFaq" parameterType="AdminVO">
+		DELETE FROM notice
+		WHERE notice_number=#{notice_number} AND notice_type = 'faq'
+	</delete>
+
+	<!-- FAQ 등록 -->
+	<insert id="insertFaq" parameterType="AdminVO">
+		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) VALUES (#{notice_type}, #{notice_title}, #{notice_content}, now(), 1, #{member_id})
 	</insert>
-	 -->
+
+	<!-- ******************************이용약관******************************** -->
+	<!-- 이용약관 전체 리스트 -->
+	<select id="termsList" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		WHERE notice_type = 'terms'
+		<!-- ORDER BY notice_date DESC -->
+	</select>
+
+	<!-- 이용약관 상세정보 -->
+	<select id="termsDetail" resultType="AdminVO">
+		SELECT *
+		FROM notice
+		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+	</select>
+
+	<!-- 이용약관 정보수정 -->
+	<update id="updateTerms" parameterType="AdminVO">
+		UPDATE notice
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
+		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+	</update>
 
 </mapper>

@@ -55,13 +55,35 @@ public interface AdminDAO {
     // 공지사항 정보수정
     public void updateNotice(AdminVO vo);
 
+    // 공지사항 정보삭제
+    public void deleteNotice(AdminVO vo);
+
+    // 공지사항 등록
+    public void insertNotice(AdminVO vo);
+
     // *************************FAQ***************************
-    // 공지사항 전체 리스트
+    // FAQ 전체 리스트
     public List<AdminVO> faqList();
 
-    // 공지사항 상세정보
+    // FAQ 상세정보
     public AdminVO faqDetail(AdminVO vo);
 
-    // 공지사항 정보수정
+    // FAQ 정보수정
     public void updateFaq(AdminVO vo);
+
+    // FAQ 정보삭제
+    public void deleteFaq(AdminVO vo);
+
+    // FAQ 등록
+    public void insertFaq(AdminVO vo);
+
+    // *************************이용약관***************************
+    // 이용약관 전체 리스트
+    public List<AdminVO> termsList();
+
+    // 이용약관 상세정보
+    public AdminVO termsDetail(AdminVO vo);
+
+    // 이용약관 정보수정
+    public void updateTerms(AdminVO vo);
 }

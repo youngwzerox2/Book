@@ -103,6 +103,19 @@ public class AdminServiceImpl implements AdminService{
         adminDAO.updateNotice(vo);
     }
 
+    // 공지사항 삭제
+    @Override
+    public void deleteNotice(AdminVO vo) {
+        adminDAO.deleteNotice(vo);
+    }
+
+    // 공지사항 등록
+    @Override
+    public void insertNotice(AdminVO vo) {
+        adminDAO.insertNotice(vo);
+    }
+    
+
     // *************************FAQ***************************
     // FAQ 전체 리스트
     @Override
@@ -121,6 +134,39 @@ public class AdminServiceImpl implements AdminService{
     public void updateFaq(AdminVO vo) {
         adminDAO.updateFaq(vo); 
     }
+
+    // FAQ 삭제
+    @Override
+    public void deleteFaq(AdminVO vo) {
+        adminDAO.deleteFaq(vo);
+    }
+
+    // FAQ 등록
+    @Override
+    public void insertFaq(AdminVO vo) {
+        adminDAO.insertFaq(vo);
+    }
+
+    // *************************이용약관***************************
+    // 이용약관 전체 리스트
+    @Override
+    public List<AdminVO> termsList() {
+        return adminDAO.termsList();
+    }
+
+    // 이용약관 상세정보
+    @Override
+    public AdminVO termsDetail(AdminVO vo) {
+        return adminDAO.termsDetail(vo);
+    }
+
+    // 이용약관 수정
+    @Override
+    public void updateTerms(AdminVO vo) {
+        adminDAO.updateTerms(vo); 
+    }
+
+
    
 
    

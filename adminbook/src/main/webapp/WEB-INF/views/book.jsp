@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -91,7 +92,16 @@
                                         <tr>
                                             <td><a href="bookDetail?NO=${book.NO}">${book.NO}</a></td>
                                             <td>${book.ranking}</td>
-                                            <td>${book.bookname}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${fn:length(book.bookname) > 15}">
+                                                        ${fn:substring(book.bookname, 0, 15)}...
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ${book.bookname}
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
                                             <td>${book.authors}</td>
                                             <td>${book.publisher}</td>
                                             <td>${book.publication_year}</td>
@@ -101,9 +111,18 @@
                                             <td>${book.class_no}</td>
                                             <td>${book.class_nm}</td>
                                             <td>${book.loan_count}</td>
-                                            <td><a href="${book.bookImageURL}" target="_blank">${book.bookImageURL}</a></td>
-                                            <td><a href="${book.bookDtlUrl}" target="_blank">${book.bookDtlUrl}</a></td>
-                                            <td>${book.description}</td>
+                                            <td><a href="${book.bookImageURL}" target="_blank">책 이미지 링크</a></td>
+                                            <td><a href="${book.bookDtlUrl}" target="_blank">책 데이터 링크</a></td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${fn:length(book.description) > 30}">
+                                                        ${fn:substring(book.description, 0, 30)}...
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ${book.description}
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
                                         </tr>
                                         </c:forEach>
                                     </tbody>

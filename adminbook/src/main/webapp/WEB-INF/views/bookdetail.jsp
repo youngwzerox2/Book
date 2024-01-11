@@ -130,11 +130,10 @@
                                                         데이터 링크</label><input type="text" value="${book.bookDtlUrl}"
                                                         class="form-control">
                                                 </div>
-                                                <div class="form-group"><label for="company"
-                                                    class=" form-control-label">책
-                                                    소개</label><input type="text" value="${book.description}"
-                                                    class="form-control">
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="company" class="form-control-label">책 소개</label>
+                                                    <textarea class="form-control">${book.description}</textarea>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-outline-primary">수정</button>

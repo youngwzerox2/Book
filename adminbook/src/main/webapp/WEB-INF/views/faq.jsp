@@ -29,32 +29,28 @@
                             <div class="accordion" id="faqAccordion">
 
                                 <div class="card">
-                                    <c:forEach items="${faqList }" var="faq">
-                                    <div class="card-header" id="question1">
+                                    <c:forEach items="${faqList }" var="faq"  varStatus="loop">
+                                    <div class="card-header" id="question${loop.index}">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse"
-                                                data-target="#answer1" aria-expanded="true" aria-controls="answer1">
-                                                <a href="faqDetail?notice_number=${faq.notice_number}">${notice.notice_title}</a>
+                                                data-target="#answer${loop.index}" aria-expanded="true" aria-controls="answer${loop.index}">
+                                                ${faq.notice_title}
                                             </button>
                                         </h5>
                                     </div>
 
-                                    <div id="answer1" class="collapse show" aria-labelledby="question1"
+                                    <div id="answer${loop.index}" class="collapse show" aria-labelledby="question${loop.index}"
                                         data-parent="#faqAccordion">
                                         <div class="card-body">
-                                            ${notice.notice_content}
+                                            <a href="faqDetail?notice_number=${faq.notice_number}">${faq.notice_content}</a>
                                         </div>
                                     </div>
                                     </c:forEach>
                                 </div>
-
-                              
                             </div>
                         </div>
 
-                        <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                        <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
-                        <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글쓰기</button>
+                        <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
 
                     </div><!-- .content -->
                     <!-- 푸터 -->
@@ -67,8 +63,7 @@
 
             <script>
                 function writeAction() {
-                    // 글쓰기 버튼 클릭 시 동작
-                    alert("글을 작성합니다.");
+                    window.location.href = 'insertFaq';
                 }
             </script>
 

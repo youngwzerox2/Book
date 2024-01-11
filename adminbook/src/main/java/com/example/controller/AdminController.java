@@ -147,11 +147,43 @@ public class AdminController {
         return "redirect:notice";
     }
 
+    // 공지사항 삭제
+    @RequestMapping("/deleteNotice")
+    public String deleteNotice(AdminVO vo) {
+        adminService.deleteNotice(vo);
+        return "redirect:notice";
+    }
+
+    // 공지사항 등록
+    @RequestMapping("/insertNotice")
+    public void insertNotice(Model m, AdminVO vo) {
+        adminService.insertNotice(vo);
+    }
+
     // ***************************************이용약관****************************************
-    // 이용약관
-    @RequestMapping("/termsconditions")
-    public void termsconditions() {
-        System.out.println("termsconditions.jsp호출");
+    // 이용약관 관리
+    @RequestMapping("/terms")
+    public void termsList(Model m) {
+        // AdminVO vo = new AdminVO();
+        List<AdminVO> list = adminService.termsList();
+        m.addAttribute("termsList", list);
+        System.out.println("terms.jsp호출");
+    }
+
+    // 이용약관 상세정보
+    @RequestMapping("/termsDetail")
+    public void termsDetail(Model m, AdminVO vo) {
+        AdminVO terms = adminService.termsDetail(vo);
+        System.out.println("termsDetail.jsp호출");
+        m.addAttribute("terms", terms);
+    }
+
+    // 이용약관 정보수정
+    @RequestMapping("/updateTerms")
+    public String updateTerms(AdminVO vo) {
+        System.out.println("이용약관 정보수정:"+vo);
+        adminService.updateTerms(vo);
+        return "redirect:terms";
     }
 
     // ***************************************FAQ****************************************
@@ -180,15 +212,27 @@ public class AdminController {
         return "redirect:faq";
     }
 
+     // FAQ 삭제
+    @RequestMapping("/deleteFaq")
+    public String deleteFaq(AdminVO vo) {
+        adminService.deleteFaq(vo);
+        return "redirect:faq";
+    }
 
+    // FAQ 등록
+    @RequestMapping("/insertFaq")
+    public void insertFaq(Model m, AdminVO vo) {
+        adminService.insertFaq(vo);
+    }
    
-
+    // ***************************************통계****************************************
     // 통계관리
     @RequestMapping("/charts")
     public void charts() {
         System.out.println("charts.jsp호출");
     }
 
+    // ***************************************도서관****************************************
     // 도서관관리
     @RequestMapping("/adminlibrary")
     public void adminlibrary() {

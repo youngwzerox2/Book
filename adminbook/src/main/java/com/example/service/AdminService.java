@@ -51,13 +51,35 @@ public interface AdminService {
     // 공지사항정보 수정
     void updateNotice(AdminVO vo);
 
-     // *************************FAQ***************************
-    // 공지사항 전체리스트
+    // 공지사항정보 삭제
+    void deleteNotice(AdminVO vo);
+
+    // 공지사항 등록
+    void insertNotice(AdminVO vo);
+
+    // *************************FAQ***************************
+    // FAQ 전체리스트
     List<AdminVO> faqList();
 
-    // 공지사항 상세정보
+    // FAQ 상세정보
     AdminVO faqDetail(AdminVO vo);
 
-    // 공지사항정보 수정
+    // FAQ 수정
     void updateFaq(AdminVO vo);
+
+    // FAQ 삭제
+    void deleteFaq(AdminVO vo);
+
+    // FAQ 등록
+    void insertFaq(AdminVO vo);
+
+    // *************************이용약관***************************
+    // 이용약관 전체리스트
+    List<AdminVO> termsList();
+
+    // 이용약관 상세정보
+    AdminVO termsDetail(AdminVO vo);
+
+    // 이용약관 수정
+    void updateTerms(AdminVO vo);
 }

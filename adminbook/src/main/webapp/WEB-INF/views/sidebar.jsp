@@ -59,7 +59,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="notice">공지사항</a></li>
                             <li><i class="fa fa-table"></i><a href="faq">FAQ</a></li>
-                            <li><i class="fa fa-table"></i><a href="termsconditions">이용약관</a></li>
+                            <li><i class="fa fa-table"></i><a href="terms">이용약관</a></li>
                         </ul>
                     </li>
                     <li>
