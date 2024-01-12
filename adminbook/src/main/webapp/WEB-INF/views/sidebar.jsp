@@ -54,6 +54,9 @@
                     <li>
                         <a href="community"><i class="menu-icon fa fa-group"></i>커뮤니티 관리 </a>
                     </li>
+                    <li>
+                        <a href="ask"><i class="menu-icon fa fa-question"></i>문의 관리 </a>
+                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>공지사항/FAQ/이용약관</a>
                         <ul class="sub-menu children dropdown-menu">

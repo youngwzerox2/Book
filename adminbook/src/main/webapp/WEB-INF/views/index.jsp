@@ -92,24 +92,8 @@
                         <div class="animated fadeIn">
                             <!-- Widgets  -->
                             <div class="row">
-                                <!-- <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="stat-widget-five">
-                                                <div class="stat-icon dib flat-color-1">
-                                                    <i class="pe-7s-cash"></i>
-                                                </div>
-                                                <div class="stat-content">
-                                                    <div class="text-left dib">
-                                                        <div class="stat-text">오늘도 좋은 하루!</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
 
-                                <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-4 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="stat-widget-five">
@@ -127,7 +111,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-4 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="stat-widget-five">
@@ -145,7 +129,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-4 col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="stat-widget-five">
@@ -165,7 +149,6 @@
                             </div>
                             <!-- /Widgets -->
 
-
                             <div class="row">
 
 
@@ -174,7 +157,7 @@
                                         <div class="card-body">
                                             <h3>문의 건수</h3>
                                             <canvas id="myChart"
-                                                style="height:35vh; width: 25vw; float: left;"></canvas>
+                                                style="max-height:35vh; max-width: 25vw; float: left;"></canvas>
                                         </div>
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
@@ -185,7 +168,7 @@
                                         <div class="card-body">
                                             <h3>연령대 분석</h3>
                                             <canvas id="pie-chart"
-                                                style="height:10vh; width:25vw; float: left;"></canvas>
+                                                style="max-height:35vh; max-width:25vw; float: left;"></canvas>
                                         </div>
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
@@ -194,13 +177,11 @@
 
                             <div class="row">
 
-
-
                                 <div class="col-lg-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3>도서 조회수 랭킹</h3>
-                                            <canvas id="line-chart" width="300" height="250"></canvas>
+                                            <h3>도서 인기 랭킹</h3>
+                                            <canvas id="line-chart" style="max-height:35vh; max-width:25vw; float: left;"></canvas>
                                         </div>
                                     </div><!-- /# card -->
                                 </div><!-- /# column -->
@@ -218,27 +199,21 @@
                                                         <th scope="col">아이디</th>
                                                         <th scope="col">이름</th>
                                                         <th scope="col">제재 날짜</th>
+                                                        <th scope="col">신고건수</th>
+                                                        <th scope="col">회원상태</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <c:forEach items="${memberList }" var="member" varStatus="loop">
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>그해 우리는</td>
-                                                        <td>고오 작가</td>
-                                                        <td>24.1.21</td>
+                                                        <td>${loop.index + 1}</td>
+                                                        <td><a href="memberDetail?member_id=${member.member_id}">${member.member_id}</a></td>
+                                                        <td>${member.member_name}</td>
+                                                        <td>${member.quit_date}</td>
+                                                        <td>${member.member_grade}</td>
+                                                        <td>${member.member_grade}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>스물다섯 스물하나</td>
-                                                        <td>비비</td>
-                                                        <td>23.12.21</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>마이 데몬</td>
-                                                        <td>정구원</td>
-                                                        <td>23.11.21</td>
-                                                    </tr>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>
