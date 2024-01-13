@@ -66,8 +66,8 @@
                             <div class="card-header">
                                 <strong class="card-title">도서리스트</strong>
                             </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <div class="card-body" >
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered" >
                                     <thead>
                                         <tr>
                                             <th>번호</th>

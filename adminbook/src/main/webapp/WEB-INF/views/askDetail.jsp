@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +23,7 @@
 
         <div class="content">
             <div class="container mt-5">
-                <h2>FAQ 상세 페이지</h2>
+                <h2>문의 상세 페이지</h2>
 
                 <div class="card">
                     <form action="updateAsk" method="post">
@@ -39,6 +41,13 @@
                             <div class="form-group">
                                 <label for="company" class="form-control-label">답변</label>
                                 <textarea class="form-control" name="ask_reply_content" style="height: 200px;">${ask.ask_reply_content}</textarea>
+                            </div>
+                            <div class="form-group"><label for="company"
+                                class=" form-control-label">처리여부</label>
+                                <select class="form-control" name="ask_reply_done">
+                                    <option value="yes" <c:if test="${ask.ask_reply_done eq 'yes'}">selected</c:if>>yes</option>
+                                    <option value="no" <c:if test="${ask.ask_reply_done eq 'no'}">selected</c:if>>no</option>
+                                </select>
                             </div>
                             <div class="form-group"><label for="company"
                                 class=" form-control-label">답변담당자</label><input type="text"

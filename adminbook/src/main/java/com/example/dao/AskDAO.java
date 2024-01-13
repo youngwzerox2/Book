@@ -24,5 +24,11 @@ public interface AskDAO {
 
     // 문의 등록
     public void insertAsk(AdminAsk vo);
-    
+
+    // 미완료된 답변이 있는 문의 리스트
+    public List<AdminAsk> getUnansweredList();
+
+    // 완료된 답변이 있는 문의 리스트
+    public List<AdminAsk> getAnsweredList();
+
 }

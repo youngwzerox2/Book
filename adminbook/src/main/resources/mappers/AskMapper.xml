@@ -5,13 +5,26 @@
 <!-- *********************** dao interface 경로+이름 -->
 <mapper namespace="com.example.dao.AskDAO">
 
-
 	<!-- ****************************** 문의 ******************************** -->
 	<!-- 문의 전체 리스트 -->
 	<select id="askList" resultType="AdminAsk">
 		SELECT *
 		FROM ask
 		ORDER BY ask_id DESC
+	</select>
+
+	<!-- 미완료 답변 문의 리스트 -->
+	<select id="getUnansweredList" resultType="AdminAsk">
+		SELECT *
+		FROM ask
+		WHERE ask_reply_done = "no"
+	</select>
+
+	<!-- 완료 답변 문의 리스트 -->
+	<select id="getAnsweredList" resultType="AdminAsk">
+		SELECT *
+		FROM ask
+		WHERE ask_reply_done = "yes"
 	</select>
 
 	<!-- 문의 상세정보 -->
@@ -25,7 +38,7 @@
 	<update id="updateAsk" parameterType="AdminAsk">
 		UPDATE ask
 		SET ask_content=#{ask_content}, ask_reply_time=now(), ask_reply_content=#{ask_reply_content}
-		, ask_reply_admin=#{ask_reply_admin}
+		, ask_reply_admin=#{ask_reply_admin}, ask_reply_done=#{ask_reply_done}
 		WHERE ask_id=#{ask_id}
 	</update>
 

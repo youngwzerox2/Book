@@ -18,12 +18,14 @@ public class AskServiceImpl implements AskService{
     // 문의 전체 리스트
     @Override
     public List<AdminAsk> askList() {
+        System.out.println("전체서비스");
         return askDAO.askList();
     }
 
     // 문의 상세정보
     @Override
     public AdminAsk askDetail(AdminAsk vo) {
+        System.out.println("문의상세"+vo);
         return askDAO.askDetail(vo);
     }
 
@@ -44,5 +46,19 @@ public class AskServiceImpl implements AskService{
     @Override
     public void insertAsk(AdminAsk vo) {
         askDAO.insertAsk(vo);
+    }
+
+    // 미완료된 답변이 있는 문의 리스트
+    @Override
+    public List<AdminAsk> getUnansweredList() {
+        System.out.println("미완료서비스");
+        return askDAO.getUnansweredList();
+    }
+
+    // 완료된 답변이 있는 문의 리스트
+    @Override
+    public List<AdminAsk> getAnsweredList() {
+        System.out.println("완료서비스");
+        return askDAO.getAnsweredList();
     }
 }

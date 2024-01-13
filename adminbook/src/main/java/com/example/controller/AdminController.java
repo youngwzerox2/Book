@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.AdminAsk;
 import com.example.domain.AdminBook;
@@ -20,7 +22,6 @@ import com.example.service.FaqService;
 import com.example.service.NoticeService;
 import com.example.service.TermsService;
 import com.example.service.UserService;
-
 
 @Controller
 public class AdminController {
@@ -58,12 +59,13 @@ public class AdminController {
         return step;
     }
 
-    // *************************************** 메인 ****************************************
+    // *************************************** 메인
+    // ****************************************
     // 메인
     // @RequestMapping("/index")
     // public String index() {
-    //     System.out.println("index.jsp호출");
-    //     return "index";
+    // System.out.println("index.jsp호출");
+    // return "index";
     // }
 
     // 메인 제재명단
@@ -72,11 +74,11 @@ public class AdminController {
         List<AdminUser> list = userService.memberList();
         m.addAttribute("memberList", list);
         System.out.println("index.jsp호출");
-     
+
     }
 
-
-    // *************************************** 회원 ****************************************
+    // *************************************** 회원
+    // ****************************************
     // 회원관리
     @RequestMapping("/member")
     public void memberList(Model m) {
@@ -96,7 +98,7 @@ public class AdminController {
     // 회원정보수정
     @RequestMapping("/updateMember")
     public String updateMember(AdminUser vo) {
-        System.out.println("회원정보수정:"+vo);
+        System.out.println("회원정보수정:" + vo);
         userService.updateMember(vo);
         return "redirect:member";
     }
@@ -108,7 +110,8 @@ public class AdminController {
         return "redirect:member";
     }
 
-    // *************************************** 도서 ****************************************
+    // *************************************** 도서
+    // ****************************************
     // 도서관리
     @RequestMapping("/book")
     public void bookList(Model m) {
@@ -125,10 +128,10 @@ public class AdminController {
         m.addAttribute("book", book);
     }
 
-     // 도서정보수정
+    // 도서정보수정
     @RequestMapping("/updateBook")
     public String updateBook(AdminBook vo) {
-        System.out.println("도서정보수정:"+vo);
+        System.out.println("도서정보수정:" + vo);
         bookService.updateBook(vo);
         return "redirect:book";
     }
@@ -139,8 +142,9 @@ public class AdminController {
         bookService.deleteBook(vo);
         return "redirect:book";
     }
- 
-    // *************************************** 커뮤니티 ****************************************
+
+    // *************************************** 커뮤니티
+    // ****************************************
     // 커뮤니티관리
     @RequestMapping("/community")
     public void communityList(Model m) {
@@ -160,12 +164,13 @@ public class AdminController {
     // 커뮤니티정보수정
     @RequestMapping("/updateCommunity")
     public String updateCommunity(AdminCommunity vo) {
-        System.out.println("커뮤니티정보수정:"+vo);
+        System.out.println("커뮤니티정보수정:" + vo);
         communityService.updateCommunity(vo);
         return "redirect:community";
     }
 
-    // *************************************** 공지사항 ****************************************
+    // *************************************** 공지사항
+    // ****************************************
     // 공지사항 관리
     @RequestMapping("/notice")
     public void noticeList(Model m) {
@@ -186,7 +191,7 @@ public class AdminController {
     // 공지사항 정보수정
     @RequestMapping("/updateNotice")
     public String updateNotice(AdminNotice vo) {
-        System.out.println("공지사항정보수정:"+vo);
+        System.out.println("공지사항정보수정:" + vo);
         noticeService.updateNotice(vo);
         return "redirect:notice";
     }
@@ -204,7 +209,8 @@ public class AdminController {
         noticeService.insertNotice(vo);
     }
 
-    // *************************************** 이용약관 ****************************************
+    // *************************************** 이용약관
+    // ****************************************
     // 이용약관 관리
     @RequestMapping("/terms")
     public void termsList(Model m) {
@@ -224,12 +230,13 @@ public class AdminController {
     // 이용약관 정보수정
     @RequestMapping("/updateTerms")
     public String updateTerms(AdminNotice vo) {
-        System.out.println("이용약관 정보수정:"+vo);
+        System.out.println("이용약관 정보수정:" + vo);
         termsService.updateTerms(vo);
         return "redirect:terms";
     }
 
-    // *************************************** FAQ ****************************************
+    // *************************************** FAQ
+    // ****************************************
     // FAQ 관리
     @RequestMapping("/faq")
     public void faqList(Model m) {
@@ -249,12 +256,12 @@ public class AdminController {
     // FAQ 정보수정
     @RequestMapping("/updateFaq")
     public String updateFaq(AdminNotice vo) {
-        System.out.println("FAQ 정보수정:"+vo);
+        System.out.println("FAQ 정보수정:" + vo);
         faqService.updateFaq(vo);
         return "redirect:faq";
     }
 
-     // FAQ 삭제
+    // FAQ 삭제
     @RequestMapping("/deleteFaq")
     public String deleteFaq(AdminNotice vo) {
         faqService.deleteFaq(vo);
@@ -270,10 +277,12 @@ public class AdminController {
     // *************************************** 문의 ****************************************
     // 문의 관리
     @RequestMapping("/ask")
-    public void askList(Model m) {
+    public String askList(Model m) {
         List<AdminAsk> list = askService.askList();
         m.addAttribute("askList", list);
         System.out.println("ask.jsp호출");
+
+        return "ask";
     }
 
     // 문의 상세정보
@@ -287,7 +296,7 @@ public class AdminController {
     // 문의 정보수정
     @RequestMapping("/updateAsk")
     public String updateAsk(AdminAsk vo) {
-        System.out.println("문의 정보수정:"+vo);
+        System.out.println("문의 정보수정:" + vo);
         askService.updateAsk(vo);
         return "redirect:ask";
     }
@@ -304,15 +313,17 @@ public class AdminController {
     public void insertAsk(Model m, AdminAsk vo) {
         askService.insertAsk(vo);
     }
-   
-    // *************************************** 통계 ****************************************
+
+    // *************************************** 통계
+    // ****************************************
     // 통계관리
     @RequestMapping("/charts")
     public void charts() {
         System.out.println("charts.jsp호출");
     }
 
-    // *************************************** 도서관 ****************************************
+    // *************************************** 도서관
+    // ****************************************
     // 도서관관리
     @RequestMapping("/adminlibrary")
     public void adminlibrary() {

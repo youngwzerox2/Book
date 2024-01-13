@@ -106,7 +106,7 @@
                                                         <select class="form-control" name="member_grade">
                                                             <option value="admin" <c:if test="${member.member_grade eq 'admin'}">selected</c:if>>admin</option>
                                                             <option value="basic" <c:if test="${member.member_grade eq 'basic'}">selected</c:if>>basic</option>
-                                                            <option value="general" <c:if test="${member.member_grade eq 'general'}">selected</c:if>>general</option>
+                                                            <option value="withdrawal" <c:if test="${member.member_grade eq 'withdrawal'}">selected</c:if>>withdrawal</option>
                                                             <option value="blacklist" <c:if test="${member.member_grade eq 'blacklist'}">selected</c:if>>blacklist</option>
                                                         </select>
                                                 </div>  

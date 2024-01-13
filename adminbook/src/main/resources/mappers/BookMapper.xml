@@ -11,9 +11,10 @@
 		SELECT *
 		FROM book
 		ORDER BY NO DESC
+		LIMIT 1000;
 	</select>
 
-	<!-- 도서상세정보 -->
+	<!-- 도서상세정보 --> 
 	<select id="bookDetail" resultType="AdminBook">
 		SELECT *
 		FROM book
