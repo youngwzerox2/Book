@@ -5,31 +5,7 @@ const map = new kakao.maps.Map(mapContainer, {
     level: 5
 });
 
-// 파일 입력(input) 요소 가져오기
-const fileInput = document.getElementById('fileInput');
-
-// 파일 입력이 변경될 때 이벤트 처리
-fileInput.addEventListener('change', handleFile);
-
 // 파일을 처리하는 함수
-function handleFile(event) {
-    const file = event.target.files[0]; // 선택된 파일 가져오기
-
-    if (file) {
-        // FileReader 객체 생성
-        const reader = new FileReader();
-
-        // 파일 읽기가 완료되었을 때의 이벤트 처리
-        reader.onload = function (e) {
-            const csv = e.target.result;
-            processData(csv); // 데이터 처리 함수 호출
-        };
-
-        // 파일을 텍스트로 읽기
-        reader.readAsText(file);
-    }
-}
-
 function processData(csv) {
     const data = csv.split('\n');   // 개행을 기준으로 데이터를 분리
     const header = data[0].split(','); // 헤더를 쉼표를 기준으로 분리
@@ -68,6 +44,27 @@ function processData(csv) {
         });
     }
 }
+
+// 현재 날짜를 기준으로 해당 월의 CSV 파일을 가져오는 함수
+function fetchCurrentMonthCSV() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 +1 해줌
+
+    // CSV 파일 경로 설정
+    const csvFilePath = `/assets/csvfile/${currentMonth}.csv`;
+
+    // Fetch API를 사용하여 해당 월의 CSV 파일을 가져오기
+    fetch(csvFilePath)
+        .then(response => response.text())
+        .then(csv => {
+            // console.log('csv데이터:', csv);
+            processData(csv);
+        })
+        .catch(error => console.error('CSV 파일을 가져오는 중 오류 발생:', error));
+}
+
+// 페이지 로드 시에 현재 월의 CSV 파일을 가져오도록 설정
+document.addEventListener('DOMContentLoaded', fetchCurrentMonthCSV);
 
 // 사용자의 현재 위치를 가져와서 지도에 표시하는 함수
 function showCurrentPosition() {
@@ -116,9 +113,6 @@ function showInfowindow(marker, name) {
     infowindow.setContent(content);
     infowindow.open(map, marker);
 }
-
-// 페이지 로드 시에 기본 CSV 파일을 로드
-// readCSV();
 
 // 사용자의 현재 위치 표시 버튼에 이벤트 리스너 추가
 const showPositionButton = document.getElementById('showPositionButton');
