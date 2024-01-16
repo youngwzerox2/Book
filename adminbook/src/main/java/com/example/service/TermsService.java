@@ -2,17 +2,17 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.domain.AdminNotice;
+import com.example.domain.Notice;
 
 public interface TermsService {
 
     // ************************* 이용약관 ***************************
     // 이용약관 전체리스트
-    List<AdminNotice> termsList();
+    List<Notice> termsList();
 
     // 이용약관 상세정보
-    AdminNotice termsDetail(AdminNotice vo);
+    Notice termsDetail(Notice vo);
 
     // 이용약관 수정
-    void updateTerms(AdminNotice vo);
+    void updateTerms(Notice vo);
 }

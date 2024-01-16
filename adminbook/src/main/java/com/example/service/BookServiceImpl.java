@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.BookDAO;
-import com.example.domain.AdminBook;
+import com.example.domain.Book;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -17,25 +17,25 @@ public class BookServiceImpl implements BookService{
     // *************************도서***************************
     // 도서리스트
     @Override
-    public List<AdminBook> bookList() {
+    public List<Book> bookList() {
         return bookDAO.bookList(); 
     }
 
     // 도서상세정보
     @Override
-    public AdminBook bookDetail(AdminBook vo) {
+    public Book bookDetail(Book vo) {
        return bookDAO.bookDetail(vo);
     }
 
     // 도서정보수정
     @Override
-    public void updateBook(AdminBook vo) {
+    public void updateBook(Book vo) {
         bookDAO.updateBook(vo);
     }
 
     // 도서정보삭제
     @Override
-    public void deleteBook(AdminBook vo) {
+    public void deleteBook(Book vo) {
         bookDAO.deleteBook(vo);
     }
 }

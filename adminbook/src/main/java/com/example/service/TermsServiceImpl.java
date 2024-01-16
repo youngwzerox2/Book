@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.TermsDAO;
-import com.example.domain.AdminNotice;
+import com.example.domain.Notice;
 
 @Service
 public class TermsServiceImpl implements TermsService{
@@ -17,19 +17,19 @@ public class TermsServiceImpl implements TermsService{
     // *************************이용약관***************************
     // 이용약관 전체 리스트
     @Override
-    public List<AdminNotice> termsList() {
+    public List<Notice> termsList() {
         return termsDAO.termsList();
     }
 
     // 이용약관 상세정보
     @Override
-    public AdminNotice termsDetail(AdminNotice vo) {
+    public Notice termsDetail(Notice vo) {
         return termsDAO.termsDetail(vo);
     }
 
     // 이용약관 수정
     @Override
-    public void updateTerms(AdminNotice vo) {
+    public void updateTerms(Notice vo) {
         termsDAO.updateTerms(vo); 
     }
 }

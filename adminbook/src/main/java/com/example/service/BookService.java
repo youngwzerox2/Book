@@ -2,20 +2,20 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.domain.AdminBook;
+import com.example.domain.Book;
 
 public interface BookService {
     
     // ************************* 도서 ***************************
     // 도서리스트
-    List<AdminBook> bookList();
+    List<Book> bookList();
 
     // 회원 상세정보
-    AdminBook bookDetail(AdminBook vo);
+    Book bookDetail(Book vo);
 
     // 도서정보 수정
-    void updateBook(AdminBook vo);
+    void updateBook(Book vo);
 
     // 도서정보 삭제
-    void deleteBook(AdminBook vo);
+    void deleteBook(Book vo);
 }

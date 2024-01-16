@@ -7,21 +7,21 @@
 
 	<!-- ******************************커뮤니티******************************** -->
 	<!-- 커뮤니티 신고 전체 리스트 -->
-	<select id="communityList" resultType="AdminCommunity">
+	<select id="communityList" resultType="Community">
 		SELECT *
 		FROM complain
 		ORDER BY complain_id DESC
 	</select>
 
 	<!-- 커뮤니티 상세정보 -->
-	<select id="communityDetail" resultType="AdminCommunity">
+	<select id="communityDetail" resultType="Community">
 		SELECT *
 		FROM complain
 		WHERE complain_id=#{complain_id}
 	</select>
 
 	<!-- 커뮤니티정보수정 -->
-	<update id="updateCommunity" parameterType="AdminCommunity">
+	<update id="updateCommunity" parameterType="Community">
 		UPDATE complain
 		SET complain_done=#{complain_done}
 		WHERE complain_id=#{complain_id}

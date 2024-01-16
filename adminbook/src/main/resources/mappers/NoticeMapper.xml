@@ -7,7 +7,7 @@
 
 	<!-- ******************************공지사항******************************** -->
 	<!-- 공지사항 전체 리스트 -->
-	<select id="noticeList" resultType="AdminNotice">
+	<select id="noticeList" resultType="Notice">
 		SELECT *
 		FROM notice
 		WHERE notice_type = 'notice'
@@ -15,27 +15,27 @@
 	</select>
 
 	<!-- 공지사항 상세정보 -->
-	<select id="noticeDetail" resultType="AdminNotice">
+	<select id="noticeDetail" resultType="Notice">
 		SELECT *
 		FROM notice
 		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
 	</select>
 
 	<!-- 공지사항 정보수정 -->
-	<update id="updateNotice" parameterType="AdminNotice">
+	<update id="updateNotice" parameterType="Notice">
 		UPDATE notice
 		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
 		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
 	</update>
 
 	<!-- 공지사항 정보삭제 -->
-	<delete id="deleteNotice" parameterType="AdminNotice">
+	<delete id="deleteNotice" parameterType="Notice">
 		DELETE FROM notice
 		WHERE notice_number=#{notice_number} AND notice_type = 'notice'
 	</delete>
 
 	<!-- 공지사항 등록 -->
-	<insert id="insertNotice" parameterType="AdminNotice">
+	<insert id="insertNotice" parameterType="Notice">
 		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) VALUES (#{notice_type}, #{notice_title}, #{notice_content}, now(), 1, #{member_id})
 	</insert>
 

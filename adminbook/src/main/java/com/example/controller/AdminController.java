@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.domain.AdminAsk;
-import com.example.domain.AdminBook;
-import com.example.domain.AdminCommunity;
-import com.example.domain.AdminNotice;
-import com.example.domain.AdminUser;
+import com.example.domain.Ask;
+import com.example.domain.Book;
+import com.example.domain.Community;
+import com.example.domain.Notice;
+import com.example.domain.User;
 import com.example.service.AskService;
 import com.example.service.BookService;
 import com.example.service.CommunityService;
@@ -71,7 +69,7 @@ public class AdminController {
     // 메인 제재명단
     @RequestMapping("/index")
     public void index(Model m) {
-        List<AdminUser> list = userService.memberList();
+        List<User> list = userService.memberList();
         m.addAttribute("memberList", list);
         System.out.println("index.jsp호출");
 
@@ -82,22 +80,22 @@ public class AdminController {
     // 회원관리
     @RequestMapping("/member")
     public void memberList(Model m) {
-        List<AdminUser> list = userService.memberList();
+        List<User> list = userService.memberList();
         m.addAttribute("memberList", list);
         System.out.println("member.jsp호출");
     }
 
     // 회원상세정보
     @RequestMapping("/memberDetail")
-    public void memberDetail(Model m, AdminUser vo) {
-        AdminUser member = userService.memberDetail(vo);
+    public void memberDetail(Model m, User vo) {
+        User member = userService.memberDetail(vo);
         System.out.println("memberDetail.jsp호출");
         m.addAttribute("member", member);
     }
 
     // 회원정보수정
     @RequestMapping("/updateMember")
-    public String updateMember(AdminUser vo) {
+    public String updateMember(User vo) {
         System.out.println("회원정보수정:" + vo);
         userService.updateMember(vo);
         return "redirect:member";
@@ -105,7 +103,7 @@ public class AdminController {
 
     // 회원정보삭제
     @RequestMapping("/deleteMember")
-    public String deleteMember(AdminUser vo) {
+    public String deleteMember(User vo) {
         userService.deleteMember(vo);
         return "redirect:member";
     }
@@ -115,22 +113,22 @@ public class AdminController {
     // 도서관리
     @RequestMapping("/book")
     public void bookList(Model m) {
-        List<AdminBook> list = bookService.bookList();
+        List<Book> list = bookService.bookList();
         m.addAttribute("bookList", list);
         System.out.println("book.jsp호출");
     }
 
     // 도서상세정보
     @RequestMapping("/bookDetail")
-    public void bookDetail(Model m, AdminBook vo) {
-        AdminBook book = bookService.bookDetail(vo);
+    public void bookDetail(Model m, Book vo) {
+        Book book = bookService.bookDetail(vo);
         System.out.println("bookDetail.jsp호출");
         m.addAttribute("book", book);
     }
 
     // 도서정보수정
     @RequestMapping("/updateBook")
-    public String updateBook(AdminBook vo) {
+    public String updateBook(Book vo) {
         System.out.println("도서정보수정:" + vo);
         bookService.updateBook(vo);
         return "redirect:book";
@@ -138,7 +136,7 @@ public class AdminController {
 
     // 도서정보삭제
     @RequestMapping("/deleteBook")
-    public String deleteBook(AdminBook vo) {
+    public String deleteBook(Book vo) {
         bookService.deleteBook(vo);
         return "redirect:book";
     }
@@ -148,22 +146,22 @@ public class AdminController {
     // 커뮤니티관리
     @RequestMapping("/community")
     public void communityList(Model m) {
-        List<AdminCommunity> list = communityService.communityList();
+        List<Community> list = communityService.communityList();
         m.addAttribute("communityList", list);
         System.out.println("community.jsp호출");
     }
 
     // 커뮤니티상세정보
     @RequestMapping("/communityDetail")
-    public void communityDetail(Model m, AdminCommunity vo) {
-        AdminCommunity community = communityService.communityDetail(vo);
+    public void communityDetail(Model m, Community vo) {
+        Community community = communityService.communityDetail(vo);
         System.out.println("communityDetail.jsp호출");
         m.addAttribute("community", community);
     }
 
     // 커뮤니티정보수정
     @RequestMapping("/updateCommunity")
-    public String updateCommunity(AdminCommunity vo) {
+    public String updateCommunity(Community vo) {
         System.out.println("커뮤니티정보수정:" + vo);
         communityService.updateCommunity(vo);
         return "redirect:community";
@@ -175,22 +173,22 @@ public class AdminController {
     @RequestMapping("/notice")
     public void noticeList(Model m) {
         // AdminVO vo = new AdminVO();
-        List<AdminNotice> list = noticeService.noticeList();
+        List<Notice> list = noticeService.noticeList();
         m.addAttribute("noticeList", list);
         System.out.println("notice.jsp호출");
     }
 
     // 공지사항 상세정보
     @RequestMapping("/noticeDetail")
-    public void noticeDetail(Model m, AdminNotice vo) {
-        AdminNotice notice = noticeService.noticeDetail(vo);
+    public void noticeDetail(Model m, Notice vo) {
+        Notice notice = noticeService.noticeDetail(vo);
         System.out.println("noticeDetail.jsp호출");
         m.addAttribute("notice", notice);
     }
 
     // 공지사항 정보수정
     @RequestMapping("/updateNotice")
-    public String updateNotice(AdminNotice vo) {
+    public String updateNotice(Notice vo) {
         System.out.println("공지사항정보수정:" + vo);
         noticeService.updateNotice(vo);
         return "redirect:notice";
@@ -198,14 +196,14 @@ public class AdminController {
 
     // 공지사항 삭제
     @RequestMapping("/deleteNotice")
-    public String deleteNotice(AdminNotice vo) {
+    public String deleteNotice(Notice vo) {
         noticeService.deleteNotice(vo);
         return "redirect:notice";
     }
 
     // 공지사항 등록
     @RequestMapping("/insertNotice")
-    public void insertNotice(Model m, AdminNotice vo) {
+    public void insertNotice(Model m, Notice vo) {
         noticeService.insertNotice(vo);
     }
 
@@ -214,22 +212,22 @@ public class AdminController {
     // 이용약관 관리
     @RequestMapping("/terms")
     public void termsList(Model m) {
-        List<AdminNotice> list = termsService.termsList();
+        List<Notice> list = termsService.termsList();
         m.addAttribute("termsList", list);
         System.out.println("terms.jsp호출");
     }
 
     // 이용약관 상세정보
     @RequestMapping("/termsDetail")
-    public void termsDetail(Model m, AdminNotice vo) {
-        AdminNotice terms = termsService.termsDetail(vo);
+    public void termsDetail(Model m, Notice vo) {
+        Notice terms = termsService.termsDetail(vo);
         System.out.println("termsDetail.jsp호출");
         m.addAttribute("terms", terms);
     }
 
     // 이용약관 정보수정
     @RequestMapping("/updateTerms")
-    public String updateTerms(AdminNotice vo) {
+    public String updateTerms(Notice vo) {
         System.out.println("이용약관 정보수정:" + vo);
         termsService.updateTerms(vo);
         return "redirect:terms";
@@ -240,22 +238,22 @@ public class AdminController {
     // FAQ 관리
     @RequestMapping("/faq")
     public void faqList(Model m) {
-        List<AdminNotice> list = faqService.faqList();
+        List<Notice> list = faqService.faqList();
         m.addAttribute("faqList", list);
         System.out.println("faq.jsp호출");
     }
 
     // FAQ 상세정보
     @RequestMapping("/faqDetail")
-    public void faqDetail(Model m, AdminNotice vo) {
-        AdminNotice faq = faqService.faqDetail(vo);
+    public void faqDetail(Model m, Notice vo) {
+        Notice faq = faqService.faqDetail(vo);
         System.out.println("faqDetail.jsp호출");
         m.addAttribute("faq", faq);
     }
 
     // FAQ 정보수정
     @RequestMapping("/updateFaq")
-    public String updateFaq(AdminNotice vo) {
+    public String updateFaq(Notice vo) {
         System.out.println("FAQ 정보수정:" + vo);
         faqService.updateFaq(vo);
         return "redirect:faq";
@@ -263,14 +261,14 @@ public class AdminController {
 
     // FAQ 삭제
     @RequestMapping("/deleteFaq")
-    public String deleteFaq(AdminNotice vo) {
+    public String deleteFaq(Notice vo) {
         faqService.deleteFaq(vo);
         return "redirect:faq";
     }
 
     // FAQ 등록
     @RequestMapping("/insertFaq")
-    public void insertFaq(Model m, AdminNotice vo) {
+    public void insertFaq(Model m, Notice vo) {
         faqService.insertFaq(vo);
     }
 
@@ -278,7 +276,7 @@ public class AdminController {
     // 문의 관리
     @RequestMapping("/ask")
     public String askList(Model m) {
-        List<AdminAsk> list = askService.askList();
+        List<Ask> list = askService.askList();
         m.addAttribute("askList", list);
         System.out.println("ask.jsp호출");
 
@@ -287,15 +285,15 @@ public class AdminController {
 
     // 문의 상세정보
     @RequestMapping("/askDetail")
-    public void askDetail(Model m, AdminAsk vo) {
-        AdminAsk ask = askService.askDetail(vo);
+    public void askDetail(Model m, Ask vo) {
+        Ask ask = askService.askDetail(vo);
         System.out.println("askDetail.jsp호출");
         m.addAttribute("ask", ask);
     }
 
     // 문의 정보수정
     @RequestMapping("/updateAsk")
-    public String updateAsk(AdminAsk vo) {
+    public String updateAsk(Ask vo) {
         System.out.println("문의 정보수정:" + vo);
         askService.updateAsk(vo);
         return "redirect:ask";
@@ -303,14 +301,14 @@ public class AdminController {
 
     // 문의 삭제
     @RequestMapping("/deleteAsk")
-    public String deleteAsk(AdminAsk vo) {
+    public String deleteAsk(Ask vo) {
         askService.deleteAsk(vo);
         return "redirect:ask";
     }
 
     // 문의 등록
     @RequestMapping("/insertAsk")
-    public void insertAsk(Model m, AdminAsk vo) {
+    public void insertAsk(Model m, Ask vo) {
         askService.insertAsk(vo);
     }
 

@@ -2,22 +2,22 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.domain.AdminNotice;
+import com.example.domain.Notice;
 
 public interface FaqService {
      // ************************* FAQ ***************************
     // FAQ 전체리스트
-    List<AdminNotice> faqList();
+    List<Notice> faqList();
 
     // FAQ 상세정보
-    AdminNotice faqDetail(AdminNotice vo);
+    Notice faqDetail(Notice vo);
 
     // FAQ 수정
-    void updateFaq(AdminNotice vo);
+    void updateFaq(Notice vo);
 
     // FAQ 삭제
-    void deleteFaq(AdminNotice vo);
+    void deleteFaq(Notice vo);
 
     // FAQ 등록
-    void insertFaq(AdminNotice vo);
+    void insertFaq(Notice vo);
 }

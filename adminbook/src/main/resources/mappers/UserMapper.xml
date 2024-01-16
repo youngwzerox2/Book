@@ -7,28 +7,28 @@
 
 	<!-- ******************************회원******************************** -->
 	<!-- 회원리스트 -->
-	<select id="memberList" resultType="AdminUser">
+	<select id="memberList" resultType="User">
 		SELECT *
 		FROM user
 		ORDER BY member_id DESC
 	</select>
 
 	<!-- 회원상세정보 -->
-	<select id="memberDetail" resultType="AdminUser">
+	<select id="memberDetail" resultType="User">
 		SELECT *
 		FROM user
 		WHERE member_id=#{member_id}
 	</select>
 
 	<!-- 회원정보수정 -->
-	<update id="updateMember" parameterType="AdminUser">
+	<update id="updateMember" parameterType="User">
 		UPDATE user
 		SET member_grade=#{member_grade}
 		WHERE member_id=#{member_id}
 	</update>
 
 	<!-- 회원정보삭제 -->
-	<delete id="deleteMember" parameterType="AdminUser">
+	<delete id="deleteMember" parameterType="User">
 		DELETE FROM user
 		WHERE member_id=#{member_id}
 	</delete>

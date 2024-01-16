@@ -2,23 +2,23 @@ package com.example.service;
 
 import java.util.List;
 
-import com.example.domain.AdminNotice;
+import com.example.domain.Notice;
 
 public interface NoticeService {
     
     // ************************* 공지사항 ***************************
     // 공지사항 전체리스트
-    List<AdminNotice> noticeList();
+    List<Notice> noticeList();
 
     // 공지사항 상세정보
-    AdminNotice noticeDetail(AdminNotice vo);
+    Notice noticeDetail(Notice vo);
 
     // 공지사항정보 수정
-    void updateNotice(AdminNotice vo);
+    void updateNotice(Notice vo);
 
     // 공지사항정보 삭제
-    void deleteNotice(AdminNotice vo);
+    void deleteNotice(Notice vo);
 
     // 공지사항 등록
-    void insertNotice(AdminNotice vo);
+    void insertNotice(Notice vo);
 }

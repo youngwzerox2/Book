@@ -3,7 +3,7 @@ package com.example.domain;
 import lombok.Data;
 
 @Data
-public class AdminAsk {
+public class Ask {
     
     // ******************************** 문의 **********************************************
     private Integer ask_id;

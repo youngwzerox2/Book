@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.UserDAO;
-import com.example.domain.AdminUser;
+import com.example.domain.User;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -16,25 +16,25 @@ public class UserServiceImpl implements UserService{
     // *************************회원***************************
     // 회원리스트
     @Override
-    public List<AdminUser> memberList() {
+    public List<User> memberList() {
         return userDAO.memberList(); 
     }
 
     // 회원상세정보
     @Override
-    public AdminUser memberDetail(AdminUser vo) {
+    public User memberDetail(User vo) {
        return userDAO.memberDetail(vo);
     }
 
     // 회원정보수정
     @Override
-    public void updateMember(AdminUser vo) {
+    public void updateMember(User vo) {
         userDAO.updateMember(vo);
     }
 
     // 회원정보삭제
     @Override
-    public void deleteMember(AdminUser vo) {
+    public void deleteMember(User vo) {
         userDAO.deleteMember(vo);
     }
 }
