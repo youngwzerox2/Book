@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- *********************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.TermsDAO">
+
+	<!-- ******************************이용약관******************************** -->
+	<!-- 이용약관 전체 리스트 -->
+	<select id="termsList" resultType="Notice">
+		SELECT *
+		FROM notice
+		WHERE notice_type = 'terms'
+	</select>
+
+	<!-- 이용약관 상세정보 -->
+	<select id="termsDetail" resultType="Notice">
+		SELECT *
+		FROM notice
+		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+	</select>
+
+	<!-- 이용약관 정보수정 -->
+	<update id="updateTerms" parameterType="Notice">
+		UPDATE notice
+		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
+		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+	</update>
+
+</mapper>
