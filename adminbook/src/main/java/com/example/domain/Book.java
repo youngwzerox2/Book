@@ -6,19 +6,19 @@ import lombok.Data;
 public class Book {
     
     // ******************************** 도서 **********************************************
-    private Integer NO;
+    private Integer no;
     private String ranking;
     private String bookname;
     private String authors;
     private String publisher;
-    private String publication_year;
-    private String book_isbn13;
-    private String addition_symbol;
+    private String publicationYear;
+    private String bookIsbn13;
+    private String additionSymbol;
     private String vol;
-    private String class_no;
-    private String class_nm;
-    private Integer loan_count;
-    private String bookImageURL;
+    private String classNo;
+    private String classNm;
+    private Integer loanCount;
+    private String bookImageUrl;
     private String bookDtlUrl;
     private String description;
 }

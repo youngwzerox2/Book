@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- *********************** dao interface 경로+이름 -->
 <mapper namespace="com.example.dao.BookDAO">
 
-	<!-- ******************************도서******************************** -->
-	<!-- 도서리스트 -->
-	<select id="bookList" resultType="Book">
-		SELECT *
-		FROM book
-		ORDER BY NO DESC
-		LIMIT 1000;
-	</select>
+    <!-- ******************************도서******************************** -->
+    <!-- 도서리스트 -->
+    <select id="bookList" resultType="Book">
+        SELECT *
+        FROM book
+        ORDER BY NO DESC
+        LIMIT 1000;
+    </select>
 
-	<!-- 도서상세정보 --> 
-	<select id="bookDetail" resultType="Book">
-		SELECT *
-		FROM book
-		WHERE NO=#{NO}
-	</select>
+    <!-- 도서상세정보 --> 
+    <select id="bookDetail" resultType="Book">
+        SELECT *
+        FROM book
+        WHERE NO=#{no}
+    </select>
 
-	<!-- 도서정보수정 -->
-	<update id="updateBook" parameterType="Book">
-		UPDATE book
-		SET vol=#{vol}
-		WHERE NO=#{NO}
-	</update>
+    <!-- 도서정보수정 -->
+    <update id="updateBook" parameterType="Book">
+        UPDATE book
+        SET vol=#{vol}
+        WHERE NO=#{no}
+    </update>
 
-	<!-- 도서정보삭제 -->
-	<delete id="deleteBook" parameterType="Book">
-		DELETE FROM book
-		WHERE NO=#{NO}
-	</delete>
+    <!-- 도서정보삭제 -->
+    <delete id="deleteBook" parameterType="Book">
+        DELETE FROM book
+        WHERE NO=#{no}
+    </delete>
 
 </mapper>

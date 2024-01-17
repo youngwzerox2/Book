@@ -6,22 +6,22 @@ import lombok.Data;
 public class User {
 
     // ****************************** 회원정보 *******************************
-    private String member_id;
-    private String member_password;
-    private String member_name;
-    private String member_email;
-    private String member_nickname;
-    private String member_gender;
-    private String member_birthday;
-    private String member_tel;
-    private String join_date;
-    private String quit_date;
-    private boolean member_visit_agree;
-    private String member_grade;
-    private String warning_date;
-    private Integer warning_count;
-    // private String card_number;
-    // private String card_cvc;
-    // private String card_date;
-    // private String card_password;
+    private String memberId;
+    private String memberPassword;
+    private String memberName;
+    private String memberEmail;
+    private String memberNickname;
+    private String memberGender;
+    private String memberBirthday;
+    private String memberTel;
+    private String joinDate;
+    private String quitDate;
+    private boolean memberVisitAgree;
+    private String memberGrade;
+    private String warningDate;
+    private Integer warningCount;
+    // private String cardNumber;
+    // private String cardCvc;
+    // private String cardDate;
+    // private String cardPassword;
 }

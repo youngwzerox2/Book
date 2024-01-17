@@ -17,14 +17,14 @@
 	<select id="termsDetail" resultType="Notice">
 		SELECT *
 		FROM notice
-		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+		WHERE notice_number=#{noticeNumber} AND notice_type = 'terms'
 	</select>
 
 	<!-- 이용약관 정보수정 -->
 	<update id="updateTerms" parameterType="Notice">
 		UPDATE notice
-		SET notice_title=#{notice_title}, notice_content=#{notice_content}, notice_date=now()
-		WHERE notice_number=#{notice_number} AND notice_type = 'terms'
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_date=now()
+		WHERE notice_number=#{noticeNumber} AND notice_type = 'terms'
 	</update>
 
 </mapper>

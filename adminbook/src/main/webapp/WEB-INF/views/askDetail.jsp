@@ -27,36 +27,36 @@
 
                 <div class="card">
                     <form action="updateAsk" method="post">
-                        <input name="ask_id" type="hidden" value="${ask.ask_id}" />
-                        <input name="ask_reply_time" type="hidden" value="${ask.ask_reply_time}" />
+                        <input name="askId" type="hidden" value="${ask.askId}" />
+                        <input name="askReplyTime" type="hidden" value="${ask.askReplyTime}" />
                         <div class="card-body card-block">
-                            <div class="form-group"><label for="company"
-                                    class=" form-control-label">문의</label><input type="text"
-                                    value="${ask.ask_content}" class="form-control" name="ask_content" readonly>
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">문의</label>
+                                <input type="text" value="${ask.askContent}" class="form-control" name="askContent" readonly>
                             </div>
-                            <div class="form-group"><label for="company"
-                                class=" form-control-label">문의날짜</label><input type="text"
-                                value="${ask.ask_date}" class="form-control" name="ask_date" readonly>
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">문의날짜</label>
+                                <input type="text" value="${ask.askDate}" class="form-control" name="askDate" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="company" class="form-control-label">답변</label>
-                                <textarea class="form-control" name="ask_reply_content" style="height: 200px;">${ask.ask_reply_content}</textarea>
+                                <textarea class="form-control" name="askReplyContent" style="height: 200px;">${ask.askReplyContent}</textarea>
                             </div>
-                            <div class="form-group"><label for="company"
-                                class=" form-control-label">처리여부</label>
-                                <select class="form-control" name="ask_reply_done">
-                                    <option value="yes" <c:if test="${ask.ask_reply_done eq 'yes'}">selected</c:if>>yes</option>
-                                    <option value="no" <c:if test="${ask.ask_reply_done eq 'no'}">selected</c:if>>no</option>
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">처리여부</label>
+                                <select class="form-control" name="askReplyDone">
+                                    <option value="yes" <c:if test="${ask.askReplyDone eq 'yes'}">selected</c:if>>yes</option>
+                                    <option value="no" <c:if test="${ask.askReplyDone eq 'no'}">selected</c:if>>no</option>
                                 </select>
                             </div>
-                            <div class="form-group"><label for="company"
-                                class=" form-control-label">답변담당자</label><input type="text"
-                                value="${ask.ask_reply_admin}" class="form-control" name="ask_reply_admin">
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">답변담당자</label>
+                                <input type="text" value="${ask.askReplyAdmin}" class="form-control" name="askReplyAdmin">
                             </div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary">수정</button>
-                            <a href="deleteAsk?ask_id=${ask.ask_id}"
+                            <a href="deleteAsk?askId=${ask.askId}"
                                 class="btn btn-outline-danger"
                                 onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                             <a href="ask" class="btn btn-outline-secondary">뒤로가기</a>
