@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "configurations": [
         {
             "type": "java",
@@ -32,3 +33,38 @@
         }
     ]
 }
+=======
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AdminbookApplication<adminbook>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.adminbook.AdminbookApplication",
+      "projectName": "adminbook",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AdminbookApplication<adminbook>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.AdminbookApplication",
+      "projectName": "adminbook",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AdminbookApplication<readMe>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.AdminbookApplication",
+      "projectName": "readMe",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
+>>>>>>> origin/0117JH2
