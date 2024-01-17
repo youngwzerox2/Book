@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- *********************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.NoticeDAO">
+
+	<!-- ******************************공지사항******************************** -->
+	<!-- 공지사항 전체 리스트 -->
+	<select id="noticeList" resultType="Notice">
+		SELECT *
+		FROM notice
+		WHERE notice_type = 'notice'
+		ORDER BY notice_date DESC
+	</select>
+
+	<!-- 공지사항 상세정보 -->
+	<select id="noticeDetail" resultType="Notice">
+		SELECT *
+		FROM notice
+		WHERE notice_number=#{noticeNumber} AND notice_type = 'notice'
+	</select>
+
+	<!-- 공지사항 정보수정 -->
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE notice
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_date=now()
+		WHERE notice_number=#{noticeNumber} AND notice_type = 'notice'
+	</update>
+
+	<!-- 공지사항 정보삭제 -->
+	<delete id="deleteNotice" parameterType="Notice">
+		DELETE FROM notice
+		WHERE notice_number=#{noticeNumber} AND notice_type = 'notice'
+	</delete>
+
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) VALUES (#{noticeType}, #{noticeTitle}, #{noticeContent}, now(), 1, #{memberId})
+	</insert>
+
+</mapper>
