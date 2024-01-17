@@ -19,6 +19,16 @@
             "projectName": "adminbook",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AdminbookApplication<readMe>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.AdminbookApplication",
+            "projectName": "readMe",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
