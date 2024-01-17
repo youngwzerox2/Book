@@ -209,16 +209,16 @@
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach items="${memberList }" var="member" varStatus="loop">
-                                                            <c:if test="${member.member_grade eq 'blacklist'}">
+                                                            <c:if test="${member.memberGrade eq 'blacklist'}">
                                                                 <tr>
                                                                     <td>${loop.index + 1}</td>
                                                                     <td><a
-                                                                            href="memberDetail?member_id=${member.member_id}">${member.member_id}</a>
+                                                                            href="memberDetail?memberId=${member.memberId}">${member.memberId}</a>
                                                                     </td>
-                                                                    <td>${member.member_name}</td>
-                                                                    <td>${member.quit_date}</td>
-                                                                    <td>${member.member_grade}</td>
-                                                                    <td>${member.member_grade}</td>
+                                                                    <td>${member.memberName}</td>
+                                                                    <td>${member.quitDate}</td>
+                                                                    <td>${member.memberGrade}</td>
+                                                                    <td>${member.memberGrade}</td>
                                                                 </tr>
                                                             </c:if>
                                                         </c:forEach>
