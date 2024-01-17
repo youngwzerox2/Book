@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.domain.Ask;
+import com.example.domain.Ask; 
 
 @Mapper
 public interface AskDAO {
