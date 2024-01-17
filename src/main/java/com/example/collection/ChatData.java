@@ -10,7 +10,7 @@ import lombok.Data;
 public class ChatData {
 
 	@Id
-	private String	objectId;				// 랜덤으로 생성되는 아이디
+	private String	objectId;				// 랜덤으로 생성되는 아이디값
 	private String	memberId;				// 사용자아이디
 	private String	recommandedBook1;		// 추천받은책1
 	private String	recommandedBook2;		// 추천받은책2
