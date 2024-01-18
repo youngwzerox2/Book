@@ -10,7 +10,7 @@
     <select id="bookList" resultType="Book">
         SELECT *
         FROM book
-        ORDER BY NO DESC
+        ORDER BY ranking
         LIMIT 1000;
     </select>
 
@@ -18,7 +18,9 @@
     <select id="bookDetail" resultType="Book">
         SELECT *
         FROM book
-        WHERE NO=#{no}
+        <!-- WHERE NO=#{no} -->
+        WHERE book_isbn13=#{bookIsbn13}
+        <!-- WHERE NO=#{no} and book_isbn13=#{bookIsbn13} -->
     </select>
 
     <!-- 도서정보수정 -->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -99,10 +100,13 @@
                                                 <td>${member.memberEmail}</td>
                                                 <td>${member.memberNickname}</td>
                                                 <td>${member.memberGender}</td>
-                                                <td>${member.memberBirthday}</td>
+                                                <!-- <td>${member.memberBirthday}</td> -->
+                                                <td><fmt:formatDate value="${member.memberBirthday}" pattern="yyyy-MM-dd" /></td>
                                                 <td>${member.memberTel}</td>
-                                                <td>${member.joinDate}</td>
-                                                <td>${member.quitDate}</td>
+                                                <!-- <td>${member.joinDate}</td>
+                                                <td>${member.quitDate}</td> -->
+                                                <td><fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd" /></td>
+                                                <td><fmt:formatDate value="${member.quitDate}" pattern="yyyy-MM-dd" /></td>
                                                 <td>${member.memberVisitAgree}</td>
                                                 <td>${member.memberGrade}</td>
                                                 <td>${member.memberGrade}</td>

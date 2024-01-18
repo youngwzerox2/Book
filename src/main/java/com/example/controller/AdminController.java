@@ -108,8 +108,7 @@ public class AdminController {
         return "redirect:member";
     }
 
-    // *************************************** 도서
-    // ****************************************
+    // *************************************** 도서 ****************************************
     // 도서관리
     @RequestMapping("/book")
     public void bookList(Model m) {
@@ -123,6 +122,7 @@ public class AdminController {
     public void bookDetail(Model m, Book vo) {
         Book book = bookService.bookDetail(vo);
         System.out.println("bookDetail.jsp호출");
+        // System.out.println("도서상세정보"+ book);
         m.addAttribute("book", book);
     }
 
@@ -162,7 +162,7 @@ public class AdminController {
     // 커뮤니티정보수정
     @RequestMapping("/updateCommunity")
     public String updateCommunity(Community vo) {
-        System.out.println("커뮤니티정보수정:" + vo);
+        // System.out.println("커뮤니티정보수정:" + vo);
         communityService.updateCommunity(vo);
         return "redirect:community";
     }

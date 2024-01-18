@@ -24,6 +24,7 @@ public class BookServiceImpl implements BookService{
     // 도서상세정보
     @Override
     public Book bookDetail(Book vo) {
+        System.out.println("상세정보서비스호출"+ vo);
        return bookDAO.bookDetail(vo);
     }
 

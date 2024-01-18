@@ -79,17 +79,17 @@
                                                         style="background-color: rgb(150, 230, 190);">
                                                         <thead style="background-color: rgb(25, 216, 121);">
                                                             <tr>
-                                                                <th>번호</th>
+                                                                <!-- <th>번호</th> -->
                                                                 <th>랭킹</th>
                                                                 <th>책 제목</th>
-                                                                <th>책 저자</th>
-                                                                <th>출판사</th>
-                                                                <th>발행년도</th>
+                                                                <!-- <th>책 저자</th> -->
+                                                                <!-- <th>출판사</th> -->
+                                                                <!-- <th>발행년도</th> -->
                                                                 <th>청구기호 13자리</th>
                                                                 <th>청구기호 5자리</th>
-                                                                <th>권수</th>
+                                                                <!-- <th>권수</th> -->
                                                                 <th>분류번호</th>
-                                                                <th>책 분류</th>
+                                                                <!-- <th>책 분류</th> -->
                                                                 <th>대출권수</th>
                                                                 <th>책 이미지 링크</th>
                                                                 <th>책 데이터 링크</th>
@@ -99,7 +99,7 @@
                                                         <tbody>
                                                             <c:forEach items="${bookList }" var="book">
                                                                 <tr>
-                                                                    <td>${book.no}</td>
+                                                                    <!-- <td>${book.no}</td> -->
                                                                     <td>${book.ranking}</td>
                                                                     <td>
                                                                         <c:choose>
@@ -112,16 +112,16 @@
                                                                             </c:otherwise>
                                                                         </c:choose>
                                                                     </td>
-                                                                    <td>${book.authors}</td>
-                                                                    <td>${book.publisher}</td>
-                                                                    <td>${book.publicationYear}</td>
+                                                                    <!-- <td>${book.authors}</td> -->
+                                                                    <!-- <td>${book.publisher}</td> -->
+                                                                    <!-- <td>${book.publicationYear}</td> -->
                                                                     <td><a
                                                                         href="bookDetail?bookIsbn13=${book.bookIsbn13}">${book.bookIsbn13}</a>
                                                                     </td>
                                                                     <td>${book.additionSymbol}</td>
-                                                                    <td>${book.vol}</td>
+                                                                    <!-- <td>${book.vol}</td> -->
                                                                     <td>${book.classNo}</td>
-                                                                    <td>${book.classNm}</td>
+                                                                    <!-- <td>${book.classNm}</td> -->
                                                                     <td>${book.loanCount}</td>
                                                                     <td><a href="${book.bookImageUrl}" target="_blank">책
                                                                             이미지 링크</a></td>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -87,16 +88,16 @@
                                             value="${member.memberGender}" class="form-control"></div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">생년월일</label><input type="text"
-                                            value="${member.memberBirthday}" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.memberBirthday}' pattern='yyyy-MM-dd' />" class="form-control"></div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">전화번호</label><input type="text"
                                             value="${member.memberTel}" class="form-control"></div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">가입일</label><input type="text"
-                                            value="${member.joinDate}" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.joinDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">탈퇴일</label><input type="text"
-                                            value="${member.quitDate}" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.quitDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">책장방문허용여부</label><input
                                             value="${member.memberVisitAgree}" class="form-control"></div>

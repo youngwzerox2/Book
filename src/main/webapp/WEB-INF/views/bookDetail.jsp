@@ -42,7 +42,7 @@
         <!-- 헤더 -->
         <%@ include file="header.jsp" %>
 
-        <div class="breadcrumbs">
+        <!-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="content">
             <div class="animated fadeIn">
@@ -65,8 +65,8 @@
                             <div class="card-header"><strong>도서상세정보</strong></div>
                             <form action="updateBook" method="post">
                                 <div class="card-body card-block">
-                                    <div class="form-group"><label for="NO" class="form-control-label">번호</label><input
-                                            type="text" value="${book.NO}" class="form-control" name="NO">
+                                    <div class="form-group"><label for="no" class="form-control-label">번호</label><input
+                                            type="text" value="${book.no}" class="form-control" name="no">
                                     </div>
                                     <div class="form-group"><label for="ranking" class="form-control-label">랭킹</label><input
                                             type="text" value="${book.ranking}" class="form-control" name="ranking">
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-outline-primary">수정</button>
-                                    <a href="deleteBook?NO=${book.NO}" class="btn btn-outline-danger"
+                                    <a href="deleteBook?no=${book.no}" class="btn btn-outline-danger"
                                         onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                                     <a href="book" class="btn btn-outline-secondary">뒤로가기</a>
                                 </div>

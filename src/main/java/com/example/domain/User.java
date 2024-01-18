@@ -14,7 +14,7 @@ public class User {
 	private String	memberEmail;		// 이메일
 	private String	memberNickname;		// 닉네임
 	private String	memberGender;		// 성별
-	private String	memberBirthday;		// 생년월일
+	private Date	memberBirthday;		// 생년월일
 	private String	memberTel;			// 전화번호
 	private Date	joinDate;			// 가입일
 	private Date	quitDate;			// 탈퇴일
