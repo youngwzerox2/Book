@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
-import com.example.userservice.UserServiceImpl;
+import com.example.userservice.UserUserServiceImpl;
 
 @RestController
 @RequestMapping("user")
@@ -17,7 +17,7 @@ import com.example.userservice.UserServiceImpl;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserUserServiceImpl userService;
 
     // *** SELECT ***********************************************************
 	// 특정 회원 정보 출력

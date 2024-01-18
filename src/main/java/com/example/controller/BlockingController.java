@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Blocking;
-import com.example.userservice.BlockingServiceImpl;
+import com.example.userservice.UserBlockingServiceImpl;
 
 @RestController
 @RequestMapping("blocking")
@@ -19,7 +19,7 @@ import com.example.userservice.BlockingServiceImpl;
 public class BlockingController {
 
     @Autowired
-    private BlockingServiceImpl blockingService;
+    private UserBlockingServiceImpl blockingService;
 
     // *** SELECT ***********************************************************
 	// 한 명의 사용자가 등록한 모든 신고 내역 출력

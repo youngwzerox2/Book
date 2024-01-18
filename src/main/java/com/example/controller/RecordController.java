@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.RecordDTO;
-import com.example.userservice.RecordServiceImpl;
+import com.example.userservice.UserRecordServiceImpl;
 
 @RestController
 @RequestMapping("record")
@@ -19,7 +19,7 @@ import com.example.userservice.RecordServiceImpl;
 public class RecordController {
 
 	@Autowired
-	private RecordServiceImpl recordService;
+	private UserRecordServiceImpl recordService;
 	
 	// *** SELECT ***********************************************************
 	// 한 명의 사용자가 작성한 모든 독서 기록 출력

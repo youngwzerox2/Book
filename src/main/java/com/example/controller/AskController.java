@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Ask;
-import com.example.userservice.AskServiceImpl;
+import com.example.userservice.UserAskServiceImpl;
 
 @RestController
 @RequestMapping("ask")
@@ -19,7 +19,7 @@ import com.example.userservice.AskServiceImpl;
 public class AskController {
 
     @Autowired
-    private AskServiceImpl askService;
+    private UserAskServiceImpl askService;
 
     // *** SELECT ***********************************************************
 	// 한 명의 사용자가 작성한 모든 독서 기록 출력

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Calendar;
-import com.example.userservice.CalendarServiceImpl;
+import com.example.userservice.UserCalendarServiceImpl;
 
 @RestController
 @RequestMapping("calendar")
@@ -19,7 +19,7 @@ import com.example.userservice.CalendarServiceImpl;
 public class CalendarController {
 
     @Autowired
-    private CalendarServiceImpl calendarService;
+    private UserCalendarServiceImpl calendarService;
 
     // *** SELECT ***********************************************************
 	// 한 명의 사용자가 작성한 모든 독서 기록 출력

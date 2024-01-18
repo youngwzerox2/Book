@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Book;
-import com.example.userservice.BookServiceImpl;
+import com.example.userservice.UserBookServiceImpl;
 
 @RestController
 @RequestMapping("book")
@@ -16,7 +16,7 @@ import com.example.userservice.BookServiceImpl;
 public class BookController {
 
     @Autowired
-    private BookServiceImpl bookService;
+    private UserBookServiceImpl bookService;
 
     // *** SELECT ***********************************************************
     // 특정 도서 정보 출력

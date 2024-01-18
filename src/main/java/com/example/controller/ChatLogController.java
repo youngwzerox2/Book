@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.ChatLog;
-import com.example.userservice.ChatLogServiceImpl;
+import com.example.userservice.UserChatLogServiceImpl;
 
 @RestController
 @RequestMapping("chatLog")
@@ -16,7 +16,7 @@ import com.example.userservice.ChatLogServiceImpl;
 public class ChatLogController {
     
     @Autowired
-    private ChatLogServiceImpl chatLogService;
+    private UserChatLogServiceImpl chatLogService;
 
 	// *** INSERT ***********************************************************
 	// 사용자의 독서기록 입력

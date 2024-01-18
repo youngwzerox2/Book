@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.CommunityBoard;
-import com.example.userservice.CommunityBoardServiceImpl;
+import com.example.userservice.UserCommunityBoardServiceImpl;
 
 @RestController
 @RequestMapping("communityBoard")
@@ -19,7 +19,7 @@ import com.example.userservice.CommunityBoardServiceImpl;
 public class CommunityBoardController {
 
     @Autowired
-    private CommunityBoardServiceImpl communityBoardService;
+    private UserCommunityBoardServiceImpl communityBoardService;
 
     // *** SELECT ***********************************************************
     // 모든 게시글 출력

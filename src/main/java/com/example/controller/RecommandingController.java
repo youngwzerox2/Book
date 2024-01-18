@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Recommanding;
-import com.example.userservice.RecommandingServiceImpl;
+import com.example.userservice.UserRecommandingServiceImpl;
 
 @RestController
 @RequestMapping("recommanding")
@@ -19,7 +19,7 @@ import com.example.userservice.RecommandingServiceImpl;
 public class RecommandingController {
 
     @Autowired
-    private RecommandingServiceImpl recommandingService;
+    private UserRecommandingServiceImpl recommandingService;
 
     // *** SELECT ***********************************************************
     // 한 명의 사용자가 작성한 모든 추천 기록 출력
