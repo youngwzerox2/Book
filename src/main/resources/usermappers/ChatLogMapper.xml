@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.ChatLogDAO">
+
+    <!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자의 채팅 기록 입력 -->
+	<insert id="write"
+			parameterType="ChatLog">
+		INSERT INTO chat_log(
+						member_id
+                        , chat_time
+                        , sentence
+					)
+		VALUES(
+			#{memberId}
+            , now()
+            , #{sentence}
+		)
+	</insert>
+
+</mapper>

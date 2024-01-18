@@ -21,4 +21,5 @@ public class Book {
 	private String	bookDtlUrl;			// 책 ?? url
 	private String	emotionTag;			// 감정태그
 	private String	description;		// 책 소개
+	
 }

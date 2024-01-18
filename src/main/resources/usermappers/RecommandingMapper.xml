@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.RecommandingDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 추천 기록 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+        SELECT   recommanding_id, recommanding_book_time, recommanding_title, member_id
+        FROM     recommanding
+        WHERE    member_id=#{memberId}
+        ORDER BY recommanding_book_time DESC
+	</select>
+	
+	<!-- 특정 기록 내용 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="Recommanding">
+		SELECT	*
+		FROM	recommanding
+		WHERE	recommanding_id=#{recommandingId}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자의 추천 기록 입력 -->
+	<insert id="write"
+			parameterType="Recommanding">
+		INSERT INTO recommanding(
+                        recommanding_book_time
+                        , recommanding_title
+                        , recommanding_book_content
+                        , recommanding_agree
+                        , recommanding_book_no1
+                        , recommanding_tag
+                        , book_isbn1
+                        , book_isbn2
+                        , book_isbn3
+                        , book_isbn4
+                        , book_isbn5
+                        , member_id
+                    )
+        VALUES(
+            now()
+            , #{recommandingTitle}
+            , #{recommandingBookContent}
+            , #{recommandingAgree}
+            , #{recommandingBookNo1}
+            , #{recommandingTag}
+            , #{bookIsbn1}
+            , #{bookIsbn2}
+            , #{bookIsbn3}
+            , #{bookIsbn4}
+            , #{bookIsbn5}
+            , #{memberId}
+        )
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 사용자의 추천 기록 수정 -->
+	<update id="update"
+			parameterType="Recommanding">
+		UPDATE	recommanding
+                SET	recommanding_title=#{recommandingTitle}
+                        , recommanding_book_content=#{recommandingBookContent}
+                        , recommanding_agree=#{recommandingAgree}
+                        , recommanding_book_no1=#{recommandingBookNo1}
+                        , recommanding_tag=#{recommandingTag}
+                        , book_isbn1=#{bookIsbn1}
+                        , book_isbn2=#{bookIsbn2}
+                        , book_isbn3=#{bookIsbn3}
+                        , book_isbn4=#{bookIsbn4}
+                        , book_isbn5=#{bookIsbn5}
+                        , member_id=#{memberId}
+		WHERE	recommanding_id=#{recommandingId}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 사용자의 추천 기록 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	recommanding
+		WHERE	recommanding_id=#{recommandingId}
+	</delete>
+	
+</mapper>

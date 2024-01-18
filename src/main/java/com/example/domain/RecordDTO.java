@@ -14,6 +14,7 @@ public class RecordDTO {
 	private String	recordBookTag1;			// 도서 태그
 	private String	memberId;				// 고객아이디
 	private String	bookIsbn13;				// 청구기호13자리
+	private String	bookname;				// 책 제목(INNER JOIN book)
 
 }
 

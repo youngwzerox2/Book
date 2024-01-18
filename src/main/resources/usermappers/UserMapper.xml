@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 사용자 정보 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="User">
+		SELECT  *
+        FROM    user
+        WHERE   member_id=#{memberId}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자 정보 입력 -->
+	<insert id="write"
+			parameterType="User">
+		INSERT INTO user(
+						member_id
+                        , member_password
+                        , member_name
+                        , member_email
+                        , member_nickname
+                        , member_gender
+                        , member_birthday
+                        , member_tel
+                        , join_date
+                        , quit_date
+                        , member_visit_agree
+                        , member_grade
+                        , card_number
+                        , card_cvc
+                        , card_date
+                        , card_password
+					)
+		VALUES(
+			#{memberId}
+            , #{memberPassword}
+            , #{memberName}
+            , #{memberEmail}
+            , #{memberNickname}
+            , #{memberGender}
+            , #{memberBirthday}
+            , #{memberTel}
+            , now()
+            , '2030-12-31 00:00:00'
+            , #{memberVisitAgree}
+            , 'basic'
+            , #{cardNumber}
+            , #{cardCvc}
+            , #{cardDate}
+            , #{cardPassword}
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 사용자 정보 수정 -->
+	<update id="update"
+			parameterType="User">
+		UPDATE	user
+		SET		member_password=#{memberPassword}
+                , member_name=#{memberName}
+                , member_email=#{memberEmail}
+                , member_nickname=#{memberNickname}
+                , member_gender=#{memberGender}
+                , member_tel=#{memberTel}
+                , member_visit_agree=#{memberVisitAgree}
+                , card_number=#{cardNumber}
+                , card_cvc=#{cardCvc}
+                , card_date=#{cardDate}
+                , card_password=#{cardPassword}
+		WHERE	member_id=#{memberId}
+	</update>
+	
+</mapper>
