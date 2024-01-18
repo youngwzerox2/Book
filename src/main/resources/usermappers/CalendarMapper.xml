@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.CalendarDAO">
+
+    <!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 달력 기록 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 c.calendar_num           calendarNum
+                 , c.calendar_date        calendarDate
+                 , c.calendar_realtime    calendarRealtime
+                 , c.book_isbn13          bookIsbn13
+                 , c.calendar_content     calendarContent
+                 , c.member_id            memberId
+                 , b.bookname             bookname
+		FROM	 calendar c INNER JOIN book b
+                        ON c.book_isbn13 = b.book_isbn13
+		WHERE	 member_id=#{memberId}
+		ORDER BY c.calendar_realtime DESC
+	</select>
+	
+	<!-- 특정 기록 내용 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="Calendar">
+		SELECT	*
+		FROM	calendar
+		WHERE	calendar_num=#{calendarNum}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자의 달력 기록 입력 -->
+	<insert id="write"
+			parameterType="Calendar">
+		INSERT INTO calendar(
+						calendar_date
+                        , calendar_realtime
+                        , book_isbn13
+                        , calendar_content
+                        , member_id
+					)
+		VALUES(
+			#{calendarDate}
+            , now()
+            , #{bookIsbn13}
+            , #{calendarContent}
+            , #{memberId}
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 사용자의 달력 기록 수정 -->
+	<update id="update"
+			parameterType="Calendar">
+		UPDATE	calendar
+		SET		calendar_date=#{calendarDate}
+                , book_isbn13=#{bookIsbn13}
+                , calendar_content=#{calendarContent}
+                , member_id=#{memberId}
+		WHERE	calendar_num=#{calendarNum}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 사용자의 달력 기록 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	calendar
+		WHERE	calendar_num=#{calendarNum}
+	</delete>
+
+</mapper>

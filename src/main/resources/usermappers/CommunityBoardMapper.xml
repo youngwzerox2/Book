@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.CommunityBoardDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 전체 게시글 출력 -->
+	<select id="selectAll"
+			resultType="hashmap">
+		SELECT	*
+		FROM	community_board
+	</select>
+
+	<!-- 한 명의 사용자가 작성한 모든 게시글 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 *
+		FROM	 community_board
+		WHERE	 member_id=#{memberId}
+		ORDER BY community_board_date DESC
+	</select>
+	
+	<!-- 특정 게시글 내용 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="CommunityBoard">
+		SELECT	*
+		FROM	community_board
+		WHERE	community_board_id=#{communityBoardId}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 게시글 입력 -->
+	<insert id="write"
+			parameterType="CommunityBoard">
+		INSERT INTO community_board(
+						community_board_tag
+						, community_board_content
+						, community_board_date
+						, member_id
+					)
+		VALUES(
+			#{communityBoardTag}
+			, #{communityBoardContent}
+			, now()
+			, #{memberId}
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 게시글 수정 -->
+	<update id="update"
+			parameterType="CommunityBoard">
+		UPDATE	community_board
+		SET		community_board_tag=#{communityBoardTag}
+				, community_board_content=#{communityBoardContent}
+		WHERE	community_board_id=#{communityBoardId}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 게시글 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	community_board
+		WHERE	community_board_id=#{communityBoardId}
+	</delete>
+	
+	
+</mapper>

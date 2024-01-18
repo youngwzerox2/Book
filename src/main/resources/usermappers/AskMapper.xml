@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.AskDAO">
+
+    <!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 독서 기록 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 ask_id, ask_title, ask_date, ask_reply_done, ask_reply_admin, member_id
+		FROM	 ask
+		WHERE	 member_id=#{memberId}
+		ORDER BY ask_date DESC
+	</select>
+	
+	<!-- 특정 기록 내용 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="Ask">
+		SELECT	*
+		FROM	ask
+		WHERE	ask_id=#{askId}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자의 독서 기록 입력 -->
+	<insert id="write"
+			parameterType="Ask">
+		INSERT INTO ask(
+						ask_title
+                        , ask_content
+                        , ask_date
+                        , ask_reply_done
+                        , ask_reply_content
+                        , ask_reply_time
+                        , ask_reply_admin
+                        , member_id
+					)
+		VALUES(
+			#{askTitle}
+            , #{askContent}
+            , now()
+            , '미완료'
+            , '없음'
+            , '2030-12-31 00:00:00'
+            , '미정'
+            , #{memberId}
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 사용자의 독서 기록 수정 -->
+	<update id="update"
+			parameterType="Ask">
+		UPDATE	ask
+		SET		ask_title=#{askTitle}
+                , ask_content=#{askContent}
+		WHERE	ask_id=#{askId}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 사용자의 독서 기록 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	ask
+		WHERE	ask_id=#{askId}
+	</delete>
+
+</mapper>

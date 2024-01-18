@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.BlockingDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 신고 내역 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 *
+		FROM	 blocking
+		WHERE	 member_id=#{memberId}
+		ORDER BY blocked_date DESC;
+	</select>
+	
+	<!-- 특정 신고 내역 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="Blocking">
+		SELECT	*
+		FROM	blocking
+		WHERE	blocked_number=#{blockedNumber}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자의 신고 내역 추가 -->
+	<insert id="write"
+			parameterType="Blocking">
+		INSERT INTO blocking(
+						blocked_member
+                        , blocked_reason
+                        , blocked_date
+                        , member_id
+					)
+		VALUES(
+			#{blockedMember}
+            , #{blockedReason}
+            , now()
+            , #{memberId}
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 사용자의 신고 내역 수정 -->
+	<update id="update"
+			parameterType="Blocking">
+		UPDATE	blocking
+		SET		blocked_reason
+        WHERE   blocked_number=#{blockedNumber}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 사용자의 신고 내역 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	blocking
+		WHERE	blocked_number=#{blockedNumber}
+	</delete>
+	
+</mapper>
