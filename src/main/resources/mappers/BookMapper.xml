@@ -10,8 +10,8 @@
     <select id="bookList" resultType="Book">
         SELECT *
         FROM book
-        ORDER BY ranking
-        LIMIT 1000;
+        ORDER BY bookname desc
+        LIMIT 100;
     </select>
 
     <!-- 도서상세정보 --> 

@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +46,7 @@
                 <div class="card">
                     <form action="updateTerms" method="post">
                         <input name="noticeNumber" type="hidden" value="${terms.noticeNumber}" />
-                        <input name="noticeDate" type="hidden" value="${terms.noticeDate}" />
+                        <!-- <input name="noticeDate" type="hidden" value="${terms.noticeDate}" /> -->
                         <div class="card-body card-block">
                             <div class="form-group"><label for="company"
                                     class=" form-control-label">제목</label><input type="text"
@@ -54,12 +57,14 @@
                                 <textarea class="form-control" name="noticeContent" style="height: 200px;">${terms.noticeContent}</textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-outline-primary">수정</button>
-                            <!-- <a href="deleteNotice?noticeNumber=${notice.noticeNumber}"
-                                class="btn btn-outline-danger"
-                                onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
-                            <a href="terms" class="btn btn-outline-secondary">뒤로가기</a>
+                        <div class="form-group row justify-content-end">
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-outline-primary">수정</button>
+                                <!-- <a href="deleteNotice?noticeNumber=${notice.noticeNumber}"
+                                    class="btn btn-outline-danger"
+                                    onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
+                                <a href="terms" class="btn btn-outline-secondary">뒤로가기</a>
+                            </div>
                         </div>
                     </form>
                 </div>

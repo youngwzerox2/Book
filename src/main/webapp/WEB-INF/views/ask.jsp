@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,8 @@
                                     <c:forEach items="${askList}" var="ask">
                                         <tr class="${ask.askReplyDone eq 'yes' ? 'answered' : 'unanswered'}">
                                             <td>${ask.askId}</td>
-                                            <td>${ask.askDate}</td>
+                                            <!-- <td>${ask.askDate}</td> -->
+                                            <td><fmt:formatDate value="${ask.askDate}" pattern="yyyy-MM-dd" /></td>
                                             <td><a href="askDetail?askId=${ask.askId}">${ask.memberId}</a></td>
                                             <td>${ask.askContent}</td>
                                             <td>${ask.askReplyDone}</td>

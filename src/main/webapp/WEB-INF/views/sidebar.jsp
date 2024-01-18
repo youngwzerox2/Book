@@ -52,7 +52,7 @@
                         <a href="book"><i class="menu-icon fa fa-book"></i>도서 관리 </a>
                     </li>
                     <li>
-                        <a href="community"><i class="menu-icon fa fa-group"></i>커뮤니티 관리 </a>
+                        <a href="complain"><i class="menu-icon fa fa-group"></i>컴플레인 관리 </a>
                     </li>
                     <li>
                         <a href="ask"><i class="menu-icon fa fa-question"></i>문의 관리 </a>

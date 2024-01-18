@@ -45,7 +45,7 @@
         <!-- 헤더 -->
         <%@ include file="header.jsp" %>
 
-        <div class="breadcrumbs">
+        <!-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -57,12 +57,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="content">
             <div class="animated fadeIn">
 
-                <div class="row">
+                <div class="row justify-content-center">
 
                     <div class="col-lg-6">
                         <div class="card">
@@ -114,11 +114,13 @@
                                         class=" form-control-label">신고건수</label><input
                                         value="${member.memberVisitAgree}" class="form-control"></div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group row justify-content-end">
+                                    <div class="col-sm-3">
                                     <button type="submit" class="btn btn-outline-primary">수정</button>
                                     <a href="deleteMember?memberId=${member.memberId}"
                                         class="btn btn-outline-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
                                     <a href="member" class="btn btn-outline-secondary">뒤로가기</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

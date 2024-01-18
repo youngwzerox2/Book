@@ -58,7 +58,7 @@
 
         <div class="content">
             <div class="animated fadeIn">
-                <div class="row">
+                <div class="row justify-content-center">
 
                     <div class="col-lg-6">
                         <div class="card">
@@ -117,16 +117,27 @@
                                             class="form-control-label">책 데이터 링크</label><input type="text"
                                             value="${book.bookDtlUrl}" class="form-control" name="bookDtlUrl">
                                     </div>
+                                    <!-- <div class="form-group">
+                                        <label for="bookImageUrl" class="form-control-label">책 이미지 링크</label>
+                                        <a href="${book.bookImageUrl}" target="_blank">${book.bookImageUrl}</a>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="bookDtlUrl" class="form-control-label">책 데이터 링크</label>
+                                        <a href="${book.bookDtlUrl}" target="_blank">${book.bookDtlUrl}</a>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="description" class="form-control-label">책 소개</label>
                                         <textarea class="form-control" name="description">${book.description}</textarea>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-outline-primary">수정</button>
-                                    <a href="deleteBook?no=${book.no}" class="btn btn-outline-danger"
-                                        onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
-                                    <a href="book" class="btn btn-outline-secondary">뒤로가기</a>
+                                <div class="form-group row justify-content-end">
+                                    <div class="col-sm-3">
+                                        <!-- <button type="submit" class="btn btn-outline-primary">수정</button> -->
+                                        <!-- <a href="deleteBook?no=${book.no}" class="btn btn-outline-danger"
+                                            onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
+                                        <a href="book" class="btn btn-outline-secondary">뒤로가기</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

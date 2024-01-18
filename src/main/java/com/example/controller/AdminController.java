@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Ask;
 import com.example.domain.Book;
-import com.example.domain.Community;
+import com.example.domain.Complain;
 import com.example.domain.Notice;
 import com.example.domain.User;
 import com.example.service.AskService;
 import com.example.service.BookService;
-import com.example.service.CommunityService;
+import com.example.service.ComplainService;
 import com.example.service.FaqService;
 import com.example.service.NoticeService;
 import com.example.service.TermsService;
@@ -32,9 +32,9 @@ public class AdminController {
     @Autowired
     private BookService bookService;
 
-    // 커뮤니티
+    // 커뮤니티신고
     @Autowired
-    private CommunityService communityService;
+    private ComplainService complainService;
 
     // 공지사항
     @Autowired
@@ -141,34 +141,32 @@ public class AdminController {
         return "redirect:book";
     }
 
-    // *************************************** 커뮤니티
-    // ****************************************
-    // 커뮤니티관리
-    @RequestMapping("/community")
-    public void communityList(Model m) {
-        List<Community> list = communityService.communityList();
-        m.addAttribute("communityList", list);
-        System.out.println("community.jsp호출");
+    // *************************************** 커뮤니티 ****************************************
+    // 커뮤니티 신고관리
+    @RequestMapping("/complain")
+    public void complainList(Model m) {
+        List<Complain> list = complainService.complainList();
+        m.addAttribute("complainList", list);
+        System.out.println("complain.jsp호출");
     }
 
-    // 커뮤니티상세정보
-    @RequestMapping("/communityDetail")
-    public void communityDetail(Model m, Community vo) {
-        Community community = communityService.communityDetail(vo);
-        System.out.println("communityDetail.jsp호출");
-        m.addAttribute("community", community);
+    // 커뮤니티 상세정보
+    @RequestMapping("/complainDetail")
+    public void complainDetail(Model m, Complain vo) {
+        Complain complain = complainService.complainDetail(vo);
+        System.out.println("complainDetail.jsp호출");
+        m.addAttribute("complain", complain);
     }
 
-    // 커뮤니티정보수정
-    @RequestMapping("/updateCommunity")
-    public String updateCommunity(Community vo) {
+    // 커뮤니티 정보수정
+    @RequestMapping("/updateComplain")
+    public String updateComplain(Complain vo) {
         // System.out.println("커뮤니티정보수정:" + vo);
-        communityService.updateCommunity(vo);
-        return "redirect:community";
+        complainService.updateComplain(vo);
+        return "redirect:complain";
     }
 
-    // *************************************** 공지사항
-    // ****************************************
+    // *************************************** 공지사항 ****************************************
     // 공지사항 관리
     @RequestMapping("/notice")
     public void noticeList(Model m) {

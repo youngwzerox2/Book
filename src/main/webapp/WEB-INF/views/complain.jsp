@@ -50,7 +50,7 @@
                                     <div class="col-md-8 mx-auto">
                                         <div class="card">
                                             <div class="card-header">
-                                                <strong class="card-title">커뮤니티 신고 리스트</strong>
+                                                <strong class="card-title">컴플레인 신고 리스트</strong>
                                             </div>
                                             <div class="card-body">
                                                 <table id="bootstrap-data-table"
@@ -71,32 +71,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach items="${communityList}" var="community">
+                                                        <c:forEach items="${complainList}" var="complain">
                                                             <tr>
-                                                                <td> ${community.memberId}
-                                                                </td>
-                                                                <td> <a
-                                                                        href="communityDetail?complainId=${community.complainId}">${community.complainId}</a></span>
-                                                                </td>
-                                                                <td> ${community.complainType}
-                                                                </td>
-                                                                <td> ${community.complainTargetId}
-                                                                </td>
-                                                                <td> ${community.complainContent}
-                                                                </td>
+                                                                <td> ${complain.memberId} </td>
+                                                                <td> <a href="complainDetail?complainId=${complain.complainId}">${complain.complainId}</a> </td>
+                                                                <td> ${complain.complainType} </td>
+                                                                <td> ${complain.complainTargetId}</td>
+                                                                <td> ${complain.complainContent} </td>
                                                                 <!-- <td> ${community.complainDate}
                                                                 </td> -->
-                                                                <td> ${community.complainDone}
-                                                                </td>
+                                                                <td> ${complain.complainDone}</td>
                                                                 <!-- <td> ${community.complainReply}
                                                                 </td> -->
                                                                 <!-- <td> <span
                                                                         class="name">${community.complainReplyDate}</span>
                                                                 </td> -->
-                                                                <td> ${community.complainTargetUser}
-                                                                </td>
-                                                                <td> ${community.complainReplyAdmin}
-                                                                </td>
+                                                                <td> ${complain.complainTargetUser}</td>
+                                                                <td> ${complain.complainReplyAdmin}</td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

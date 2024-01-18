@@ -26,7 +26,7 @@
                 <div class="card">
                     <form action="updateFaq" method="post">
                         <input name="noticeNumber" type="hidden" value="${faq.noticeNumber}" />
-                        <input name="noticeDate" type="hidden" value="${faq.noticeDate}" />
+                        <!-- <input name="noticeDate" type="hidden" value="${faq.noticeDate}" /> -->
                         <div class="card-body card-block">
                             <div class="form-group"><label for="company"
                                     class=" form-control-label">질문</label><input type="text"

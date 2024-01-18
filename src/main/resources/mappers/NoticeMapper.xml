@@ -24,7 +24,7 @@
 	<!-- 공지사항 정보수정 -->
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE notice
-		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_date=now()
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}
 		WHERE notice_number=#{noticeNumber} AND notice_type = 'notice'
 	</update>
 
