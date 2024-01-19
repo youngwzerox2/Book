@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserCommunityCommentDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 댓글 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 *
+		FROM	 community_comment
+		WHERE	 member_id=#{memberId}
+		ORDER BY community_comment_date DESC
+        
+	</select>
+	
+	<!-- 특정 게시글의 댓글 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="CommunityComment">
+		SELECT	 *
+		FROM	 community_comment
+		WHERE	 community_board_id=#{communityBoardId}
+		ORDER BY community_comment_date
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 댓글 입력 -->
+	<insert id="write"
+			parameterType="CommunityComment">
+		INSERT INTO community_comment(
+						community_board_id
+                        , community_comment_content
+                        , member_id
+                        , community_comment_date
+					)
+		VALUES(
+			#{communityBoardId}
+            , #{communityCommentContent}
+            , #{memberId}
+            , now()
+		)
+	</insert>
+	
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 댓글 수정 -->
+	<update id="update"
+			parameterType="CommunityComment">
+		UPDATE	community_comment
+		SET		community_comment_content=#{communityCommentContent}
+		WHERE	community_comment_id=#{communityCommentId}
+	</update>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 댓글 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	community_comment
+		WHERE	community_comment_id=#{communityCommentId}
+	</delete>
+	
+</mapper>

@@ -1,15 +1,10 @@
-package com.example.collection;
+package com.example.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@Document(collection = "chat_data")
 public class ChatData {
 
-	@Id
 	private String	objectId;				// 랜덤으로 생성되는 아이디
 	private String	memberId;				// 사용자아이디
 	private String	recommandedBook1;		// 추천받은책1

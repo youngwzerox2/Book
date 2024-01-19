@@ -15,4 +15,5 @@ public interface UserRecommandingService {
 	Integer update(Recommanding dto);
 	
 	Integer delete(String recommandingId);
+	
 }
