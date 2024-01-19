@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고 내용</label>
-                                        <input type="text" value="${complain.complainContent}" class="form-control" name="complainContent">
+                                        <span class="form-control">${complain.complainContent}</span>
                                     </div>
                                     <!-- <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 작성시간</label>

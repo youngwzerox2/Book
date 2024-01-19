@@ -14,6 +14,7 @@ function processData(csv) {
     const latitudeIndex = header.indexOf('LBRRY_LA');
     const longitudeIndex = header.indexOf('LBRRY_LO');
     const nameIndex = header.indexOf('LBRRY_NM');
+    const homepageIndex = header.indexOf('HMPG_VALUE');
 
     // 각 행에 대해 반복문을 사용하여 마커를 지도에 표시하고 해당 마커에 이벤트 리스너를 추가
     for (let i = 1; i < data.length; i++) { // 헤더가 있는 경우 1부터 시작
@@ -21,6 +22,7 @@ function processData(csv) {
         const latitude = parseFloat(row[latitudeIndex]);
         const longitude = parseFloat(row[longitudeIndex]);
         const name = row[nameIndex];
+        const homepage = row[homepageIndex];
 
         // 마커 생성
         const markerPosition = new kakao.maps.LatLng(latitude, longitude);
@@ -32,7 +34,7 @@ function processData(csv) {
 
         // 마커에 이벤트 리스너 추가 (클릭, 마우스 오버, 마우스 아웃)
         kakao.maps.event.addListener(marker, 'click', function () {
-            alert(name); // 클릭 시 이름을 알림으로 표시
+            navigateToLibraryWebsite(homepage); // 클릭 시 해당 도서관 홈페이지로 이동
         });
 
         kakao.maps.event.addListener(marker, 'mouseover', function () {
@@ -65,6 +67,17 @@ function fetchCurrentMonthCSV() {
 
 // 페이지 로드 시에 현재 월의 CSV 파일을 가져오도록 설정
 document.addEventListener('DOMContentLoaded', fetchCurrentMonthCSV);
+
+// 클릭된 마커의 홈페이지로 이동하는 함수
+function navigateToLibraryWebsite(homepage) {
+    // 홈페이지가 존재할 경우에만 이동
+    if (homepage) {
+        window.open(homepage, '_blank'); // 새 창에서 열기
+    } else {
+        alert('도서관 홈페이지 정보가 없습니다.');
+    }
+}
+
 
 // 사용자의 현재 위치를 가져와서 지도에 표시하는 함수
 function showCurrentPosition() {

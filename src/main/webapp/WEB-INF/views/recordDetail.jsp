@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>회원상세정보</title>
+    <title>독서기록 상세정보</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -66,60 +66,46 @@
 
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-header"><strong>회원상세정보</strong></div>
-                            <form action="updateMember" method="post">
+                            <div class="card-header"><strong>독서기록 상세정보</strong></div>
+                            <form action="updateRecord" method="post">
                                 <div class="card-body card-block">
                                     <!-- <input type="hidden" name="memberId" value="${member.memberId}"> -->
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">회원아이디</label><input
-                                            value="${member.memberId}" class="form-control"
-                                            name="memberId"></div>
+                                            class=" form-control-label">독서기록 번호</label><input
+                                            value="${record.recordBookNum}" class="form-control"
+                                            name="memberId">
+                                    </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">이름</label><input type="text"
-                                            value="${member.memberName}" class="form-control"></div>
+                                            class=" form-control-label">독서기록 내용</label><input type="text"
+                                            value="${record.recordBookContent}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">이메일</label><input type="text"
-                                            value="${member.memberEmail}" class="form-control"></div>
+                                            class=" form-control-label">독서기록 평점</label><input type="text"
+                                            value="${record.recordBookScore}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">닉네임</label><input type="text"
-                                            value="${member.memberNickname}" class="form-control"></div>
+                                        class=" form-control-label">독서기록 등록시간</label><input type="text"
+                                        value="<fmt:formatDate value='${record.recordBookTime}' pattern='yyyy-MM-dd' />" class="form-control">
+                                    </div>
+
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">성별</label><input type="text"
-                                            value="${member.memberGender}" class="form-control"></div>
+                                            class=" form-control-label">도서 태그</label><input type="text"
+                                            value="${record.recordBookTag1}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">생년월일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.memberBirthday}' pattern='yyyy-MM-dd' />" class="form-control"></div>
+                                            class=" form-control-label">고객아이디</label><input type="text"
+                                            value="${record.memberId}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">전화번호</label><input type="text"
-                                            value="${member.memberTel}" class="form-control"></div>
-                                    <div class="form-group"><label for="company"
-                                            class=" form-control-label">가입일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.joinDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
-                                    <div class="form-group"><label for="company"
-                                            class=" form-control-label">탈퇴일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.quitDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
-                                    <div class="form-group"><label for="company"
-                                            class=" form-control-label">책장방문허용여부</label><input
-                                            value="${member.memberVisitAgree}" class="form-control"></div>
-                                    <div class="form-group"><label for="company"
-                                            class=" form-control-label">회원상태</label>
-                                            <select class="form-control" name="memberGrade">
-                                                <option value="admin" <c:if test="${member.memberGrade eq 'admin'}">selected</c:if>>admin</option>
-                                                <option value="basic" <c:if test="${member.memberGrade eq 'basic'}">selected</c:if>>basic</option>
-                                                <option value="withdrawal" <c:if test="${member.memberGrade eq 'withdrawal'}">selected</c:if>>withdrawal</option>
-                                                <option value="blacklist" <c:if test="${member.memberGrade eq 'blacklist'}">selected</c:if>>blacklist</option>
-                                            </select>
-                                    </div>  
-                                    <div class="form-group"><label for="company"
-                                        class=" form-control-label">신고건수</label><input
-                                        value="${member.memberVisitAgree}" class="form-control"></div>
-                                </div>
+                                            class=" form-control-label">청구기호13자리</label><input type="text"
+                                            value="${record.bookIsbn13}" class="form-control">
+                                    </div>
                                 <div class="form-group row justify-content-end">
                                     <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-outline-primary">수정</button>
-                                    <!-- <a href="deleteMember?memberId=${member.memberId}"
-                                        class="btn btn-outline-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
-                                    <a href="member" class="btn btn-outline-secondary">뒤로가기</a>
+                                    <!-- <button type="submit" class="btn btn-outline-primary">수정</button> -->
+                                    <a href="deleteRecord?recordBookNum=${record.recordBookNum}"
+                                        class="btn btn-outline-danger" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+                                    <a href="record" class="btn btn-outline-secondary">뒤로가기</a>
                                     </div>
                                 </div>
                             </form>

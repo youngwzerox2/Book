@@ -64,7 +64,7 @@
                                                             <th>신고내용</th>
                                                             <!-- <th>신고글 작성시간</th> -->
                                                             <th>신고글 처리여부</th>
-                                                            <!-- <th>신고글 답변</th> -->
+                                                            <th>신고글 답변</th>
                                                             <!-- <th>신고글 답변 작성시간</th> -->
                                                             <th>신고받은 글 작성자</th>
                                                             <th>처리담당자</th>
@@ -78,13 +78,12 @@
                                                                 <td> ${complain.complainType} </td>
                                                                 <td> ${complain.complainTargetId}</td>
                                                                 <td> ${complain.complainContent} </td>
-                                                                <!-- <td> ${community.complainDate}
+                                                                <!-- <td> ${complain.complainDate}
                                                                 </td> -->
                                                                 <td> ${complain.complainDone}</td>
-                                                                <!-- <td> ${community.complainReply}
-                                                                </td> -->
+                                                                <td> ${complain.complainReply}</td> 
                                                                 <!-- <td> <span
-                                                                        class="name">${community.complainReplyDate}</span>
+                                                                        class="name">${complain.complainReplyDate}</span>
                                                                 </td> -->
                                                                 <td> ${complain.complainTargetUser}</td>
                                                                 <td> ${complain.complainReplyAdmin}</td>

@@ -43,13 +43,16 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index"><i class="menu-icon fa fa-laptop"></i>메인페이지 </a>
+                        <a href="adminmain"><i class="menu-icon fa fa-laptop"></i>메인페이지 </a>
                     </li>
                     <li>
                         <a href="member"><i class="menu-icon fa fa-user"></i>회원 관리 </a>
                     </li>
                     <li>
                         <a href="book"><i class="menu-icon fa fa-book"></i>도서 관리 </a>
+                    </li>
+                    <li>
+                        <a href="record"><i class="menu-icon fa fa-file-text"></i>독서기록 관리 </a>
                     </li>
                     <li>
                         <a href="complain"><i class="menu-icon fa fa-group"></i>컴플레인 관리 </a>

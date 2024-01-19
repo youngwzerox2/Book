@@ -30,6 +30,9 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet'
         type='text/css'>
+
+
+    
 </head>
 
 <body>
@@ -46,6 +49,8 @@
         <div class="content">
 
             <div id="map"></div>
+             <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=48ce9248aa11f6b0e1b6054fdeaa1e8c&libraries=services"></script> -->
+
             <!-- <input type="file" id="fileInput" accept=".csv" class="btn btn-outline-danger"> -->
             <button id="showPositionButton" class="btn btn-outline-primary">현재 위치 표시</button>
             <!-- <button id="showLibraryLocationsButton" class="btn btn-outline-success">도서관 위치 표시</button> -->
@@ -55,7 +60,7 @@
         <%@ include file="footer.jsp" %>
 
     </div><!-- /#right-panel -->
-
+    
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=48ce9248aa11f6b0e1b6054fdeaa1e8c&libraries=services"></script>
     <script src="assets/js/adminlibrary.js"></script>
 
@@ -64,7 +69,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="assets/js/main.js"></script>
-   
 </body>
 
 </html>

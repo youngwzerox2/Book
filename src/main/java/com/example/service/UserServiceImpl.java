@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService{
     
     @Autowired
     private UserDAO userDAO;
-    // *************************회원***************************
+    // ************************* 회원 ***************************
     // 회원리스트
     @Override
     public List<User> memberList() {

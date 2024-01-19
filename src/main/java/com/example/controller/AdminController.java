@@ -12,12 +12,14 @@ import com.example.domain.Ask;
 import com.example.domain.Book;
 import com.example.domain.Complain;
 import com.example.domain.Notice;
+import com.example.domain.RecordDTO;
 import com.example.domain.User;
 import com.example.service.AskService;
 import com.example.service.BookService;
 import com.example.service.ComplainService;
 import com.example.service.FaqService;
 import com.example.service.NoticeService;
+import com.example.service.RecordService;
 import com.example.service.TermsService;
 import com.example.service.UserService; 
 
@@ -52,13 +54,16 @@ public class AdminController {
     @Autowired
     private TermsService termsService;
 
+    // 독서기록
+    @Autowired
+    private RecordService recordService;
+
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
         return step;
     }
 
-    // *************************************** 메인
-    // ****************************************
+    // *************************************** 메인 ****************************************
     // 메인
     // @RequestMapping("/index")
     // public String index() {
@@ -66,17 +71,23 @@ public class AdminController {
     // return "index";
     // }
 
+    // 메인
+    // @RequestMapping("/")
+    // public void main(Model m) {
+    //     List<User> list = userService.memberList();
+    //     m.addAttribute("memberList", list);
+    //     System.out.println("index.jsp호출");
+    // }
+
     // 메인 제재명단
-    @RequestMapping("/index")
+    @RequestMapping("/adminmain")
     public void index(Model m) {
         List<User> list = userService.memberList();
         m.addAttribute("memberList", list);
-        System.out.println("index.jsp호출");
-
+        System.out.println("adminmain.jsp호출");
     }
 
-    // *************************************** 회원
-    // ****************************************
+    // *************************************** 회원 ****************************************
     // 회원관리
     @RequestMapping("/member")
     public void memberList(Model m) {
@@ -205,8 +216,7 @@ public class AdminController {
         noticeService.insertNotice(vo);
     }
 
-    // *************************************** 이용약관
-    // ****************************************
+    // *************************************** 이용약관 ****************************************
     // 이용약관 관리
     @RequestMapping("/terms")
     public void termsList(Model m) {
@@ -231,8 +241,7 @@ public class AdminController {
         return "redirect:terms";
     }
 
-    // *************************************** FAQ
-    // ****************************************
+    // *************************************** FAQ ****************************************
     // FAQ 관리
     @RequestMapping("/faq")
     public void faqList(Model m) {
@@ -310,16 +319,46 @@ public class AdminController {
         askService.insertAsk(vo);
     }
 
-    // *************************************** 통계
-    // ****************************************
+    // *************************************** 독서기록 ****************************************
+    // 독서기록 관리
+    @RequestMapping("/record")
+    public void recordList(Model m) {
+        List<RecordDTO> list = recordService.recordList();
+        m.addAttribute("recordList", list);
+        System.out.println("record.jsp호출");
+    }
+
+    // 독서기록 상세정보
+    @RequestMapping("/recordDetail")
+    public void recordDetail(Model m, RecordDTO vo) {
+        RecordDTO record = recordService.recordDetail(vo);
+        System.out.println("recordDetail.jsp호출");
+        m.addAttribute("record", record);
+    }
+
+    // 독서기록 정보수정
+    @RequestMapping("/updateRecord")
+    public String updateRecord(RecordDTO vo) {
+        System.out.println("회원정보수정:" + vo);
+        recordService.updateRecord(vo);
+        return "redirect:record";
+    }
+
+    // 독서기록 정보삭제
+    @RequestMapping("/deleteRecord")
+    public String deleteRecord(RecordDTO vo) {
+        recordService.deleteRecord(vo);
+        return "redirect:record";
+    }
+
+    // *************************************** 통계 ****************************************
     // 통계관리
     @RequestMapping("/charts")
     public void charts() {
         System.out.println("charts.jsp호출");
     }
 
-    // *************************************** 도서관
-    // ****************************************
+    // *************************************** 도서관 ****************************************
     // 도서관관리
     @RequestMapping("/adminlibrary")
     public void adminlibrary() {
