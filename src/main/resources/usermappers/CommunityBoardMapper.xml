@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- ***************************** dao interface 경로+이름 -->
-<mapper namespace="com.example.userdao.CommunityBoardDAO">
+<mapper namespace="com.example.userdao.UserCommunityBoardDAO">
 
 	<!-- *** SELECT *********************************************************** -->
 	<!-- 전체 게시글 출력 -->

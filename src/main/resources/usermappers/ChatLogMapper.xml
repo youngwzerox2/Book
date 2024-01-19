@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- ***************************** dao interface 경로+이름 -->
-<mapper namespace="com.example.userdao.ChatLogDAO">
+<mapper namespace="com.example.userdao.UserChatLogDAO">
 
     <!-- *** INSERT  *********************************************************** -->
 	<!-- 사용자의 채팅 기록 입력 -->

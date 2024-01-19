@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- ***************************** dao interface 경로+이름 -->
-<mapper namespace="com.example.userdao.BookDAO">
+<mapper namespace="com.example.userdao.UserBookDAO">
 
     <!-- *** SELECT *********************************************************** -->
     <!-- 특정 도서 정보 출력 -->

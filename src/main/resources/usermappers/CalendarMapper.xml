@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- ***************************** dao interface 경로+이름 -->
-<mapper namespace="com.example.userdao.CalendarDAO">
+<mapper namespace="com.example.userdao.UserCalendarDAO">
 
     <!-- *** SELECT *********************************************************** -->
 	<!-- 한 명의 사용자가 작성한 모든 달력 기록 출력 -->
