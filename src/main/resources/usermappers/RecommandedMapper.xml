@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserRecommandedDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 받은 모든 추천 기록 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+        SELECT   
+        FROM     recommanded
+        WHERE    member_id=#{memberId}
+        ORDER BY recommanded_date DESC
+	</select>
+	
+	<!-- 특정 추천 기록 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="Recommanded">
+		SELECT	*
+		FROM	recommanded
+		WHERE	recommanded_num=#{recommandedNum}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 사용자에게 추천해 준 책 입력 -->
+	<insert id="write"
+			parameterType="Recommanded">
+		INSERT INTO recommanded(
+                        recommanded_date
+                        , recommanded_feel
+                        , member_id
+                        , recommanded_book_pick
+                        , recommanded_book1
+                        , recommanded_book2
+                        , recommanded_book3
+                    )
+        VALUES(
+            now()
+            , #{recommandedFeel}
+            , #{memberId}
+            , #{recommandedBookPick}
+            , #{recommandedBook1}
+            , #{recommandedBook2}
+            , #{recommandedBook3}
+        )
+	</insert>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 사용자의 추천 기록 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	recommanded
+		WHERE	recommanded_num=#{recommandedNum}
+	</delete>
+	
+</mapper>

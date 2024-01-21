@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Recommanded {
 
-	private Integer recommandNum;			// 추천번호
+	private Integer recommandedNum;			// 추천번호
 	private Date	recommandedDate;		// 추천받은 날짜
 	private String	recommandedFeel;		// 추천받은 당시 감정
 	private String	memberId;				// 고객아이디
