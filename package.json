@@ -17,11 +17,14 @@
     "@tabler/icons": "^1.72.0",
     "apexcharts": "^3.35.3",
     "axios": "^1.6.5",
+    "cors": "^2.8.5",
     "dayjs": "^1.11.10",
+    "fetch": "^1.1.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.16",
     "image-map": "^2.0.1",
     "material-ui-popup-state": "^4.0.1",
+    "mongoose": "^8.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -38,7 +41,7 @@
     "yarn": "^1.22.21",
     "yup": "^0.32.11"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://118.217.203.44:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -5,20 +5,20 @@ import Loadable from 'ui-component/Loadable';
 import MinimalLayout from 'layout/MinimalLayout';
 
 // login option 3 routing
-const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login3')));
-const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Register3')));
-const CRegister = Loadable(lazy(() => import('views/pages/authentication/authentication3/CRegister')));
-const CstartPage = Loadable(lazy(() => import('views/pages/authentication/authentication3/CStartPage')));
-const CLogin = Loadable(lazy(() => import('views/pages/authentication/authentication3/CLogin')));
-const CMainpage = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMainpage')));
-const CMypage = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypage')));
-const CLibrary = Loadable(lazy(() => import('views/pages/authentication/authentication3/CLibrary')));
-const CMypage_info = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypageInfo')));
-const CMypage_pay = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypagePay')));
-const CMypage_liked = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypageLiked')));
-const CMypage_notice = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypageNotice')));
-const CMypage_block = Loadable(lazy(() => import('views/pages/authentication/authentication3/CMypageBlock')));
-const CBookshelf = Loadable(lazy(() => import('views/pages/authentication/authentication3/CBookshelf')));
+const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/mainC/Login3')));
+const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/mainC/Register3')));
+const CRegister = Loadable(lazy(() => import('views/pages/authentication/mainC/CRegister')));
+const CstartPage = Loadable(lazy(() => import('views/pages/authentication/mainC/CStartPage')));
+const CLogin = Loadable(lazy(() => import('views/pages/authentication/mainC/CLogin')));
+const CMainpage = Loadable(lazy(() => import('views/pages/authentication/mainC/CMainpage')));
+const CMypage = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypage')));
+const CLibrary = Loadable(lazy(() => import('views/pages/authentication/library/CLibrary')));
+const CMypage_info = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageInfo')));
+const CMypage_pay = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypagePay')));
+const CMypage_liked = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageLiked')));
+const CMypage_notice = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageNotice')));
+const CMypage_block = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageBlock')));
+const CBookshelf = Loadable(lazy(() => import('views/pages/authentication/bookshelf/CBookshelf')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
