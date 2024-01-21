@@ -17,5 +17,5 @@ public interface ComplainDAO {
     public Complain complainDetail(Complain vo);
 
     // 커뮤니티 정보수정
-    public void updateComplain(Complain vo);
+    public void updateComplain(Complain vo); 
 }
