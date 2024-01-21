@@ -3,10 +3,12 @@ package com.example.userservice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.domain.Recommanded;
 import com.example.userdao.UserRecommandedDAO;
 
+@Service
 public class UserRecommandedServiceImpl implements UserRecommandedService {
 
     @Autowired
