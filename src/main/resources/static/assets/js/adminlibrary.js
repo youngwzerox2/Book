@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/main/resources/static/assets/js/adminlibrary.js
 // 분리된 JavaScript 파일에서 사용할 전역 변수 선언
 const mapContainer = document.getElementById('map');
 const map = new kakao.maps.Map(mapContainer, {
