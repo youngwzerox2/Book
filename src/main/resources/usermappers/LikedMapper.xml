@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserLikedDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 도서 - 좋아요 많은 순으로 출력 -->
+	<select id="selectByLiked"
+			resultType="hashmap">
+		SELECT	 count(l.liked_num)
+		FROM	 liked l 
+                        LEFT OUTER JOIN book b
+                    ON l.liked_element = b.book_isbn13
+        ORDER BY count(l.liked_num)
+	</select>
+
+	<!-- 한 명의 사용자가 등록한 사용자 좋아요 출력 -->
+	<select id="selectByUserUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 l.liked_num              likedNum
+                 , l.member_id            memberId
+                 , l.liked_type           likedType
+                 , l.liked_element        likedElement
+                 , l.liked_time           likedTime
+                 , u.member_name          memberName
+                 , u.nickname             nickName
+                 , u.grade                grade
+		FROM	 liked l
+                        INNER JOIN user u
+                    ON l.liked_element = u.member_id
+		WHERE	 l.member_id=#{memberId}
+                    AND l.liked_type='user'
+		ORDER BY l.likedTime DESC
+	</select>
+
+    <!-- 한 명의 사용자가 등록한 도서 좋아요 출력 -->
+	<select id="selectByUserBook"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 l.l.liked_num            likedNum
+                 , l.member_id            memberId
+                 , l.liked_type           likedType
+                 , l.liked_element        likedElement
+                 , l.liked_time           likedTime
+                 , b.book_isbn13          bookIsbn13
+                 , b.bookname             bookname
+                 , b.ranking              ranking
+                 , b.authors              authors
+                 , b.publisher            publisher
+                 , b.publication_year     pulicationYear
+                 , b.addition_symbol      additionSymbol
+                 , b.vol                  vol
+                 , b.class_no             classNo
+                 , b.class_nm             classNm
+                 , b.loan_count           loanCount
+                 , b.bookImageURL         bookImageURL
+                 , b.bookDtlUrl           bookDtlUrl
+                 , b.emotion_tag          emotionTag
+                 , b.description          description
+		FROM	 liked l 
+                        INNER JOIN book b
+                    ON l.liked_element = b.book_isbn13
+		WHERE	 l.member_id=#{memberId}
+                    AND l.liked_type='book'
+		ORDER BY l.likedTime DESC
+	</select>
+
+    <!-- 한 명의 사용자가 등록한 게시글 좋아요 출력 -->
+	<select id="selectByUserBoard"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 l.liked_num                  likedNum
+                 , l.member_id                memberId
+                 , l.liked_type               likedType
+                 , l.liked_element            likedElement
+                 , cb.community_board_id      communityBoardId
+                 , cb.community_board_tag     communityBoardTag
+                 , cb.community_board_content communityBoardContent
+                 , cb.community_board_date    communityBoardDate
+                 , cb.member_id               memberId
+		FROM	 liked l 
+                        INNER JOIN community_board cb
+                    ON l.liked_element = cb.community_board_id
+		WHERE	 l.member_id=#{memberId}
+                    AND l.liked_type='board'
+		ORDER BY l.likedTime DESC
+	</select>
+
+    <!-- 한 명의 사용자가 등록한 댓글 좋아요 출력 -->
+	<select id="selectByUserComment"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 l.liked_num                    likedNum
+                 , l.member_id                    memberId
+                 , l.liked_type                   likedType
+                 , l.liked_element                likedElement
+                 , cc.community_comment_id        communityCommentId
+                 , cc.community_board_id          communityBoardId
+                 , cc.community_comment_content   communityCommentContent
+                 , cc.member_id                   memberId
+                 , cc.community_comment_date      communityCommentDate
+		FROM	 liked l 
+                        INNER JOIN community_comment cc
+                    ON l.liked_element = cc.community_comment_id
+		WHERE	 l.member_id=#{memberId}
+                    AND l.liked_type='comment'
+		ORDER BY l.likedTime DESC
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 게시글 입력 -->
+	<insert id="write"
+			parameterType="Liked">
+		INSERT INTO liked(
+						member_id
+                        , liked_type
+                        , liked_element
+                        , liked_time
+					)
+		VALUES(
+			#{memberId}
+            , #{likedType}
+            , #{likedElement}
+            , now()
+		)
+	</insert>
+	
+	<!-- *** DELETE  *********************************************************** -->
+	<!-- 게시글 삭제 -->
+	<delete id="delete"
+			parameterType="String">
+		DELETE
+		FROM	liked
+		WHERE	liked_num=#{likedNum}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserChatDataDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+	<!-- 한 명의 사용자가 작성한 모든 채팅 기록 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT	 *
+		FROM	 chat_data
+		WHERE	 member_id=#{memberId}
+		ORDER BY chat_data_date DESC
+	</select>
+	
+	<!-- 특정 채팅 기록 출력 -->
+	<select id="selectByNum"
+			parameterType="String"
+			resultType="CommunityBoard">
+		SELECT	*
+		FROM	chat_data
+		WHERE	chatNumber=#{chatNumber}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 채팅 기록 입력 -->
+	<insert id="write"
+			parameterType="CommunityBoard">
+		INSERT INTO chat_data(
+						member_id
+                        , recommanded_book1
+                        , recommanded_book2
+                        , recommanded_book3
+                        , picked_book
+                        , emotion
+                        , chat_data_date
+					)
+		VALUES(
+			#{memberId}
+            , #{recommandedBook1}
+            , #{recommandedBook2}
+            , #{recommandedBook3}
+            , #{pickedBook}
+            , #{emotion}
+            , now()
+		)
+	</insert>
+	
+</mapper>
