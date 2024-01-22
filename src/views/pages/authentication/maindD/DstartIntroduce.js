@@ -1,7 +1,6 @@
 import { Card, Grid, Typography } from '@mui/material';
 // import mainRoom from '../../../../assets/images/mainroom.png';
 const { Container, Box } = require('@mui/system');
-
 const IntroduceContent = () => {
   return (
     <Grid>

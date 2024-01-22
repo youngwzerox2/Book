@@ -26,6 +26,7 @@ import axios from 'axios';
 // -------------------------------------------------------------------------------
 const MainPage = () => {
   const theme = useTheme();
+
   const customization = useSelector((state) => state.customization);
   useEffect(() => {
     ImageMap('img[usemap]'); // imageMap 삽입코드
@@ -52,7 +53,7 @@ const MainPage = () => {
     console.log(board);
     axios.post('/chat/?', null, { memberId: 'test1' });
   };
-
+  const session = localStorage;
   // 4. 도서 추천 버튼 클릭
   const bookRequest = () => {
     alert('돌멩이 클릭당함 ㅠㅠ');
@@ -83,7 +84,7 @@ const MainPage = () => {
               disableRipple
               // disabled
             >
-              멩이의 방
+              {session.getItem('loginId')}의 방
             </Button>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>

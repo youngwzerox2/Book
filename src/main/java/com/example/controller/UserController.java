@@ -61,4 +61,18 @@ public class UserController {
 			return null;
 		}
 	}
+
+	// *** 로그인 ************************************************************
+	// 2024.01.21 이시은
+	@PostMapping("/login")
+	public Integer login(@RequestParam(name= "memberId") String memberId){
+		try{
+			System.out.println("userController login 요청 받음");
+			System.out.println(memberId);
+			return 1;
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
