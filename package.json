@@ -41,7 +41,7 @@
     "yarn": "^1.22.21",
     "yup": "^0.32.11"
   },
-  "proxy": "http://118.217.203.44:8080",
+  "proxy": "http://118.217.203.37:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

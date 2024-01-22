@@ -33,6 +33,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Kakao from 'assets/images/kakao_login_medium_wide.png';
+// import axios from 'axios';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -41,7 +42,6 @@ const FirebaseLogin = ({ ...others }) => {
   const scriptedRef = useScriptRef();
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(false);
-
   const googleHandler = async () => {
     console.error('Login');
   };
@@ -54,10 +54,23 @@ const FirebaseLogin = ({ ...others }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  // const [id , setId] = useState('');
-  // const [password ,setPassword] = useState('');
+  const [mid, setMid] = useState('');
+  const [mpassword, setMpassword] = useState('');
+  // const [savedLoginId, setSavedLoginId] = useState('');
+  // const [savedLoginPassword, setSavedLoginPassword] = useState('');
+  let session = window.localStorage;
   const logFunc = () => {
-    alert(`${id} / ${password}`);
+    session.setItem('loginId', mid);
+    session.setItem('loginPassword', mpassword);
+    console.log(session.getItem('loginId'));
+    if (mid === '0woo' || mid === 'test1') {
+      const answer = confirm('관리자 페이지로 이동하시겠습니까/');
+      if (answer == true) {
+        location = 'http://localhost:8080/adminmain';
+      }
+    } else {
+      window.location.replace('/free/readme/main');
+    }
   };
 
   return (
@@ -121,7 +134,7 @@ const FirebaseLogin = ({ ...others }) => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().max(255).required('아이디를 입력해주세요'),
+          // email: Yup.string().max(255).required('아이디를 입력해주세요'),
           password: Yup.string().max(255).required('비밀번호를 입력해주세요')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
@@ -143,33 +156,36 @@ const FirebaseLogin = ({ ...others }) => {
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-login">아이디</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password-register">아이디</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-email-login"
-                type="email"
-                value={values.email}
-                name="email"
+                id="outlined-adornment-password-register"
+                value={values.mid}
+                name="mid"
+                label="mid"
                 onBlur={handleBlur}
-                // onChange={handleChange, (e)=>{setId(e.targetvalue)}}
-                label="Email Address / Username"
+                onChange={(e) => {
+                  setMid(e.target.value);
+                }}
                 inputProps={{}}
               />
               {touched.email && errors.email && (
-                <FormHelperText error id="standard-weight-helper-text-email-login">
-                  {errors.email}
+                <FormHelperText error id="standard-weight-helper-text-password-register">
+                  {errors.password}
                 </FormHelperText>
               )}
             </FormControl>
-
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-password-login">비밀번호</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? 'text' : 'password'}
-                value={values.password}
+                value={values.mpassword}
                 name="password"
                 onBlur={handleBlur}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setMpassword(e.target.value);
+                  handleChange;
+                }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
