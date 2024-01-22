@@ -193,10 +193,25 @@
                             </script>
 
                             <script>
-                                function writeAction() {
-                                    // 글쓰기 버튼 클릭 시 동작
-                                    alert("도서를 등록합니다.");
-                                }
+                            function writeAction() {
+                                // 도서 등록 버튼 클릭 시 동작
+                                fetch('/api/runPythonScript')
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(data => {
+                                        console.log('Python Script Result:', data); // 콘솔에 결과를 출력
+                                        alert(data);  // Python 스크립트의 결과를 알림으로 표시
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        alert('An error occurred. See console for details.');
+                                    });
+                            }
+
                             </script>
 
 
