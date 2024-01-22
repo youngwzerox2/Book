@@ -6,14 +6,30 @@
 <mapper namespace="com.example.userdao.UserLikedDAO">
 
 	<!-- *** SELECT *********************************************************** -->
-	<!-- 도서 - 좋아요 많은 순으로 출력 -->
+	<!-- 좋아요 많은 순으로 도서 출력 -->
 	<select id="selectByLiked"
 			resultType="hashmap">
-		SELECT	 count(l.liked_num)
-		FROM	 liked l 
-                        LEFT OUTER JOIN book b
-                    ON l.liked_element = b.book_isbn13
-        ORDER BY count(l.liked_num)
+        SELECT   b.book_isbn13          bookIsbn13
+                 , b.bookname             bookname
+                 , b.ranking              ranking
+                 , b.authors              authors
+                 , b.publisher            publisher
+                 , b.publication_year     pulicationYear
+                 , b.addition_symbol      additionSymbol
+                 , b.vol                  vol
+                 , b.class_no             classNo
+                 , b.class_nm             classNm
+                 , b.loan_count           loanCount
+                 , b.bookImageURL         bookImageURL
+                 , b.bookDtlUrl           bookDtlUrl
+                 , b.emotion_tag          emotionTag
+                 , b.description          description
+        FROM     book b
+                    LEFT OUTER JOIN liked l
+                 ON b.book_isbn13 = l.liked_element
+        WHERE    l.liked_type = 'book'
+        GROUP BY b.book_isbn13
+        ORDER BY count(l.liked_num) DESC
 	</select>
 
 	<!-- 한 명의 사용자가 등록한 사용자 좋아요 출력 -->
