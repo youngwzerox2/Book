@@ -40,14 +40,6 @@ const MainPage = () => {
   useEffect(() => {
     ImageMap('img[usemap]'); // imageMap 삽입코드
   }, []);
-  // ---------------------------------------------------
-  // testing2 컴포넌트에서 발생하는 이벤트
-  // ---------------------------------------------------
-  // 1. 000의 방 클릭 ----------------------------
-  // confirm 에서 확인 / 취소에 따른 값 처리 작업 필요
-  const myroomClicked = () => {
-    confirm('로그아웃하시겠습니까?');
-  };
 
   // 클릭에 따른 페이지 이동
   const [choosed, setChoosed] = useState('fullcase');
@@ -75,6 +67,26 @@ const MainPage = () => {
   };
 
   // 추천받은 책 **************************************************
+  const [open3, setOpen3] = React.useState(false);
+
+  const handleClickOpen3 = () => {
+    setOpen3(true);
+  };
+
+  const handleClose3 = () => {
+    setOpen3(false);
+  };
+
+  // 인기도서 **************************************************
+  const [open4, setOpen4] = React.useState(false);
+
+  const handleClickOpen4 = () => {
+    setOpen4(true);
+  };
+
+  const handleClose4 = () => {
+    setOpen4(false);
+  };
 
   // 세션 *****************************************************
   const session = localStorage;
@@ -90,7 +102,6 @@ const MainPage = () => {
               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
               <Button
                 id="exit-test"
-                onClick={myroomClicked}
                 // style={`background : url(${theimg}); width : 100px`}
                 variant="outlined"
                 sx={{
@@ -106,7 +117,7 @@ const MainPage = () => {
                 disableRipple
                 // disabled
               >
-                나의 책장
+                {session.getItem('loginId')}의 책장
               </Button>
               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             </Box>
@@ -143,9 +154,7 @@ const MainPage = () => {
                   role="presentation"
                   coords="141,362,580,488"
                   shape="rect"
-                  onClick={() => {
-                    setChoosed('recommanded');
-                  }}
+                  onClick={handleClickOpen3}
                 />
                 <area
                   target="_self"
@@ -154,13 +163,13 @@ const MainPage = () => {
                   role="presentation"
                   coords="141,525,579,647"
                   shape="rect"
-                  onClick={() => {
-                    setChoosed('hotbook');
-                  }}
+                  onClick={handleClickOpen4}
                 />
               </map>
               <Link to="/readme/main">
-                <Button variant="contained">뒤로가기</Button>
+                <Button variant="contained" sx={{ position: 'absolute', top: '92%', left: '44%' }}>
+                  뒤로가기
+                </Button>
               </Link>
               <Dialog open={open1} onClose={handleClose1} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">{'나의 추천 책장으로 이동하기'}</DialogTitle>
@@ -200,6 +209,46 @@ const MainPage = () => {
                     이동하기
                   </Button>
                   <Button onClick={handleClose2} autoFocus>
+                    닫기
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog open={open3} onClose={handleClose3} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{'멩이에게 추천받은 책장으로 이동하기'}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    {session.getItem('loginId')}님이 멩이에게 추천받았던 기록들이 담겨있어요. 과거의 추천 기록들을 확인해보세요.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={() => {
+                      setChoosed('recommanded');
+                    }}
+                  >
+                    이동하기
+                  </Button>
+                  <Button onClick={handleClose3} autoFocus>
+                    닫기
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog open={open4} onClose={handleClose4} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{'인기도서 책장으로 이동하기'}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    리드미에서 가장 인기있는 도서들이 담긴 책장이에요. 현재 다른 유저들은 어떤 책을 찜했는지 확인해보세요.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={() => {
+                      setChoosed('recommanded');
+                    }}
+                  >
+                    이동하기
+                  </Button>
+                  <Button onClick={handleClose4} autoFocus>
                     닫기
                   </Button>
                 </DialogActions>

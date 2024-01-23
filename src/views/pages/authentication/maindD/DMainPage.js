@@ -22,8 +22,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// import Alert from '@mui/material/Alert';
-// -------------------------------------------------------------------------------
 const MainPage = () => {
   const theme = useTheme();
 
@@ -31,33 +29,21 @@ const MainPage = () => {
   useEffect(() => {
     ImageMap('img[usemap]'); // imageMap 삽입코드
   }, []);
-  // ---------------------------------------------------
 
-  // 1. 000의 방 클릭 ----------------------------
-  // confirm 에서 확인 / 취소에 따른 값 처리 작업 필요
-  const myroomClicked = () => {
-    confirm('로그아웃하시겠습니까?');
-  };
-
-  // 2. 방에 배치된 사물 클릭 ---------------------
-  // => 각 위치로 이동하도록 area에 이벤트 부여필요
-
-  // 3. 텍스트 입력 후 전송 버튼 누르면 채팅 전송
+  // -------------------------------------------------------------------------
+  // 텍스트 입력 후 전송 버튼 누르면 채팅 전송 ----------------------------------
   const [msg1, setMsg1] = useState('');
-  const insertTry = () => {
-    alert('버튼 클릭');
-    let board = {
-      msg: msg1,
-      member_id: 'test2'
-    };
-    console.log(board);
-    axios.post('/chat/?', null, { memberId: 'test1' });
-  };
   const session = localStorage;
-  // 4. 도서 추천 버튼 클릭
+  const id = session.getItem('loginId');
+  const insertTry = () => {
+    axios.post(`/chatLog/write?memberId=${id}&sentence=${msg1}&terminate=N`);
+  };
+  // -------------------------------------------------------------------------
+  // 도서 추천 버튼 클릭
   const bookRequest = () => {
     alert('돌멩이 클릭당함 ㅠㅠ');
   };
+
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
@@ -68,7 +54,6 @@ const MainPage = () => {
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             <Button
               id="exit-test"
-              onClick={myroomClicked}
               // style={`background : url(${theimg}); width : 100px`}
               variant="outlined"
               sx={{

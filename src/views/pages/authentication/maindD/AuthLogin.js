@@ -43,7 +43,8 @@ const FirebaseLogin = ({ ...others }) => {
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(false);
   const googleHandler = async () => {
-    console.error('Login');
+    location =
+      'https://kauth.kakao.com/oauth/authorize?client_id=ee0b0d86ac0c50bc7ef7fed3d4991165&redirect_uri=http://118.217.203.37:3000/free/readme/main&response_type=code';
   };
 
   const [showPassword, setShowPassword] = useState(false);

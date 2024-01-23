@@ -19,6 +19,7 @@ const CMypage_liked = Loadable(lazy(() => import('views/pages/authentication/myp
 const CMypage_notice = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageNotice')));
 const CMypage_block = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageBlock')));
 const CBookshelf = Loadable(lazy(() => import('views/pages/authentication/bookshelf/CBookshelf')));
+const Books = Loadable(lazy(() => import('views/pages/authentication/book/Blog')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -91,6 +92,10 @@ const AuthenticationRoutes = {
     {
       path: 'readme/bookshelf',
       element: <CBookshelf />
+    },
+    {
+      path: 'readme/book',
+      element: <Books />
     }
   ]
 };

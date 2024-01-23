@@ -9,6 +9,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Checkbox from '@mui/material/Checkbox';
 import { Button, FormControl, InputLabel, OutlinedInput, Select, MenuItem } from '@mui/material';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function NestedList() {
   const [open, setOpen] = React.useState(false);
@@ -22,10 +24,38 @@ export default function NestedList() {
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const [age, setAge] = React.useState(20);
+  const [ticket, setTicket] = React.useState('한달구독권');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setTicket(event.target.value);
+  };
+
+  // **********************************************************
+  const session = localStorage;
+  const memberId = session.getItem('loginId');
+  const { payUrl, setPayUrl } = useState('');
+  console.log('payUrl 출력', payUrl);
+
+  const payingBtn = async () => {
+    alert(`${memberId}`);
+    try {
+      const response = await axios
+        .post('/pay/kakaopay', null, {
+          params: {
+            partner_user_id: memberId, // 가맹점 회원 ID
+            item_name: '감자'
+          }
+        })
+        .then((re) => {
+          console.log('잘 받아지고 있긴 한건지 ,,,', re.data.next_redirect_pc_url);
+          // window.open(re.data.next_redirect_pc_url, '카카오페이', 'popup=yes');
+          location = re.data.next_redirect_pc_url;
+        });
+      setPayUrl(response.data.next_redirect_pc_url);
+    } catch (error) {
+      console.error('에러입니다1.');
+      console.error(error);
+    }
   };
 
   return (
@@ -50,20 +80,12 @@ export default function NestedList() {
         <List component="div" disablePadding>
           <ListItemButton sx={{ pl: 4 }}>
             <FormControl fullWidth>
-              <InputLabel>CVC번호</InputLabel>
-              <OutlinedInput />
-            </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>유효기간</InputLabel>
-              <OutlinedInput />
-            </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>비밀번호 앞 두 자리</InputLabel>
-              <OutlinedInput />
+              <InputLabel id="demo-simple-select-label">구독권 선택</InputLabel>
+              <Select labelId="demo-simple-select-label" id="demo-simple-select" value={ticket} label="Age" onChange={handleChange}>
+                <MenuItem value={'한달구독권'}>한달구독권</MenuItem>
+                <MenuItem value={'1년구독권'}>1년구독권</MenuItem>
+                <MenuItem value={'정기구독권'}>정기구독권</MenuItem>
+              </Select>
             </FormControl>
           </ListItemButton>
         </List>
@@ -80,10 +102,10 @@ export default function NestedList() {
           <ListItemButton sx={{ pl: 4 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">구독권 선택</InputLabel>
-              <Select labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Age" onChange={handleChange}>
-                <MenuItem value={10}>한달구독권</MenuItem>
-                <MenuItem value={20}>1년구독권</MenuItem>
-                <MenuItem value={30}>정기구독권</MenuItem>
+              <Select labelId="demo-simple-select-label" id="demo-simple-select" value={ticket} label="Age" onChange={handleChange}>
+                <MenuItem value={'한달구독권'}>한달구독권</MenuItem>
+                <MenuItem value={'1년구독권'}>1년구독권</MenuItem>
+                <MenuItem value={'정기구독권'}>정기구독권</MenuItem>
               </Select>
             </FormControl>
           </ListItemButton>
@@ -113,8 +135,8 @@ export default function NestedList() {
           </ListItemButton>
         </List>
       </Collapse>
-      <Button color="primary" variant="contained">
-        입력
+      <Button color="primary" variant="contained" onClick={payingBtn}>
+        결제
       </Button>
     </List>
   );
