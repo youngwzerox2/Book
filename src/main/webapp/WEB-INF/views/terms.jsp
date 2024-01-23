@@ -16,6 +16,11 @@
             padding: 20px;
         }
 
+        .card-body {
+            max-width: 800px; /* 가로 폭을 조절하려는 값으로 변경 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+
         pre {
             white-space: pre-wrap;
         }

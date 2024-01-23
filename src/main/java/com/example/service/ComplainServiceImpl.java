@@ -30,6 +30,7 @@ public class ComplainServiceImpl implements ComplainService {
     // 커뮤니티정보수정
     @Override
     public void updateComplain(Complain vo) {
+        System.out.println("서비스임플컴플레인"+vo);
         complainDAO.updateComplain(vo);
     }
 }

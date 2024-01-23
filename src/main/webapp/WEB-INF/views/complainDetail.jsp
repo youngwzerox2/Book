@@ -54,35 +54,38 @@
 
         <div class="content">
             <div class="animated fadeIn">
+
                 <div class="row justify-content-center">
+
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header"><strong>컴플레인 상세정보</strong></div>
                             <form action="updateComplain" method="post">
                                 <div class="card-body card-block">
-                                    <!-- <div class="form-group">
-                                        <label for="company" class="form-control-label">회원아이디</label>
-                                        <input type="text" value="${complain.memberId}" class="form-control" name="memberId">
-                                    </div> -->
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">회원아이디</label>
-                                        <span class="form-control">${complain.memberId}</span>
+                                        <input value="${complain.memberId}" class="form-control"
+                                            name="memberId">
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 번호</label>
-                                        <span class="form-control">${complain.complainId}</span>
+                                        <input value="${complain.complainId}" class="form-control"
+                                            name="complainId">
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고항목</label>
-                                        <span class="form-control">${complain.complainType}</span>
+                                        <input value="${complain.complainType}" class="form-control"
+                                            name="complainType">
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고받은 글 번호</label>
-                                        <span class="form-control">${complain.complainTargetId}</span>
+                                        <input value="${complain.complainTargetId}" class="form-control"
+                                            name="complainTargetId">
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고 내용</label>
-                                        <span class="form-control">${complain.complainContent}</span>
+                                        <input value="${complain.complainContent}" class="form-control"
+                                            name="complainContent">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 작성시간</label>
@@ -90,22 +93,27 @@
                                     </div> -->
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 작성시간</label>
-                                        <span class="form-control">
+                                        <input value="<fmt:formatDate value='${complain.complainDate}' pattern='yyyy-MM-dd' />" class="form-control"
+                                            name="complainDate">
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="company" class="form-control-label">신고글 작성시간</label>
+                                        <span class="form-control"> 
                                             <fmt:formatDate value='${complain.complainDate}' pattern='yyyy-MM-dd' />
                                         </span>
-                                    </div>
-                                    
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 처리여부</label>
                                         <select class="form-control" name="complainDone">
                                             <option value="no" <c:if test="${complain.complainDone eq 'no'}">selected</c:if>>no</option>
                                             <option value="yes" <c:if test="${complain.complainDone eq 'yes'}">selected</c:if>>yes</option>
                                         </select>
-                                        <!-- <input type="text" value="${community.complainDone}" class="form-control" name="complainDone"> -->
+                                        <!-- <input type="text" value="${complain.complainDone}" class="form-control" name="complainDone"> -->
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 답변</label>
-                                        <input type="text" value="${complain.complainReply}" class="form-control" name="complainReply">
+                                        <input value="${complain.complainReply}" class="form-control"
+                                            name="complainReply">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label for="company" class="form-control-label">신고글 답변 작성시간</label>
@@ -114,8 +122,8 @@
                                     <div class="form-group"><label for="company"
                                         class=" form-control-label">신고글 답변
                                          작성시간</label><input type="text"
-                                        value="<fmt:formatDate value='${complain.complainReplyDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
-                                    <div class="form-group">
+                                        value="<fmt:formatDate value='${complain.complainReplyDate}' pattern='yyyy-MM-dd' />" class="form-control">
+                                    </div>
                                     <div class="form-group">
                                         <label for="company" class="form-control-label">신고받은 글 작성자</label>
                                         <input type="text" value="${complain.complainTargetUser}" class="form-control" name="complainTargetUser">
@@ -129,26 +137,25 @@
                                         <select class="form-control" name="complainReplyAdmin">
                                             <c:forEach items="${memberList}" var="member">
                                                 <c:if test="${member.memberGrade eq 'admin'}">
-                                                    <option value="${member.memberId}" <c:if test="${community.complainReplyAdmin eq member.memberId}">selected</c:if>>${member.memberId}</option>
+                                                    <option value="${member.memberId}" <c:if test="${complain.complainReplyAdmin eq member.memberId}">selected</c:if>>${member.memberId}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
                                     </div> -->
-                                </div>
                                     <div class="form-group row justify-content-end">
                                         <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-outline-primary">수정</button>
-                                        <!-- <a href="deleteCommunity?complain_id=${community.complainId}" class="btn btn-outline-danger"
-                                            onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
-                                        <a href="complain" class="btn btn-outline-secondary">뒤로가기</a>
+                                            <button type="submit" class="btn btn-outline-primary">수정</button>
+                                            <!-- <a href="deleteComplain?complain_id=${complain.complainId}" class="btn btn-outline-danger"
+                                                onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
+                                            <a href="complain" class="btn btn-outline-secondary">뒤로가기</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+                </div><!-- .animated -->
+            </div><!-- .content -->
 
         <div class="clearfix"></div>
 

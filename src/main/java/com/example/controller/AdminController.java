@@ -34,7 +34,7 @@ public class AdminController {
     @Autowired
     private BookService bookService;
 
-    // 커뮤니티신고
+    // 컴플레인
     @Autowired
     private ComplainService complainService;
 
@@ -152,8 +152,8 @@ public class AdminController {
         return "redirect:book";
     }
 
-    // *************************************** 커뮤니티 ****************************************
-    // 커뮤니티 신고관리
+    // *************************************** 컴플레인 ****************************************
+    // 컴플레인 신고관리
     @RequestMapping("/complain")
     public void complainList(Model m) {
         List<Complain> list = complainService.complainList();
@@ -161,7 +161,7 @@ public class AdminController {
         System.out.println("complain.jsp호출");
     }
 
-    // 커뮤니티 상세정보
+    // 컴플레인 상세정보
     @RequestMapping("/complainDetail")
     public void complainDetail(Model m, Complain vo) {
         Complain complain = complainService.complainDetail(vo);
@@ -169,10 +169,10 @@ public class AdminController {
         m.addAttribute("complain", complain);
     }
 
-    // 커뮤니티 정보수정
+    // 컴플레인 정보수정
     @RequestMapping("/updateComplain")
     public String updateComplain(Complain vo) {
-        // System.out.println("커뮤니티정보수정:" + vo);
+        System.out.println("컴플레인 정보수정:" + vo);
         complainService.updateComplain(vo);
         return "redirect:complain";
     }

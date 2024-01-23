@@ -68,81 +68,85 @@
                                 <div class="animated fadeIn">
                                     <div class="row">
 
-                                        <div class="col-md-11 mx-auto">
+                                        <div class="col-md-8 mx-auto">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <strong class="card-title">도서리스트</strong>
                                                 </div>
                                                 <div class="card-body">
-                                                    <table id="bootstrap-data-table"
-                                                        class="table table-striped table-bordered"
-                                                        style="background-color: rgb(150, 230, 190);">
-                                                        <thead style="background-color: rgb(25, 216, 121);">
-                                                            <tr>
-                                                                <!-- <th>번호</th> -->
-                                                                <th>랭킹</th>
-                                                                <th>책 제목</th>
-                                                                <!-- <th>책 저자</th> -->
-                                                                <!-- <th>출판사</th> -->
-                                                                <!-- <th>발행년도</th> -->
-                                                                <th>청구기호 13자리</th>
-                                                                <th>청구기호 5자리</th>
-                                                                <!-- <th>권수</th> -->
-                                                                <th>분류번호</th>
-                                                                <!-- <th>책 분류</th> -->
-                                                                <th>대출권수</th>
-                                                                <th>책 이미지 링크</th>
-                                                                <th>책 데이터 링크</th>
-                                                                <th>책 소개</th>
-                                                            </tr>
-                                                        </thead style="background-color: rgb(25, 216, 121);">
-                                                        <tbody>
-                                                            <c:forEach items="${bookList }" var="book">
+                                                    <div class="table-responsive table-responsive-sm">
+                                                        <table id="bootstrap-data-table"
+                                                            class="table table-striped table-bordered">
+                                                            <thead>
                                                                 <tr>
-                                                                    <!-- <td>${book.no}</td> -->
-                                                                    <td>${book.ranking}</td>
-                                                                    <td>
-                                                                        <c:choose>
-                                                                            <c:when
-                                                                                test="${fn:length(book.bookname) > 15}">
-                                                                                ${fn:substring(book.bookname, 0, 15)}...
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                ${book.bookname}
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-                                                                    </td>
-                                                                    <!-- <td>${book.authors}</td> -->
-                                                                    <!-- <td>${book.publisher}</td> -->
-                                                                    <!-- <td>${book.publicationYear}</td> -->
-                                                                    <td><a
-                                                                        href="bookDetail?bookIsbn13=${book.bookIsbn13}">${book.bookIsbn13}</a>
-                                                                    </td>
-                                                                    <td>${book.additionSymbol}</td>
-                                                                    <!-- <td>${book.vol}</td> -->
-                                                                    <td>${book.classNo}</td>
-                                                                    <!-- <td>${book.classNm}</td> -->
-                                                                    <td>${book.loanCount}</td>
-                                                                    <td><a href="${book.bookImageUrl}" target="_blank">책
-                                                                            이미지 링크</a></td>
-                                                                    <td><a href="${book.bookDtlUrl}" target="_blank">책
-                                                                            데이터 링크</a></td>
-                                                                    <td>
-                                                                        <c:choose>
-                                                                            <c:when
-                                                                                test="${fn:length(book.description) > 30}">
-                                                                                ${fn:substring(book.description, 0,
-                                                                                30)}...
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                ${book.description}
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-                                                                    </td>
+                                                                    <!-- <th>번호</th> -->
+                                                                    <th>랭킹</th>
+                                                                    <th>책 제목</th>
+                                                                    <!-- <th>책 저자</th> -->
+                                                                    <!-- <th>출판사</th> -->
+                                                                    <!-- <th>발행년도</th> -->
+                                                                    <th>청구기호 13자리</th>
+                                                                    <th>청구기호 5자리</th>
+                                                                    <!-- <th>권수</th> -->
+                                                                    <!-- <th>분류번호</th> -->
+                                                                    <!-- <th>책 분류</th> -->
+                                                                    <!-- <th>대출권수</th> -->
+                                                                    <th>책 이미지 링크</th>
+                                                                    <th>책 데이터 링크</th>
+                                                                    <th>책 소개</th>
                                                                 </tr>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
+                                                            </thead style="background-color: rgb(25, 216, 121);">
+                                                            <tbody>
+                                                                <c:forEach items="${bookList }" var="book">
+                                                                    <tr>
+                                                                        <!-- <td>${book.no}</td> -->
+                                                                        <td>${book.ranking}</td>
+                                                                        <td>
+                                                                            <c:choose>
+                                                                                <c:when
+                                                                                    test="${fn:length(book.bookname) > 15}">
+                                                                                    ${fn:substring(book.bookname, 0,
+                                                                                    15)}...
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    ${book.bookname}
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </td>
+                                                                        <!-- <td>${book.authors}</td> -->
+                                                                        <!-- <td>${book.publisher}</td> -->
+                                                                        <!-- <td>${book.publicationYear}</td> -->
+                                                                        <td><a
+                                                                                href="bookDetail?bookIsbn13=${book.bookIsbn13}">${book.bookIsbn13}</a>
+                                                                        </td>
+                                                                        <td>${book.additionSymbol}</td>
+                                                                        <!-- <td>${book.vol}</td> -->
+                                                                        <!-- <td>${book.classNo}</td> -->
+                                                                        <!-- <td>${book.classNm}</td> -->
+                                                                        <!-- <td>${book.loanCount}</td> -->
+                                                                        <td><a href="${book.bookImageUrl}"
+                                                                                target="_blank">책
+                                                                                이미지 링크</a></td>
+                                                                        <td><a href="${book.bookDtlUrl}"
+                                                                                target="_blank">책
+                                                                                데이터 링크</a></td>
+                                                                        <td>
+                                                                            <c:choose>
+                                                                                <c:when
+                                                                                    test="${fn:length(book.description) > 30}">
+                                                                                    ${fn:substring(book.description, 0,
+                                                                                    30)}...
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    ${book.description}
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -193,24 +197,24 @@
                             </script>
 
                             <script>
-                            function writeAction() {
-                                // 도서 등록 버튼 클릭 시 동작
-                                fetch('/api/runPythonScript')
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Network response was not ok');
-                                        }
-                                        return response.text();
-                                    })
-                                    .then(data => {
-                                        console.log('Python Script Result:', data); // 콘솔에 결과를 출력
-                                        alert(data);  // Python 스크립트의 결과를 알림으로 표시
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                        alert('An error occurred. See console for details.');
-                                    });
-                            }
+                                function writeAction() {
+                                    // 도서 등록 버튼 클릭 시 동작
+                                    fetch('/api/runPythonScript')
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response.text();
+                                        })
+                                        .then(data => {
+                                            console.log('Python Script Result:', data); // 콘솔에 결과를 출력
+                                            alert(data);  // Python 스크립트의 결과를 알림으로 표시
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('An error occurred. See console for details.');
+                                        });
+                                }
 
                             </script>
 

@@ -22,7 +22,8 @@
     <!-- 컴플레인 정보수정 -->
     <update id="updateComplain" parameterType="Complain">
         UPDATE complain
-        SET complain_done=#{complainDone}, complain_reply=#{complainReply}
+        SET complain_done=#{complainDone}, complain_reply=#{complainReply}, complain_reply_date=now(),
+            complain_reply_admin=#{complainReplyAdmin}, member_id=#{memberId}
         WHERE complain_id=#{complainId}
     </update>
 

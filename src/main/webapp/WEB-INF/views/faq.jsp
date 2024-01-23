@@ -8,6 +8,11 @@
     <meta charset="UTF-8">
     <title>FAQ 페이지</title>
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        .center-button {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +29,7 @@
         <div class="content">
 
             <div class="container mt-5">
-                <h2>자주 묻는 질문 (FAQ)</h2>
+                <h2 style="margin-bottom: 20px;">자주 묻는 질문 (FAQ)</h2>
 
                 <div class="accordion" id="faqAccordion">
 
@@ -40,7 +45,7 @@
                                 </h5>
                             </div>
 
-                            <div id="answer${loop.index}" class="collapse show"
+                            <div id="answer${loop.index}" class="collapse"
                                 aria-labelledby="question${loop.index}" data-parent="#faqAccordion">
                                 <div class="card-body">
                                     <a href="faqDetail?noticeNumber=${faq.noticeNumber}">${faq.noticeContent}</a>
@@ -50,9 +55,9 @@
                     </div>
                 </div>
             </div>
-
-            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
-
+            <div class="center-button mt-3">
+                <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
+            </div>
         </div><!-- .content -->
         <!-- 푸터 -->
         <%@ include file="footer.jsp" %>

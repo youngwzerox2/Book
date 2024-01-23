@@ -122,7 +122,7 @@ table.dataTable thead .sorting_desc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:after {
     position: absolute;
     /* bottom: 0.9em; */
-    bottom: 0; /* 기존에 0.9em이었던 부분 수정 */
+    bottom: 0.9em; /* 기존에 0.9em이었던 부분 수정 */
     display: block;
     opacity: 0.3
 }

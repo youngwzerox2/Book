@@ -73,34 +73,44 @@
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">회원아이디</label><input
                                             value="${member.memberId}" class="form-control"
-                                            name="memberId"></div>
+                                            name="memberId">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">이름</label><input type="text"
-                                            value="${member.memberName}" class="form-control"></div>
+                                            value="${member.memberName}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">이메일</label><input type="text"
-                                            value="${member.memberEmail}" class="form-control"></div>
+                                            value="${member.memberEmail}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">닉네임</label><input type="text"
-                                            value="${member.memberNickname}" class="form-control"></div>
+                                            value="${member.memberNickname}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">성별</label><input type="text"
-                                            value="${member.memberGender}" class="form-control"></div>
+                                            value="${member.memberGender}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">생년월일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.memberBirthday}' pattern='yyyy-MM-dd' />" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.memberBirthday}' pattern='yyyy-MM-dd' />" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">전화번호</label><input type="text"
-                                            value="${member.memberTel}" class="form-control"></div>
+                                            value="${member.memberTel}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">가입일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.joinDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.joinDate}' pattern='yyyy-MM-dd' />" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">탈퇴일</label><input type="text"
-                                            value="<fmt:formatDate value='${member.quitDate}' pattern='yyyy-MM-dd' />" class="form-control"></div>
+                                            value="<fmt:formatDate value='${member.quitDate}' pattern='yyyy-MM-dd' />" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">책장방문허용여부</label><input
-                                            value="${member.memberVisitAgree}" class="form-control"></div>
+                                            value="${member.memberVisitAgree}" class="form-control">
+                                    </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">회원상태</label>
                                             <select class="form-control" name="memberGrade">
@@ -112,7 +122,8 @@
                                     </div>  
                                     <div class="form-group"><label for="company"
                                         class=" form-control-label">신고건수</label><input
-                                        value="${member.memberVisitAgree}" class="form-control"></div>
+                                        value="${member.memberVisitAgree}" class="form-control">
+                                    </div>
                                 </div>
                                 <div class="form-group row justify-content-end">
                                     <div class="col-sm-3">

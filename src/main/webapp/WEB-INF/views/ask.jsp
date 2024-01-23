@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,14 @@
     <meta charset="UTF-8">
     <title>1:1문의 페이지</title>
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        table {
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+        th {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,13 +31,13 @@
         <%@ include file="header.jsp" %>
         
         <div class="content">
-            <div class="col-lg-12">
+            <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">1:1 문의</strong>
                     </div>
                     <div class="card-body" style="display: flex;">
-                        <div class="mr-3">
+                        <div class="mr-3" style="margin-left: 10px;" >
                             <button class="btn btn-outline-primary btn-sm" id="showAll">전체 글보기</button>
                             <hr />
                             <button class="btn btn-outline-primary btn-sm" id="showUnanswered">답변 미완료 글 보기</button>
@@ -36,8 +45,8 @@
                             <button class="btn btn-outline-primary btn-sm" id="showAnswered">답변 완료한 글 보기</button>
                         </div>
 
-                        <div style="max-height: 400px; overflow-y: auto;">
-                            <table id="askTable" class="table table-striped" style="width: 100%; max-width: none;">
+                        <div style="max-height: 400px; overflow-y: auto; margin-left: 100px;">
+                            <table id="askTable" class="table table-striped" style="width: 100%; max-width: none; margin: 0 auto;">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -54,7 +63,16 @@
                                             <!-- <td>${ask.askDate}</td> -->
                                             <td><fmt:formatDate value="${ask.askDate}" pattern="yyyy-MM-dd" /></td>
                                             <td><a href="askDetail?askId=${ask.askId}">${ask.memberId}</a></td>
-                                            <td>${ask.askContent}</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${fn:length(ask.askContent) > 15}">
+                                                        <c:out value="${fn:substring(ask.askContent, 0, 15)}..."/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:out value="${ask.askContent}"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
                                             <td>${ask.askReplyDone}</td>
                                         </tr>
                                     </c:forEach>
@@ -68,7 +86,7 @@
             <!-- <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글 등록</button> -->
 
         </div><!-- .content -->
-        
+        <div style="margin-bottom: 20px;"></div>
         <!-- 푸터 -->
         <%@ include file="footer.jsp" %>
     </div><!-- /#right-panel -->

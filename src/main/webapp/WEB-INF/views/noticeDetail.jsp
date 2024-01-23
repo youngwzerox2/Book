@@ -45,6 +45,9 @@
                         <input name="noticeNumber" type="hidden" value="${notice.noticeNumber}" />
                         <!-- <input name="noticeDate" type="hidden" value="${notice.noticeDate}" /> -->
                         <div class="card-body card-block">
+                            <div class="form-group"><label for="company" class=" form-control-label">카테고리</label><input
+                                type="text" value="${notice.noticeType}" class="form-control" name="noticeType">
+                            </div>
                             <div class="form-group"><label for="company" class=" form-control-label">제목</label><input
                                     type="text" value="${notice.noticeTitle}" class="form-control" name="noticeTitle">
                             </div>

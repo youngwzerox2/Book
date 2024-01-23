@@ -74,7 +74,7 @@ for page_number in range(1, 349):
                     isbn13 = ""
 
                 # 책 정보가 모두 존재하고 isbn13이 존재할 경우에만 데이터베이스에 삽입
-                if book_image or book_title or book_author or publisher_element or isbn13:
+                if isbn13:
                     book_data = {
                         'book_image': book_image,
                         'book_title': book_title,
@@ -86,23 +86,18 @@ for page_number in range(1, 349):
                     all_books.append(book_data)
 
                     try:
-                        # 중복 여부 체크를 위한 SELECT 쿼리
-                        select_query = "SELECT * FROM book WHERE book_isbn13 = %s"
-                        select_values = (isbn13,)
+                        # SQL 쿼리 작성
+                        insert_query = "INSERT INTO book (bookImageURL, bookname, authors, publisher, book_isbn13) VALUES (%s, %s, %s, %s, %s)"
+                        insert_values = (book_image, book_title, book_author, publisher_element, isbn13)
 
-                        cursor.execute(select_query, select_values)
+                        # 쿼리 실행
+                        cursor.execute(insert_query, insert_values)
 
-                        # 중복된 레코드가 없다면 INSERT 수행
-                        if not cursor.fetchone():
-                            # SQL 쿼리 작성
-                            insert_query = "INSERT INTO book (bookImageURL, bookname, authors, publisher, book_isbn13) VALUES (%s, %s, %s, %s, %s)"
-                            insert_values = (book_image, book_title, book_author, publisher_element, isbn13)
+                        # 변경사항 커밋
+                        conn.commit()
 
-                            # 쿼리 실행
-                            cursor.execute(insert_query, insert_values)
-
-                            # 변경사항 커밋
-                            conn.commit()
+                        # 페이지별로 수집한 정보 출력
+                        print(f"Page {page_number}, Book Image: {book_image}, Title: {book_title}, Author: {book_author}, Publisher: {publisher_element}, ISBN13: {isbn13}")
 
                     except Error as e:
                         print("오류:", e)
@@ -118,7 +113,3 @@ for page_number in range(1, 349):
 # 연결 종료
 cursor.close()
 conn.close()
-
-# 수집한 정보 출력
-for book in all_books:
-    print(book)

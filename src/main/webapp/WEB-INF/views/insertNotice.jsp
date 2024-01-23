@@ -42,31 +42,35 @@
 
                             <div class="card">
                                 <form action="insertNotice" method="post">
-                                    <input name="notice_number" type="hidden" value="${notice.notice_number}" />
-                                    <input name="notice_date" type="hidden" value="${notice.notice_date}" />
-                                    <input name="notice_display" type="hidden" value="${notice.notice_display}" />
+                                    <input name="noticeNumber" type="hidden" value="${notice.noticeNumber}" />
+                                    <input name="noticeDate" type="hidden" value="${notice.noticeDate}" />
+                                    <input name="noticeDisplay" type="hidden" value="${notice.noticeDisplay}" />
 
                                     <div class="card-body card-block">
                                         <div class="form-group"><label for="company"
                                             class=" form-control-label">카테고리</label><input type="text"
-                                             class="form-control" name="notice_type">
+                                             class="form-control" name="noticeType">
                                         </div>
                                         <div class="form-group"><label for="company"
                                             class=" form-control-label">제목</label><input type="text"
-                                             class="form-control" name="notice_title">
+                                             class="form-control" name="noticeTitle">
                                         </div>
                                         <div class="form-group">
                                             <label for="company" class="form-control-label">내용</label>
-                                            <textarea class="form-control" name="notice_content" style="height: 200px;">${notice.notice_content}</textarea>
+                                            <textarea class="form-control" name="noticeContent" style="height: 200px;">${notice.noticeContent}</textarea>
                                         </div>
                                         <div class="form-group"><label for="company"
                                             class=" form-control-label">담당자아이디</label><input type="text"
-                                            class="form-control" name="member_id">
+                                            class="form-control" name="memberId">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-outline-primary">등록</button>
-                                        <a href="notice" class="btn btn-outline-secondary">뒤로가기</a>
+                                    <div class="row justify-content-end">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-outline-primary">등록</button>
+                                                <a href="notice" class="btn btn-outline-secondary">뒤로가기</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
