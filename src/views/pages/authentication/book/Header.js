@@ -1,66 +1,74 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import { OutlinedInput } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 function Header(props) {
-  const { sections, title } = props;
+  // const { sections, title } = props;
+  const { title } = props;
+  const [stext, setStext] = useState('');
+
+  const searchBtn = () => {
+    alert(stext);
+    axios.get('/book/selectByTitle', { params: { bookname: stext } }).then((re) => {
+      console.log(re.data);
+    });
+  };
 
   return (
     <React.Fragment>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Button size="small">Subscribe</Button>
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          sx={{ flex: 1 }}
-        >
+        <Typography component="h2" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
           {title}
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-        <Button variant="outlined" size="small">
-          Sign up
-        </Button>
+        <Tooltip title="나가기">
+          <Link to="/readme/library">
+            <IconButton>
+              <DisabledByDefaultIcon />
+            </IconButton>
+          </Link>
+        </Tooltip>
       </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
-      >
+      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <OutlinedInput
+          fullWidth
+          onChange={(e) => {
+            setStext(e.target.value);
+          }}
+        />
+        <Tooltip title="검색">
+          <IconButton sx={{ position: 'absolute', right: '3%' }} onClick={searchBtn}>
+            <SearchIcon />
+          </IconButton>
+        </Tooltip>
+      </Toolbar>
+      {/* <Toolbar component="nav" variant="dense" sx={{ justifyContent: 'space-between', overflowX: 'auto' }}>
         {sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
-          >
+          <Link color="inherit" noWrap key={section.title} variant="body2" href={section.url} sx={{ p: 1, flexShrink: 0 }}>
             {section.title}
           </Link>
         ))}
-      </Toolbar>
+      </Toolbar> */}
     </React.Fragment>
   );
 }
 
 Header.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  title: PropTypes.string.isRequired,
+  // sections: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     title: PropTypes.string.isRequired,
+  //     url: PropTypes.string.isRequired
+  //   })
+  // ).isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default Header;
