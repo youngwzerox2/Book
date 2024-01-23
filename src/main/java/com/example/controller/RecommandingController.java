@@ -53,7 +53,7 @@ public class RecommandingController {
 	// *** INSERT ***********************************************************
 	// 사용자의 추천 기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "recommandings") Recommanding dto) {
+	public Integer write(Recommanding dto) {
 		try {
 			System.out.println("[RecommandingController/write] 요청");
 			Integer result = recommandingService.write(dto);
@@ -67,7 +67,7 @@ public class RecommandingController {
 	// *** UPDATE ***********************************************************
 	// 사용자의 추천 기록 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "recommandings") Recommanding dto) {
+	public Integer update(Recommanding dto) {
 		try{
 			System.out.println("[RecommandingController/update] 요청");
 			Integer result = recommandingService.update(dto);

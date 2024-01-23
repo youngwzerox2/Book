@@ -15,6 +15,15 @@
 		LIMIT 1
 	</select>
 
+	<!-- 사용자 아이디 가져오기 -->
+	<select id="getMemberId"
+			resultType="String">
+		SELECT	 member_id
+		FROM	 chat_log
+		ORDER BY chat_number DESC
+		LIMIT 1
+	</select>
+
     <!-- *** INSERT  *********************************************************** -->
 	<!-- 사용자의 채팅 기록 입력 -->
 	<insert id="write"
@@ -23,11 +32,13 @@
 						member_id
                         , chat_time
                         , sentence
+						, terminate
 					)
 		VALUES(
 			#{memberId}
             , now()
             , #{sentence}
+			, #{terminate}
 		)
 	</insert>
 

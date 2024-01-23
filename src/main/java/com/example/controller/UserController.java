@@ -38,7 +38,7 @@ public class UserController {
 	// *** INSERT ***********************************************************
 	// 사용자 정보 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "users") User dto) {
+	public Integer write(User dto) {
 		try {
 			System.out.println("[UserController/write] 요청");
 			Integer result = userService.write(dto);
@@ -52,7 +52,7 @@ public class UserController {
 	// *** UPDATE ***********************************************************
 	// 사용자 정보 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "users") User dto) {
+	public Integer update(User dto) {
 		try{
 			System.out.println("[UserController/update] 요청");
 			Integer result = userService.update(dto);

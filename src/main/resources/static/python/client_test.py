@@ -24,6 +24,7 @@ server2_url = "http://118.217.203.44:5200/book_recommend"   # 책 추천
 
 id = sys.argv[1]
 msg = sys.argv[2]
+# id = 'test15'
 # msg = '나 집에 갈래.'
 # print("Java에서 온 msg: ({}) {}".format(id, msg))
 

@@ -53,7 +53,7 @@ public class CalendarController {
 	// *** INSERT ***********************************************************
 	// 사용자의 독서기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "calendars") Calendar dto) {
+	public Integer write(Calendar dto) {
 		try {
 			System.out.println("[CalendarController/write] 요청");
 			Integer result = calendarService.write(dto);
@@ -67,7 +67,7 @@ public class CalendarController {
 	// *** UPDATE ***********************************************************
 	// 사용자의 독서기록 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "calendars") Calendar dto) {
+	public Integer update(Calendar dto) {
 		try{
 			System.out.println("[CalendarController/update] 요청");
 			Integer result = calendarService.update(dto);

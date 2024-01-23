@@ -53,7 +53,7 @@ public class RecommandedController {
 	// *** INSERT ***********************************************************
 	// 사용자의 추천 기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "recommandeds") Recommanded dto) {
+	public Integer write(Recommanded dto) {
 		try {
 			System.out.println("[RecommandedController/write] 요청");
 			Integer result = recommandedService.write(dto);

@@ -95,7 +95,7 @@ public class LikedController {
     // *** INSERT ***********************************************************
 	// 좋아요 등록
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "likes") Liked dto) {
+	public Integer write(Liked dto) {
 		try {
 			System.out.println("[LikedController/write] 요청");
 			Integer result = likedService.write(dto);

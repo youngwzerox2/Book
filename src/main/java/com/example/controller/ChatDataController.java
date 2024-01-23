@@ -51,7 +51,7 @@ public class ChatDataController {
 	// *** INSERT ***********************************************************
 	// 채팅 기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "chatDatas") ChatData dto) {
+	public Integer write(ChatData dto) {
 		try {
 			System.out.println("[ChatDataController/write] 요청");
 			Integer result = chatDataService.write(dto);

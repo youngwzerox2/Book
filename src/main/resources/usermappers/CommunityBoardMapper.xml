@@ -57,7 +57,12 @@
 			, #{communityBoardContent}
 			, now()
 			, #{memberId}
+			<if test="community_board_img == null">
+			, 0
+			</if>
+			<if test="community_board_img != null">
 			, #{communityBoardImg}
+			</if>
 		)
 	</insert>
 

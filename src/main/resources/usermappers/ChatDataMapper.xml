@@ -30,7 +30,8 @@
 	<insert id="write"
 			parameterType="ChatData">
 		INSERT INTO chat_data(
-						member_id
+						chat_number
+						, member_id
                         , recommanded_book1
                         , recommanded_book2
                         , recommanded_book3
@@ -39,7 +40,8 @@
                         , chat_data_date
 					)
 		VALUES(
-			#{memberId}
+			#{chatNumber}
+			, #{memberId}
             , #{recommandedBook1}
             , #{recommandedBook2}
             , #{recommandedBook3}

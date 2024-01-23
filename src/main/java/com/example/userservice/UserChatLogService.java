@@ -8,4 +8,6 @@ public interface UserChatLogService {
 
 	Integer getChatNum();
 
+    String getMemberId();
+
 }

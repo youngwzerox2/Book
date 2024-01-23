@@ -32,26 +32,43 @@ public class ChatLogController {
 	@Autowired
 	private UserChatDataServiceImpl chatDataService;
 
+	List<String> userInput = new ArrayList<String>();
+
+	// 전송 버튼을 누를 때마다 list에 추가됨
+	@PostMapping("/chating")
+	public void chating(ChatLog dto) {
+		// String memberId = dto.getMemberId();
+		// String sentence = dto.getSentence();
+		// String terminate = dto.getTerminate();
+
+		String sentence = dto.getSentence().replaceAll("^(\\s+)|(\\s+)$", "");
+
+		// DB에 채팅 내용 저장
+		chatLogService.write(dto);
+		userInput.add(sentence);
+
+		// if(terminate.equals("N")) {
+		// 	userInput.add(sentence);
+		// }
+	}
+
 	// *** INSERT ***********************************************************
 	// 사용자의 채팅 내역 입력
 	@PostMapping("/write")
-	public Integer write(ChatLog dto) {
+	public Integer write() {
 		try {
 			System.out.println("[ChatLogController/write] 요청");
-			String terminate = dto.getTerminate();
-			String id = dto.getMemberId();
-			// System.out.println(dto.getMemberId());
-			// System.out.println(terminate);
+			// String id = "test1";
+			// userInput.add("너무 행복해서 집 가고 싶다.");
+
+			String id = chatLogService.getMemberId();
 
 			// 문장 만들기...ㅠㅡㅠ
-			List<String> sentence = new ArrayList<String>();
-			String userInput = dto.getSentence().replaceAll("^(\\s+)|(\\s+)$", "");
-			System.out.println(userInput);
-			sentence.add(userInput);
-			String sentences = String.join(" ", sentence);
+			String sentences = String.join(" ", userInput);
+			System.out.println("요청된 문장: " + sentences);
 
 			// .py 파일 실행
-			String pythonFile = "C:\\Users\\ict0312\\Desktop\\ReadMe\\Book-5\\src\\main\\resources\\static\\python\\client_test.py";
+			String pythonFile = "C:\\Users\\ict0312\\Desktop\\ReadMe\\Book-6\\src\\main\\resources\\static\\python\\client_test.py";
 			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, id, sentences);
 			pb.directory(new File(System.getProperty("user.dir")));
 			Process process = pb.start();
@@ -84,6 +101,9 @@ public class ChatLogController {
 				System.err.println("[Error from Python] > " + errorLine);
 			}
 
+			reader.close();
+			error.close();
+
 			String output = sb.toString();
 			System.out.println(output);
 			System.out.println("[From Python] > " + output);
@@ -98,22 +118,23 @@ public class ChatLogController {
 			// System.out.println(recommended1);
 
 			ChatData ddto = new ChatData();
+			ddto.setMemberId(id);
 			ddto.setEmotion(emotion);
 			ddto.setRecommandedBook1(recommended1);
 			ddto.setRecommandedBook2(recommended2);
 			ddto.setRecommandedBook3(recommended3);
 
-			// DB에 채팅 내용 저장
-			chatLogService.write(dto);
-
 			// 가장 최근에 입력한 chat_number 받아와서 저장
 			Integer chatNum = chatLogService.getChatNum();
-			System.out.println(chatNum);
+			// System.out.println(chatNum);
 			ddto.setChatNumber(chatNum);
+			// System.out.println("ddto>" + ddto);
 			
 			// DB에 채팅 데이터 저장
 			Integer result = chatDataService.write(ddto);
-			// 이게 안됨
+
+			// 초기화
+			userInput.clear();
 
 			return result;
 			// return 17;
@@ -126,8 +147,8 @@ public class ChatLogController {
 	public String getIsbn(String result) {
 		// "[]"", " ", "'"를 전부 없애고 ","를 기준으로 자름
 		String[] parsedResult = result.replaceAll("[\\[\\]\\s']", "").split(",");
-		// 2번째 요소(ISBN)만 return
-		return parsedResult[2];
+		// 맨 뒤 요소(ISBN)만 return
+		return parsedResult[parsedResult.length - 1];
 	}
 
 }

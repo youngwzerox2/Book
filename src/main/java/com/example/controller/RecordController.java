@@ -53,7 +53,7 @@ public class RecordController {
 	// *** INSERT ***********************************************************
 	// 사용자의 독서기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "records") RecordDTO dto) {
+	public Integer write(RecordDTO dto) {
 		try {
 			System.out.println("[RecordController/write] 요청");
 			Integer result = recordService.write(dto);
@@ -67,7 +67,7 @@ public class RecordController {
 	// *** UPDATE ***********************************************************
 	// 사용자의 독서기록 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "records") RecordDTO dto) {
+	public Integer update(RecordDTO dto) {
 		try{
 			System.out.println("[RecordController/update] 요청");
 			Integer result = recordService.update(dto);
