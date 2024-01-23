@@ -36,7 +36,8 @@ import { Formik } from 'formik';
 
 // project imports
 import useScriptRef from 'hooks/useScriptRef';
-import Google from 'assets/images/icons/social-google.svg';
+
+import Google from 'assets/images/kakao_login_medium_wide.png';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
@@ -58,7 +59,8 @@ const FirebaseRegister = ({ ...others }) => {
   const [level, setLevel] = useState();
 
   const googleHandler = async () => {
-    console.error('Register');
+    location =
+      'https://kauth.kakao.com/oauth/authorize?client_id=ee0b0d86ac0c50bc7ef7fed3d4991165&redirect_uri=http://118.217.203.37:3000/free/readme/main&response_type=code';
   };
 
   const handleClickShowPassword = () => {
@@ -146,17 +148,14 @@ const FirebaseRegister = ({ ...others }) => {
               variant="outlined"
               fullWidth
               onClick={googleHandler}
-              size="large"
+              size="medium"
               sx={{
                 color: 'grey.700',
                 backgroundColor: theme.palette.grey[50],
                 borderColor: theme.palette.grey[100]
               }}
             >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
-              </Box>
-              카카오톡으로 시작하기
+              <img src={Google} alt="google" style={{ size: '100%' }} />
             </Button>
           </AnimateButton>
         </Grid>
