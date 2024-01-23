@@ -6,4 +6,6 @@ public interface UserChatLogService {
     
     Integer write(ChatLog dto);
 
+	Integer getChatNum();
+
 }

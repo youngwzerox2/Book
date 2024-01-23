@@ -12,5 +12,6 @@ public class CommunityBoard {
 	private String	communityBoardContent;	// 게시글 내용
 	private Date	communityBoardDate;		// 게시글 작성일자
 	private String	memberId;				// 고객아이디
+	private Integer communityBoardImg;		// 게시글 사진
 	
 }

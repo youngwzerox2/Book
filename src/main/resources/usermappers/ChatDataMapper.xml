@@ -19,7 +19,7 @@
 	<!-- 특정 채팅 기록 출력 -->
 	<select id="selectByNum"
 			parameterType="String"
-			resultType="CommunityBoard">
+			resultType="ChatData">
 		SELECT	*
 		FROM	chat_data
 		WHERE	chatNumber=#{chatNumber}
@@ -28,7 +28,7 @@
 	<!-- *** INSERT  *********************************************************** -->
 	<!-- 채팅 기록 입력 -->
 	<insert id="write"
-			parameterType="CommunityBoard">
+			parameterType="ChatData">
 		INSERT INTO chat_data(
 						member_id
                         , recommanded_book1

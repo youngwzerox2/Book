@@ -17,4 +17,9 @@ public class UserChatLogServiceImpl implements UserChatLogService{
         return chatLogDAO.write(dto);
     }
 
+    @Override
+    public Integer getChatNum() {
+        return chatLogDAO.getChatNum();
+    }
+
 }
