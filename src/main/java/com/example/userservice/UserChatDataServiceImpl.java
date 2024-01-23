@@ -28,4 +28,5 @@ public class UserChatDataServiceImpl implements UserChatDataService {
     public Integer write(ChatData dto) {
         return chatDataDAO.write(dto);
     }
+    
 }

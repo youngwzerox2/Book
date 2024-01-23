@@ -5,6 +5,16 @@
 <!-- ***************************** dao interface 경로+이름 -->
 <mapper namespace="com.example.userdao.UserChatLogDAO">
 
+	<!-- *** SELECT  *********************************************************** -->
+	<!-- 채팅번호 가져오기 -->
+	<select id="getChatNum"
+			resultType="Integer">
+		SELECT	 chat_number
+		FROM	 chat_log
+		ORDER BY chat_number DESC
+		LIMIT 1
+	</select>
+
     <!-- *** INSERT  *********************************************************** -->
 	<!-- 사용자의 채팅 기록 입력 -->
 	<insert id="write"

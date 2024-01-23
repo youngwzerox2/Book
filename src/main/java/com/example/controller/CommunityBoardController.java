@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.util.MD5Generator;
 import com.example.domain.CommunityBoard;
+import com.example.domain.FileDTO;
 import com.example.userservice.UserCommunityBoardServiceImpl;
 
 @RestController
@@ -68,10 +72,55 @@ public class CommunityBoardController {
 	// *** INSERT ***********************************************************
 	// 게시글 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "communityBoards") CommunityBoard dto) {
+	public Integer write(@RequestParam(name = "communityBoards") CommunityBoard dto,
+						 @RequestParam("file") MultipartFile file) {
 		try {
 			System.out.println("[CommunityBoardController/write] 요청");
+
+			String originalFilename = file.getOriginalFilename();
+			System.out.println("originFilename: " + originalFilename);
+
+			if(originalFilename != null && !originalFilename.equals("")) {
+				// 파일 첨부가 있는 경우(null도 아니고, 이름이 공백도 아님)
+				try {
+					String filename = new MD5Generator(originalFilename).toString();
+					
+					// 생성되는 폴더의 위치 확인 후 추후 변경
+					// -> static 폴더 밑으로 이동해야 사용자가 그 파일에 접근 가능
+					String savePath = System.getProperty("user.dir") + "\\files";
+					if(!new File(savePath).exists()) {
+						// 해당하는 폴더가 없으면 만들기
+						new File(savePath).mkdir();
+					}
+					
+					String filepath = savePath + "\\" + filename;
+					System.out.println("filepath: " + filepath);
+					
+					// 파일 저장하는 코드
+					file.transferTo(new File(filepath));
+					
+					// DB에 저장하는 코드
+					FileDTO fdto = new FileDTO();
+					fdto.setOriginalName(originalFilename);
+					fdto.setFileName(filename);
+					fdto.setFilePath(filepath);
+					fdto.setMemberId(dto.getMemberId());
+					
+					// file 테이블에 저장
+					communityBoardService.writeFile(fdto);
+
+					// 가장 최근의 파일 번호 가져와서 게시글 정보에 입력
+					Integer fileNum = communityBoardService.getFileNum();
+					dto.setCommunityBoardImg(fileNum);
+					
+				} catch (Exception ex) {
+					System.out.println("파일 업로드 실패: " + ex.getMessage());
+				}
+			}
+
+			// 게시글 저장
 			Integer result = communityBoardService.write(dto);
+
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();

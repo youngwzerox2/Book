@@ -13,5 +13,6 @@ public class ChatLog {
 	private String	memberId;		// 사용자 아이디
 	private Date	chatTime;		// 채팅(전송)시간
 	private String	sentence;		// 채팅내용
-	
+	private String	terminate;		// 채팅의 끝인지 아닌지
+		
 }

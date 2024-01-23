@@ -9,4 +9,6 @@ public interface UserChatLogDAO {
     
     Integer write(ChatLog dto);
 
+	Integer getChatNum();
+
 }

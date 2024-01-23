@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.CommunityBoard;
+import com.example.domain.FileDTO;
 import com.example.userdao.UserCommunityBoardDAO;
 
 @Service
@@ -27,6 +28,16 @@ public class UserCommunityBoardServiceImpl implements UserCommunityBoardService 
     @Override
     public CommunityBoard selectByNum(String communityBoardId) {
         return communityBoardDAO.selectByNum(communityBoardId);
+    }
+
+    @Override
+    public void writeFile(FileDTO fdto) {
+        communityBoardDAO.writeFile(fdto);
+    }
+
+    @Override
+    public Integer getFileNum() {
+        return communityBoardDAO.getFileNum();
     }
 
     @Override

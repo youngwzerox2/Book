@@ -31,6 +31,15 @@
 		FROM	community_board
 		WHERE	community_board_id=#{communityBoardId}
 	</select>
+
+	<!-- (파일) 가장 마지막 업로드된 파일 번호 가져오기 -->
+	<select id="getFileNum"
+			resultType="FileDTO">
+		SELECT	 *
+		FROM	 file
+		ORDER BY file_number DESC
+		LIMIT 1
+	</select>
 	
 	<!-- *** INSERT  *********************************************************** -->
 	<!-- 게시글 입력 -->
@@ -41,11 +50,30 @@
 						, community_board_content
 						, community_board_date
 						, member_id
+						, community_board_img
 					)
 		VALUES(
 			#{communityBoardTag}
 			, #{communityBoardContent}
 			, now()
+			, #{memberId}
+			, #{communityBoardImg}
+		)
+	</insert>
+
+	<!-- 파일 입력 -->
+	<insert id="writeFile"
+			parameterType="FileDTO">
+		INSERT INTO file(
+						original_name
+						, file_name
+						, file_path
+						, member_id
+					)
+		VALUES(
+			#{originalName}
+			, #{fileName}
+			, #{filePath}
 			, #{memberId}
 		)
 	</insert>

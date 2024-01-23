@@ -20,9 +20,10 @@ public class User {
 	private Date	quitDate;			// 탈퇴일
 	private Integer	memberVisitAgree;	// 책장방문허용여부
 	private String	memberGrade;		// 회원등급
-	// private String	cardNumber;			// 카드번호
-	// private Integer	cardCvc;			// 카드cvc
-	// private Date	cardDate;			// 카드유효기간
-	// private Integer	cardPassword;		// 카드비밀번호 앞 2자리
+	private String	cardNumber;			// 카드번호
+	private Integer	cardCvc;			// 카드cvc
+	private Date	cardDate;			// 카드유효기간
+	private Integer	cardPassword;		// 카드비밀번호 앞 2자리
+	private Integer memberImg;			// 프로필사진
 	
 }
