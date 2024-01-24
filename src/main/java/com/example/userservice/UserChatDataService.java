@@ -1,5 +1,6 @@
 package com.example.userservice;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.domain.ChatData;
@@ -11,5 +12,7 @@ public interface UserChatDataService {
 	ChatData selectByNum(String chatNumber);
 	
 	Integer write(ChatData dto);
+	
+    void pickBook(HashMap<String, String> map);
 
 }

@@ -8,20 +8,50 @@
 	<!-- *** SELECT  *********************************************************** -->
 	<!-- 채팅번호 가져오기 -->
 	<select id="getChatNum"
+			parameterType="String"
 			resultType="Integer">
 		SELECT	 chat_number
 		FROM	 chat_log
+		WHERE	 member_id=#{memberId}
 		ORDER BY chat_number DESC
 		LIMIT 1
 	</select>
 
-	<!-- 사용자 아이디 가져오기 -->
-	<select id="getMemberId"
+	<!-- 채팅 종료 내역 유무 -->
+	<select id="logYN"
+			parameterType="String"
+			resultType="Integer">
+		SELECT	count(chat_number)
+		FROM	chat_log
+		WHERE	member_id=#{memberId}
+				AND terminate='Y'
+	</select>
+
+
+	<!-- (채팅 종료 내역 X) 해당 사용자가 추천해달라고 입력한 채팅 문장 가져오기 -->
+	<select id="getSentenceN"
+			parameterType="String"
 			resultType="String">
-		SELECT	 member_id
-		FROM	 chat_log
-		ORDER BY chat_number DESC
-		LIMIT 1
+		SELECT	sentence
+		FROM	chat_log
+		WHERE	member_id=#{memberId}
+	</select>
+
+	<!-- (채팅 종료 내역 O) 해당 사용자가 추천해달라고 입력한 채팅 문장 가져오기 -->
+	<select id="getSentenceY"
+			parameterType="String"
+			resultType="String">
+	<![CDATA[
+		SELECT	sentence 
+		FROM	chat_log
+		WHERE	member_id=#{memberId}
+				AND chat_number > (	SELECT	 chat_number
+									FROM	 chat_log
+									WHERE	 member_id=#{memberId}
+											 AND terminate='Y'
+									ORDER BY chat_number DESC
+									LIMIT 1)
+	]]>
 	</select>
 
     <!-- *** INSERT  *********************************************************** -->
@@ -41,5 +71,16 @@
 			, #{terminate}
 		)
 	</insert>
+
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 마지막 대화 terminate 'Y'로 바꾸기 -->
+	<update id="terminateY"
+			parameterType="String">
+		UPDATE	 chat_log
+		SET		 terminate='Y'
+		WHERE	 member_id=#{memberId}
+		ORDER BY chat_number DESC
+		LIMIT 1
+	</update>
 
 </mapper>
