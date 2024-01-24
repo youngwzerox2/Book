@@ -9,8 +9,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="http://localhost:3000/free/readme/main">
+        ReadMe
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -27,12 +27,7 @@ function Footer(props) {
         <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
+        <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
           {description}
         </Typography>
         <Copyright />
@@ -43,7 +38,7 @@ function Footer(props) {
 
 Footer.propTypes = {
   description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default Footer;
