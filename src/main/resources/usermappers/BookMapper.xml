@@ -6,6 +6,14 @@
 <mapper namespace="com.example.userdao.UserBookDAO">
 
     <!-- *** SELECT *********************************************************** -->
+	<!-- 제목으로 도서 검색 -->
+	<select id="selectByTitle"
+			resultType="hashmap">
+		SELECT	*
+		FROM	book
+		WHERE	bookname LIKE '%${bookname}%'
+	</select>
+
     <!-- 특정 도서 정보 출력 -->
 	<select id="selectByNum"
 			parameterType="String"

@@ -8,10 +8,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,6 +51,70 @@ public class PayController {
             + "&approval_url=http://118.217.203.37:3000/free/readme/mypage/pay" // 결제 완료 후 이동할 페이지
             + "&fail_url=http://118.217.203.37:3000/free/readme/mypage/pay"     // 결제 실패 시 이동할 페이지
             + "&cancel_url=http://118.217.203.37:3000/free/readme/mypage/pay";  // 결제 취소 시 이동할 페이지
+
+            System.out.println(param);
+            OutputStream output = conn.getOutputStream();
+            DataOutputStream dataOutput = new DataOutputStream(output);
+            dataOutput.writeBytes(param); // 알아서 형변환해서 사용
+            // dataOutput.flush(); // 가지고 있는 걸 비움; close()하면 알아서 호출됨
+            dataOutput.close();
+
+            Integer result = conn.getResponseCode();
+
+            InputStream input;
+            if(result == 200) {
+                // 통신 성공
+                input = conn.getInputStream();
+                System.out.println("성공함");
+            } else {
+                // 통신 실패
+                input = conn.getErrorStream();
+            }
+            InputStreamReader reader = new InputStreamReader(input);
+            BufferedReader buff = new BufferedReader(reader);
+            return buff.readLine();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    @ResponseBody
+    @PostMapping("kgpay")
+    public String kgpay(@RequestParam(name = "buyername") String buyername,
+                        @RequestParam(name = "goodname") String goodname) {
+        try {
+            System.out.println("KG임,,,");
+            // 현재시각 받아옴
+            String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-ddHH:mm:ss"));
+
+            URL addr = new URL("https://stdpay.inicis.com/stdjs/INIStdPay.js");
+            HttpURLConnection conn = (HttpURLConnection) addr.openConnection();
+            conn.setRequestMethod("POST");
+            // conn.setRequestProperty("Authorization", "KakaoAK b0ca15e2b23fb3dddcde8d8adb2fab9c"); // Admin 키
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+            conn.setDoOutput(true); // 서버에 전해줄 게 있는지 없는지(input은 자동으로 true)
+            String param = "version=1.0"
+            + "&pg_api_key=ItEQKi3rY7uvDS8l"
+            + "&gopaymethod="
+            + "&mid=INIBillTst"
+            + "&oid=12341234"
+            + "&price=5000"
+            + "&timestamp=" + now
+            + "&use_shkfake=Y"
+            + "&signature=1234"
+            + "&verification=1234"
+            + "&mKey=1234"
+            + "&currency=WON"
+            + "&goodname=" + goodname
+            + "&buyername=" + buyername
+            + "&buyertel=01000000000"
+            + "&buyeremail=123@gmail.com"
+            + "&returnUrl=http://118.217.203.37:3000/free/readme/mypage/pay"    // 결제 완료 후 이동할 페이지
+            + "&closeUrl=http://118.217.203.37:3000/free/readme/mypage/pay"     // 결제 취소 시 이동할 페이지
+            + "&acceptmethod=centerCd(Y)";
 
             System.out.println(param);
             OutputStream output = conn.getOutputStream();

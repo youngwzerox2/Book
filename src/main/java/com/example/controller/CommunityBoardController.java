@@ -72,7 +72,7 @@ public class CommunityBoardController {
 	// *** INSERT ***********************************************************
 	// 게시글 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "communityBoards") CommunityBoard dto,
+	public Integer write(CommunityBoard dto,
 						 @RequestParam("file") MultipartFile file) {
 		try {
 			System.out.println("[CommunityBoardController/write] 요청");
@@ -131,7 +131,7 @@ public class CommunityBoardController {
 	// *** UPDATE ***********************************************************
 	// 게시글 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "communityBoards") CommunityBoard dto) {
+	public Integer update(CommunityBoard dto) {
 		try{
 			System.out.println("[CommunityBoardController/update] 요청");
 			Integer result = communityBoardService.update(dto);

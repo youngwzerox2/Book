@@ -11,4 +11,6 @@ public interface UserChatLogDAO {
 
 	Integer getChatNum();
 
+    String getMemberId();
+
 }

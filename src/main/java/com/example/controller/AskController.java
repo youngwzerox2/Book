@@ -53,7 +53,7 @@ public class AskController {
 	// *** INSERT ***********************************************************
 	// 사용자의 독서기록 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "asks") Ask dto) {
+	public Integer write(Ask dto) {
 		try {
 			System.out.println("[AskController/write] 요청");
 			Integer result = askService.write(dto);
@@ -67,7 +67,7 @@ public class AskController {
 	// *** UPDATE ***********************************************************
 	// 사용자의 독서기록 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "asks") Ask dto) {
+	public Integer update(Ask dto) {
 		try{
 			System.out.println("[AskController/update] 요청");
 			Integer result = askService.update(dto);

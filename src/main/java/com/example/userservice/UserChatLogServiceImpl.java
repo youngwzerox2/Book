@@ -22,4 +22,9 @@ public class UserChatLogServiceImpl implements UserChatLogService{
         return chatLogDAO.getChatNum();
     }
 
+    @Override
+    public String getMemberId() {
+        return chatLogDAO.getMemberId();
+    }
+
 }

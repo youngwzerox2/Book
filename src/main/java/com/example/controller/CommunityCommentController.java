@@ -53,7 +53,7 @@ public class CommunityCommentController {
 	// *** INSERT ***********************************************************
 	// 댓글 입력
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "CommunityComments") CommunityComment dto) {
+	public Integer write(CommunityComment dto) {
 		try {
 			System.out.println("[CommunityCommentController/write] 요청");
 			Integer result = communityCommentService.write(dto);
@@ -67,7 +67,7 @@ public class CommunityCommentController {
 	// *** UPDATE ***********************************************************
 	// 댓글 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "CommunityComments") CommunityComment dto) {
+	public Integer update(CommunityComment dto) {
 		try{
 			System.out.println("[CommunityCommentController/update] 요청");
 			Integer result = communityCommentService.update(dto);

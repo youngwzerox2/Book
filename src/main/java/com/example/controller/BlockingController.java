@@ -53,7 +53,7 @@ public class BlockingController {
 	// *** INSERT ***********************************************************
 	// 사용자의 신고 내역 추가
 	@PostMapping("/write")
-	public Integer write(@RequestParam(name = "blockings") Blocking dto) {
+	public Integer write(Blocking dto) {
 		try {
 			System.out.println("[BlockingController/write] 요청");
 			Integer result = blockingService.write(dto);
@@ -67,7 +67,7 @@ public class BlockingController {
 	// *** UPDATE ***********************************************************
 	// 사용자의 신고 내역 수정
 	@PostMapping("/update")
-	public Integer update(@RequestParam(name = "blockings") Blocking dto) {
+	public Integer update(Blocking dto) {
 		try{
 			System.out.println("[BlockingController/update] 요청");
 			Integer result = blockingService.update(dto);
