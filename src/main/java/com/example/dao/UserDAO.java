@@ -21,4 +21,7 @@ public interface UserDAO {
 
     // 회원 정보삭제
     public void deleteMember(User vo);
+
+    // 관리자 회원 ID 목록
+    List<String> getAdminMemberIds();
 }

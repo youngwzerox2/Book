@@ -37,4 +37,10 @@ public class UserServiceImpl implements UserService{
     public void deleteMember(User vo) {
         userDAO.deleteMember(vo);
     }
+
+    // 관리자 회원 ID 목록
+    @Override
+    public List<String> getAdminMemberIds() {
+        return userDAO.getAdminMemberIds();
+    }
 }

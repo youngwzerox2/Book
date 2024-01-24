@@ -32,4 +32,11 @@
 		WHERE member_id=#{memberId}
 	</delete>
 
+	<!-- 관리자 회원 ID 목록 -->
+    <select id="getAdminMemberIds" resultType="String">
+        SELECT member_id 
+		FROM user
+		WHERE member_grade = 'admin';
+    </select>
+
 </mapper>

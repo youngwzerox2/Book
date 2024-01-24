@@ -31,7 +31,7 @@
         <%@ include file="header.jsp" %>
         
         <div class="content">
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">1:1 문의</strong>
@@ -52,7 +52,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">문의 날짜</th>
                                         <th scope="col">문의 아이디</th>
-                                        <th scope="col">문의 내용</th>
+                                        <th scope="col">문의 제목</th>
                                         <th scope="col">문의 처리 여부</th>
                                     </tr>
                                 </thead>
@@ -65,11 +65,11 @@
                                             <td><a href="askDetail?askId=${ask.askId}">${ask.memberId}</a></td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${fn:length(ask.askContent) > 15}">
-                                                        <c:out value="${fn:substring(ask.askContent, 0, 15)}..."/>
+                                                    <c:when test="${fn:length(ask.askTitle) > 15}">
+                                                        <c:out value="${fn:substring(ask.askTitle, 0, 15)}..."/>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:out value="${ask.askContent}"/>
+                                                        <c:out value="${ask.askTitle}"/>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>

@@ -33,7 +33,11 @@
                         <input name="askReplyTime" type="hidden" value="${ask.askReplyTime}" />
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label for="company" class="form-control-label">문의</label>
+                                <label for="company" class="form-control-label">문의제목</label>
+                                <input type="text" value="${ask.askTitle}" class="form-control" name="askTitle" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">문의내용</label>
                                 <input type="text" value="${ask.askContent}" class="form-control" name="askContent" readonly>
                             </div>
                             <!-- <div class="form-group">
@@ -58,8 +62,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="company" class="form-control-label">답변담당자</label>
-                                <input type="text" value="${ask.askReplyAdmin}" class="form-control" name="askReplyAdmin">
+                                <label for="company" class="form-control-label">처리담당자</label>
+                                <select class="form-control" name="askReplyAdmin">
+                                    <c:forEach var="adminId" items="${adminMemberIds}">
+                                        <option value="${adminId}" <c:if test="${adminId eq ask.askReplyAdmin}">selected</c:if>>${adminId}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row justify-content-end">

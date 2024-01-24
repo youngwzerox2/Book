@@ -108,8 +108,8 @@
                                             value="<fmt:formatDate value='${member.quitDate}' pattern='yyyy-MM-dd' />" class="form-control">
                                     </div>
                                     <div class="form-group"><label for="company"
-                                            class=" form-control-label">책장방문허용여부</label><input
-                                            value="${member.memberVisitAgree}" class="form-control">
+                                            class=" form-control-label">책장방문허용여부</label>
+                                            <input value="${member.memberVisitAgree eq 1 ? 'yes' : 'no'}" class="form-control">
                                     </div>
                                     <div class="form-group"><label for="company"
                                             class=" form-control-label">회원상태</label>

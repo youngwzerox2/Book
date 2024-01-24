@@ -167,6 +167,10 @@ public class AdminController {
         Complain complain = complainService.complainDetail(vo);
         System.out.println("complainDetail.jsp호출");
         m.addAttribute("complain", complain);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // 컴플레인 정보수정
@@ -286,7 +290,6 @@ public class AdminController {
         List<Ask> list = askService.askList();
         m.addAttribute("askList", list);
         System.out.println("ask.jsp호출");
-
         return "ask";
     }
 
@@ -296,6 +299,10 @@ public class AdminController {
         Ask ask = askService.askDetail(vo);
         System.out.println("askDetail.jsp호출");
         m.addAttribute("ask", ask);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // 문의 정보수정
