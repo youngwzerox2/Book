@@ -13,6 +13,7 @@ function Main(props) {
       xs={12}
       md={8}
       sx={{
+        margin: '20px',
         '& .markdown': {
           py: 3
         }

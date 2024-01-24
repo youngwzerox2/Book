@@ -2,13 +2,11 @@ import * as React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import Checkbox from '@mui/material/Checkbox';
-import { Button, FormControl, InputLabel, OutlinedInput, Select, MenuItem } from '@mui/material';
+import { Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -22,7 +20,6 @@ export default function NestedList() {
   const handleClick2 = () => {
     setOpen2(!open2);
   };
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const [ticket, setTicket] = React.useState('한달구독권');
 
@@ -36,7 +33,7 @@ export default function NestedList() {
   const { payUrl, setPayUrl } = useState('');
   console.log('payUrl 출력', payUrl);
 
-  const payingBtn = async () => {
+  const payingBtnKakao = async () => {
     alert(`${memberId}`);
     try {
       const response = await axios
@@ -47,11 +44,32 @@ export default function NestedList() {
           }
         })
         .then((re) => {
-          console.log('잘 받아지고 있긴 한건지 ,,,', re.data.next_redirect_pc_url);
+          console.log('잘 받아지고 있긴 한건지 ,,,?', re.data.next_redirect_pc_url);
           // window.open(re.data.next_redirect_pc_url, '카카오페이', 'popup=yes');
           location = re.data.next_redirect_pc_url;
         });
       setPayUrl(response.data.next_redirect_pc_url);
+    } catch (error) {
+      console.error('에러입니다1.');
+      console.error(error);
+    }
+  };
+
+  const payingBtnCard = async () => {
+    try {
+      const response = await axios
+        .post('/pay/kgpay', null, {
+          params: {
+            buyername: memberId, // 가맹점 회원 ID
+            goodname: '감자'
+          }
+        })
+        .then((re) => {
+          console.log('잘 받아지고 있긴 한건지 ,,,??????', re);
+          // window.open(re.data.next_redirect_pc_url, '카카오페이', 'popup=yes');
+          // location = re.data.next_redirect_pc_url;
+        });
+      console.log(response);
     } catch (error) {
       console.error('에러입니다1.');
       console.error(error);
@@ -70,9 +88,6 @@ export default function NestedList() {
       }
     >
       <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <Checkbox {...label} />
-        </ListItemIcon>
         <ListItemText primary="카카오페이" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
@@ -87,13 +102,13 @@ export default function NestedList() {
                 <MenuItem value={'정기구독권'}>정기구독권</MenuItem>
               </Select>
             </FormControl>
+            <Button color="primary" variant="contained" sx={{ margin: '10px' }} onClick={payingBtnKakao}>
+              결제
+            </Button>
           </ListItemButton>
         </List>
       </Collapse>
       <ListItemButton onClick={handleClick2}>
-        <ListItemIcon>
-          <Checkbox {...label} />
-        </ListItemIcon>
         <ListItemText primary="카드결제" />
         {open2 ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
@@ -108,36 +123,12 @@ export default function NestedList() {
                 <MenuItem value={'정기구독권'}>정기구독권</MenuItem>
               </Select>
             </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>카드번호</InputLabel>
-              <OutlinedInput />
-            </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>CVC번호</InputLabel>
-              <OutlinedInput />
-            </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>유효기간</InputLabel>
-              <OutlinedInput />
-            </FormControl>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }}>
-            <FormControl fullWidth>
-              <InputLabel>비밀번호 앞 두 자리</InputLabel>
-              <OutlinedInput />
-            </FormControl>
+            <Button color="primary" variant="contained" sx={{ margin: '10px' }} onClick={payingBtnCard}>
+              결제
+            </Button>
           </ListItemButton>
         </List>
       </Collapse>
-      <Button color="primary" variant="contained" onClick={payingBtn}>
-        결제
-      </Button>
     </List>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
 function MainFeaturedPost(props) {
@@ -19,7 +19,7 @@ function MainFeaturedPost(props) {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${post.image})`,
+        backgroundImage: `url(${post.image})`
       }}
     >
       {/* Increase the priority of the hero background image */}
@@ -31,7 +31,7 @@ function MainFeaturedPost(props) {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.3)',
+          backgroundColor: 'rgba(0,0,0,.3)'
         }}
       />
       <Grid container>
@@ -40,18 +40,21 @@ function MainFeaturedPost(props) {
             sx={{
               position: 'relative',
               p: { xs: 3, md: 6 },
-              pr: { md: 0 },
+              pr: { md: 0 }
             }}
           >
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {post.title}
+              오늘의 명언
+              {/* {post.title} */}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
+              {/* {post.description} */}
+              당신이 책을 읽어야 사람이다. 사람이라면 책을 읽어라.
             </Typography>
-            <Link variant="subtitle1" href="#">
-              {post.linkText}
-            </Link>
+            <Typography variant="h5" color="inherit" paragraph>
+              {/* {post.description} */}
+              이시돌 (1999~)
+            </Typography>
           </Box>
         </Grid>
       </Grid>
@@ -65,8 +68,8 @@ MainFeaturedPost.propTypes = {
     image: PropTypes.string.isRequired,
     imageText: PropTypes.string.isRequired,
     linkText: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+    title: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default MainFeaturedPost;
