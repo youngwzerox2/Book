@@ -36,12 +36,13 @@ const MainPage = () => {
   const session = localStorage;
   const id = session.getItem('loginId');
   const insertTry = () => {
-    axios.post(`/chatLog/write?memberId=${id}&sentence=${msg1}&terminate=N`);
+    axios.post(`/chatLog/chating?memberId=${id}&sentence=${msg1}&terminate=N`);
+    setMsg1('');
   };
   // -------------------------------------------------------------------------
   // 도서 추천 버튼 클릭
   const bookRequest = () => {
-    alert('돌멩이 클릭당함 ㅠㅠ');
+    axios.post('/chatLog/write');
   };
 
   return (
@@ -193,6 +194,7 @@ const MainPage = () => {
           ></TextareaAutosize> */}
           <TextField
             id="text"
+            value={msg1}
             name="text"
             fullWidth
             onChange={(e) => {
