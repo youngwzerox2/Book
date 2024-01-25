@@ -28,10 +28,5 @@ public class UserRecommandedServiceImpl implements UserRecommandedService {
     public Integer write(Recommanded dto) {
         return recommandedDAO.write(dto);
     }
-
-    @Override
-    public Integer delete(String recommandedId) {
-        return recommandedDAO.delete(recommandedId);
-    }
     
 }

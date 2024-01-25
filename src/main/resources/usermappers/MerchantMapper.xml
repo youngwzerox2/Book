@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserLikedDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+    <!-- 특정 사용자의 결제 내역 출력 -->
+	<select id="selectByUser"
+			parameterType="String"
+			resultType="hashmap">
+		SELECT  *
+        FROM    merchant
+        WHERE   member_id=#{memberId}
+	</select>
+	
+	<!-- *** INSERT  *********************************************************** -->
+	<!-- 한 달 구독권 결제 내역 입력 -->
+	<insert id="writeMonth"
+			parameterType="Merchant">
+		INSERT INTO merchant(
+						merchant_cost
+                        , member_id
+                        , merchant_type
+                        , start_date
+                        , end_date
+					)
+		VALUES(
+			#{merchantCost}
+            , #{memberId}
+            , #{merchantType}
+            , now()
+            , DATE_ADD(now(), INTERVAL 1 MONTH)
+		)
+	</insert>
+
+    <!-- 일 년 구독권 결제 내역 입력 -->
+	<insert id="writeYear"
+			parameterType="Merchant">
+		INSERT INTO merchant(
+						merchant_cost
+                        , member_id
+                        , merchant_type
+                        , start_date
+                        , end_date
+					)
+		VALUES(
+			#{merchantCost}
+            , #{memberId}
+            , #{merchantType}
+            , now()
+            , DATE_ADD(now(), INTERVAL 1 YEAR)
+		)
+	</insert>
+
+    <!-- 정기 구독권 결제 내역 입력 -->
+	<insert id="writeForever"
+			parameterType="Merchant">
+		INSERT INTO merchant(
+						merchant_cost
+                        , member_id
+                        , merchant_type
+                        , start_date
+                        , end_date
+					)
+		VALUES(
+			#{merchantCost}
+            , #{memberId}
+            , #{merchantType}
+            , now()
+            , DATE_ADD(now(), INTERVAL 1 MONTH)
+		)
+	</insert>
+	
+</mapper>

@@ -63,19 +63,5 @@ public class RecommandedController {
 			return null;
 		}
 	}
-	
-	// *** DELETE ***********************************************************
-	// 사용자의 추천 기록 삭제
-	@GetMapping("/delete")
-	public Integer delete(@RequestParam(name = "recommandedId") String recommandedId) {
-		try {
-			System.out.println("[RecommandedController/delete] 요청");
-			Integer result = recommandedService.delete(recommandedId);
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 
 }

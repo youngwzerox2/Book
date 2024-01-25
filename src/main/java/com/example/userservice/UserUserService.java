@@ -10,4 +10,8 @@ public interface UserUserService {
 	
 	Integer update(User dto);
 
+	// void sendEmail(String to, String subject, String body);
+
+	// String verificationCode();
+
 }

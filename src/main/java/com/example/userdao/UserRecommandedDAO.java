@@ -14,7 +14,5 @@ public interface UserRecommandedDAO {
     Recommanded selectByNum(String recommandedId);
 	
 	Integer write(Recommanded dto);
-	
-	Integer delete(String recommandedId);
 
 }
