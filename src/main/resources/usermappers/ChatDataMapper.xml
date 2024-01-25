@@ -50,5 +50,14 @@
             , now()
 		)
 	</insert>
+
+	<!-- *** UPDATE  *********************************************************** -->
+	<!-- 추천받은 책 중 사용자가 선택한 책 입력 -->
+	<update id="pickBook"
+			parameterType="hashmap">
+		UPDATE	chat_data
+		SET		picked_book=#{bookIsbn13}
+		WHERE	chat_number=#{chatNumber}
+	</update>
 	
 </mapper>

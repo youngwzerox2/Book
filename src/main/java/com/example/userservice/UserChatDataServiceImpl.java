@@ -1,5 +1,6 @@
 package com.example.userservice;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class UserChatDataServiceImpl implements UserChatDataService {
     @Override
     public Integer write(ChatData dto) {
         return chatDataDAO.write(dto);
+    }
+
+    @Override
+    public void pickBook(HashMap<String, String> map) {
+        chatDataDAO.pickBook(map);
     }
     
 }

@@ -1,5 +1,6 @@
 package com.example.userdao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -14,5 +15,7 @@ public interface UserChatDataDAO {
 	ChatData selectByNum(String chatNumber);
 	
 	Integer write(ChatData dto);
+
+    void pickBook(HashMap<String, String> map);
 
 }
