@@ -61,4 +61,5 @@ public class AskServiceImpl implements AskService{
         System.out.println("완료서비스");
         return askDAO.getAnsweredList();
     }
+    
 }

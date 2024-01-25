@@ -1,0 +1,15 @@
+package com.example.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.example.domain.KakaoLibrary;
+
+@Mapper
+public interface KakaoLibraryDAO {
+    
+    // ************************* 도서관 위치 ***************************
+    // 도서관 위치 얻어오기
+    public List<KakaoLibrary> getAllLocations();
+}

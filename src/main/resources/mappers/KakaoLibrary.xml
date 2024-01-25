@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- *********************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.KakaoLibraryDAO">
+
+    <!-- ****************************** 문의 ******************************** -->
+    <!-- 문의 전체 리스트 -->
+    <select id="getAllLocations" resultType="KakaoLibrary">
+        SELECT library_num, library_name, library_la, library_lo
+        FROM library
+        <!-- ORDER BY ask_id DESC -->
+    </select>
+
+</mapper>
