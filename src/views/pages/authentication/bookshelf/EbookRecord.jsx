@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Box, Card, Button, Typography } from '@mui/material';
+import { Box, Card, Button } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import EmptyCase from '../../../../assets/images/bookcaseB_empty.png';
-import SingleBook from '../../../../assets/images/book360.png';
 import CreateIcon from '@mui/icons-material/Create';
 import { useState } from 'react';
 import RecordWrite from './ErecordWrite';
@@ -16,30 +15,23 @@ export default function ImgMediaCard() {
 
   // 데이터 로드 시 받아올 변수
   const [viewContent, setViewContent] = useState([]);
-  // 데이터 받아올 함수
-  // const id = 'test1';
+
+  const session = localStorage;
 
   const boardLoad = () => {
     axios
-      .get('/record/selectByUser', { params: { memberId: 'test1' } })
+      .get('/record/selectByUser', { params: { memberId: session.getItem('loginId') } })
       .then((re) => {
         setViewContent(re.data);
 
         console.log('ㅎㅇㅎㅇ', re.data);
-        console.log(re.data.length);
         // console.log(viewContent[5].bookname);
       })
       .catch((err) => console.log('[에러!!', err));
   };
   useEffect(() => {
-    console.log(viewContent[0]);
     boardLoad();
-    // console.log('잉?', namelist[0]);
   }, []);
-
-  // 도서 아이콘 클릭 시 해당하는 도서의 상세정보로 이동
-  // const getBook = ()=>{
-  // }
 
   return (
     <>
@@ -47,65 +39,64 @@ export default function ImgMediaCard() {
         {record === 'default' && (
           <>
             <CardMedia component="img" alt="green iguana" height="100%" image={EmptyCase}></CardMedia>
-            {/* {viewContent.map((item, idx) => {
-              if (idx == 0) {
-                return (
-                  <Box key={idx} sx={{ position: 'absolute', top: '9%', left: '25%' }}>
-                    <Typography top="10%" position="absolute">
-                      {item.book_isbn13}
-                    </Typography>
-                    <img src={SingleBook} alt="이미지입니다" height="80px" />
-                  </Box>
-                );
-              } else if (idx == 1) {
-                <Box key={idx} sx={{ position: 'absolute', top: '9%', left: '45%' }}>
-                  <Typography top="10%" position="absolute">
-                    {item.book_isbn13}
-                  </Typography>
-                  <img src={SingleBook} alt="이미지입니다" height="80px" />
-                </Box>;
-              }
-            })} */}
 
             <Box
-              sx={{ position: 'absolute', top: '9%', left: '25%' }}
+              sx={{ position: 'absolute', top: '6%', left: '27%' }}
               onClick={() => {
-                setRecord('detail');
+                // setOpen1(false);
+                alert(`${viewContent[0].recordBookNum}`);
               }}
             >
-              <Typography top="10%" position="absolute">
-                ㅎㅇㅎㅇ
-              </Typography>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+              {viewContent[0] != undefined && <img src={viewContent[0].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
 
-            <Box sx={{ position: 'absolute', top: '9%', left: '45%' }}>
-              <Typography top="10%" position="absolute">
-                ㅎㅇㅎㅇ
-              </Typography>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '6%', left: '45%' }}>
+              {viewContent[1] != undefined && <img src={viewContent[1].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
 
-            <Box sx={{ position: 'absolute', top: '9%', left: '65%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '6%', left: '63%' }}>
+              {viewContent[2] != undefined && <img src={viewContent[2].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '31.5%', left: '25%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '29%', left: '27%' }}>
+              {viewContent[3] != undefined && <img src={viewContent[3].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '32%', left: '45%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '29%', left: '45%' }}>
+              {viewContent[4] != undefined && <img src={viewContent[4].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '32%', left: '65%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '29%', left: '63%' }}>
+              {viewContent[5] != undefined && <img src={viewContent[5].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '54%', left: '25%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '51%', left: '27%' }}>
+              {viewContent[6] != undefined && <img src={viewContent[6].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '54%', left: '45%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '51%', left: '45%' }}>
+              {viewContent[7] != undefined && <img src={viewContent[7].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
-            <Box sx={{ position: 'absolute', top: '54%', left: '65%' }}>
-              <img src={SingleBook} alt="이미지입니다" height="80px" />
+            <Box sx={{ position: 'absolute', top: '51%', left: '63%' }}>
+              {viewContent[8] != undefined && <img src={viewContent[8].bookImageURL} alt="이미지입니다" height="100px" />}
+            </Box>
+            <Box sx={{ position: 'absolute', top: '74%', left: '27%' }}>
+              {viewContent[9] != undefined && <img src={viewContent[9].bookImageURL} alt="이미지입니다" height="100px" />}
+            </Box>
+            <Box
+              sx={{ position: 'absolute', top: '74%', left: '45%' }}
+              onClick={() => {
+                alert('11');
+              }}
+            >
+              {viewContent[10] != undefined && (
+                <img src="https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg" alt="이미지입니다" height="100px" />
+              )}
+            </Box>
+            <Box
+              sx={{ position: 'absolute', top: '74%', left: '63%' }}
+              onClick={() => {
+                alert('setOpen12였음');
+              }}
+            >
+              {viewContent[11] != undefined && (
+                <img src="https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg" alt="이미지입니다" height="100px" />
+              )}
             </Box>
 
             <Button

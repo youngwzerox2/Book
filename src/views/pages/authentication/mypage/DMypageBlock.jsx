@@ -6,59 +6,65 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Button } from '@mui/material';
 
 export default function AlignItemsList() {
+  const sess = localStorage;
+  const [viewContent, setViewContent] = useState([]);
+
+  const boardLoad = () => {
+    axios.get(`/blocking/selectByUser?memberId=${sess.getItem('loginId')}`).then((re) => {
+      console.log(re.data);
+      setViewContent(re.data);
+    });
+  };
+  useEffect(() => {
+    boardLoad();
+  }, []);
+
+  const deleting = () => {
+    alert('ㅎㅇㅎㅇ');
+    axios.post(`/blocking/delete?blockedNumber=${item.blocked_number}`).then((re) => {
+      console.log('결과', re.data);
+    });
+  };
+
   return (
-    <List sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="사용자 이름"
-          secondary={
-            <React.Fragment>
-              <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                차단 일자
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="차단당한 애"
-          secondary={
-            <React.Fragment>
-              <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                차단일자
-              </Typography>
-              {/* {" — Wish I could come, but I'm out of town this…"} */}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="얘도 차단당했음"
-          secondary={
-            <React.Fragment>
-              <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
-                그저께에 차단함
-              </Typography>
-              {' — 나에게 치킨을 나눠주지 않아 차단하엿다…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+    <List sx={{ width: '100%', minWidth: '500px', bgcolor: 'background.paper' }}>
+      {viewContent.map((item) => {
+        const numbers = item.blocked_number;
+        return (
+          <>
+            <ListItem alignItems="flex-start" key={numbers}>
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              </ListItemAvatar>
+              <ListItemText
+                primary={`${item.blocked_member} / ${item.blocked_date}`}
+                secondary={
+                  <React.Fragment>
+                    <Typography sx={{ display: 'inline' }} component="span" variant="body2" color="text.primary">
+                      {item.blocked_reason}
+                    </Typography>
+                  </React.Fragment>
+                }
+              />
+              <Button
+                variant="outlined"
+                onClick={(numbers) => {
+                  deleting(numbers);
+                }}
+              >
+                차단 취소
+              </Button>
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </>
+        );
+      })}
     </List>
   );
 }

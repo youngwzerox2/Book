@@ -188,7 +188,7 @@ const MainPage = () => {
           </Link>
         </Grid>
         <Link to="/readme/main">
-          <Button variant="contained" sx={{ position: 'absolute', top: '95%', left: '48%' }}>
+          <Button variant="contained" sx={{ position: 'absolute', top: '85%', left: '48%' }}>
             뒤로가기
           </Button>
         </Link>

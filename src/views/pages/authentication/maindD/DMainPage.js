@@ -3,7 +3,7 @@
 // (X) 3. 전송 버튼 클릭 시 Python서버로 전송
 // (X) 4. 돌멩이 눌렀을 때 감정분석 요청
 
-import theimg from '../../../../assets/images/mainroom.png';
+import theimg from '../../../../assets/images/mainroom_trueLine.png';
 // 기본 폼
 import { FormControl, Typography } from '@mui/material';
 // 버튼 관련 속성. Button.d.ts 파일에 종류 있음. - variant, fullwidth 사용중
@@ -37,8 +37,9 @@ const MainPage = () => {
   const session = localStorage;
   const id = session.getItem('loginId');
   const [reply, setReply] = useState('오늘 하루는 어떠셨나요?');
+  const wrappedMsg = encodeURIComponent(msg1);
   const insertTry = () => {
-    axios.post(`/chatLog/chating?memberId=${id}&sentence=${msg1}&terminate=N`).then((re) => {
+    axios.post(`/chatLog/chating?memberId=${id}&sentence=${wrappedMsg}&terminate=N`).then((re) => {
       console.log(re.data);
       setReply(re.data);
       setTimeout(() => {

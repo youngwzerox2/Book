@@ -4,6 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import testing from '../../../../assets/images/이용약관1.png';
+import Image2 from '../../../../assets/images/이용약관2.png';
+import Image3 from '../../../../assets/images/이용약관3.png';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,7 +43,7 @@ export default function VerticalTabs() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}>
+    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: '100%' }}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -55,16 +58,21 @@ export default function VerticalTabs() {
         <Tab label="이용약관3" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        앱 정보
+        <Typography sx={{ margin: '5px' }} textAlign="left">
+          [앱 버전: v.0.0.1]
+        </Typography>
+        <Typography sx={{ margin: '5px' }} textAlign="left">
+          (주)멤버교체가 되었지만 인원수는 똑같은 New시돌컴퍼니의 두번째 작품
+        </Typography>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        이용약관1
+        <img src={testing} alt="testing" style={{ width: '450px' }} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        이용약관1{' '}
+        <img src={Image2} alt="testing" style={{ width: '450px' }} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        이용약관1{' '}
+        <img src={Image3} alt="testing" style={{ width: '450px' }} />
       </TabPanel>
     </Box>
   );

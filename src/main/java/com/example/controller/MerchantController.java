@@ -15,7 +15,7 @@ import com.example.userservice.UserMerchantServiceImpl;
 
 @RestController
 @RequestMapping("merchant")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://118.217.203.44:3000")
 public class MerchantController {
 
     @Autowired
