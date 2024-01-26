@@ -5,7 +5,7 @@
 
 import theimg from '../../../../assets/images/mainroom.png';
 // 기본 폼
-import { FormControl } from '@mui/material';
+import { FormControl, Typography } from '@mui/material';
 // 버튼 관련 속성. Button.d.ts 파일에 종류 있음. - variant, fullwidth 사용중
 import { Box, Button, Divider, Grid, TextField } from '@mui/material';
 // theme 객체 생성 위해 필요. 색깔 등은 여기서 조정하는 듯하다
@@ -21,6 +21,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
 
 const MainPage = () => {
   const theme = useTheme();
@@ -30,20 +31,48 @@ const MainPage = () => {
     ImageMap('img[usemap]'); // imageMap 삽입코드
   }, []);
 
-  // -------------------------------------------------------------------------
+  // ========================================================================
   // 텍스트 입력 후 전송 버튼 누르면 채팅 전송 ----------------------------------
   const [msg1, setMsg1] = useState('');
   const session = localStorage;
   const id = session.getItem('loginId');
+  const [reply, setReply] = useState('오늘 하루는 어떠셨나요?');
   const insertTry = () => {
-    axios.post(`/chatLog/chating?memberId=${id}&sentence=${msg1}&terminate=N`);
+    axios.post(`/chatLog/chating?memberId=${id}&sentence=${msg1}&terminate=N`).then((re) => {
+      console.log(re.data);
+      setReply(re.data);
+      setTimeout(() => {
+        setOpen(false);
+      }, 5000);
+      // handleAlert();
+      console.log('=====================================================');
+      // setTimeout();
+    });
     setMsg1('');
   };
+  // ======================================================================
+  // 엔터키 쳐도 채팅 입력 됨.
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      insertTry();
+    }
+  };
+
+  // =======================================================================
+  // 채팅 답변 화면에 출력 ==================================================
+  const [open, setOpen] = useState(true);
+  // setTimeout(() => console.log(re.data), 10000);
+  // const handleClose = ()=>{
+  //     setOpen(false);
+  // }
   // -------------------------------------------------------------------------
   // 도서 추천 버튼 클릭
   const bookRequest = () => {
-    axios.post('/chatLog/write');
+    axios.post(`/chatData/recommend?memberId=${id}`).then((re) => {
+      setReply(re.data);
+    });
   };
+  // ========================================================================
 
   return (
     <>
@@ -76,7 +105,13 @@ const MainPage = () => {
           </Box>
         </Grid>
       </Grid>
+
       <FormControl fullWidth>
+        <Grid style={{ position: 'absolute', top: '43%', left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          <Alert open={open} icon={false} severity="success" display="flex">
+            <Typography textAlign="center">{reply}</Typography>
+          </Alert>
+        </Grid>
         {/* <Alert severity="info" sx={{ position: 'absolute', top: '46%', left: '10%' }}>
           안녕 난 돌멩이.
         </Alert> */}
@@ -192,11 +227,13 @@ const MainPage = () => {
               setText(e.target.value);
             }}
           ></TextareaAutosize> */}
+
           <TextField
             id="text"
             value={msg1}
             name="text"
             fullWidth
+            onKeyDown={handleEnter}
             onChange={(e) => {
               setMsg1(e.target.value);
             }}

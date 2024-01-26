@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -45,6 +44,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Image from '../../../../assets/images/profile.PNG';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import axios from 'axios';
 
 // import WbCloudyIcon from '@mui/icons-material/WbCloudy';
 // ===========================|| FIREBASE - REGISTER ||=========================== //
@@ -86,8 +86,22 @@ const FirebaseRegister = ({ ...others }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // ====================================================================
+  // 필요한 객체
+  const session = localStorage;
+  const userId = session.getItem('loginId');
+  const [users, setUsers] = useState([]);
+  const getUser = () => {
+    axios.get(`/user/selectByNum?memberId=${userId}`).then((re) => {
+      setUsers(re.data);
+      console.log(re.data);
+    });
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
-  // const [pwcheck, setPwcheck] = useState('');
+  // ====================================================================
 
   return (
     <>
@@ -110,7 +124,7 @@ const FirebaseRegister = ({ ...others }) => {
               disableRipple
               disabled
             >
-              000 의 프로필
+              {users.memberId} 의 프로필
             </Button>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>
@@ -190,13 +204,8 @@ const FirebaseRegister = ({ ...others }) => {
             <Grid item xs={12} sx={{ pt: '16px !important' }}>
               <img src={Image} alt="testing" />
               <InputLabel>
-                {/* <WbCloudyIcon
-                  sx={{
-                    color: theme.palette.primary[200],
-                    cursor: 'pointer'
-                  }}
-                /> */}
-                이시돌
+                {/* 닉네임 출력위치 */}
+                <OutlinedInput value={users.memberNickname} />
               </InputLabel>
               {/* <OutlinedInput value={'이시돌'}></OutlinedInput> */}
             </Grid>
@@ -228,33 +237,11 @@ const FirebaseRegister = ({ ...others }) => {
               <Grid item xs={12} container alignItems="center" justifyContent="center"></Grid>
             </Grid>
 
-            <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-password-register">아이디</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password-register"
-                value={values.mid}
-                name="mid"
-                label="mid"
-                onBlur={handleBlur}
-                onChange={(e) => {
-                  setMid(e.target.value);
-                }}
-                inputProps={{}}
-                disabled
-              />
-              {touched.password && errors.password && (
-                <FormHelperText error id="standard-weight-helper-text-password-register">
-                  {errors.password}
-                </FormHelperText>
-              )}
-            </FormControl>
-
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-register">이름</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-name-register"
                 type="text"
-                value={values.mname}
+                value={users.memberName}
                 name="mname"
                 onBlur={handleBlur}
                 onChange={(e) => {
@@ -421,48 +408,6 @@ const FirebaseRegister = ({ ...others }) => {
               </LocalizationProvider>
             </Grid>
 
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                  }
-                  label={
-                    <Typography variant="subtitle1" component={Link} to="#">
-                      서비스 이용약관
-                    </Typography>
-                  }
-                />
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                  }
-                  label={
-                    <Typography variant="subtitle1" component={Link} to="#">
-                      서비스 이용약관
-                    </Typography>
-                  }
-                />
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                  }
-                  label={
-                    <Typography variant="subtitle1" component={Link} to="#">
-                      서비스 이용약관
-                    </Typography>
-                  }
-                />
-              </Grid>
-            </Grid>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
                 <FormHelperText error>{errors.submit}</FormHelperText>

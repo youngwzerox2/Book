@@ -1,0 +1,2 @@
+<!-- src/main/resources/mapper/YourEntityMapper.xml -->
+<mapper namespace="com.example.mapper.YourEntityMapper">

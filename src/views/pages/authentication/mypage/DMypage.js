@@ -86,7 +86,7 @@ const MainPage = () => {
         <Grid item maxWidth="700px">
           <img src={Telephone} alt="전화기" width="100%" />
         </Grid>
-        <Grid item maxWidth="700px" sx={{ position: 'absolute', top: '40%', left: '45%', opacity: '0.9' }}>
+        <Grid item maxWidth="700px" sx={{ position: 'absolute', top: '40%', left: '50%', transform: 'translateX(-50%)', opacity: '0.9' }}>
           <Link to="info">
             <AnimateButton>
               <Button

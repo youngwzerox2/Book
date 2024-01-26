@@ -20,16 +20,18 @@ import IconButton from '@mui/material/IconButton';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import { OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-// import MainFeaturedPost from './MainFeaturedPost';
+import MainFeaturedPost from './MainFeaturedPost';
+import BookLayout from './BookLayout';
 // -------------------------------------------------------------------------------------
 const defaultTheme = createTheme();
 
 export default function Blog() {
   const [viewContent, setViewContent] = useState([]);
-  const [stext, setStext] = useState('감자');
+  const [stext, setStext] = useState('절대 없을 제목');
+  const [isbn13, setIsbn13] = useState('');
 
-  // ------------------------------------------------------------------------------------
-  // 검색어에 따라 책을 검색해서 돌려주는 함수
+  // ================================================================================
+  // 검색어에 맞는 책 검색
   const boardLoad = () => {
     axios
       .get('/book/selectByTitle', { params: { bookname: stext } })
@@ -45,15 +47,17 @@ export default function Blog() {
     // console.log('viewContent 0번째 => ', viewContent[0]);
     boardLoad();
   }, []);
+  // ===================================================================================
 
-  // const mainFeaturedPost = {
-  //   title: 'Title of a longer featured blog post',
-  //   description:
-  //     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  //   image: 'https://source.unsplash.com/random?wallpapers',
-  //   imageText: 'main image description',
-  //   linkText: 'Continue reading…'
-  // };
+  const mainFeaturedPost = {
+    title: 'Title of a longer featured blog post',
+    description:
+      "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+    image: 'https://source.unsplash.com/random?wallpapers',
+    imageText: 'main image description',
+    linkText: 'Continue reading…'
+  };
+
   // -----------------------------------------------------------------------------------
 
   // if (nowpage === 'start') {
@@ -97,9 +101,6 @@ export default function Blog() {
   //       </Toolbar> */}
   //         </React.Fragment>
 
-  //         <main>
-  //           <MainFeaturedPost post={mainFeaturedPost} />
-  //         </main>
   //       </Container>
   //       <Footer title="Footer" description="Something here to give the footer a purpose!" />
   //     </ThemeProvider>
@@ -145,9 +146,20 @@ export default function Blog() {
           ))}
         </Toolbar> */}
         </React.Fragment>
-        {/* </Header> */}
-        {stext === '절대 없을 제목' && <div>하..</div>}
-        {stext != '절대 없을 제목' && (
+        {/* ========================================================================= */}
+        {/* 처음 시작 페이지 ========================================================= */}
+        {stext === '절대 없을 제목' && (
+          <main>
+            <MainFeaturedPost post={mainFeaturedPost} />
+          </main>
+        )}
+        {/* ========================================================================= */}
+        {/* 도서 상세 페이지 ========================================================= */}
+        {stext === 'isbn 기반 상세 페이지' && <BookLayout isbn={isbn13} />}
+
+        {/* ========================================================================= */}
+        {/* 검색 결과 페이지 ========================================================= */}
+        {stext != ('절대 없을 제목' && 'isbn 기반 상세 페이지') && (
           <main>
             <Grid item xs={12} md={12}>
               <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '1%' }}>
@@ -164,7 +176,8 @@ export default function Blog() {
                   <Grid item xs={12} md={12}>
                     <CardActionArea
                       onClick={() => {
-                        alert(booknum);
+                        setIsbn13(booknum);
+                        setStext('isbn 기반 상세 페이지');
                       }}
                     >
                       <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '1%' }}>

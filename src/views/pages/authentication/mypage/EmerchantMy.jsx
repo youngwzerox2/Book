@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import TicketMonthly from '../../../../assets/images/ticket_oneMonth.png';
 import { Container } from '@mui/system';
-import { Link } from 'react-router-dom';
 import MerchantList from './EmerchantMyList';
 
 export default function ImgMediaCard() {
@@ -24,9 +23,6 @@ export default function ImgMediaCard() {
             유효기간 만료 시 리드미 플러스 기능이 사라집니다.
           </Typography>
         </CardContent>
-        <Typography variant="body2" color="lightblue.500" component={Link} to="/pages/login/login3" sx={{ textDecoration: 'none' }}>
-          구독권 구매하기
-        </Typography>
       </Card>
       <Container>
         <MerchantList />

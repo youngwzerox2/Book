@@ -176,14 +176,16 @@ const MainPage = () => {
                   coords="556,718,556,577,543,535,573,572,613,539,640,546,648,580,694,574,710,533,704,584,701,715"
                   shape="poly"
                 />
-                <area
-                  target="_self"
-                  alt="도서 검색하기"
-                  title="도서 검색하기"
-                  role="presentation"
-                  coords="569,401,686,400,682,470,637,479,643,492,683,500,556,504,576,473"
-                  shape="poly"
-                />
+                <Link to="/readme/book">
+                  <area
+                    target="_self"
+                    alt="도서 검색하기"
+                    title="도서 검색하기"
+                    role="presentation"
+                    coords="569,401,686,400,682,470,637,479,643,492,683,500,556,504,576,473"
+                    shape="poly"
+                  />
+                </Link>
                 <area
                   target="_self"
                   alt="김이 모락모락 나는 따뜻한 커피"
