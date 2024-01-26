@@ -11,7 +11,5 @@ public interface UserRecommandedService {
     Recommanded selectByNum(String recommandedId);
 	
 	Integer write(Recommanded dto);
-	
-	Integer delete(String recommandedId);
 
 }

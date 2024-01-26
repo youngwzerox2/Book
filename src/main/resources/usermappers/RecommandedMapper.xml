@@ -49,13 +49,4 @@
         )
 	</insert>
 	
-	<!-- *** DELETE  *********************************************************** -->
-	<!-- 사용자의 추천 기록 삭제 -->
-	<delete id="delete"
-			parameterType="String">
-		DELETE
-		FROM	recommanded
-		WHERE	recommanded_num=#{recommandedNum}
-	</delete>
-	
 </mapper>

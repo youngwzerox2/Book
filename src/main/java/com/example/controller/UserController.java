@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.FileDTO;
 import com.example.domain.User;
 import com.example.userservice.UserUserServiceImpl;
 
@@ -28,6 +27,9 @@ public class UserController {
 			System.out.println("[UserController/selectByNum] 요청");
 			User result = userService.selectByNum(memberId);
 			System.out.println("[UserController/selectByNum] " + result);
+			if(result.getMemberNickname().equals(null) | result.getMemberNickname().equals("")) {
+				result.setMemberNickname("닉네임이 없습니다.");
+			}
 			return result;
 		} catch(Exception e) {
 			e.printStackTrace();

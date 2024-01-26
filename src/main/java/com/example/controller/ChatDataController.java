@@ -76,7 +76,7 @@ public class ChatDataController {
 
 	// 사용자의 채팅 내역 입력
 	@PostMapping("/recommend")
-	public Integer recommend(@RequestParam(name = "memberId") String memberId) {
+	public String recommend(@RequestParam(name = "memberId") String memberId) {
 		try {
 			System.out.println("[ChatDataController/recommend] 요청");
 			// String id = "test1";
@@ -98,7 +98,7 @@ public class ChatDataController {
 			System.out.println("요청된 문장: " + sentence);
 
 			// .py 파일 실행
-			String pythonFile = "src\\main\\resources\\static\\python\\client_test.py";
+			String pythonFile = "src\\main\\resources\\static\\python\\client_emotion.py";
 			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, memberId, sentence);
 			pb.directory(new File(System.getProperty("user.dir")));
 			Process process = pb.start();
@@ -123,10 +123,12 @@ public class ChatDataController {
 			String errorLine;
 			StringBuilder sb = new StringBuilder();
 
+			// 정상 출력
 			while ((line = reader.readLine()) != null) {
 				sb.append(line).append("\n");
 			}
 
+			// 에러 출력
 			while ((errorLine = error.readLine()) != null) {
 				System.err.println("[Error] > " + errorLine);
 			}
@@ -160,16 +162,15 @@ public class ChatDataController {
 			// System.out.println("ddto>" + ddto);
 			
 			// DB에 채팅 데이터 저장
-			Integer result = chatDataService.write(ddto);
+			chatDataService.write(ddto);
 
 			// 마지막 대화 terminate 'Y'로 바꾸기
 			chatLogService.terminateY(memberId);
 
-			return result;
-			// return 17;
+			return "지금 감정에 딱 맞는 책을 책장에 넣어두었어요. 함께 확인해 보실래요?";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return "채팅 기록이 없어요. 오늘의 이야기를 들려주세요.";
 		}
 	}
 

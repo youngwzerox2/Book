@@ -22,27 +22,17 @@ import re
 server1_url = "http://118.217.203.44:5100/analyze_emotion"  # 감정 예측
 server2_url = "http://118.217.203.44:5200/book_recommend"   # 책 추천
 
+# 현재 사용자의 member_id
 id = sys.argv[1]
+# 사용자가 입력한 문장
 msg = sys.argv[2]
+
+# [확인]
 # id = 'test15'
 # msg = '나 집에 갈래.'
 # print("Java에서 온 msg: ({}) {}".format(id, msg))
 
-# 현재 사용자의 id
-# id = session.get('id')
-# id = 'test2'
-
 # server1에 감정 분석 요청
-# sentences = []
-# while():  # 추천 버튼 누르기 전까지
-#     msg = input()
-#     msg = re.sub(r"^\s+|\s+$", "", msg)
-#     sentences.append(msg)
-
-# msg = ' '.join(sentences)
-
-# sentences = []  # 초기화
-
 response_server1 = requests.post(server1_url, json={'sentence': msg})
 
 if response_server1.status_code == 200:
