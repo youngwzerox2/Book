@@ -52,4 +52,10 @@
         INSERT INTO ask (ask_title, ask_content, ask_reply_time, notice_display, member_id) VALUES (#{noticeType}, #{noticeTitle}, #{noticeContent}, now(), 1, #{memberId})
     </insert> -->
 
+    <!-- 문의건수 -->
+    <select id="askCount" resultType="Ask">
+        SELECT ask_date
+        FROM ask;
+    </select>
+
 </mapper>

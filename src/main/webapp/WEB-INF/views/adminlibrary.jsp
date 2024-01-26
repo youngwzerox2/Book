@@ -9,7 +9,7 @@
     <style>
         #map {
             width: 100%;
-            height: 80vh;
+            height: 80vh; 
         }
     </style>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">

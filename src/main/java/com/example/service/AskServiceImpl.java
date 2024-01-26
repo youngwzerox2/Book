@@ -61,5 +61,12 @@ public class AskServiceImpl implements AskService{
         System.out.println("완료서비스");
         return askDAO.getAnsweredList();
     }
+
+    // 문의건수
+    @Override
+    public List<Ask> askCount() {
+        System.out.println("문의건수호출");
+        return askDAO.askCount();
+    }
     
 }

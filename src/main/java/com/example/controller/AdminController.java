@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.Ask;
 import com.example.domain.Book;
 import com.example.domain.Complain;
+import com.example.domain.KakaoLibrary;
 import com.example.domain.Notice;
 import com.example.domain.RecordDTO;
 import com.example.domain.User;
@@ -18,10 +20,13 @@ import com.example.service.AskService;
 import com.example.service.BookService;
 import com.example.service.ComplainService;
 import com.example.service.FaqService;
+import com.example.service.KakaoLibraryService;
 import com.example.service.NoticeService;
 import com.example.service.RecordService;
 import com.example.service.TermsService;
-import com.example.service.UserService;  
+import com.example.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;  
 
 @Controller
 public class AdminController {
@@ -58,6 +63,10 @@ public class AdminController {
     @Autowired
     private RecordService recordService;
 
+    // 회원 도서관
+    @Autowired
+    private KakaoLibraryService kakaoLibraryService;
+
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
         return step;
@@ -79,13 +88,19 @@ public class AdminController {
     //     System.out.println("index.jsp호출");
     // }
 
-    // 메인 제재명단
+    // 메인 제재명단, 문의건수
     @RequestMapping("/adminmain")
-    public void index(Model m) {
-        List<User> list = userService.memberList();
-        m.addAttribute("memberList", list);
+    public String index(Model m) {
+        List<User> user = userService.memberList();
+        m.addAttribute("memberList", user);
+        List<Ask> ask = askService.askCount();
+        m.addAttribute("askCount", ask);
         System.out.println("adminmain.jsp호출");
+
+        return "adminmain";
     }
+
+
 
     // *************************************** 회원 ****************************************
     // 회원관리
@@ -365,11 +380,60 @@ public class AdminController {
         System.out.println("charts.jsp호출");
     }
 
-    // *************************************** 도서관 ****************************************
+    // *************************************** 관리자 도서관 ****************************************
     // 도서관관리
     @RequestMapping("/adminlibrary")
     public void adminlibrary() {
         System.out.println("adminlibrary.jsp호출");
     }
+
+    // *************************************** 회원 도서관 ****************************************
+    // 회원 도서관 위치 부르기
+    @RequestMapping("/memberlibrary")
+    public String memberlibrary(Model m) {
+        List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
+
+        // 모델에 JSON 형식으로 데이터 추가
+        ObjectMapper objectMapper = new ObjectMapper();
+        String libraryLocationsJson;
+        try {
+            libraryLocationsJson = objectMapper.writeValueAsString(libraryLocations);
+            System.out.println(libraryLocationsJson);
+        } catch (JsonProcessingException e) {
+            // 예외 처리
+            e.printStackTrace();
+            libraryLocationsJson = "[]"; // 기본적으로 빈 배열로 설정
+        }
+
+        m.addAttribute("libraryLocations", libraryLocationsJson);
+        System.out.println("memberlibrary.jsp호출");
+        return "memberlibrary";
+    }
+
+    // @RequestMapping("/memberlibrary")
+    // public String memberlibrary(Model m) {
+    //     List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
+    //     m.addAttribute("libraryLocations", libraryLocations);
+    //     System.out.println("memberlibrary.jsp호출");
+    //     return "memberlibrary";
+    // }
+
+    // @RequestMapping("/memberlibrary")
+    // @ResponseBody
+    // public List<KakaoLibrary> memberlibrary() {
+    //     System.out.println("memberlibrary.jsp호출");
+    //     return kakaoLibraryService.getAllLocations();
+    // }
+
+    // @ResponseBody
+    // @RequestMapping("/memberlibrarydata")
+    // public List<KakaoLibrary> memberlibrarydata(Model m) {
+    //     List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
+    //     System.out.println("memberlibrarydata 호출");
+    //     return libraryLocations;
+    // }
+
+
+   
 }
 

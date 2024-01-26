@@ -27,4 +27,7 @@ public interface AskService {
 
     // 완료된 답변이 있는 문의 리스트
     List<Ask> getAnsweredList();
+
+    // 문의건수
+    List<Ask> askCount();
 }

@@ -31,4 +31,7 @@ public interface AskDAO {
     // 완료된 답변이 있는 문의 리스트
     public List<Ask> getAnsweredList();
 
+    // 문의 건수
+    public List<Ask> askCount();
+
 }
