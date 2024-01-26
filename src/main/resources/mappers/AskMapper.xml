@@ -53,9 +53,19 @@
     </insert> -->
 
     <!-- 문의건수 -->
-    <select id="askCount" resultType="Ask">
+    <!-- <select id="askCount" resultType="Ask">
         SELECT ask_date
         FROM ask;
+    </select> -->
+
+    <!-- 최근 7일간 문의건수 -->
+    <select id="dailyAsk" resultType="Ask">
+    SELECT DATE(ask_date) AS ask_date, COUNT(*) AS count
+    FROM ask
+    GROUP BY DATE(ask_date)
+    ORDER BY ask_date;
+    <!-- SELECT COUNT(ask_date) AS ask_date_count 
+    FROM ask; -->
     </select>
 
 </mapper>

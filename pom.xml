@@ -98,11 +98,30 @@
 			<version>3.0.1</version>
 		</dependency>
 		<!-- ElasticSearch -->
-<dependency>
-    <groupId>org.elasticsearch.client</groupId>
-    <artifactId>elasticsearch-rest-high-level-client</artifactId>
-    <version>7.10.1</version>
-</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+			<version>7.10.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- WebClient -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<!-- json 변환 -->
+		<!-- <dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20220126</version>
+		</dependency> -->
 
 	</dependencies>
 

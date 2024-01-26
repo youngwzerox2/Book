@@ -34,4 +34,7 @@ public interface AskDAO {
     // 문의 건수
     public List<Ask> askCount();
 
+    // 일별 문의건수
+    public List<Ask> dailyAsk();
+
 }

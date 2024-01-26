@@ -68,5 +68,12 @@ public class AskServiceImpl implements AskService{
         System.out.println("문의건수호출");
         return askDAO.askCount();
     }
+
+    // 일별 문의건수
+    @Override
+    public List<Ask> dailyAsk() {
+        System.out.println("dailyAskServiceImpl호출");
+        return askDAO.dailyAsk();
+    }
     
 }

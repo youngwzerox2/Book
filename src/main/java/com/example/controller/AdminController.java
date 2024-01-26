@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.domain.Ask;
 import com.example.domain.Book;
@@ -91,12 +94,14 @@ public class AdminController {
     // 메인 제재명단, 문의건수
     @RequestMapping("/adminmain")
     public String index(Model m) {
-        List<User> user = userService.memberList();
+        List<User> user = userService.memberList();             // 제재명단
         m.addAttribute("memberList", user);
-        List<Ask> ask = askService.askCount();
-        m.addAttribute("askCount", ask);
+        // List<Ask> ask = askService.askCount();
+        // m.addAttribute("askCount", ask);
+        List<Ask> dailyAsk = askService.dailyAsk();             // 일별 문의건수
+        m.addAttribute("dailyAsk", dailyAsk);
+        System.out.println(dailyAsk);
         System.out.println("adminmain.jsp호출");
-
         return "adminmain";
     }
 
@@ -406,8 +411,49 @@ public class AdminController {
         }
 
         m.addAttribute("libraryLocations", libraryLocationsJson);
-        System.out.println("memberlibrary.jsp호출");
+
+        // 각 libraryNum에 대한 외부 API 호출 및 응답 받기
+        List<String> apiResponses = new ArrayList<>();
+        String apiUrl = "https://data4library.kr/api/bookExist";
+        String authKey = "9ea76f31c20ce4c02d3eeb25892c0bd248634fd7a525883db2c87e65125d07d5";
+        String isbn13 = "8809105873012";
+
+        for (KakaoLibrary library : libraryLocations) {
+            String libCode = library.getLibraryNum(); // 또는 다른 방식으로 libraryNum을 가져와야 할 수 있음
+
+            String apiResponse = callExternalApi(apiUrl, authKey, libCode, isbn13);
+            apiResponses.add(apiResponse);
+             // 콘솔에 API 응답 출력
+            System.out.println("API 응답 for library " + libCode + ": " + apiResponse);
+
+        }
+
+        m.addAttribute("apiresponses", apiResponses);
+
+        System.out.println("memberlibrary.jsp 호출");
         return "memberlibrary";
+    }
+
+    private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
+        // WebClient를 사용해서 외부 API 호출
+        WebClient webClient = WebClient.create();
+
+        // API 호스트 정보 추가
+        URI uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
+                .queryParam("authKey", authKey)
+                .queryParam("libCode", libCode)
+                .queryParam("isbn13", isbn13)
+                .build()
+                .toUri();
+
+        // API 호출 및 응답 받기
+        String apiResponse = webClient.get()
+                .uri(uri)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        return apiResponse;
     }
 
     // @RequestMapping("/memberlibrary")

@@ -159,8 +159,8 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h3>문의 건수</h3>
-                                                <canvas id="myChart"
-                                                    style="max-height:35vh; max-width: 25vw; float: left;"></canvas>
+                                                <input type="hidden" id="dailyAsk" value="${dailyAsk}">
+                                                <canvas id="myChart" style="max-height:35vh; max-width: 25vw; float: left;"></canvas>
                                             </div>
                                         </div><!-- /# card -->
                                     </div><!-- /# column -->

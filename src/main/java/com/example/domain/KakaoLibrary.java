@@ -6,10 +6,10 @@ import lombok.Data;
 public class KakaoLibrary {
     
      // ******************************** 도서관 위치 **********************************************
-    private Integer libraryRegion; // 도서관 지역코드
-    private String  libraryName;   // 도서관 이름
-    private String  libraryLa;     // 도서관 위도
-    private String  libraryLo;     // 도서관 경도
-    private String  libraryNum;    // 도서관 코드
-
+    private Integer libraryRegion;      // 도서관 지역코드
+    private String  libraryName;        // 도서관 이름
+    private String  libraryLa;          // 도서관 위도
+    private String  libraryLo;          // 도서관 경도
+    private String  libraryNum;         // 도서관 코드
+    private String  libraryHomepage;    // 도서관 홈페이지
 }

@@ -1,63 +1,44 @@
-// 막대 바 그래프
-// Canvas 요소 가져오기
-//  const ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById("myChart").getContext('2d');
 
-// 데이터 설정
-const data = {
-  labels: [],
-  datasets: [{
-    label: '문의 건수',
-    data: [],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 99, 132, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(255, 99, 132, 1)'
-    ],
-    borderWidth: 1
-  }]
-};
-
-// Canvas 요소 가져오기
-const ctx = document.getElementById('myChart').getContext('2d');
-
-// 차트 생성
-const myChart = new Chart(ctx, {
-  type: 'bar', // 차트 유형 설정
-  data: data,   // 데이터 설정
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["24-01-17", "24-01-18", "24-01-19", "24-01-20", "24-01-21", "24-01-22", "24-01-23"],
+        datasets: [{
+            label: '문의건수',
+            data: [12, 19, 3, 5, 2, 3, 1, 2],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
     }
-  }
 });
-
-// 백엔드로 데이터 요청
-fetch('/adminmain')
-  .then(response => response.json())
-  .then(data => {
-    // 데이터 동적으로 채우기
-    myChart.data.labels = data.labels;
-    myChart.data.datasets[0].data = data.values;
-    myChart.update();  // 차트 업데이트
-  })
-  .catch(error => console.error('Error:', error));
-
-
 
 
 

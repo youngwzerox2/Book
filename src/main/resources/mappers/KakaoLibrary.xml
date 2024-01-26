@@ -9,6 +9,7 @@
     <select id="getAllLocations" resultType="KakaoLibrary">
         SELECT *
         FROM library
+        WHERE library_region = '23'
     </select>
 
 </mapper>

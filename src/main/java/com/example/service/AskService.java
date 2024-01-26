@@ -30,4 +30,7 @@ public interface AskService {
 
     // 문의건수
     List<Ask> askCount();
+
+    // 문의 일별 건수
+    List<Ask> dailyAsk();
 }
