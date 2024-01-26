@@ -2,53 +2,51 @@ package com.example.userservice;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.Liked;
+import com.example.userdao.UserLikedDAO;
 
 @Service
 public class UserLikedServiceImpl implements UserLikedService {
 
+    @Autowired
+    private UserLikedDAO likedDAO;
+
     @Override
     public List<Liked> selectByLiked() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectByLiked'");
+        return likedDAO.selectByLiked();
     }
 
     @Override
     public List<Liked> selectByUserUser(String memberId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectByUserUser'");
+        return likedDAO.selectByUserUser(memberId);
     }
 
     @Override
     public List<Liked> selectByUserBook(String memberId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectByUserBook'");
+        return likedDAO.selectByUserBook(memberId);
     }
 
     @Override
     public List<Liked> selectByUserBoard(String memberId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectByUserBoard'");
+        return likedDAO.selectByUserBoard(memberId);
     }
 
     @Override
     public List<Liked> selectByUserComment(String memberId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'selectByUserComment'");
+        return likedDAO.selectByUserComment(memberId);
     }
 
     @Override
     public Integer write(Liked dto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'write'");
+        return likedDAO.write(dto);
     }
 
     @Override
     public Integer delete(String likedNum) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        return likedDAO.delete(likedNum);
     }
     
 }

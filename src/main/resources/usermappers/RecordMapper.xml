@@ -10,15 +10,19 @@
 	<select id="selectByUser"
 			parameterType="String"
 			resultType="hashmap">
+		<![CDATA[
 		SELECT	 r.record_book_num		recordBookNum
 				 , r.record_book_time	recordBookTime
 				 , r.member_id			memberId
 				 , r.book_isbn13		bookIsbn13
 				 , b.bookname			bookname
+				 , b.bookImageURL		bookImageURL
 		FROM	 record r INNER JOIN book b
 						ON r.book_isbn13 = b.book_isbn13
 		WHERE	 r.member_id=#{memberId}
+					AND r.record_book_num > 100005000
 		ORDER BY r.record_book_time DESC
+		]]>
 	</select>
 	
 	<!-- 특정 기록 내용 출력 -->

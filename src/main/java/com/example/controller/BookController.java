@@ -49,4 +49,18 @@ public class BookController {
 		}
 	}
 
+	// 인기 도서 출력
+	@GetMapping("/selectHotbook")
+	public List<Book> selectHotbook() {
+		try {
+			System.out.println("[BookController/selectByNum] 요청");
+			List<Book> result = bookService.selectHotbook();
+			// System.out.println("[BookController/selectByNum] " + result);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

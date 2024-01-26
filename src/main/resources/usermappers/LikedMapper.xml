@@ -42,21 +42,21 @@
                  , l.liked_element        likedElement
                  , l.liked_time           likedTime
                  , u.member_name          memberName
-                 , u.nickname             nickName
-                 , u.grade                grade
+                 , u.member_nickname      memberNickName
+                 , u.member_grade         memberGrade
 		FROM	 liked l
                         INNER JOIN user u
                     ON l.liked_element = u.member_id
 		WHERE	 l.member_id=#{memberId}
                     AND l.liked_type='user'
-		ORDER BY l.likedTime DESC
+		ORDER BY l.liked_time DESC
 	</select>
 
     <!-- 한 명의 사용자가 등록한 도서 좋아요 출력 -->
 	<select id="selectByUserBook"
 			parameterType="String"
 			resultType="hashmap">
-		SELECT	 l.l.liked_num            likedNum
+		SELECT	 l.liked_num              likedNum
                  , l.member_id            memberId
                  , l.liked_type           likedType
                  , l.liked_element        likedElement
@@ -81,7 +81,7 @@
                     ON l.liked_element = b.book_isbn13
 		WHERE	 l.member_id=#{memberId}
                     AND l.liked_type='book'
-		ORDER BY l.likedTime DESC
+		ORDER BY l.liked_time DESC
 	</select>
 
     <!-- 한 명의 사용자가 등록한 게시글 좋아요 출력 -->
@@ -102,7 +102,7 @@
                     ON l.liked_element = cb.community_board_id
 		WHERE	 l.member_id=#{memberId}
                     AND l.liked_type='board'
-		ORDER BY l.likedTime DESC
+		ORDER BY l.liked_time DESC
 	</select>
 
     <!-- 한 명의 사용자가 등록한 댓글 좋아요 출력 -->
@@ -123,7 +123,7 @@
                     ON l.liked_element = cc.community_comment_id
 		WHERE	 l.member_id=#{memberId}
                     AND l.liked_type='comment'
-		ORDER BY l.likedTime DESC
+		ORDER BY l.liked_time DESC
 	</select>
 	
 	<!-- *** INSERT  *********************************************************** -->

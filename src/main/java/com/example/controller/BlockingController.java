@@ -80,7 +80,7 @@ public class BlockingController {
 	
 	// *** DELETE ***********************************************************
 	// 사용자의 신고 내역 삭제
-	@GetMapping("/delete")
+	@PostMapping("/delete")
 	public Integer delete(@RequestParam(name = "blockedNumber") String blockedNumber) {
 		try {
 			System.out.println("[BlockingController/delete] 요청");

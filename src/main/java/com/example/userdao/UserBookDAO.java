@@ -12,4 +12,6 @@ public interface UserBookDAO {
     List<Book> selectByTitle(String bookname);
     
     Book selectByNum(String bookIsbn13);
+
+    List<Book> selectHotbook();
 }
