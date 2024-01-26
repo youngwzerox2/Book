@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Card } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TicketMonthly from '../../../../assets/images/ticket_oneMonth.png';
 import TicketYearly from '../../../../assets/images/ticket_oneYear.png';
@@ -27,7 +26,6 @@ export default function ImgMediaCard() {
           <Typography variant="body2" color="text.secondary">
             재구매 하실 경우 구매 날짜부터 다시 유료서비스가 시작됩니다.
           </Typography>
-          <Button size="small">구매하기</Button>
         </CardContent>
       </Card>
       <Card sx={{ maxWidth: 720 }}>
@@ -48,7 +46,6 @@ export default function ImgMediaCard() {
           <Typography variant="body2" color="text.secondary">
             더욱 저렴한 정기구독권 구매가 가능합니다.
           </Typography>
-          <Button size="small">구매하기</Button>
         </CardContent>
       </Card>
       {/* <Divider></Divider> */}
@@ -77,7 +74,6 @@ export default function ImgMediaCard() {
           <Typography variant="body2" color="text.secondary">
             이후 결제는 한달구독권 또는 1년구독권만 가능합니다.
           </Typography>
-          <Button size="small">구매하기</Button>
         </CardContent>
       </Card>
     </Container>

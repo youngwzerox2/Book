@@ -48,7 +48,7 @@ export default function BasicTabs() {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
           <Tab label="구독권 소개" {...a11yProps(0)} />
           <Tab label="나의 구독권" {...a11yProps(1)} />
-          <Tab label="결제 관리" {...a11yProps(2)} />
+          <Tab label="구독권 구매" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

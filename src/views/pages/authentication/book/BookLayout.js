@@ -1,20 +1,20 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 // import GitHubIcon from '@mui/icons-material/GitHub';
 // import FacebookIcon from '@mui/icons-material/Facebook';
 // import XIcon from '@mui/icons-material/X';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from './Header';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import Header from './Header';
 // import MainFeaturedPost from './MainFeaturedPost';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 // import Main from './Main';
 // import Sidebar from './Sidebar';
-import Footer from './Footer';
+// import Footer from './Footer';
 // import post1 from './blog-post.1.md';
 // import post2 from './blog-post.2.md';
 // import post3 from './blog-post.3.md';
@@ -34,6 +34,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // const sections = [
 //   { title: 'Technology', url: '#' },
 //   { title: 'Design', url: '#' },
@@ -90,116 +93,148 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 //     { name: 'X', icon: XIcon },
 //     { name: 'Facebook', icon: FacebookIcon },
 //   ],
-// };
+// }
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+// const defaultTheme = createTheme();
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-export default function Blog() {
+
+export default function Blog({ isbn }) {
+  // var isbn13 = props.isbn;
+  const [bookc, setBookc] = useState([]);
+  const bookLoad = () => {
+    axios
+      .get('/book/selectByNum', { params: { bookIsbn13: isbn } })
+      .then((re) => {
+        console.log(re.data);
+        setBookc(re.data);
+      })
+      .catch((err) => console.log('에러 :', err));
+  };
+  useEffect(() => {
+    bookLoad();
+  }, []);
+
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        {/* <Header title="도서검색" sections={sections}> */}
-        <Header title="도서검색" sections={null}>
-          {/* <img src={Logo} alt="로고 이미지" /> */}
-        </Header>
-        <main>
-          {/* <MainFeaturedPost post={mainFeaturedPost} /> */}
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={12}>
-              <CardActionArea component="a" href="#">
-                <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '5%', marginBottom: '0%', padding: '5px' }}>
-                  <CardMedia
-                    component="img"
-                    sx={{ width: '30%', display: { xs: 'none', sm: 'block' } }}
-                    image="http://image.aladin.co.kr/product/106/32/cover/0152002170_2.jpg"
-                  />
-                  <CardContent sx={{ flex: 1 }}>
-                    <Typography component="h2" variant="h5" sx={{ margin: '2%' }}>
-                      이시돌은 손가락이 다섯개입니다
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
-                      발행년도 : 이시돌 생일
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
-                      저자 : 이시돌
-                    </Typography>
-                    <Typography variant="subtitle1" paragraph sx={{ margin: '2%' }}>
-                      책 내용 설명인데
-                    </Typography>
-                    <Button sx={{ position: 'absolute', top: '85%', right: '5%' }} variant="outlined">
-                      <LocalLibraryIcon />
-                      도서관 찾기
-                    </Button>
-                  </CardContent>
-                  <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-                </Card>
-              </CardActionArea>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <CardActionArea>
-                <Card sx={{ display: 'flex', marginLeft: '3%', marginTop: '0%', padding: '5px' }}>
-                  <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <AccountBoxIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="수육밥국" secondary="시간 날 때 읽어보기 좋은 정도. 독서를 처음하는 사람들도 ..." />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <AccountBoxIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="aleeece" secondary="평소 좋아하던 작가의 책이라 바로 읽어보았다. 하지만 내 기 ..." />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <AccountBoxIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary="지밍잉" secondary="무난함." />
-                    </ListItem>
-                    <Button sx={{ position: 'absolute', bottom: '5%', right: '3%' }}>더보기</Button>
-                  </List>
-                </Card>
-              </CardActionArea>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <CardActionArea>
-                <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '0%', padding: '5px' }}>
-                  <CardContent sx={{ flex: 1 }}>
-                    <Typography component="h2" variant="h6" sx={{ margin: '2%' }}>
-                      <ShoppingCartIcon /> 온라인 서점에서 구매하기
-                    </Typography>
-                    <Link href="https://www.yes24.com/Product/Search?domain=ALL&query=감자">
-                      <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
-                        <LocalLibraryIcon fontSize="small" /> 예스24로 이동하기
-                      </Typography>
-                    </Link>
-                    <Link href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=햄릿">
-                      <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
-                        <LocalLibraryIcon fontSize="small" /> 알라딘으로 이동하기
-                      </Typography>
-                    </Link>
-                    <Link href="https://search.kyobobook.co.kr/search?keyword=아기토끼&gbCode=TOT&target=total">
-                      <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
-                        <LocalLibraryIcon fontSize="small" /> 교보문고로 이동하기
-                      </Typography>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </CardActionArea>
-            </Grid>
-          </Grid>
-        </main>
-      </Container>
-      <Footer title="" description="검색결과가 도움이 되었나요?" />
-    </ThemeProvider>
+    // <ThemeProvider theme={defaultTheme}>
+    //   <CssBaseline />
+    //   <Container maxWidth="lg">
+    //     {/* <Header title="도서검색" sections={sections}> */}
+    //     <Header title="도서검색" sections={null}>
+    //       {/* <img src={Logo} alt="로고 이미지" /> */}
+    //     </Header>
+    <main>
+      {/* <MainFeaturedPost post={mainFeaturedPost} /> */}
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={12}>
+          <CardActionArea component="a" href="#">
+            <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '5%', marginBottom: '0%', padding: '5px' }}>
+              <CardMedia component="img" sx={{ width: '30%', display: { xs: 'none', sm: 'block' } }} image={bookc.bookImageUrl} />
+              <CardContent sx={{ flex: 1 }}>
+                <Typography component="h2" variant="h5" sx={{ margin: '2%' }}>
+                  {bookc.bookname}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
+                  발행년도 : {bookc.publicationYear}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary" sx={{ marginLeft: '2%' }}>
+                  저자 : {bookc.authors}
+                </Typography>
+                <Typography variant="subtitle1" paragraph sx={{ margin: '2%' }}>
+                  {bookc.description}
+                </Typography>
+                <Button sx={{ position: 'absolute', top: '85%', right: '5%' }} variant="outlined">
+                  <LocalLibraryIcon />
+                  도서관 찾기
+                </Button>
+              </CardContent>
+              <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+            </Card>
+          </CardActionArea>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <CardActionArea>
+            <Card sx={{ display: 'flex', marginLeft: '3%', marginTop: '0%', padding: '5px' }}>
+              <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountBoxIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="수육밥국" secondary="시간 날 때 읽어보기 좋은 정도. 독서를 처음하는 사람들도 ..." />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountBoxIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="aleeece" secondary="평소 좋아하던 작가의 책이라 바로 읽어보았다. 하지만 내 기 ..." />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountBoxIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="지밍잉" secondary="무난함." />
+                  <Link href="https://www.naver.com">
+                    <Typography fontSize="small">더보기</Typography>
+                  </Link>
+                </ListItem>
+              </List>
+            </Card>
+          </CardActionArea>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <CardActionArea>
+            <Card sx={{ display: 'flex', marginRight: '3%', marginLeft: '3%', marginTop: '0%', padding: '5px' }}>
+              <CardContent sx={{ flex: 1 }}>
+                <Typography component="h2" variant="h6" sx={{ margin: '2%' }}>
+                  <ShoppingCartIcon /> 온라인 서점에서 구매하기
+                </Typography>
+
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  sx={{ marginLeft: '2%' }}
+                  onClick={() => {
+                    window.open(`https://www.yes24.com/Product/Search?domain=ALL&query=${bookc.bookname}`);
+                  }}
+                >
+                  <LocalLibraryIcon fontSize="small" /> 예스24로 이동하기
+                </Typography>
+
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  sx={{ marginLeft: '2%' }}
+                  onClick={() => {
+                    window.open(`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${bookc.bookname}`);
+                  }}
+                >
+                  <LocalLibraryIcon fontSize="small" /> 알라딘으로 이동하기
+                </Typography>
+
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  sx={{ marginLeft: '2%' }}
+                  onClick={() => {
+                    window.open(`https://search.kyobobook.co.kr/search?keyword=${bookc.bookname}&gbCode=TOT&target=total`);
+                  }}
+                >
+                  <LocalLibraryIcon fontSize="small" /> 교보문고로 이동하기
+                </Typography>
+              </CardContent>
+            </Card>
+          </CardActionArea>
+        </Grid>
+      </Grid>
+    </main>
+    //   </Container>
+    //   <Footer title="" description="검색결과가 도움이 되었나요?" />
+    // </ThemeProvider>
   );
 }
