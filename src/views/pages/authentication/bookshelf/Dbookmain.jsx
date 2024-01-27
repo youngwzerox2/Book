@@ -243,7 +243,7 @@ const MainPage = () => {
                 <DialogActions>
                   <Button
                     onClick={() => {
-                      setChoosed('recommanded');
+                      setChoosed('hotbook');
                     }}
                   >
                     이동하기
