@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -394,92 +395,66 @@ public class AdminController {
 
     // *************************************** 회원 도서관 ****************************************
     // 회원 도서관 위치 부르기
-    @RequestMapping("/memberlibrary")
-    public String memberlibrary(Model m) {
-        List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
-
-        // 모델에 JSON 형식으로 데이터 추가
-        ObjectMapper objectMapper = new ObjectMapper();
-        String libraryLocationsJson;
-        try {
-            libraryLocationsJson = objectMapper.writeValueAsString(libraryLocations);
-            System.out.println(libraryLocationsJson);
-        } catch (JsonProcessingException e) {
-            // 예외 처리
-            e.printStackTrace();
-            libraryLocationsJson = "[]"; // 기본적으로 빈 배열로 설정
-        }
-
-        m.addAttribute("libraryLocations", libraryLocationsJson);
-
-        // 각 libraryNum에 대한 외부 API 호출 및 응답 받기
-        List<String> apiResponses = new ArrayList<>();
-        String apiUrl = "https://data4library.kr/api/bookExist";
-        String authKey = "9ea76f31c20ce4c02d3eeb25892c0bd248634fd7a525883db2c87e65125d07d5";
-        String isbn13 = "8809105873012";
-
-        for (KakaoLibrary library : libraryLocations) {
-            String libCode = library.getLibraryNum(); // 또는 다른 방식으로 libraryNum을 가져와야 할 수 있음
-
-            String apiResponse = callExternalApi(apiUrl, authKey, libCode, isbn13);
-            apiResponses.add(apiResponse);
-             // 콘솔에 API 응답 출력
-            System.out.println("API 응답 for library " + libCode + ": " + apiResponse);
-
-        }
-
-        m.addAttribute("apiresponses", apiResponses);
-
-        System.out.println("memberlibrary.jsp 호출");
-        return "memberlibrary";
-    }
-
-    private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
-        // WebClient를 사용해서 외부 API 호출
-        WebClient webClient = WebClient.create();
-
-        // API 호스트 정보 추가
-        URI uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .queryParam("authKey", authKey)
-                .queryParam("libCode", libCode)
-                .queryParam("isbn13", isbn13)
-                .build()
-                .toUri();
-
-        // API 호출 및 응답 받기
-        String apiResponse = webClient.get()
-                .uri(uri)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-
-        return apiResponse;
-    }
-
     // @RequestMapping("/memberlibrary")
     // public String memberlibrary(Model m) {
     //     List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
-    //     m.addAttribute("libraryLocations", libraryLocations);
-    //     System.out.println("memberlibrary.jsp호출");
+
+    //     // 모델에 JSON 형식으로 데이터 추가
+    //     ObjectMapper objectMapper = new ObjectMapper();
+    //     String libraryLocationsJson;
+    //     try {
+    //         libraryLocationsJson = objectMapper.writeValueAsString(libraryLocations);
+    //         // System.out.println(libraryLocationsJson);
+    //     } catch (JsonProcessingException e) {
+    //         // 예외 처리
+    //         e.printStackTrace();
+    //         libraryLocationsJson = "[]"; // 기본적으로 빈 배열로 설정
+    //     }
+    //     m.addAttribute("libraryLocations", libraryLocationsJson);
+
+    //     // 각 libraryNum에 대한 외부 API 호출 및 응답 받기
+    //     List<String> apiResponses = new ArrayList<>();
+    //     String apiUrl = "https://data4library.kr/api/bookExist";
+    //     String authKey = "9ea76f31c20ce4c02d3eeb25892c0bd248634fd7a525883db2c87e65125d07d5";
+    //     String isbn13 = "8809105873012";
+
+    //     for (KakaoLibrary library : libraryLocations) {
+    //         String libCode = library.getLibraryNum(); // 또는 다른 방식으로 libraryNum을 가져와야 할 수 있음
+    //         String apiResponse = callExternalApi(apiUrl, authKey, libCode, isbn13);
+    //         apiResponses.add(apiResponse);
+
+    //          // 콘솔에 API 응답 출력
+    //         System.out.println("API 응답 for library " + libCode + ": " + apiResponse);
+    //     }
+
+    //     m.addAttribute("apiresponses", apiResponses);
+    //     // System.out.println("apiResponses@@@@:"+ apiResponses);
+
+    //     System.out.println("memberlibrary.jsp 호출");
     //     return "memberlibrary";
     // }
 
-    // @RequestMapping("/memberlibrary")
-    // @ResponseBody
-    // public List<KakaoLibrary> memberlibrary() {
-    //     System.out.println("memberlibrary.jsp호출");
-    //     return kakaoLibraryService.getAllLocations();
+    // private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
+    //     // WebClient를 사용해서 외부 API 호출
+    //     WebClient webClient = WebClient.create();
+
+    //     // API 호스트 정보 추가
+    //     URI uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
+    //             .queryParam("authKey", authKey)
+    //             .queryParam("libCode", libCode)
+    //             .queryParam("isbn13", isbn13)
+    //             .build()
+    //             .toUri();
+
+    //     // API 호출 및 응답 받기
+    //     String apiResponse = webClient.get()
+    //             .uri(uri)
+    //             .retrieve()
+    //             .bodyToMono(String.class)
+    //             .block();
+
+    //     return apiResponse;
     // }
-
-    // @ResponseBody
-    // @RequestMapping("/memberlibrarydata")
-    // public List<KakaoLibrary> memberlibrarydata(Model m) {
-    //     List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
-    //     System.out.println("memberlibrarydata 호출");
-    //     return libraryLocations;
-    // }
-
-
    
 }
 

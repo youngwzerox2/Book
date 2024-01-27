@@ -116,13 +116,6 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
-		<!-- json 변환 -->
-		<!-- <dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20220126</version>
-		</dependency> -->
-
 		<!-- Email -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
