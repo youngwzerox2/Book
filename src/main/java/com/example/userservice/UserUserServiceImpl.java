@@ -1,5 +1,7 @@
 package com.example.userservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class UserUserServiceImpl implements UserUserService {
     }
 
     @Override
+    public User selectForFind(User dto) {
+        return userDAO.selectForFind(dto);
+    }
+
+    @Override
     public Integer write(User dto) {
         return userDAO.write(dto);
     }
@@ -25,6 +32,16 @@ public class UserUserServiceImpl implements UserUserService {
     @Override
     public Integer update(User dto) {
         return userDAO.update(dto);
+    }
+
+    @Override
+    public void changeToTempPw(String memberId, String tempPw) {
+        userDAO.changeToTempPw(memberId, tempPw);
+    }
+
+    @Override
+    public Integer checkId(String memberId) {
+        return userDAO.checkId(memberId);
     }
 
 }
