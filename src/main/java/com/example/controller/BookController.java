@@ -53,9 +53,9 @@ public class BookController {
 	@GetMapping("/selectHotbook")
 	public List<Book> selectHotbook() {
 		try {
-			System.out.println("[BookController/selectByNum] 요청");
+			System.out.println("[BookController/selectHotbook] 요청");
 			List<Book> result = bookService.selectHotbook();
-			// System.out.println("[BookController/selectByNum] " + result);
+			// System.out.println("[BookController/selectHotbook] " + result);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();

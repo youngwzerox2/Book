@@ -25,7 +25,7 @@ public class LibraryController {
 
     // 회원 도서관
     @RequestMapping("/memberlibrary")
-    public String memberlibrary(@RequestParam(name = "isbn13" ) String inputIsbn13, Model m) {
+    public String memberlibrary(@RequestParam(name = "isbn13") String inputIsbn13, Model m) {
         List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
         // 모델에 JSON 형식으로 데이터 추가
         ObjectMapper objectMapper = new ObjectMapper();
@@ -54,7 +54,7 @@ public class LibraryController {
         m.addAttribute("apiresponses", apiResponses);
         // System.out.println("apiResponses@@@@:"+ apiResponses);
         System.out.println("memberlibrary.jsp 호출");
-        return "http://114.207.167.88:8080/memberlibrary";
+        return "http://118.217.203.44:8080/library/memberlibrary";
     }
     private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
         // WebClient를 사용해서 외부 API 호출
