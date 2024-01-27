@@ -1,6 +1,12 @@
 package com.example.controller;
 
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.domain.User;
 import com.example.userservice.UserUserServiceImpl;
 
+import jakarta.mail.internet.MimeMessage;
+
 @RestController
 @RequestMapping("user")
 @CrossOrigin(origins = "http://118.217.203.37:3000")
@@ -18,6 +26,9 @@ public class UserController {
 
     @Autowired
     private UserUserServiceImpl userService;
+
+	@Autowired
+	private JavaMailSender javaMailSender;
 
     // *** SELECT ***********************************************************
 	// 특정 회원 정보 출력
@@ -78,4 +89,57 @@ public class UserController {
 			return null;
 		}
 	}
+
+	// *** Email 인증 ************************************************************
+    @PostMapping("/sendEmail")
+    public void sendEmail(@RequestParam(name = "memberEmail") String email) {
+		MimeMessage msg = javaMailSender.createMimeMessage();
+        try {
+            System.out.println("[UserController/sendEmail] 요청");
+
+            MimeMessageHelper helper = new MimeMessageHelper(msg, false, "UTF-8");
+			helper.setFrom("dzzg3@naver.com", "리드미");
+            helper.setTo(email);
+            helper.setSubject("ReadMe 회원가입 인증번호");
+            helper.setText("아래 보이는 숫자 6자리를 입력해 주세요.\n인증번호: " + getCode());
+
+            javaMailSender.send(msg);
+
+        } catch (MailException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static String getCode(){
+		
+		String str = "";
+
+		// 문자 배열 길이의 값을 랜덤으로 10개를 뽑아 구문을 작성함
+		for (int i = 0; i < 6; i++) {
+			int idx = (int) (Math.random() * 10);
+			str += String.valueOf(idx);
+		}
+		return str;
+	}
 }
+
+	class MyAuthentication extends Authenticator {
+
+		PasswordAuthentication pa;
+		public MyAuthentication(){
+	
+			String id = "dzzg3@naver.com";		// 이메일 아이디 ( 위에 발신자 이메일 )
+			String pw = "dzzg31234@@@";			// 비밀번호
+	
+			// ID와 비밀번호를 입력한다.
+			pa = new PasswordAuthentication(id, pw);
+		}
+	
+		// 시스템에서 사용하는 인증정보
+		public PasswordAuthentication getPasswordAuthentication() {
+			return pa;
+		}
+	}
+

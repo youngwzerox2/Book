@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserNoticeDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+    <!-- 공지사항 출력 -->
+    <select id="selectNotice"
+            resultType="hashmap">
+        SELECT   *
+        FROM     notice
+        WHERE    notice_type='notice'
+        ORDER BY notice_number DESC
+    </select>
+
+    <!-- FAQ 출력 -->
+    <select id="selectFAQ"
+            resultType="hashmap">
+        SELECT   *
+        FROM     notice
+        WHERE    notice_type='faq'
+        ORDER BY notice_number DESC
+    </select>
+
+    <!-- 앱 정보 출력 -->
+    <select id="selectInfo"
+            resultType="hashmap">
+        SELECT   *
+        FROM     notice
+        WHERE    notice_type='info'
+                    OR notice_type='terms'
+        ORDER BY notice_number DESC
+    </select>
+
+</mapper>

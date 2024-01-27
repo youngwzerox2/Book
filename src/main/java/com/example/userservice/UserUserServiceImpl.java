@@ -12,9 +12,6 @@ public class UserUserServiceImpl implements UserUserService {
     @Autowired
     private UserUserDAO userDAO;
 
-    // @Autowired
-    // private JavaMailSender javaMailSender;
-
     @Override
     public User selectByNum(String memberId) {
         return userDAO.selectByNum(memberId);
@@ -30,16 +27,4 @@ public class UserUserServiceImpl implements UserUserService {
         return userDAO.update(dto);
     }
 
-    // @Override
-    // public void sendEmail(String to, String subject, String body) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'sendEmail'");
-    // }
-
-    // @Override
-    // public String verificationCode() {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'verificationCode'");
-    // }
-    
 }

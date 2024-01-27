@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserComplainDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+    <!-- 특정 사용자의 신고 내역 출력 -->
+    <select id="selectComplain"
+            parameterType="String"
+            resultType="hashmap">
+        SELECT   *
+        FROM     complain
+        WHERE    member_id=#{memberId}
+    </select>
+
+</mapper>

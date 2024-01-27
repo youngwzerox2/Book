@@ -23,5 +23,10 @@ public class UserBookServiceImpl implements UserBookService {
     public Book selectByNum(String bookIsbn13) {
         return bookDAO.selectByNum(bookIsbn13);
     }
+
+    @Override
+    public List<Book> selectHotbook() {
+        return bookDAO.selectHotbook();
+    }
     
 }

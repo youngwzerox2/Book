@@ -10,7 +10,7 @@
 	<select id="selectByUser"
 			parameterType="String"
 			resultType="hashmap">
-        SELECT   
+        SELECT   *
         FROM     recommanded
         WHERE    member_id=#{memberId}
         ORDER BY recommanded_date DESC

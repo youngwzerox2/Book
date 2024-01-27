@@ -23,4 +23,15 @@
 		WHERE	book_isbn13=#{bookIsbn13}
 	</select>
 
+	<!-- 인기 도서 출력 -->
+	<select id="selectHotbook"
+			resultType="hashmap">
+		SELECT	 *
+		FROM	 book
+		WHERE	 book_isbn13 IN ('9791161571188','9788903871149','9788936438838','9788956516714',
+								 '9788985570329','9788986465631','9788986781137','9788995540077',
+								 '9788901260716','9791164134267','9791165341909','9791197377143')
+		ORDER BY ranking
+	</select>
+
 </mapper>
