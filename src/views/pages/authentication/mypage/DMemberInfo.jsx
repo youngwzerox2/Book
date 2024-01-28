@@ -22,7 +22,8 @@ import {
   Typography,
   //   FormLabel,
   RadioGroup,
-  Radio
+  Radio,
+  TextField
 } from '@mui/material';
 
 // import dayjs from 'dayjs';
@@ -238,7 +239,7 @@ const FirebaseRegister = ({ ...others }) => {
             </Grid>
 
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <OutlinedInput
+              <TextField
                 id="outlined-adornment-name-register"
                 type="text"
                 value={users.memberName}

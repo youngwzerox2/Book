@@ -20,7 +20,7 @@ const CMypage_notice = Loadable(lazy(() => import('views/pages/authentication/my
 const CMypage_block = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageBlock')));
 const CBookshelf = Loadable(lazy(() => import('views/pages/authentication/bookshelf/CBookshelf')));
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
-
+const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 // 시작페이지 readme/start
@@ -96,6 +96,10 @@ const AuthenticationRoutes = {
     {
       path: 'readme/book',
       element: <Books />
+    },
+    {
+      path: 'readme/map',
+      element: <Map />
     }
   ]
 };

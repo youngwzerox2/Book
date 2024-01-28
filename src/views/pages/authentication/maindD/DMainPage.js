@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
+import SendIcon from '@mui/icons-material/Send';
 
 const MainPage = () => {
   const theme = useTheme();
@@ -108,8 +109,8 @@ const MainPage = () => {
       </Grid>
 
       <FormControl fullWidth>
-        <Grid style={{ position: 'absolute', top: '43%', left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-          <Alert open={open} icon={false} severity="success" display="flex">
+        <Grid style={{ position: 'absolute', top: '70%', left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          <Alert open={open} icon={false} sx={{ backgroundColor: '#F9FBE7' }} severity="success" display="flex">
             <Typography textAlign="center">{reply}</Typography>
           </Alert>
         </Grid>
@@ -243,20 +244,21 @@ const MainPage = () => {
             id="chat-btn"
             onClick={insertTry}
             size="small"
-            color="inherit"
+            // color="inherit"
             type="submit"
             variant="contained"
             sx={{
               position: 'absolute',
-              width: '90px',
+              width: '50px',
               height: '40px',
               top: '0',
               bottom: '0',
               right: '5px',
-              margin: 'auto 0'
+              margin: 'auto 0',
+              backgroundColor: '#99A98F'
             }}
           >
-            전송
+            <SendIcon />
           </Button>
         </Grid>
       </FormControl>

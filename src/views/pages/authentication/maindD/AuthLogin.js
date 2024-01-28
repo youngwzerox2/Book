@@ -6,10 +6,10 @@ import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Button,
-  Checkbox,
+  // Checkbox,
   Divider,
   FormControl,
-  FormControlLabel,
+  // FormControlLabel,
   FormHelperText,
   Grid,
   IconButton,
@@ -41,7 +41,7 @@ const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const customization = useSelector((state) => state.customization);
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const googleHandler = async () => {
     location =
       'https://kauth.kakao.com/oauth/authorize?client_id=ee0b0d86ac0c50bc7ef7fed3d4991165&redirect_uri=http://118.217.203.37:3000/free/readme/main&response_type=code';
@@ -64,6 +64,9 @@ const FirebaseLogin = ({ ...others }) => {
     session.setItem('loginId', mid);
     session.setItem('loginPassword', mpassword);
     console.log(session.getItem('loginId'));
+    if (mpassword == '123') {
+      alert('비밀번호가 틀렸습니다');
+    }
     if (mid === '0woo' || mid === 'test1') {
       const answer = confirm('관리자 페이지로 이동하시겠습니까/');
       if (answer == true) {
@@ -87,7 +90,9 @@ const FirebaseLogin = ({ ...others }) => {
               variant="filled"
               sx={{
                 color: 'grey.50',
-                backgroundColor: theme.palette.grey[50],
+                // backgroundColor: theme.palette.grey[50],
+                backgroundColor: 'inherit',
+                padding: 0,
                 borderColor: theme.palette.grey[100]
               }}
             >
@@ -136,7 +141,7 @@ const FirebaseLogin = ({ ...others }) => {
         }}
         validationSchema={Yup.object().shape({
           // email: Yup.string().max(255).required('아이디를 입력해주세요'),
-          password: Yup.string().max(255).required('비밀번호를 입력해주세요')
+          // password: Yup.string().max(255).required('비밀번호를 입력해주세요')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -210,13 +215,13 @@ const FirebaseLogin = ({ ...others }) => {
               )}
             </FormControl>
             <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
                 }
                 label="로그인정보 기억하기"
-              />
-              <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+              /> */}
+              <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer', marginLeft: '5px' }}>
                 아이디/비밀번호 찾기
               </Typography>
             </Stack>

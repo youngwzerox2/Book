@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 // material-ui
 // import { useTheme } from '@mui/material/styles';
 // import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
@@ -19,6 +17,15 @@ const Register = () => {
   // testing1 컴포넌트에서 발생하는 이벤트
   // 1. 로고 클릭 시 main 페이지로 이동
 
+  const sess = localStorage;
+  const logOut = () => {
+    var answer = confirm('로그아웃하시겠습니까?');
+    if (answer == true) {
+      sess.removeItem('loginId');
+      location = '/free/readme/start';
+    }
+  };
+
   return (
     <>
       <Background>
@@ -28,18 +35,6 @@ const Register = () => {
               <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                 <BasicFrame>
                   <Grid container spacing={2} alignItems="center" justifyContent="center">
-                    {/* 이거 xs 에서 m 으로 늘리니까 칸 늘어남. 즉 여기서 칸 조절 -> 아님 이거 없애도 잘됨*/}
-                    {/* <Grid item m={12}>
-      <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">
-        <Grid item>
-          <Stack alignItems="center" justifyContent="center" spacing={1}>
-            <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-              Enter your credentials to continue
-            </Typography>
-          </Stack>
-        </Grid>
-      </Grid>
-    </Grid> */}
                     <Grid item xs={12} textAlign="center">
                       {/* 여기에 이미지 넣으면 크기 작게 들어감. */}
                       {/* <a href="http://localhost:3000/free/main"> */}
@@ -52,15 +47,7 @@ const Register = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <Grid item container direction="column" alignItems="center" xs={12}>
-                        <Typography
-                          component={Link}
-                          to="/readme/main"
-                          variant="subtitle1"
-                          sx={{ textDecoration: 'none' }}
-                          onClick={() => {
-                            confirm('로그아웃하시겠습니까?');
-                          }}
-                        >
+                        <Typography variant="subtitle1" sx={{ textDecoration: 'none' }} onClick={logOut}>
                           로그아웃
                         </Typography>
                       </Grid>

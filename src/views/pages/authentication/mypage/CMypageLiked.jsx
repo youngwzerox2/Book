@@ -7,7 +7,7 @@ import { Divider, Grid, Typography } from '@mui/material';
 // project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
-import Liked from './DMypageLiked';
+import Liked from './DLiked';
 // import AuthFooter from 'ui-component/cards/AuthFooter';
 // import imageTest from '../../../../assets/images/Untitled.png';
 import Logo from '../../../../assets/images/ReadMe2.png';
