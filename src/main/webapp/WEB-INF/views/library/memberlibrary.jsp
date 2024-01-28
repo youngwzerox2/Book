@@ -18,7 +18,7 @@
         // libraryLocations와 apiResponses를 JSP에서 읽음
         const libraryLocationsString = '${libraryLocations}';
         const parsedLibraryLocations = JSON.parse(libraryLocationsString);
-        console.log("도서관위치:", parsedLibraryLocations);
+        // console.log("도서관위치:", parsedLibraryLocations);
 
         // API 응답 데이터를 문자열로 받아오기
         const apiResponsesString = '${apiresponses}';
@@ -33,13 +33,19 @@
         const xmlDocArray = apiResponsesArray.map((xmlString) => parser.parseFromString(xmlString, 'application/xml'));
 
         // 파싱된 XML 문서들을 확인
-        console.log("파싱된 xml:", xmlDocArray);  
+        // console.log("파싱된 xml:", xmlDocArray);  
 
         // 'hasBook' 및 'loanAvailable' 값 얻기
         const hasBookValues = xmlDocArray.map(xmlDoc => xmlDoc.getElementsByTagName('hasBook')[0].textContent);
         const loanAvailableValues = xmlDocArray.map(xmlDoc => xmlDoc.getElementsByTagName('loanAvailable')[0].textContent);
 
-        console.log('hasBook 값:', hasBookValues);
+        // 알림창 띄우기
+        // if (loanAvailableValues[index] === 'N') {
+        //     alert(name + ' 도서관: 대출 가능한 도서가 없습니다.');
+        //     alert('test');
+        // }
+
+        // console.log('hasBook 값:', hasBookValues);
         console.log('loanAvailable 값:', loanAvailableValues);
 
         // 'loanAvailable' 값이 'Y'인 데이터 추출
@@ -48,18 +54,26 @@
             return loanAvailable === 'Y';
         });
 
+        console.log('available data:', availableData);
+
+        // 'loanAvailable' 값이 'N'인 데이터 추출
+        const unavailableData = xmlDocArray.filter(xmlDoc => {
+            const loanAvailable = xmlDoc.getElementsByTagName('loanAvailable')[0].textContent;
+            return loanAvailable === 'N';
+        });
+
+        console.log('Unavailable data:', unavailableData);
+
         // 'Y'인 도서관의 libCode를 가져오기
         const availableLibCodes = availableData.map(xmlDoc => xmlDoc.getElementsByTagName('libCode')[0].textContent);
+        
+        // console.log('availableLibCodes 값:', availableLibCodes);
 
-        console.log('loanAvailable이 Y인 데이터 개수:', availableData.length);
-        console.log('loanAvailable이 Y인 데이터:', availableData);
-        console.log('loanAvailable이 Y인 값의 libCode:', availableLibCodes);
-
-        console.log('API 호출데이터:', apiResponsesString);
         // console.log('loanAvailable이 Y인 데이터 개수:', availableData.length);
         // console.log('loanAvailable이 Y인 데이터:', availableData);
         // console.log('loanAvailable이 Y인 값의 libCode:', availableLibCodes);
 
+        // console.log('API 호출데이터:', apiResponsesString);
 
         // Kakao Maps SDK 비동기로 로드
         const script = document.createElement('script');
@@ -83,7 +97,8 @@
                 const showPositionButton = document.getElementById('showPositionButton');
                 showPositionButton.addEventListener('click', function () {
                     if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
+                        navigator.geolocation.getCurrentPosition(
+                            function (position) {
                             const userPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
                             // 사용자 위치에 마커 추가
                             const userMarker = new kakao.maps.Marker({
@@ -98,7 +113,11 @@
                             });
                             // 사용자 위치로 지도 이동
                             map.panTo(userPosition);
-                        });
+                        },
+                        function(error) {
+                            console.error('사용자 위치 가져오기 오류:', error);
+                        }
+                        );
                     } else {
                         alert('이 브라우저는 geolocation을 사용할 수 없어요..');
                     }
@@ -109,18 +128,19 @@
                     zIndex: 1
                 });
 
-                // function showInfowindow(marker, name) {
-                //     const content = `<div style="padding:5px;">${name}</div>`;
-                //     infowindow.setContent(content);
-                //     infowindow.open(map, marker);
-                // }
-
                 // 'Y'인 도서관을 찾아서 지도에 마커 표시
                 parsedLibraryLocations.forEach((location) => {
                     const libCode = location.libraryNum;
+                    console.log('libCode:', libCode);
+                    console.log('loanAvailableValues[availableLibCodes.indexOf(libCode)]:', loanAvailableValues[availableLibCodes.indexOf(libCode)]);
+
 
                     // 'Y'인 도서관만 처리
                     if (availableLibCodes.includes(libCode)) {
+                        const index = availableLibCodes.indexOf(libCode);
+
+                        console.log('loanAvailableValues[', index, ']:', loanAvailableValues[index]);
+
                         const markerPosition = new kakao.maps.LatLng(location.libraryLa, location.libraryLo);
                         // 마커 생성
                         const marker = new kakao.maps.Marker({
@@ -138,9 +158,6 @@
                         });
 
                         // 마커에 마우스 오버 이벤트 추가
-                        // kakao.maps.event.addListener(marker, 'mouseover', function () {
-                        //     showInfowindow(marker, location.libraryName); // 마우스 오버 시 인포윈도우 표시 함수 호출
-                        // });
                         kakao.maps.event.addListener(marker, 'mouseover', (function (name) {
                             return function () {
                                 // console.log("도서관 이름 확인:", name);
@@ -153,6 +170,11 @@
 
                                 infowindow.open(map, marker);
                                 // console.log("인포윈도우 열린 후"); // 콘솔에 로그 출력
+
+                                // 알림창 띄우기
+                                if (loanAvailableValues[index] === 'N') {
+                                    alert(name + ' 도서관: 대출 가능한 도서가 없습니다.');
+                                }
                             };
                         })(location.libraryName));
 
@@ -160,6 +182,7 @@
                         kakao.maps.event.addListener(marker, 'mouseout', function () {
                             infowindow.close();
                         });
+
                     }
                 });
 
@@ -168,6 +191,7 @@
 
 
     </script>
+    <!-- <script src="assets/js/memberlibrary.js"></script> -->
 </head>
 <body>
     <div id="map"></div>
