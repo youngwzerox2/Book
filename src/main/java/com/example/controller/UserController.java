@@ -53,6 +53,25 @@ public class UserController {
 			return null;
 		}
 	}
+
+	// 등급 조회
+	@GetMapping("/getGrade")
+	public Integer getGrade(@RequestParam(name = "memberId") String memberId) {
+		try {
+			System.out.println("[UserController/getGrade] 요청");
+			User result = userService.selectByNum(memberId);
+			String grade = result.getMemberGrade();
+
+			if(grade.equals("plus") || grade.equals("admin")) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	// *** INSERT ***********************************************************
 	// 회원가입

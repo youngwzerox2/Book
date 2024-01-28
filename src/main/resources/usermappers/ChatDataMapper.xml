@@ -10,8 +10,18 @@
 	<select id="selectByUser"
 			parameterType="String"
 			resultType="hashmap">
-		SELECT	 *
-		FROM	 chat_data
+		SELECT	 cd.chat_number			chatNumber
+				 , cd.member_id			memberId
+				 , cd.recommanded_book1	recommandedBook1
+				 , cd.recommanded_book2	recommandedBook2
+				 , cd.recommanded_book3	recommandedBook3
+				 , cd.picked_book		pickedBook
+				 , cd.emotion			emotion
+				 , cd.chat_data_date	chatDataDate
+				 , b.bookImageURL		bookImageURL
+		FROM	 chat_data cd
+						INNER JOIN book b
+				 ON cd.picked_book = b.book_isbn13
 		WHERE	 member_id=#{memberId}
 		ORDER BY chat_data_date DESC
 	</select>

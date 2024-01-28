@@ -15,5 +15,6 @@ public class ChatData {
 	private String	pickedBook;				// 사용자가 고른 책
 	private String	emotion;				// 예측한 감정
 	private Date	chatDataDate;			// 기록날짜
+	private String	bookImageURL;			// 책 이미지
 	
 }

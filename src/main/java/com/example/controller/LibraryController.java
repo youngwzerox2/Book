@@ -18,6 +18,7 @@ import com.example.service.KakaoLibraryService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+// @RestController
 @Controller
 @RequestMapping("library")
 @CrossOrigin(origins = "http://118.217.203.37:3000")
@@ -60,6 +61,7 @@ public class LibraryController {
         System.out.println("memberlibrary.jsp 호출");
         // return "memberlibrary";
     }
+
     private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
         // WebClient를 사용해서 외부 API 호출
         WebClient webClient = WebClient.create();
