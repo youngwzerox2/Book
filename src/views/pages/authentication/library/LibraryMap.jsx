@@ -1,10 +1,26 @@
+// import { Button } from '@mui/material';
+// import Background from '../Abackground';
+// import BasicFrame from '../BstartPage';
+// export default Mapping = () => {
+
+//   return (
+//     <Background>
+//       <BasicFrame>
+//         {' '}
+//         <div>
+//           <Button onClick={clicked}>버튼</Button>
+//         </div>
+//       </BasicFrame>
+//     </Background>
+//   );
+// };
 import * as React from 'react';
 import { Box, Card, Button } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import EmptyCase from '../../../../assets/images/bookcaseB_empty.png';
 import CreateIcon from '@mui/icons-material/Create';
 import { useState } from 'react';
-import RecordWrite from './ErecordWrite';
+import RecordWrite from '../bookshelf/ErecordWrite';
 import axios from 'axios';
 import { useEffect } from 'react';
 export default function ImgMediaCard() {
@@ -14,10 +30,10 @@ export default function ImgMediaCard() {
   // 데이터 로드 시 받아올 변수
   const [viewContent, setViewContent] = useState([]);
   // 데이터 받아올 함수
-  const sess = localStorage;
+  // const sess = localStorage;
   const boardLoad = () => {
     axios
-      .get(`/recommanding/selectByUser?memberId=${sess.getItem('loginId')}`)
+      .get(`/book/selectHotbook`)
       .then((re) => setViewContent(re.data))
       .catch((err) => console.log('[에러!!', err));
   };
@@ -25,6 +41,10 @@ export default function ImgMediaCard() {
     boardLoad();
     console.log(viewContent[0]);
   }, []);
+
+  const mapping = () => {
+    window.open('https://114.207.167.88:8080/library/memberlibrary?isbn13=9788900005738');
+  };
 
   // 도서 아이콘 클릭 시 해당하는 도서의 상세정보로 이동
   // const getBook = ()=>{
@@ -39,7 +59,6 @@ export default function ImgMediaCard() {
               sx={{ position: 'absolute', top: '6%', left: '27%' }}
               onClick={() => {
                 // setOpen1(false);
-                alert(`${viewContent[0].recordBookNum}`);
               }}
             >
               {viewContent[0] != undefined && <img src={viewContent[0].bookImageURL} alt="이미지입니다" height="100px" />}
@@ -79,9 +98,7 @@ export default function ImgMediaCard() {
                 alert('11');
               }}
             >
-              {viewContent[10] != undefined && (
-                <img src="https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg" alt="이미지입니다" height="100px" />
-              )}
+              {viewContent[10] != undefined && <img src={viewContent[10].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
             <Box
               sx={{ position: 'absolute', top: '74%', left: '63%' }}
@@ -89,9 +106,7 @@ export default function ImgMediaCard() {
                 alert('setOpen12였음');
               }}
             >
-              {viewContent[11] != undefined && (
-                <img src="https://image.aladin.co.kr/product/26942/84/cover/k582730818_1.jpg" alt="이미지입니다" height="100px" />
-              )}
+              {viewContent[11] != undefined && <img src={viewContent[11].bookImageURL} alt="이미지입니다" height="100px" />}
             </Box>
 
             <Button
@@ -112,13 +127,7 @@ export default function ImgMediaCard() {
             >
               <CreateIcon fontSize="small" />
             </Button>
-            <Button
-              variant="contained"
-              sx={{ position: 'absolute', top: '93%', right: '2%' }}
-              onClick={() => {
-                setRecord('write');
-              }}
-            >
+            <Button variant="contained" sx={{ position: 'absolute', top: '93%', right: '2%' }} onClick={mapping}>
               <CreateIcon fontSize="small" />
             </Button>
           </>

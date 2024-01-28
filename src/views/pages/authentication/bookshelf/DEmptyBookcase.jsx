@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Card } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
-import EmptyCase from '../../../../assets/images/emptyCase.png';
+import EmptyCase from '../../../../assets/images/bookcaseB_empty.png';
 import SingleBook from '../../../../assets/images/book360.png';
 
 export default function ImgMediaCard() {

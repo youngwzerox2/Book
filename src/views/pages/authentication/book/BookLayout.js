@@ -100,6 +100,9 @@ import { useState } from 'react';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function Blog({ isbn }) {
+  const libraryBtn = () => {
+    axios.get(`/library/memberlibrary?isbn13=${isbn}`);
+  };
   // var isbn13 = props.isbn;
   const [bookc, setBookc] = useState([]);
   const bookLoad = () => {
@@ -143,7 +146,7 @@ export default function Blog({ isbn }) {
                 <Typography variant="subtitle1" paragraph sx={{ margin: '2%' }}>
                   {bookc.description}
                 </Typography>
-                <Button sx={{ position: 'absolute', top: '85%', right: '5%' }} variant="outlined">
+                <Button sx={{ position: 'absolute', top: '85%', right: '5%' }} variant="outlined" onClick={libraryBtn}>
                   <LocalLibraryIcon />
                   도서관 찾기
                 </Button>

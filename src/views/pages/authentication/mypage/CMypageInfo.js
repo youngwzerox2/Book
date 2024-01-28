@@ -7,7 +7,7 @@ import { Divider, Grid, Typography } from '@mui/material';
 // project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
-import MemberInfo from './DMemberInfo';
+import MemberInfo from './DInfoDemo';
 // import AuthFooter from 'ui-component/cards/AuthFooter';
 // import imageTest from '../../../../assets/images/Untitled.png';
 import Logo from '../../../../assets/images/ReadMe2.png';
@@ -38,8 +38,8 @@ const Register = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <Grid item container direction="column" alignItems="center" xs={12}>
-                        <Typography component={Link} to="/readme/mypage" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-                          뒤로가기
+                        <Typography component={Link} to="/readme/start" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                          로그아웃
                         </Typography>
                       </Grid>
                     </Grid>

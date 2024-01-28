@@ -25,7 +25,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import PaidIcon from '@mui/icons-material/Paid';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import Telephone from '../../../../assets/images/deskSample.png';
+import Telephone from '../../../../assets/images/desk.png';
 import { Link } from 'react-router-dom';
 // -------------------------------------------------------------------------------
 const MainPage = () => {
@@ -90,7 +90,7 @@ const MainPage = () => {
           <Link to="info">
             <AnimateButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 size="large"
                 sx={{
@@ -110,7 +110,7 @@ const MainPage = () => {
           <Link to="pay">
             <AnimateButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 size="large"
                 sx={{
@@ -130,7 +130,7 @@ const MainPage = () => {
           <Link to="liked">
             <AnimateButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 size="large"
                 sx={{
@@ -150,7 +150,7 @@ const MainPage = () => {
           <Link to="blocked">
             <AnimateButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 size="large"
                 sx={{
@@ -170,7 +170,7 @@ const MainPage = () => {
           <Link to="/readme/cs">
             <AnimateButton>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 size="large"
                 sx={{
@@ -188,7 +188,7 @@ const MainPage = () => {
           </Link>
         </Grid>
         <Link to="/readme/main">
-          <Button variant="contained" sx={{ position: 'absolute', top: '85%', left: '48%' }}>
+          <Button variant="contained" sx={{ position: 'absolute', top: '85%', left: '48%', backgroundColor: '#99627A' }}>
             뒤로가기
           </Button>
         </Link>
