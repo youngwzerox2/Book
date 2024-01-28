@@ -14,9 +14,6 @@ import { useSelector } from 'react-redux';
 // import { width } from '@mui/system';
 
 import Myrecord from './EbookRecord';
-import MyRecommanding from './EbookRecommanding';
-import Recommanded from './EbookRecommanded';
-import HotBook from './EhotBook';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -180,13 +177,9 @@ const MainPage = () => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button
-                    onClick={() => {
-                      setChoosed('recommanding');
-                    }}
-                  >
-                    이동하기
-                  </Button>
+                  <Link to="recommanding">
+                    <Button>이동하기</Button>
+                  </Link>
                   <Button onClick={handleClose1} autoFocus>
                     닫기
                   </Button>
@@ -221,13 +214,9 @@ const MainPage = () => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button
-                    onClick={() => {
-                      setChoosed('recommanded');
-                    }}
-                  >
-                    이동하기
-                  </Button>
+                  <Link to="recommanded">
+                    <Button>이동하기</Button>
+                  </Link>
                   <Button onClick={handleClose3} autoFocus>
                     닫기
                   </Button>
@@ -241,24 +230,17 @@ const MainPage = () => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button
-                    onClick={() => {
-                      setChoosed('hotbook');
-                    }}
-                  >
-                    이동하기
-                  </Button>
-                  <Button onClick={handleClose4} autoFocus>
-                    닫기
-                  </Button>
+                  <Link to="hotbook">
+                    <Button>이동하기</Button>
+                    <Button onClick={handleClose4} autoFocus>
+                      닫기
+                    </Button>
+                  </Link>
                 </DialogActions>
               </Dialog>
             </>
           )}
           {choosed === 'myrecord' && <Myrecord />}
-          {choosed === 'recommanding' && <MyRecommanding />}
-          {choosed === 'recommanded' && <Recommanded />}
-          {choosed === 'hotbook' && <HotBook />}
         </FormControl>
       </React.Fragment>
     </>

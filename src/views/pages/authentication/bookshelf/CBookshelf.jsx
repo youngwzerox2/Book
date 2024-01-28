@@ -7,7 +7,7 @@ import { Divider, Grid, Typography } from '@mui/material';
 // project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
-import Bookshelf from './Dbookmain';
+import Bookshelf from './MainBookshelf';
 // import imageTest from '../../../../assets/images/Untitled.png';
 import Logo from '../../../../assets/images/ReadMe2.png';
 // assets
@@ -32,10 +32,6 @@ const Register = () => {
                     <Grid item xs={12} textAlign="center">
                       <img id="logo-image" src={Logo} alt="logo" width="250px" />
                       {choosed === 'main' && <Bookshelf />}
-                      {choosed === 'bookshelf' && <div>책장 테스트</div>}
-                      {choosed === 'calendar' && <div>달력 테스트</div>}
-                      {choosed === 'desk' && <div>책상</div>}
-                      {choosed === 'door' && <div>외출</div>}
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />

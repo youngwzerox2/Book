@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import * as React from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
@@ -15,8 +15,12 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  List,
+  ListItem,
+  ListItemText,
   OutlinedInput,
   Stack,
+  TextField,
   Typography
 } from '@mui/material';
 
@@ -34,10 +38,26 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Kakao from 'assets/images/kakao_login_medium_wide.png';
 // import axios from 'axios';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
+  const style = {
+    py: 0,
+    width: '100%',
+    marginTop: '15px',
+    maxWidth: 600,
+    borderRadius: 2,
+    border: '1px solid',
+    borderColor: 'divider',
+    backgroundColor: 'background.paper'
+  };
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const customization = useSelector((state) => state.customization);
@@ -66,15 +86,50 @@ const FirebaseLogin = ({ ...others }) => {
     console.log(session.getItem('loginId'));
     if (mpassword == '123') {
       alert('비밀번호가 틀렸습니다');
-    }
-    if (mid === '0woo' || mid === 'test1') {
-      const answer = confirm('관리자 페이지로 이동하시겠습니까/');
-      if (answer == true) {
-        location = 'http://localhost:8080/adminmain';
-      }
     } else {
-      window.location.replace('/free/readme/main');
+      if (mid === '0woo' || mid === 'test1') {
+        const answer = confirm('관리자 페이지로 이동하시겠습니까/');
+        if (answer == true) {
+          location = 'http://localhost:8080/adminmain';
+        }
+      } else {
+        window.location.replace('/free/readme/main');
+      }
     }
+  };
+
+  // --------------------------------------------------------------
+  // 아이디/비밀번호 찾기
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [mtel, setMtel] = useState('');
+  const [mname, setMname] = useState('');
+  const [memId, setMemId] = useState('');
+
+  const searchId = () => {
+    axios.post(`/user/findId?memberName=${mname}&memberTel=${mtel}`).then((re) => {
+      if (re.data == 1) {
+        alert('이메일이 발송되었습니다.');
+      } else {
+        alert('해당 정보에 일치하는 아이디가 없습니다');
+      }
+    });
+  };
+
+  const searchPw = () => {
+    axios.post(`/user/findPw?memberName=${mname}&memberTel=${mtel}&memberId=${memId}`).then((re) => {
+      if (re.data == 1) {
+        alert('이메일이 발송되었습니다');
+      } else {
+        alert('해당 정보에 해당하는 계정이 없습니다. 다시 확인해주세요');
+      }
+    });
   };
 
   return (
@@ -221,9 +276,143 @@ const FirebaseLogin = ({ ...others }) => {
                 }
                 label="로그인정보 기억하기"
               /> */}
-              <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer', marginLeft: '5px' }}>
-                아이디/비밀번호 찾기
-              </Typography>
+              <React.Fragment>
+                <Typography
+                  onClick={handleClickOpen}
+                  variant="subtitle1"
+                  color="secondary"
+                  sx={{ textDecoration: 'none', cursor: 'pointer', marginLeft: '5px' }}
+                >
+                  아이디/비밀번호 찾기
+                </Typography>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    component: 'form',
+                    onSubmit: (event) => {
+                      event.preventDefault();
+                      const formData = new FormData(event.currentTarget);
+                      const formJson = Object.fromEntries(formData.entries());
+                      const email = formJson.email;
+                      console.log(email);
+                      handleClose();
+                    }
+                  }}
+                >
+                  <DialogTitle>아이디/비밀번호 찾기</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      이름과 전화번호를 입력해주시면 일치하는 회원정보를 찾아 가입하셨던 이메일 주소로 계정 정보를 보내드립니다.
+                    </DialogContentText>
+                    <List sx={style}>
+                      <ListItem>
+                        <ListItemText>아이디 찾기</ListItemText>
+                      </ListItem>
+                      <Divider component="li" />
+                      <ListItem>
+                        <TextField
+                          autoFocus
+                          required
+                          margin="dense"
+                          id="name"
+                          name="memberName"
+                          label="이름"
+                          type="text"
+                          fullWidth
+                          variant="standard"
+                          onChange={(e) => {
+                            setMname(e.target.value);
+                          }}
+                        />
+                      </ListItem>
+                      <Divider component="li" />
+                      <ListItem>
+                        <TextField
+                          autoFocus
+                          required
+                          margin="dense"
+                          id="memberTel"
+                          name="email"
+                          label="전화번호"
+                          type="tel"
+                          fullWidth
+                          variant="standard"
+                          onChange={(e) => {
+                            setMtel(e.target.value);
+                          }}
+                        />
+                      </ListItem>
+
+                      <Button sx={{ left: '50%', transform: 'translateX(-50%)' }} onClick={searchId}>
+                        이메일 받기
+                      </Button>
+                    </List>
+                    <List sx={style}>
+                      <ListItem>
+                        <ListItemText>비밀번호 찾기</ListItemText>
+                      </ListItem>
+                      <Divider component="li" />
+                      <ListItem>
+                        <TextField
+                          autoFocus
+                          required
+                          margin="dense"
+                          id="name"
+                          name="memberName"
+                          label="이름"
+                          type="text"
+                          fullWidth
+                          variant="standard"
+                          onChange={(e) => {
+                            setMname(e.target.value);
+                          }}
+                        />
+                      </ListItem>
+                      <Divider component="li" />
+                      <ListItem>
+                        <TextField
+                          autoFocus
+                          required
+                          margin="dense"
+                          id="memberTel"
+                          name="email"
+                          label="전화번호"
+                          type="tel"
+                          fullWidth
+                          variant="standard"
+                          onChange={(e) => {
+                            setMtel(e.target.value);
+                          }}
+                        />
+                      </ListItem>
+                      <Divider component="li" />
+                      <ListItem>
+                        <TextField
+                          autoFocus
+                          required
+                          margin="dense"
+                          id="memberId"
+                          name="email"
+                          label="아이디"
+                          type="memberId"
+                          fullWidth
+                          variant="standard"
+                          onChange={(e) => {
+                            setMemId(e.target.value);
+                          }}
+                        />
+                      </ListItem>
+                      <Button sx={{ left: '50%', transform: 'translateX(-50%)' }} onClick={searchPw}>
+                        이메일 받기
+                      </Button>
+                    </List>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>닫기</Button>
+                  </DialogActions>
+                </Dialog>
+              </React.Fragment>
             </Stack>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
