@@ -1,7 +1,5 @@
 package com.example.userservice;
 
-import java.util.List;
-
 import com.example.domain.User;
 
 public interface UserUserService {

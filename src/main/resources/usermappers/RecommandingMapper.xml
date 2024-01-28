@@ -8,12 +8,27 @@
 	<!-- *** SELECT *********************************************************** -->
 	<!-- 한 명의 사용자가 작성한 모든 추천 기록 출력 -->
 	<select id="selectByUser"
-			parameterType="String"
-			resultType="hashmap">
-        SELECT   recommanding_id, recommanding_book_time, recommanding_title, member_id
-        FROM     recommanding
-        WHERE    member_id=#{memberId}
-        ORDER BY recommanding_book_time DESC
+                parameterType="String"
+                resultType="hashmap">
+                SELECT   r.recommanding_id             recommandingId
+                        , r.recommanding_book_time     recommandingBookTime
+                        , r.recommanding_title         recommandingTitle
+                        , r.recommanding_book_content  recommandingBookContent
+                        , r.recommanding_agree         recommandingAgree
+                        , r.recommanding_book_no1      recommandingBookNo1
+                        , r.recommanding_tag           recommandingTag
+                        , r.book_isbn1                 bookIsbn1
+                        , r.book_isbn2                 bookIsbn2
+                        , r.book_isbn3                 bookIsbn3
+                        , r.book_isbn4                 bookIsbn4
+                        , r.book_isbn5                 bookIsbn5
+                        , r.member_id                  memberId
+                        , b.bookImageURL               bookImageURL
+                FROM     recommanding r
+                                INNER JOIN book b
+                        ON r.book_isbn1 = b.book_isbn13
+                WHERE    r.member_id=#{memberId}
+                ORDER BY r.recommanding_book_time DESC
 	</select>
 	
 	<!-- 특정 기록 내용 출력 -->

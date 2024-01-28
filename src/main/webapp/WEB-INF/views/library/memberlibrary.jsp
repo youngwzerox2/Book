@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -165,8 +164,6 @@
 
             });
         };
-
-
     </script>
 </head>
 <body>
@@ -174,6 +171,5 @@
     <button id="showPositionButton">현재 위치 표시</button>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=48ce9248aa11f6b0e1b6054fdeaa1e8c&libraries=services"></script>
-    
 </body>
 </html>
