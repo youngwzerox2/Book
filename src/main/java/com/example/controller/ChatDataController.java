@@ -1,12 +1,9 @@
 package com.example.controller;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,9 +47,9 @@ public class ChatDataController {
 	@GetMapping("/selectByNum")
 	public ChatData selectByNum(@RequestParam(name = "chatNumber") String chatNumber) {
 		try {
-			System.out.println("[ChatDataController/selectByNum] 요청");
+			// System.out.println("[ChatDataController/selectByNum] 요청");
 			ChatData result = chatDataService.selectByNum(chatNumber);
-			System.out.println("[ChatDataController/selectByNum] " + result);
+			// System.out.println("[ChatDataController/selectByNum] " + result);
 			return result;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -104,11 +101,11 @@ public class ChatDataController {
 			Process process = pb.start();
 
 			// .py로 문자열 전달
-			OutputStream outputStream = process.getOutputStream();
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-			System.out.println("python으로 전달 > " + sentence);
-			writer.write("msg=" + sentence + "\n");
-			writer.close();
+			// OutputStream outputStream = process.getOutputStream();
+			// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+			// System.out.println("python으로 전달 > " + sentence);
+			// writer.write("msg=" + sentence + "\n");
+			// writer.close();
 
 			// 프로세스 종료 대기
             int exitCode = process.waitFor();
@@ -185,7 +182,7 @@ public class ChatDataController {
 	// 추천 책 세 개 중 선택한 책 isbn 저장
 	@PostMapping("/pickBook")
 	public void pickBook(@RequestParam(name = "chatNumber") String chatNumber,
-							@RequestParam(name = "bookIsbn13") String bookIsbn13) {
+						 @RequestParam(name = "bookIsbn13") String bookIsbn13) {
 		System.out.println("[ChatLogController/pickBook] 요청");
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("chatNumber", chatNumber);

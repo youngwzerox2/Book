@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.userdao.UserLibraryDAO">
+
+	<!-- *** SELECT *********************************************************** -->
+    <!-- 연령대별 책장 -->
+    <select id="ageBookshelf"
+            parameterType="String"
+            resultType="hashmap">
+        SELECT   *
+        FROM     user
+        <where>
+            <choose>
+                <when test="selectedAge == 10">
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 < 20]]>
+                </when>
+                <when test="selectedAge == 20">
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 BETWEEN 20 AND 29]]>
+                </when>
+                <when test="selectedAge == 30">
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 BETWEEN 30 AND 39]]>
+                </when>
+                <when test="selectedAge == 40">
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 BETWEEN 40 AND 49]]>
+                </when>
+                <when test="selectedAge == 50">
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 BETWEEN 50 AND 59]]>
+                </when>
+                <otherwise>
+                    <![CDATA[YEAR(now()) - YEAR(member_birthday) + 1 >= 60]]>
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 랭킹 책장 -->
+    <select id="rankingBookshelf"
+            resultType="hashmap">
+        SELECT	 l.liked_element            likedElement
+                 , count(l.liked_element)   cntId
+        FROM 	 user u
+                    INNER JOIN liked l
+                 ON u.member_id = l.member_id 
+        WHERE	 l.liked_type='user'
+        GROUP BY l.liked_element
+        ORDER BY cntId DESC
+        LIMIT	 12
+    </select>
+
+</mapper>

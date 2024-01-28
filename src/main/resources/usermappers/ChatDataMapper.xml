@@ -19,20 +19,81 @@
 				 , cd.emotion			emotion
 				 , cd.chat_data_date	chatDataDate
 				 , b.bookImageURL		bookImageURL
+				 , b.bookname			bookname
+				 , b.authors			authors
+				 , b.publisher			publisher
+				 , b.publication_year	publicationYear
+				 , b1.bookImageURL		bookImageURL1
+				 , b1.bookname			bookname1
+				 , b1.authors			authors1
+				 , b1.publisher			publisher1
+				 , b1.publication_year	publicationYear1
+				 , b2.bookImageURL		bookImageURL2
+				 , b2.bookname			bookname2
+				 , b2.authors			authors2
+				 , b2.publisher			publisher2
+				 , b2.publication_year	publicationYear2
+				 , b3.bookImageURL		bookImageURL3
+				 , b3.bookname			bookname3
+				 , b3.authors			authors3
+				 , b3.publisher			publisher3
+				 , b3.publication_year	publicationYear3
 		FROM	 chat_data cd
 						INNER JOIN book b
 				 ON cd.picked_book = b.book_isbn13
-		WHERE	 member_id=#{memberId}
-		ORDER BY chat_data_date DESC
+				 		INNER JOIN book b1
+				 ON cd.recommanded_book1 = b1.book_isbn13
+				 		INNER JOIN book b2
+				 ON cd.recommanded_book2 = b2.book_isbn13
+				 		INNER JOIN book b3
+				 ON cd.recommanded_book3 = b3.book_isbn13
+		WHERE	 cd.member_id=#{memberId}
+		ORDER BY cd.chat_data_date DESC
 	</select>
 	
 	<!-- 특정 채팅 기록 출력 -->
 	<select id="selectByNum"
 			parameterType="String"
 			resultType="ChatData">
-		SELECT	*
-		FROM	chat_data
-		WHERE	chatNumber=#{chatNumber}
+		SELECT	 cd.chat_number			chatNumber
+				 , cd.member_id			memberId
+				 , cd.recommanded_book1	recommandedBook1
+				 , cd.recommanded_book2	recommandedBook2
+				 , cd.recommanded_book3	recommandedBook3
+				 , cd.picked_book		pickedBook
+				 , cd.emotion			emotion
+				 , cd.chat_data_date	chatDataDate
+				 , b.bookImageURL		bookImageURL
+				 , b.bookname			bookname
+				 , b.authors			authors
+				 , b.publisher			publisher
+				 , b.publication_year	publicationYear
+				 , b1.bookImageURL		bookImageURL1
+				 , b1.bookname			bookname1
+				 , b1.authors			authors1
+				 , b1.publisher			publisher1
+				 , b1.publication_year	publicationYear1
+				 , b2.bookImageURL		bookImageURL2
+				 , b2.bookname			bookname2
+				 , b2.authors			authors2
+				 , b2.publisher			publisher2
+				 , b2.publication_year	publicationYear2
+				 , b3.bookImageURL		bookImageURL3
+				 , b3.bookname			bookname3
+				 , b3.authors			authors3
+				 , b3.publisher			publisher3
+				 , b3.publication_year	publicationYear3
+		FROM	 chat_data cd
+						INNER JOIN book b
+				 ON cd.picked_book = b.book_isbn13
+				 		INNER JOIN book b1
+				 ON cd.recommanded_book1 = b1.book_isbn13
+				 		INNER JOIN book b2
+				 ON cd.recommanded_book2 = b2.book_isbn13
+				 		INNER JOIN book b3
+				 ON cd.recommanded_book3 = b3.book_isbn13
+		WHERE	 cd.chat_number=#{chatNumber}
+		ORDER BY cd.chat_data_date DESC
 	</select>
 	
 	<!-- *** INSERT  *********************************************************** -->

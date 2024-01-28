@@ -1,4 +1,8 @@
 package com.example.controller;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.domain.KakaoLibrary;
+import com.example.domain.User;
 import com.example.service.KakaoLibraryService;
+import com.example.userservice.UserLibraryServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,6 +31,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("library")
 @CrossOrigin(origins = "http://118.217.203.37:3000")
 public class LibraryController {
+
+    @Autowired
+    private UserLibraryServiceImpl libraryService;
 
     @Autowired
     private KakaoLibraryService kakaoLibraryService;
@@ -79,5 +90,79 @@ public class LibraryController {
                 .bodyToMono(String.class)
                 .block();
         return apiResponse;
+    }
+
+    // *** SELECT ***********************************************************
+    // 사용자 맞춤 사용자 추천 책장
+    @ResponseBody
+    @PostMapping("/recommendBookshelf")
+    public List<String> recommend(@RequestParam(name = "memberId") String memberId) {
+        try{
+            System.out.println("[LibraryController/recommendBookshelf] 요청");
+
+            // .py 파일 실행
+			String pythonFile = "src\\main\\resources\\static\\python\\client_user_recommend.py";
+			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, memberId);
+			pb.directory(new File(System.getProperty("user.dir")));
+			Process process = pb.start();
+
+            // 프로세스 종료 대기
+            int exitCode = process.waitFor();
+            System.out.println("Exit Code: " + exitCode);
+
+			// .py 출력 읽어오기
+			InputStream inputStream = process.getInputStream();
+			InputStream errorStream = process.getErrorStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+			BufferedReader error = new BufferedReader(new InputStreamReader(errorStream));
+			String line; // 읽어온 각 줄의 내용을 담을 변수
+			String errorLine;
+			// StringBuilder sb = new StringBuilder();
+
+            List<String> recommendList = new ArrayList<String>();
+
+			// 정상 출력
+			while ((line = reader.readLine()) != null) {
+				// sb.append(line);
+                recommendList.add(line);
+			}
+
+			// 에러 출력
+			while ((errorLine = error.readLine()) != null) {
+				System.err.println("[Error] > " + errorLine);
+			}
+
+			reader.close();
+			error.close();
+
+			// String output = sb.toString();
+			// System.out.println(output);
+			System.out.println("[UserRecommend] > " + recommendList);
+
+            return recommendList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // 연령대별 책장
+    @GetMapping("/ageBookshelf")
+    @ResponseBody
+    public List<User> ageBookshelf(@RequestParam(name = "selectedAge") String selectedAge) {
+        System.out.println("[LibraryController/ageBookshelf] 요청");
+        List<User> result = libraryService.ageBookshelf(selectedAge);
+        System.out.println("[LibraryController/ageBookshelf] " + result);
+        return result;
+    }
+
+    // 랭킹순 책장
+    @GetMapping("/rankingBookshelf")
+    @ResponseBody
+    public List<User> rankingBookshelf() {
+        System.out.println("[LibraryController/rankingBookshelf] 요청");
+        List<User> result = libraryService.rankingBookshelf();
+        System.out.println("[LibraryController/rankingBookshelf] " + result);
+        return result;
     }
 }

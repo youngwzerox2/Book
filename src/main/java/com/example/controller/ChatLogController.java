@@ -40,11 +40,11 @@ public class ChatLogController {
 			Process process = pb.start();
 
 			// .py로 문자열 전달
-			OutputStream outputStream = process.getOutputStream();
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-			System.out.println("문장 전달 > " + sentence);
-			writer.write("msg=" + sentence + "\n");
-			writer.close();
+			// OutputStream outputStream = process.getOutputStream();
+			// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+			// System.out.println("문장 전달 > " + sentence);
+			// writer.write("msg=" + sentence + "\n");
+			// writer.close();
 
 			// 프로세스 종료 대기
             int exitCode = process.waitFor();
