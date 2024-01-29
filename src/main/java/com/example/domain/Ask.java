@@ -34,5 +34,7 @@ public class Ask {
 
 	private String	askReplyAdmin;		// 처리담당자
 	private String	memberId;			// 고객아이디
-	
+
+    // **************************** 통계 *****************************
+	private Integer count;              // 당일 문의건수
 }
