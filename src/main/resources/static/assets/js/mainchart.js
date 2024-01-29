@@ -1,46 +1,58 @@
-var ctx = document.getElementById("myChart").getContext('2d');
+// 일별 문의건수
+document.addEventListener("DOMContentLoaded", function () {
+  // alert('test');
+  // dailyAsk 값을 읽어옴
+  // var dailyAskDataString = $('#dailyAsk').val();
+  // console.log("dailyAskDataString:", dailyAskDataString);
 
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["24-01-17", "24-01-18", "24-01-19", "24-01-20", "24-01-21", "24-01-22", "24-01-23"],
-        datasets: [{
-            label: '문의건수',
-            data: [12, 19, 3, 5, 2, 3, 1, 2],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255,99,132,1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
+  // // 문자열을 직접 실행하여 배열로 변환 (비권장)
+  // var dailyAskDataList = eval("(" + dailyAskDataString + ")");
+
+  // // 결과 출력
+  // console.log("dailyAskDataList:", dailyAskDataList);
+
+  // // 문자열을 JavaScript 객체로 변환
+  // var dailyAskDataArray = JSON.parse(dailyAskDataString);
+  // console.log('dailyAskDataArray:', dailyAskDataArray);
+
+  // var day0 = dailyAskDataArray[0];
+  // // console.log('day0은??',day0);
+  // console.log('day0의 타입:', typeof day0);
+  var dailyAskDataString = $('#dailyAsk').val();
+
+  // 문자열을 JavaScript 객체로 파싱
+  var dailyAskDataList = JSON.parse(dailyAskDataString);
+
+  // 결과 출력
+  console.log("dailyAskDataList:", dailyAskDataList);
+
+   
+  
+
+  // Chart.js를 사용하여 그래프 생성
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: dailyAskData.map(entry => entry.askDate), // askDate를 문자열로 변환
+          datasets: [{
+              label: '문의건수',
+              data: dailyAskData.map(entry => entry.count),
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          maintainAspectRatio: false,
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
 });
-
-
 
 // 막대 바 그래프2
 new Chart(document.getElementById("bar-chart"), {

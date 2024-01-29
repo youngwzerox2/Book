@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.domain.Ask;
 import com.example.domain.Book;
 import com.example.domain.Complain;
-import com.example.domain.KakaoLibrary;
 import com.example.domain.Notice;
 import com.example.domain.RecordDTO;
 import com.example.domain.User;
@@ -29,8 +23,6 @@ import com.example.service.NoticeService;
 import com.example.service.RecordService;
 import com.example.service.TermsService;
 import com.example.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;  
 
 @Controller
 public class AdminController {
@@ -105,8 +97,6 @@ public class AdminController {
         System.out.println("adminmain.jsp호출");
         return "adminmain";
     }
-
-
 
     // *************************************** 회원 ****************************************
     // 회원관리
@@ -329,7 +319,7 @@ public class AdminController {
     // 문의 정보수정
     @RequestMapping("/updateAsk")
     public String updateAsk(Ask vo) {
-        System.out.println("문의 정보수정:" + vo);
+        // System.out.println("문의 정보수정:" + vo);
         askService.updateAsk(vo);
         return "redirect:ask";
     }

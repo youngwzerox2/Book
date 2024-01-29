@@ -158,9 +158,10 @@
                                     <div class="col-lg-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h3>문의 건수</h3>
-                                                <input type="hidden" id="dailyAsk" value="${dailyAsk}">
+                                                <h3>최근 7일간 문의 건수</h3>
+                                                <input type="hidden" id="dailyAsk" name="dailyAsk" value="${dailyAsk}">
                                                 <canvas id="myChart" style="max-height:35vh; max-width: 25vw; float: left;"></canvas>
+                                                <!-- <pre>${dailyAsk}</pre> -->
                                             </div>
                                         </div><!-- /# card -->
                                     </div><!-- /# column -->
@@ -203,7 +204,7 @@
                                                             <th scope="col">아이디</th>
                                                             <th scope="col">이름</th>
                                                             <th scope="col">제재 날짜</th>
-                                                            <th scope="col">신고건수</th>
+                                                            <!-- <th scope="col">신고건수</th> -->
                                                             <th scope="col">회원상태</th>
                                                         </tr>
                                                     </thead>
@@ -220,7 +221,7 @@
                                                                         <fmt:formatDate value="${member.quitDate}"
                                                                             pattern="yyyy-MM-dd" />
                                                                     </td>
-                                                                    <td>${member.memberGrade}</td>
+                                                                    <!-- <td>${member.memberGrade}</td> -->
                                                                     <td>${member.memberGrade}</td>
                                                                 </tr>
                                                             </c:if>
@@ -254,6 +255,7 @@
                     <script
                         src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
                     <script src="assets/js/main.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
                     <!-- flot 차트 -->
                     <script src="https://cdn.jsdelivr.net/npm/flot-charts@0.8.3/excanvas.min.js"></script>
@@ -273,6 +275,8 @@
                     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
                     <script src="assets/js/mainchart.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+                    <!-- chart.js -->
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
@@ -288,6 +292,43 @@
                     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
                     <script src="assets/js/init/fullcalendar-init.js"></script>
+
+                    <!-- 일별 문의건수 -->
+                    <!-- <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        alert('test');
+                        // dailyAsk 값을 읽어옴
+                        var dailyAskJson = $('#dailyAsk').val();
+                        var dailyAskData = JSON.parse(dailyAskJson);
+                        alert(dailyAskData);
+                        
+                        // alert("${dailyAsk}");
+                      
+                        // Chart.js를 사용하여 그래프 생성
+                        var ctx = document.getElementById("myChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: dailyAskData.map(entry => entry.askDate), // askDate를 문자열로 변환
+                                datasets: [{
+                                    label: '문의건수',
+                                    data: dailyAskData.map(entry => entry.count),
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                      });
+                    </script> -->
 
                     <script>
                         new Chart(document.getElementById("bar-chart-horizontal"), {
@@ -310,6 +351,7 @@
                                 }
                             }
                         });
+
                     </script>
 
         </body>

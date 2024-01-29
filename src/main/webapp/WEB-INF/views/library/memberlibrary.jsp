@@ -156,8 +156,11 @@
                             window.open(libraryUrl, '_blank');
                         });
 
+                        let markerMouseOverClosure;
+
                         // 마커에 마우스 오버 이벤트 추가
-                        kakao.maps.event.addListener(marker, 'mouseover', (function (name) {
+                        kakao.maps.event.addListener(marker, 'mouseover', (function (name, index) {
+                            console.log('클로저 생성: name=', name, ', index=', index);
                             return function () {
                                 // console.log("도서관 이름 확인:", name);
 
@@ -171,11 +174,13 @@
                                 // console.log("인포윈도우 열린 후"); // 콘솔에 로그 출력
 
                                 // 알림창 띄우기
-                                if (loanAvailableValues[index] === 'N') {
-                                    alert(name + ' 도서관: 대출 가능한 도서가 없습니다.');
+                                if (loanAvailableValues[index] !== 'Y') {
+                                    console.log('알림창 띄우기 직전');
+                                    alert(name + '에서 해당 도서를 대출 가능하나 현재 도서관 영업 시간이 아닙니다.');
+                                    console.log('알림창 띄운 후');
                                 }
                             };
-                        })(location.libraryName));
+                        })(location.libraryName, index));
 
                         // 마커에 마우스 아웃 이벤트 추가
                         kakao.maps.event.addListener(marker, 'mouseout', function () {
@@ -192,7 +197,7 @@
 </head>
 <body>
     <div id="map"></div>
-    <button id="showPositionButton">현재 위치 표시</button>
+    <!-- <button id="showPositionButton">현재 위치 표시</button> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=48ce9248aa11f6b0e1b6054fdeaa1e8c&libraries=services"></script>
 </body>
