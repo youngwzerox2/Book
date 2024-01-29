@@ -25,8 +25,10 @@ const CBookshelf = Loadable(lazy(() => import('views/pages/authentication/booksh
 const MainRecommanded = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecommanded')));
 const MainRecommanding = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecommanding')));
 const MainHotBook = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainHotBook')));
+const MainRecord = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecord')));
 // 도서관
 const CLibrary = Loadable(lazy(() => import('views/pages/authentication/library/CLibrary')));
+const RecommandedUser = Loadable(lazy(() => import('views/pages/authentication/library/RecommandedUser')));
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
 const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
@@ -114,8 +116,16 @@ const AuthenticationRoutes = {
       element: <MainHotBook />
     },
     {
+      path: 'readme/bookshelf/record',
+      element: <MainRecord />
+    },
+    {
       path: 'readme/book',
       element: <Books />
+    },
+    {
+      path: 'readme/library/recommand',
+      element: <RecommandedUser />
     },
     {
       path: 'readme/map',

@@ -32,7 +32,7 @@ const MainRecommanded = () => {
   };
   useEffect(() => {
     boardLoad();
-  }, [viewContent]);
+  }, []);
 
   return (
     <>

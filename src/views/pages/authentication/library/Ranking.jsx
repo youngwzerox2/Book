@@ -12,10 +12,16 @@ import theimg from '../../../../assets/images/bookcaseB_meng_Lank.png';
 // npm install image-map
 import ImageMap from 'image-map';
 import { useEffect } from 'react';
+import axios from 'axios';
 // -------------------------------------------------------------------------------
 const MainPage = () => {
+  const boardLoad = () => {
+    axios.get('/library/rankingBookshelf').then((re) => console.log(re.data));
+  };
+
   useEffect(() => {
     ImageMap('img[useMap]'); // imageMap 삽입코드
+    boardLoad();
   }, []);
 
   return (

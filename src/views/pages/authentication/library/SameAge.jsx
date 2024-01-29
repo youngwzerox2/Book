@@ -12,10 +12,18 @@ import theimg from '../../../../assets/images/bookcaseB_meng_Random.png';
 // npm install image-map
 import ImageMap from 'image-map';
 import { useEffect } from 'react';
+import axios from 'axios';
 // -------------------------------------------------------------------------------
 const MainPage = () => {
+  const sess = localStorage;
+
+  const boardLoad = () => {
+    axios.post(`/library/ageBookshelf?memberId=${sess.getItem('loginId')}`).then((re) => console.log(re.data));
+  };
+
   useEffect(() => {
     ImageMap('img[useMap]'); // imageMap 삽입코드
+    boardLoad();
   }, []);
 
   return (

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 // import Testing from '../../../../assets/images/book360.png';
 export default function ImgMediaCard(props) {
   // 데이터 로드
@@ -107,13 +108,13 @@ export default function ImgMediaCard(props) {
                     <TaskAltIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="도서관 테스트">
+                <Tooltip title="도서관 찾기">
                   <IconButton
                     onClick={() => {
                       mapping(viewContent.recommandedBook1);
                     }}
                   >
-                    <TaskAltIcon />
+                    <LocalLibraryIcon />
                   </IconButton>
                 </Tooltip>
               </CardContent>
@@ -155,6 +156,15 @@ export default function ImgMediaCard(props) {
                     <TaskAltIcon />
                   </IconButton>
                 </Tooltip>
+                <Tooltip title="도서관 찾기">
+                  <IconButton
+                    onClick={() => {
+                      mapping(viewContent.recommandedBook2);
+                    }}
+                  >
+                    <LocalLibraryIcon />
+                  </IconButton>
+                </Tooltip>
               </CardContent>
             </Box>
           </Card>
@@ -192,6 +202,15 @@ export default function ImgMediaCard(props) {
                     }}
                   >
                     <TaskAltIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="도서관 찾기">
+                  <IconButton
+                    onClick={() => {
+                      mapping(viewContent.recommandedBook3);
+                    }}
+                  >
+                    <LocalLibraryIcon />
                   </IconButton>
                 </Tooltip>
               </CardContent>

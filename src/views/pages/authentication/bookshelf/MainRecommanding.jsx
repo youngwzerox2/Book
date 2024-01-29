@@ -16,7 +16,7 @@ import Logo from '../../../../assets/images/ReadMe2.png';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-import RecommandedDetail from './DetailRecommanded';
+import DetailRecommanding from './DetailRecommanding';
 
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
@@ -30,16 +30,19 @@ const MainRecommanded = () => {
   const boardLoad = () => {
     axios
       .get(`/recommanding/selectByUser?memberId=${sess.getItem('loginId')}`)
-      .then((re) => setViewContent(re.data))
+      .then((re) => {
+        setViewContent(re.data);
+        console.log(re.data);
+      })
       .catch((err) => console.log('[에러!!', err));
   };
   useEffect(() => {
     boardLoad();
-  }, [viewContent]);
-  const [chatNum, setChatNum] = useState(0);
+  }, []);
+  const [recommandingNum, setRecommandingNum] = useState(0);
   const getValue = (re) => {
     setStatus('detail');
-    setChatNum(re);
+    setRecommandingNum(re);
   };
   return (
     <>
@@ -90,7 +93,7 @@ const MainRecommanded = () => {
                                 <Box
                                   sx={{ position: 'absolute', top: '6%', left: '27%' }}
                                   onClick={() => {
-                                    getValue(viewContent[0].chatNumber);
+                                    getValue(viewContent[0].recommandingId);
                                   }}
                                 >
                                   {viewContent[0] != undefined && (
@@ -100,7 +103,7 @@ const MainRecommanded = () => {
 
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[1].chatNumber);
+                                    getValue(viewContent[1].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '6%', left: '45%' }}
                                 >
@@ -112,7 +115,7 @@ const MainRecommanded = () => {
                                 <Box
                                   sx={{ position: 'absolute', top: '6%', left: '63%' }}
                                   onClick={() => {
-                                    getValue(viewContent[2].chatNumber);
+                                    getValue(viewContent[2].recommandingId);
                                   }}
                                 >
                                   {viewContent[2] != undefined && (
@@ -122,7 +125,7 @@ const MainRecommanded = () => {
                                 <Box
                                   sx={{ position: 'absolute', top: '29%', left: '27%' }}
                                   onClick={() => {
-                                    getValue(viewContent[3].chatNumber);
+                                    getValue(viewContent[3].recommandingId);
                                   }}
                                 >
                                   {viewContent[3] != undefined && (
@@ -131,7 +134,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[4].chatNumber);
+                                    getValue(viewContent[4].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '29%', left: '45%' }}
                                 >
@@ -141,7 +144,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[5].chatNumber);
+                                    getValue(viewContent[5].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '29%', left: '63%' }}
                                 >
@@ -151,7 +154,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[6].chatNumber);
+                                    getValue(viewContent[6].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '51%', left: '27%' }}
                                 >
@@ -161,7 +164,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[7].chatNumber);
+                                    getValue(viewContent[7].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '51%', left: '45%' }}
                                 >
@@ -171,7 +174,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[8].chatNumber);
+                                    getValue(viewContent[8].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '51%', left: '63%' }}
                                 >
@@ -181,7 +184,7 @@ const MainRecommanded = () => {
                                 </Box>
                                 <Box
                                   onClick={() => {
-                                    getValue(viewContent[9].chatNumber);
+                                    getValue(viewContent[9].recommandingId);
                                   }}
                                   sx={{ position: 'absolute', top: '74%', left: '27%' }}
                                 >
@@ -192,7 +195,7 @@ const MainRecommanded = () => {
                                 <Box
                                   sx={{ position: 'absolute', top: '74%', left: '45%' }}
                                   onClick={() => {
-                                    getValue(viewContent[10].chatNumber);
+                                    getValue(viewContent[10].recommandingId);
                                   }}
                                 >
                                   {viewContent[10] != undefined && (
@@ -202,7 +205,7 @@ const MainRecommanded = () => {
                                 <Box
                                   sx={{ position: 'absolute', top: '74%', left: '63%' }}
                                   onClick={() => {
-                                    getValue(viewContent[11].chatNumber);
+                                    getValue(viewContent[11].recommandingId);
                                   }}
                                 >
                                   {viewContent[11] != undefined && (
@@ -222,7 +225,7 @@ const MainRecommanded = () => {
                               </React.Fragment>
                             </Card>
                           )}
-                          {status === 'detail' && <RecommandedDetail chatNumber={chatNum} />}
+                          {status === 'detail' && <DetailRecommanding num={recommandingNum} />}
                         </FormControl>
                       </React.Fragment>
                     </Grid>
