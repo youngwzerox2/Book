@@ -1,5 +1,6 @@
 package com.example.userservice;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,18 @@ public class UserLibraryServiceImpl implements UserLibraryService {
     private UserLibraryDAO libraryDAO;
 
     @Override
-    public List<User> ageBookshelf(String selectedAge) {
-        return libraryDAO.ageBookshelf(selectedAge);
+    public List<User> recommendBookshelf(String joinedId) {
+        return libraryDAO.recommendBookshelf(joinedId);
+    }
+
+    @Override
+    public List<User> ageBookshelf(String memberId) {
+        return libraryDAO.ageBookshelf(memberId);
+    }
+
+    @Override
+    public List<User> chooseAgeBookshelf(String selectedAge) {
+        return libraryDAO.chooseAgeBookshelf(selectedAge);
     }
 
     @Override

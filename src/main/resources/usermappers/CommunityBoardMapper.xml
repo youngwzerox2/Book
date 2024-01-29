@@ -9,8 +9,9 @@
 	<!-- 전체 게시글 출력 -->
 	<select id="selectAll"
 			resultType="hashmap">
-		SELECT	*
-		FROM	community_board
+		SELECT	 *
+		FROM	 community_board
+		ORDER BY community_board_date DESC
 	</select>
 
 	<!-- 한 명의 사용자가 작성한 모든 게시글 출력 -->

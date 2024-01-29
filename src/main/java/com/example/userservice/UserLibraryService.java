@@ -5,8 +5,12 @@ import java.util.List;
 import com.example.domain.User;
 
 public interface UserLibraryService {
-    
-    List<User> ageBookshelf(String selectedAge);
+
+    List<User> recommendBookshelf(String joinedId);
+
+    List<User> ageBookshelf(String memberId);
+        
+    List<User> chooseAgeBookshelf(String selectedAge);
 
     List<User> rankingBookshelf();
 }

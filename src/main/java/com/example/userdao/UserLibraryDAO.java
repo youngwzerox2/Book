@@ -8,8 +8,12 @@ import com.example.domain.User;
 
 @Mapper
 public interface UserLibraryDAO {
+
+    List<User> recommendBookshelf(String joinedId);
+
+    List<User> ageBookshelf(String memberId);
     
-    List<User> ageBookshelf(String selectedAge);
+    List<User> chooseAgeBookshelf(String selectedAge);
 
     List<User> rankingBookshelf();
 

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +97,7 @@ public class LibraryController {
     // 사용자 맞춤 사용자 추천 책장
     @ResponseBody
     @PostMapping("/recommendBookshelf")
-    public List<String> recommend(@RequestParam(name = "memberId") String memberId) {
+    public List<User> recommend(@RequestParam(name = "memberId") String memberId) {
         try{
             System.out.println("[LibraryController/recommendBookshelf] 요청");
 
@@ -119,12 +120,15 @@ public class LibraryController {
 			String errorLine;
 			// StringBuilder sb = new StringBuilder();
 
-            List<String> recommendList = new ArrayList<String>();
+            List<String> recommendIdList = new ArrayList<String>();
+            // List<String> recommendList = new ArrayList<String>();
+            // HashMap<String, String> recommendMap = new HashMap<String, String>();
 
 			// 정상 출력
 			while ((line = reader.readLine()) != null) {
 				// sb.append(line);
-                recommendList.add(line);
+                recommendIdList.add("'" + line + "'");
+                // recommendMap.put(line, line);
 			}
 
 			// 에러 출력
@@ -135,9 +139,13 @@ public class LibraryController {
 			reader.close();
 			error.close();
 
+            String joinedId = String.join(", ", recommendIdList);
+            System.out.println("[UserRecommend] > " + joinedId);
+            List<User> recommendList = libraryService.recommendBookshelf(joinedId);
+
 			// String output = sb.toString();
 			// System.out.println(output);
-			System.out.println("[UserRecommend] > " + recommendList);
+			// System.out.println("[UserRecommend] > " + recommendList);
 
             return recommendList;
         } catch (Exception e) {
@@ -146,13 +154,23 @@ public class LibraryController {
         }
     }
 
-    // 연령대별 책장
-    @GetMapping("/ageBookshelf")
+    // 연령대별 책장 (로그인한 사용자와 비슷한 연령대인 사용자 랜덤 추출)
+    @PostMapping("/ageBookshelf")
     @ResponseBody
-    public List<User> ageBookshelf(@RequestParam(name = "selectedAge") String selectedAge) {
+    public List<User> ageBookshelf(@RequestParam(name = "memberId") String memberId) {
         System.out.println("[LibraryController/ageBookshelf] 요청");
-        List<User> result = libraryService.ageBookshelf(selectedAge);
+        List<User> result = libraryService.ageBookshelf(memberId);
         System.out.println("[LibraryController/ageBookshelf] " + result);
+        return result;
+    }
+
+    // 연령대별 책장 (10대 이하 / 20대 / 30대 / 40대 / 50대 / 60대 이상)
+    @GetMapping("/chooseAgeBookshelf")
+    @ResponseBody
+    public List<User> chooseAgeBookshelf(@RequestParam(name = "selectedAge") String selectedAge) {
+        System.out.println("[LibraryController/chooseAgeBookshelf] 요청");
+        List<User> result = libraryService.chooseAgeBookshelf(selectedAge);
+        System.out.println("[LibraryController/chooseAgeBookshelf] " + result);
         return result;
     }
 
