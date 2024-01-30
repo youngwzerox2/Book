@@ -20,6 +20,7 @@ public class Recommanding {
 	private String	bookIsbn4;					// 청구기호13자리 4
 	private String	bookIsbn5;					// 청구기호13자리 5
 	private String	memberId;					// 고객아이디
+	private String	bookname;					// 책 제목
 	private String	bookImageURL;				// 책 이미지
 	
 }

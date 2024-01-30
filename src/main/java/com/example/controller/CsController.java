@@ -67,6 +67,7 @@ public class CsController {
 	public Integer write(Ask dto) {
 		try {
 			System.out.println("[CsController/write] 요청");
+			System.out.println("[CsController/write] > " + dto);
 			Integer result = askService.write(dto);
 			return result;
 		} catch (Exception e) {

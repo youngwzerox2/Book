@@ -6,8 +6,34 @@
 <mapper namespace="com.example.userdao.UserLibraryDAO">
 
 	<!-- *** SELECT *********************************************************** -->
-    <!-- 연령대별 책장 -->
+    <!-- 추천 사용자 목록 -->
+    <select id="recommendBookshelf"
+            parameterType="String"
+            resultType="hashmap">
+        SELECT  *
+        FROM    user
+        WHERE   member_id IN (${joinedId})
+    </select>
+
+    <!-- 로그인한 사용자와 비슷한 연령대인 사용자 랜덤 추출 -->
     <select id="ageBookshelf"
+            parameterType="String"
+            resultType="hashmap">
+        SELECT	 *
+        FROM	 user
+        WHERE	 YEAR(member_birthday)
+                    BETWEEN (SELECT	(YEAR(member_birthday)-5)
+                             FROM	user
+                             WHERE 	member_id=#{memberId})
+                        AND	(SELECT	(YEAR(member_birthday)+5)
+                             FROM	user
+                             WHERE 	member_id=#{memberId})
+        ORDER BY RAND()
+        LIMIT    12
+    </select>
+
+    <!-- 연령대별 책장 -->
+    <select id="chooseAgeBookshelf"
             parameterType="String"
             resultType="hashmap">
         SELECT   *
