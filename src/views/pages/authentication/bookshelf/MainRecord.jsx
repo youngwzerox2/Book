@@ -16,8 +16,8 @@ import Logo from '../../../../assets/images/ReadMe2.png';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-import RecommandedDetail from './DetailRecommanded';
 import CreateIcon from '@mui/icons-material/Create';
+import DetailRecord from './DetailRecord';
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const MainRecommanded = () => {
@@ -26,6 +26,7 @@ const MainRecommanded = () => {
   const [viewContent, setViewContent] = useState([]);
   const session = localStorage;
   const theme = useTheme();
+  const [recordNum, setRecordNum] = useState(0);
   const boardLoad = () => {
     axios
       .get('/record/selectByUser', { params: { memberId: session.getItem('loginId') } })
@@ -39,11 +40,10 @@ const MainRecommanded = () => {
   };
   useEffect(() => {
     boardLoad();
-  }, [viewContent]);
-  const [chatNum, setChatNum] = useState(0);
+  }, []);
   const getValue = (re) => {
     setStatus('detail');
-    setChatNum(re);
+    setRecordNum(re);
   };
   return (
     <>
@@ -94,7 +94,7 @@ const MainRecommanded = () => {
                               <Box
                                 sx={{ position: 'absolute', top: '6%', left: '27%' }}
                                 onClick={() => {
-                                  getValue(viewContent[0].chatNumber);
+                                  getValue(viewContent[0].recordBookNum);
                                 }}
                               >
                                 {viewContent[0] != undefined && <img src={viewContent[0].bookImageURL} alt="이미지입니다" height="100px" />}
@@ -102,7 +102,7 @@ const MainRecommanded = () => {
 
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[1].chatNumber);
+                                  getValue(viewContent[1].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '6%', left: '45%' }}
                               >
@@ -112,7 +112,7 @@ const MainRecommanded = () => {
                               <Box
                                 sx={{ position: 'absolute', top: '6%', left: '63%' }}
                                 onClick={() => {
-                                  getValue(viewContent[2].chatNumber);
+                                  getValue(viewContent[2].recordBookNum);
                                 }}
                               >
                                 {viewContent[2] != undefined && <img src={viewContent[2].bookImageURL} alt="이미지입니다" height="100px" />}
@@ -120,14 +120,14 @@ const MainRecommanded = () => {
                               <Box
                                 sx={{ position: 'absolute', top: '29%', left: '27%' }}
                                 onClick={() => {
-                                  getValue(viewContent[3].chatNumber);
+                                  getValue(viewContent[3].recordBookNum);
                                 }}
                               >
                                 {viewContent[3] != undefined && <img src={viewContent[3].bookImageURL} alt="이미지입니다" height="100px" />}
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[4].chatNumber);
+                                  getValue(viewContent[4].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '29%', left: '45%' }}
                               >
@@ -135,7 +135,7 @@ const MainRecommanded = () => {
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[5].chatNumber);
+                                  getValue(viewContent[5].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '29%', left: '63%' }}
                               >
@@ -143,7 +143,7 @@ const MainRecommanded = () => {
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[6].chatNumber);
+                                  getValue(viewContent[6].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '51%', left: '27%' }}
                               >
@@ -151,7 +151,7 @@ const MainRecommanded = () => {
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[7].chatNumber);
+                                  getValue(viewContent[7].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '51%', left: '45%' }}
                               >
@@ -159,7 +159,7 @@ const MainRecommanded = () => {
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[8].chatNumber);
+                                  getValue(viewContent[8].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '51%', left: '63%' }}
                               >
@@ -167,7 +167,7 @@ const MainRecommanded = () => {
                               </Box>
                               <Box
                                 onClick={() => {
-                                  getValue(viewContent[9].chatNumber);
+                                  getValue(viewContent[9].recordBookNum);
                                 }}
                                 sx={{ position: 'absolute', top: '74%', left: '27%' }}
                               >
@@ -176,7 +176,7 @@ const MainRecommanded = () => {
                               <Box
                                 sx={{ position: 'absolute', top: '74%', left: '45%' }}
                                 onClick={() => {
-                                  getValue(viewContent[10].chatNumber);
+                                  getValue(viewContent[10].recordBookNum);
                                 }}
                               >
                                 {viewContent[10] != undefined && (
@@ -186,7 +186,7 @@ const MainRecommanded = () => {
                               <Box
                                 sx={{ position: 'absolute', top: '74%', left: '63%' }}
                                 onClick={() => {
-                                  getValue(viewContent[11].chatNumber);
+                                  getValue(viewContent[11].recordBookNum);
                                 }}
                               >
                                 {viewContent[11] != undefined && (
@@ -198,7 +198,7 @@ const MainRecommanded = () => {
                                 variant="contained"
                                 sx={{ position: 'absolute', top: '92%', right: '43%' }}
                                 onClick={() => {
-                                  location.reload();
+                                  location = '/free/readme/bookshelf';
                                 }}
                               >
                                 뒤로가기
@@ -214,7 +214,7 @@ const MainRecommanded = () => {
                               </Button>
                             </>
                           )}
-                          {status === 'detail' && <RecommandedDetail chatNumber={chatNum} />}
+                          {status === 'detail' && <DetailRecord num={recordNum} />}
                         </FormControl>
                       </React.Fragment>
                     </Grid>

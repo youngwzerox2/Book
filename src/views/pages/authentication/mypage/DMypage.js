@@ -188,7 +188,10 @@ const MainPage = () => {
           </Link>
         </Grid>
         <Link to="/readme/main">
-          <Button variant="contained" sx={{ position: 'absolute', top: '85%', left: '48%', backgroundColor: '#99627A' }}>
+          <Button
+            variant="contained"
+            sx={{ position: 'absolute', top: '80%', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#99627A' }}
+          >
             뒤로가기
           </Button>
         </Link>

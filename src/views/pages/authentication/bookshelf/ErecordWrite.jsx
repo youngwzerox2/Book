@@ -3,11 +3,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Button, TextField } from '@mui/material';
+import { Button, IconButton, TextField, Tooltip } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-
+import ClearIcon from '@mui/icons-material/Clear';
 //
 import Note from '../../../../assets/images/springNote.png';
 import { useState } from 'react';
@@ -23,7 +23,9 @@ export default function BasicGrid() {
 
   const [tags, setTags] = useState('');
   const [ltext, setLtext] = useState('');
-
+  const reloading = () => {
+    window.location.replace('/free/readme/bookshelf/record');
+  };
   // 등록 버튼 클릭 시 독서기록 작성
   const RecordSend = () => {
     alert(`${isbn13} / ${tags} / ${ltext} / ${value}`);
@@ -130,6 +132,11 @@ export default function BasicGrid() {
           </Button>
         </Grid>
       </Grid>
+      <Tooltip title="나가기">
+        <IconButton variant="contained" size="small" sx={{ position: 'absolute', right: '3%', top: '3%' }} onClick={reloading}>
+          <ClearIcon />
+        </IconButton>
+      </Tooltip>
     </Box>
   );
 }
