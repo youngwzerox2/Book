@@ -10,25 +10,54 @@
     <select id="recommendBookshelf"
             parameterType="String"
             resultType="hashmap">
-        SELECT  *
-        FROM    user
-        WHERE   member_id IN (${joinedId})
+        SELECT  u.member_id               memberId
+                , u.member_nickname       memberNickname
+                , u.member_visit_agree    memberVisitAgree
+                , u.member_img            memberImg
+                , r.recommanding_id       recommandingId
+                , r.recommanding_title    recommandingTitle
+                , r.recommanding_tag      recommandingTag
+                , r.book_isbn1            bookIsbn1
+                , b.bookname              bookname
+                , b.bookImageURL          bookImageURL
+        FROM    user u
+                    INNER JOIN recommanding r
+                ON u.member_id = r.member_id
+                    INNER JOIN book b
+                ON r.book_isbn1 = b.book_isbn13
+        WHERE   u.member_id IN (${joinedId})
+                AND r.recommanding_book_no1 = 1
     </select>
 
     <!-- 로그인한 사용자와 비슷한 연령대인 사용자 랜덤 추출 -->
     <select id="ageBookshelf"
             parameterType="String"
             resultType="hashmap">
-        SELECT	 *
-        FROM	 user
-        WHERE	 YEAR(member_birthday)
+        SELECT  u.member_id               memberId
+                <!-- , u.member_nickname       memberNickname
+                , u.member_visit_agree    memberVisitAgree
+                , u.member_img            memberImg
+                , r.recommanding_id       recommandingId
+                , r.recommanding_title    recommandingTitle
+                , r.recommanding_tag      recommandingTag
+                , r.book_isbn1            bookIsbn1
+                , b.bookname              bookname
+                , b.bookImageURL          bookImageURL -->
+        FROM    user u
+                    <!-- INNER JOIN recommanding r
+                ON u.member_id = r.member_id
+                    INNER JOIN book b
+                ON r.book_isbn1 = b.book_isbn13 -->
+        WHERE	YEAR(member_birthday)
                     BETWEEN (SELECT	(YEAR(member_birthday)-5)
                              FROM	user
                              WHERE 	member_id=#{memberId})
                         AND	(SELECT	(YEAR(member_birthday)+5)
                              FROM	user
                              WHERE 	member_id=#{memberId})
-        ORDER BY RAND()
+                <!-- AND r.recommanding_book_no1 = 1 -->
+                AND u.member_id != #{memberId}
+        <!-- ORDER BY RAND() -->
         LIMIT    12
     </select>
 
@@ -36,8 +65,21 @@
     <select id="chooseAgeBookshelf"
             parameterType="String"
             resultType="hashmap">
-        SELECT   *
-        FROM     user
+        SELECT  u.member_id               memberId
+                , u.member_nickname       memberNickname
+                , u.member_visit_agree    memberVisitAgree
+                , u.member_img            memberImg
+                , r.recommanding_id       recommandingId
+                , r.recommanding_title    recommandingTitle
+                , r.recommanding_tag      recommandingTag
+                , r.book_isbn1            bookIsbn1
+                , b.bookname              bookname
+                , b.bookImageURL          bookImageURL
+        FROM    user u
+                    INNER JOIN recommanding r
+                ON u.member_id = r.member_id
+                    INNER JOIN book b
+                ON r.book_isbn1 = b.book_isbn13
         <where>
             <choose>
                 <when test="selectedAge == 10">
@@ -62,18 +104,40 @@
         </where>
     </select>
 
-    <!-- 랭킹 책장 -->
-    <select id="rankingBookshelf"
+    <!-- 랭킹 책장에 보여질 유저 추출 -->
+    <select id="getRanker"
             resultType="hashmap">
         SELECT	 l.liked_element            likedElement
-                 , count(l.liked_element)   cntId
         FROM 	 user u
                     INNER JOIN liked l
                  ON u.member_id = l.member_id 
         WHERE	 l.liked_type='user'
         GROUP BY l.liked_element
-        ORDER BY cntId DESC
+        ORDER BY count(l.liked_element) DESC
         LIMIT	 12
+    </select>
+
+    <!-- 랭킹 책장 -->
+    <select id="rankingBookshelf"
+            parameterType="String"
+            resultType="hashmap">
+        SELECT  u.member_id               memberId
+                , u.member_nickname       memberNickname
+                , u.member_visit_agree    memberVisitAgree
+                , u.member_img            memberImg
+                , r.recommanding_id       recommandingId
+                , r.recommanding_title    recommandingTitle
+                , r.recommanding_tag      recommandingTag
+                , r.book_isbn1            bookIsbn1
+                , b.bookname              bookname
+                , b.bookImageURL          bookImageURL
+        FROM    user u
+                    INNER JOIN recommanding r
+                ON u.member_id = r.member_id
+                    INNER JOIN book b
+                ON r.book_isbn1 = b.book_isbn13
+        WHERE   u.member_id IN (${joinedId})
+                AND r.recommanding_book_no1 = 1
     </select>
 
 </mapper>

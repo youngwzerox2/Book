@@ -1,6 +1,7 @@
 package com.example.userdao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,6 +16,8 @@ public interface UserLibraryDAO {
     
     List<User> chooseAgeBookshelf(String selectedAge);
 
-    List<User> rankingBookshelf();
+    List<Map<String, Object>> getRanker();
+
+    List<User> rankingBookshelf(String joinedId);
 
 }
