@@ -25,5 +25,8 @@ public class User {
 	private String	cardDate;			// 카드유효기간
 	private Integer	cardPassword;		// 카드비밀번호 앞 2자리
 	private Integer memberImg;			// 프로필사진
-	
+
+	// **************************** 통계 *****************************
+	private String ageGroup;			// 연령대분석-나이대 
+	private Integer count; 
 }

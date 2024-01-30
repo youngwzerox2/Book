@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.List;
 
+import org.eclipse.tags.shaded.org.apache.regexp.recompile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<String> getAdminMemberIds() {
         return userDAO.getAdminMemberIds();
+    }
+
+    // 연령대 분석
+    @Override
+    public List<User> getAge() {
+        return userDAO.getAge();
+    }
+
+    // 신규 가입자 수
+    @Override
+    public List<User> newUser() {
+        return userDAO.newUser();
     }
 }

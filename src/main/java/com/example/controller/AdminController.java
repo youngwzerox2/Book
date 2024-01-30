@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Ask;
 import com.example.domain.Book;
 import com.example.domain.Complain;
+import com.example.domain.Merchant;
 import com.example.domain.Notice;
 import com.example.domain.RecordDTO;
 import com.example.domain.User;
@@ -18,7 +19,7 @@ import com.example.service.AskService;
 import com.example.service.BookService;
 import com.example.service.ComplainService;
 import com.example.service.FaqService;
-import com.example.service.KakaoLibraryService;
+import com.example.service.MerchantService;
 import com.example.service.NoticeService;
 import com.example.service.RecordService;
 import com.example.service.TermsService;
@@ -59,9 +60,9 @@ public class AdminController {
     @Autowired
     private RecordService recordService;
 
-    // 회원 도서관
+    // 오늘 총 매출
     @Autowired
-    private KakaoLibraryService kakaoLibraryService;
+    private MerchantService merchantService;
 
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
@@ -89,11 +90,20 @@ public class AdminController {
     public String index(Model m) {
         List<User> user = userService.memberList();             // 제재명단
         m.addAttribute("memberList", user);
-        // List<Ask> ask = askService.askCount();
-        // m.addAttribute("askCount", ask);
         List<Ask> dailyAsk = askService.dailyAsk();             // 일별 문의건수
         m.addAttribute("dailyAsk", dailyAsk);
-        System.out.println(dailyAsk);
+        List<User> getAge = userService.getAge();               // 연령대 분석
+        m.addAttribute("getAge", getAge);
+        List<Book> bookRank = bookService.bookRank();           // 도서 인기순위
+        m.addAttribute("bookRank", bookRank);
+        List<Merchant> todaySum = merchantService.todaySum();   // 오늘 총 매출
+        m.addAttribute("todaySum", todaySum.get(0));
+        List<User> newUser = userService.newUser();             // 신규 가입자 수
+        m.addAttribute("newUser", newUser.get(0));
+        // System.out.println(newUser);
+        // System.out.println(bookRank);
+        // System.out.println(getAge);
+        // System.out.println(dailyAsk);
         System.out.println("adminmain.jsp호출");
         return "adminmain";
     }

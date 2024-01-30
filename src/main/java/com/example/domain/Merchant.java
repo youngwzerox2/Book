@@ -13,5 +13,7 @@ public class Merchant {
 	private Date	endDate;			// 유효기간
 	private String	memberId;			// 고객아이디
 	private String	merchantType;		// 결제권종류
-	
+
+	// ****************************** 통계 ************************************
+	private Integer totalMerchantCost;	// 오늘 총 매출
 }

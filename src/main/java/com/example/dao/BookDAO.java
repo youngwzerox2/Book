@@ -21,4 +21,8 @@ public interface BookDAO {
 
     // 도서정보삭제
     public void deleteBook(Book vo);
+
+    // 도서 인기순위
+    public List<Book> bookRank();
+
 }

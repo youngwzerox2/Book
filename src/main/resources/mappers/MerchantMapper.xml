@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ***************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.MerchantDAO">
+
+    <!-- 오늘 총 매출 -->
+	<select id="todaySum" resultType="Integer">
+		SELECT SUM(merchant_cost) AS total_merchant_cost
+		FROM merchant
+		WHERE DATE(start_date) = CURDATE();
+	</select>
+	
+	
+</mapper>

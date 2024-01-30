@@ -39,4 +39,32 @@
 		WHERE member_grade = 'admin';
     </select>
 
+	<!-- 연령대 분석 -->
+	<select id="getAge" resultType="hashmap">
+		SELECT
+			age_group,
+			COUNT(*) as count
+		FROM (
+  			SELECT
+				member_birthday,
+				CASE
+				WHEN FLOOR(DATEDIFF(CURDATE(), member_birthday) / 365) BETWEEN 0 AND 19 THEN '10대 이하'
+				WHEN FLOOR(DATEDIFF(CURDATE(), member_birthday) / 365) BETWEEN 20 AND 29 THEN '20대'
+				WHEN FLOOR(DATEDIFF(CURDATE(), member_birthday) / 365) BETWEEN 30 AND 39 THEN '30대'
+				WHEN FLOOR(DATEDIFF(CURDATE(), member_birthday) / 365) BETWEEN 40 AND 49 THEN '40대'
+				WHEN FLOOR(DATEDIFF(CURDATE(), member_birthday) / 365) BETWEEN 50 AND 59 THEN '50대'
+				ELSE '60대 이상'
+    			END AS age_group
+  			FROM user
+		) AS age_groups
+		GROUP BY age_group;
+	</select>
+
+	<!-- 신규 가입자 수 -->
+	<select id="newUser" resultType="Integer"> 
+		SELECT COUNT(*)
+		FROM user
+		WHERE DATE(join_date) = CURDATE();
+	</select>
+
 </mapper>

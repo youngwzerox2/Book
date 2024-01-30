@@ -21,4 +21,10 @@ public interface UserService {
     
     // 관리자 회원 ID 목록
     List<String> getAdminMemberIds();
+
+    // 연령대분석
+    List<User> getAge();
+
+    // 신규 가입자 수
+    List<User> newUser();
 }

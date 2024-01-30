@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.regex.Pattern" %>
 
         <!doctype html>
         <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -101,13 +102,13 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="stat-widget-five">
-                                                    <div class="stat-icon dib flat-color-3">
-                                                        <i class="pe-7s-browser"></i>
+                                                    <div class="stat-icon dib flat-color-1">
+                                                        <i class="pe-7s-cash"></i>
                                                     </div>
                                                     <div class="stat-content">
                                                         <div class="text-left dib">
                                                             <div class="stat-heading">오늘 총 매출</div>
-                                                            <div class="stat-text">390000 원</div>
+                                                            <div class="stat-text">${todaySum}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,13 +120,13 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="stat-widget-five">
-                                                    <div class="stat-icon dib flat-color-4">
+                                                    <div class="stat-icon dib flat-color-3">
                                                         <i class="pe-7s-users"></i>
                                                     </div>
                                                     <div class="stat-content">
                                                         <div class="text-left dib">
                                                             <div class="stat-heading">오늘 접속자 수</div>
-                                                            <div class="stat-text">2986</span></div>
+                                                            <div class="stat-text">2986</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,7 +144,7 @@
                                                     <div class="stat-content">
                                                         <div class="text-left dib">
                                                             <div class="stat-heading">신규 가입자 수</div>
-                                                            <div class="stat-text">45</span></div>
+                                                            <div class="stat-text">${newUser}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,8 +172,9 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h3>연령대 분석</h3>
-                                                <canvas id="pie-chart"
-                                                    style="max-height:35vh; max-width:25vw; float: left;"></canvas>
+                                                <input type="hidden" id="getAge" name="getAge" value="${getAge}">
+                                                <canvas id="pie-chart" style="max-height:35vh; max-width:25vw; float: left;"></canvas>
+                                                <!-- <pre>${getAge}</pre> -->
                                             </div>
                                         </div><!-- /# card -->
                                     </div><!-- /# column -->
@@ -184,9 +186,10 @@
                                     <div class="col-lg-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h3>도서 인기 랭킹</h3>
-                                                <canvas id="line-chart"
-                                                    style="max-height:35vh; max-width:25vw; float: left;"></canvas>
+                                                <h3>도서 추천수 랭킹</h3>
+                                                <input type="hidden" id="bookRank" name="bookRank" value="${bookRank}">
+                                                <canvas id="bar-chart" width="600" height="250"></canvas>
+                                                <!-- <pre>${bookRank}</pre> -->
                                             </div>
                                         </div><!-- /# card -->
                                     </div><!-- /# column -->
@@ -231,8 +234,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- <canvas id="bar-chart-horizontal" width="600" height="250"></canvas> -->
 
                                 </div><!-- row -->
 
@@ -292,67 +293,6 @@
                     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
                     <script src="assets/js/init/fullcalendar-init.js"></script>
-
-                    <!-- 일별 문의건수 -->
-                    <!-- <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        alert('test');
-                        // dailyAsk 값을 읽어옴
-                        var dailyAskJson = $('#dailyAsk').val();
-                        var dailyAskData = JSON.parse(dailyAskJson);
-                        alert(dailyAskData);
-                        
-                        // alert("${dailyAsk}");
-                      
-                        // Chart.js를 사용하여 그래프 생성
-                        var ctx = document.getElementById("myChart").getContext('2d');
-                        var myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: dailyAskData.map(entry => entry.askDate), // askDate를 문자열로 변환
-                                datasets: [{
-                                    label: '문의건수',
-                                    data: dailyAskData.map(entry => entry.count),
-                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                    borderColor: 'rgba(255, 99, 132, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                      });
-                    </script> -->
-
-                    <script>
-                        new Chart(document.getElementById("bar-chart-horizontal"), {
-                            type: 'horizontalBar',
-                            data: {
-                                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                                datasets: [
-                                    {
-                                        label: "Population (millions)",
-                                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                                        data: [2478, 5267, 734, 784, 433]
-                                    }
-                                ]
-                            },
-                            options: {
-                                legend: { display: false },
-                                title: {
-                                    display: true,
-                                    text: 'Predicted world population (millions) in 2050'
-                                }
-                            }
-                        });
-
-                    </script>
 
         </body>
 

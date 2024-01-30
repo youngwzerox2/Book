@@ -60,11 +60,11 @@
 
     <!-- 최근 7일간 문의건수 -->
     <select id="dailyAsk" resultType="hashmap">
-    SELECT DATE(ask_date) AS ask_date, COUNT(*) AS count
-    FROM ask
-    WHERE ask_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
-    GROUP BY DATE(ask_date)
-    ORDER BY ask_date
+        SELECT DATE(ask_date) AS ask_date, COUNT(*) AS count
+        FROM ask
+        WHERE ask_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURRENT_DATE()
+        GROUP BY DATE(ask_date)
+        ORDER BY ask_date
     </select>
 
 </mapper>

@@ -18,4 +18,7 @@ public interface BookService {
 
     // 도서정보 삭제
     void deleteBook(Book vo);
+
+    // 도서인기 순위
+    List<Book> bookRank();
 }

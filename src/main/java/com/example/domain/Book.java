@@ -7,7 +7,7 @@ public class Book {
     
     // ******************************** 도서 **********************************************
 	private Integer no;					// 번호
-	private String	ranking;			// 랭킹
+	private Integer	ranking;			// 랭킹
 	private String	bookname;			// 책 제목
 	private String	authors;			// 작가
 	private String	publisher;			// 출판사
@@ -23,4 +23,6 @@ public class Book {
 	private String	emotionTag;			// 감정태그
 	private String	description;		// 책 소개
 	
+	// **************************** 통계 *****************************
+	private Integer recommandedBook1Count;	// 도서 인기순위
 }

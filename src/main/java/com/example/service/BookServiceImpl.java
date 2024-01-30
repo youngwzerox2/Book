@@ -39,4 +39,11 @@ public class BookServiceImpl implements BookService{
     public void deleteBook(Book vo) {
         bookDAO.deleteBook(vo);
     }
+
+    // 도서인기 순위
+    @Override
+    public List<Book> bookRank() {
+        System.out.println("bookRank호출");
+        return bookDAO.bookRank();
+    }
 }

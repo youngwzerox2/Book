@@ -24,4 +24,10 @@ public interface UserDAO {
 
     // 관리자 회원 ID 목록
     List<String> getAdminMemberIds();
+
+    // 연령대 분석
+    public List<User> getAge();
+
+    // 신규 가입자 수
+    public List<User> newUser();
 }
