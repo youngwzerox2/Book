@@ -1,42 +1,27 @@
 import { Link } from 'react-router-dom';
-import theimg from '../../../../assets/images/bookcaseB_meng_Basic.png';
-// material-ui
-// import { useTheme } from '@mui/material/styles';
-// import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import theimg from '../../../../assets/images/bookcaseB_meng_Lank.png';
 import { Divider, Grid, Typography } from '@mui/material';
-// project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
 import { useEffect } from 'react';
-// import AuthFooter from 'ui-component/cards/AuthFooter';
-// import imageTest from '../../../../assets/images/Untitled.png';
 import Logo from '../../../../assets/images/ReadMe2.png';
-// import Library from './DLibrary';
 import { styled } from '@mui/material/styles';
 // 기본 폼
 import { FormControl } from '@mui/material';
-// 버튼 관련 속성. Button.d.ts 파일에 종류 있음. - variant, fullwidth 사용중
 import { Box, Button, IconButton } from '@mui/material';
-// theme 객체 생성 위해 필요. 색깔 등은 여기서 조정하는 듯하다
 import { useTheme } from '@mui/material/styles';
-// customization 위해 필요
 import { useSelector } from 'react-redux';
 import * as React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-// -------------------------------------------------------------------------------
-// ===========================|| FIREBASE - REGISTER ||=========================== //
-// jquery 쓰려고 npm install jquery 함.
-// import $ from 'jquery'; g하면 걍 쓸 수 잇음.
 import ImageMap from 'image-map';
-// npm install image-map
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
-// ===============================|| AUTH3 - REGISTER ||=============================== //
+// ========================================================================
+// =================== || 부트스트랩 다이얼로그 || ==========================
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2)
@@ -45,18 +30,21 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1)
   }
 }));
+
+// ========================================================================
+// =================== || 리턴할 컴포넌트 함수 || ===========================
 const Register = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
   useEffect(() => {
     ImageMap('img[usemap]'); // imageMap 삽입코드
   }, []);
-  const sess = localStorage;
 
-  // 추천 유저리스트 받기
+  // =====================================================================
+  // ================ || 인기 유저리스트 받기 || ==========================
   const [viewContent, setViewContent] = useState([]);
   const boardLoad = () => {
-    axios.post(`/library/recommendBookshelf?memberId=${sess.getItem('loginId')}`).then((re) => {
+    axios.get('/library/rankingBookshelf').then((re) => {
       console.log(re.data);
       setViewContent(re.data);
       console.log(viewContent);
@@ -67,9 +55,8 @@ const Register = () => {
     ImageMap('img[useMap]'); // imageMap 삽입코드
   }, []);
 
-  // 모달창 띄우기
-  const thisUser = sess.getItem('loginId');
-
+  // =====================================================================
+  // =============== || 모달창 띄우기 || ==================================
   const [open0, setOpen0] = React.useState(false);
   const handleClickOpen0 = () => {
     setOpen0(true);
@@ -345,15 +332,21 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test97</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test84</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test127</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    책 먹는 여우
+                                    신경 끄기의 기술 :인생에서 가장 중요한것만 남기는 힘
                                   </Typography>
-                                  <Typography gutterBottom>아이도 어른도 좋아하는 책</Typography>
-                                  <Typography gutterBottom>{`남녀노소 누구든 재미있게 읽을 만한 책 :)`}</Typography>
+                                  <Typography gutterBottom>“무한 긍정만을 강요하던 기존의 자기계발서는 잊어라!”</Typography>
+                                  <Typography gutterBottom>
+                                    아마존·뉴욕타임스 베스트셀러 1위 150만 부 돌파! 아마존 53주 연속 베스트셀러 2017 아마존에서 가장 많이
+                                    읽은 책 전 세계 28개국 번역 출간 미국 네티즌 추천 2017 최고의 책 「CNN」, 「타임」, 「포브스」,
+                                    「월스트리트저널」… 수많은 언론의 극찬 세례
+                                  </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -382,15 +375,18 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test116</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test64</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test21</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    세이노의 가르침
+                                    카페 style 샌드위치 =신선한 빵&다양한 속재료의 조화로 입맛을 감동시키는, 건강 한 끼 메뉴! /Cafe style
+                                    sandwich
                                   </Typography>
-                                  <Typography gutterBottom>돈이 아깝지 않은 책!</Typography>
-                                  <Typography gutterBottom>그 어느 비싸고 두꺼운 책보다도 더 값어치 있는 책이라고 생각합니다.</Typography>
+                                  <Typography gutterBottom>빵이 먹고 싶을 때</Typography>
+                                  <Typography gutterBottom>집에서 쉽게 따라할 수 있는 빵 레시피</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -419,15 +415,17 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test146</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test102</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test151</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    미 비포 유
+                                    어린왕자=Le petit prince
                                   </Typography>
-                                  <Typography gutterBottom>책과 영화를 동시에!</Typography>
-                                  <Typography gutterBottom>기대만큼 재밌습니다. 시간이 후딱 가네요.</Typography>
+                                  <Typography gutterBottom>죽기 전에 꼭 읽어야 할 책</Typography>
+                                  <Typography gutterBottom>명작들만 고르고 골라 만든 책장입니다.</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -456,15 +454,17 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test48</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test128</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test25</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    퓨처 셀프
+                                    어린왕자=Le petit prince
                                   </Typography>
-                                  <Typography gutterBottom>더 나은 나를 기대하며</Typography>
-                                  <Typography gutterBottom>각성하고자 구매한 책입니다. 유튜브 인기 도서!!</Typography>
+                                  <Typography gutterBottom>어린 시절을 함께한 책들</Typography>
+                                  <Typography gutterBottom>동심을 자극하는 도서 모음</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -493,17 +493,17 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test14</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test115</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test74</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    역행자
+                                    인간의 본성에 관한 10가지 이론
                                   </Typography>
-                                  <Typography gutterBottom>경제적 자유를 꿈꾸는 자들의 필독서</Typography>
-                                  <Typography gutterBottom>
-                                    자기계발서 여러 책을 읽었지만, 이 책은 특히, 실천방식에 대해서도 보다 상세히 설명한다.
-                                  </Typography>
+                                  <Typography gutterBottom>인간에 관한 고찰</Typography>
+                                  <Typography gutterBottom>인간이란 무엇인가. 인간에 관해 자세히 알게 해주는 인문학 도서</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -532,18 +532,19 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test141</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test143</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test66</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    팩트풀니스
+                                    미키7 :에드워드 애슈턴 SF 장편소설
                                   </Typography>
-                                  <Typography gutterBottom>나의 인생책</Typography>
+                                  <Typography gutterBottom>SF 과학을 좋아하고 상상력이 풍부한 사람들에게 추천!</Typography>
                                   <Typography gutterBottom>
-                                    세상을 똑바로 볼 수 있게 해주는 현명한 책.
-                                    <br />
-                                    내가 가지고 있는 정보가 낡은 정보라는 걸 깨달을 수 있어서 좋았습니다.
+                                    봉준호 감독의 차기 영화의 원작으로 주목받은 에드워드 애슈턴의 SF 장편소설 『미키7』이 황금가지에서
+                                    출간된 책으로 기대가 많이 됐었고 신선한 설정이라 기억에 많이 남았어요!!
                                   </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
@@ -573,15 +574,20 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test35</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test1</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test33</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    생각이 너무 많은 어른들을 위한 심리학 :후회 없는 삶을 살고 싶은 당신에게 해 주고 싶은 말들
+                                    나를 위한 가벼운 집밥책 :요즘 딱! 신선 재료, 쉽고 간단한 건강 요리
                                   </Typography>
-                                  <Typography gutterBottom>불안한 사람을 위한 처방전</Typography>
-                                  <Typography gutterBottom>“못하는 건 두고 할수 있는 것을 하자”</Typography>
+                                  <Typography gutterBottom>자취하는데 큰 도움이 되는 책</Typography>
+                                  <Typography gutterBottom>
+                                    올해 자취를 처음 했는데 무슨음식을 어떻게 해먹을까 고민이 많았는데 이 책을 보면서 하니깐 도움이 많이
+                                    되었어요!
+                                  </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -610,17 +616,17 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test27</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test118</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test67</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    데일 카네기 인간관계론
+                                    셜록 홈스, 범인을 찾아라!
                                   </Typography>
-                                  <Typography gutterBottom>인간관계의 바이블</Typography>
-                                  <Typography gutterBottom>
-                                    전 세계적으로 6천만부가 판매된 최고의 인간관계 바이블, 워런 버핏의 인생을 바꿨다는 책
-                                  </Typography>
+                                  <Typography gutterBottom>추리소설에 대해 관심이 많이 가는 요즘</Typography>
+                                  <Typography gutterBottom>셜록 홈스를 읽고서 탐정추리 하는 생각에 밤새 잠을 못잤어요,,</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -649,15 +655,21 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test62</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test37</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test45</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    아가미 :구병모 장편소설
+                                    완벽하지 않은 것들에 대한 사랑 :온전한 나를 위한 혜민 스님의 따뜻한 응원
                                   </Typography>
-                                  <Typography gutterBottom>마음 먹먹해지는 소설</Typography>
-                                  <Typography gutterBottom>아름다운 문장들과 물에 둘러싸인듯한 분위기로 가득한 책.</Typography>
+                                  <Typography gutterBottom>혜민스님의 철학이 느껴져요,,</Typography>
+                                  <Typography gutterBottom>
+                                    {`완벽하지 않은 것들에 대한 사랑 :온전한 나를 위한 혜민 스님의 따뜻한 응원이라는 책을 읽고 사랑이란
+                                    무엇일까에 대한 철학적인 생각이 확립되었어요. 세상이 요구하는 완벽함을 갖추지 않아도 우리 존재는 이미
+                                    가치가 있고 사랑받을 만하다고 생각해요:)`}
+                                  </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -686,19 +698,17 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test12</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test86</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test48</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    멘탈이 강해지는 연습
+                                    퓨처 셀프 :현재와 미래가 달라지는 놀라운 혁명
                                   </Typography>
-                                  <Typography gutterBottom>콤팩트한 임팩트</Typography>
-                                  <Typography gutterBottom>
-                                    살아가는데 있어 체력 뿐만 아니라 멘탈이 정말 중요한 것 같습니다.
-                                    <br />
-                                    조금 더 단단한 정신을 갖추는 데 많은 도움이 되는 책입니다.
-                                  </Typography>
+                                  <Typography gutterBottom>더 나은 나를 기대하며</Typography>
+                                  <Typography gutterBottom>각성하고자 구매한 책입니다. 유튜브 인기 도서!!</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요
@@ -727,18 +737,19 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test76</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test123</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test5</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    장하준의 경제학 레시피 :마늘에서 초콜릿까지 18가지 재료로 요리한 경제 이야기
+                                    설민석의 한국사 대모험
                                   </Typography>
-                                  <Typography gutterBottom>이 시대를 사는 사람으로서 꼭 읽어야 할 책</Typography>
+                                  <Typography gutterBottom>한국사에 대해 더 깊게 알아보고 싶었다</Typography>
                                   <Typography gutterBottom>
-                                    경제학자 장하준 교수님의 최근작으로, 경제학 분야의 중요한 내용을 식재료와 묶어서 펼쳐낸 책이다. 식재료
-                                    이야기가 나오고 에세이 같은 감상글이 나오고 경제학 관련 주요 주제가 연결되어 마무리되는 구조로 구성되어
-                                    있다.
+                                    한국사에 대해 더 깊게 알아보고 싶었을 때 어떤 책이 좋을까 생각하다가 설민석 선생님이 생각나서 이 책을
+                                    읽으면서 즐겁게 한국사에 대해 공부할 수 있었어요. 민석쌤 사랑해요!
                                   </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
@@ -768,15 +779,20 @@ const Register = () => {
                                   <CloseIcon />
                                 </IconButton>
                                 <DialogContent dividers>
-                                  {thisUser === 'test151' && <Typography gutterBottom>유저 : test70</Typography>}
-                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : test2</Typography>}
+                                  {/* {thisUser === 'test151' && <Typography gutterBottom>유저 : 여기 151</Typography>}
+                                  {thisUser === 'test152' && <Typography gutterBottom>유저 : 여기 닉네임 찍어줄거야 졔야</Typography>} */}
+                                  {/* <Typography gutterBottom>유저 : {viewContent[0].memberId}</Typography> */}
+                                  <Typography gutterBottom>유저 : test7</Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '10px' }}>{`< 추천도서 >`}</Typography>
                                   <Typography gutterBottom style={{ fontSize: 24 }}>
-                                    신비한 고양이 마을
+                                    나의 하루는 4시 30분에 시작된다 :하루를 두 배로 사는 단 하나의 습관
                                   </Typography>
-                                  <Typography gutterBottom>고양이와 사람이 모두 행복해지는 방법</Typography>
-                                  <Typography gutterBottom>고양이가 나오는 책을 사람이 읽으면 됩니다. 완 전 강 추</Typography>
+                                  <Typography gutterBottom>경제적인 관념을 이해하는데 좋았어요.</Typography>
+                                  <Typography gutterBottom>
+                                    나의 하루는 4시 30분에 시작된다 :하루를 두 배로 사는 단 하나의 습관이라는 책은 저에게 경제 관념을
+                                    심어줬을뿐만 아니라 인생의 철학을 되돌아보게 하는 책입니다.
+                                  </Typography>
 
                                   <Typography gutterBottom sx={{ marginTop: '20px' }}>
                                     해당 유저의 책장에 방문하여 더 많은 추천기록을 확인해보세요

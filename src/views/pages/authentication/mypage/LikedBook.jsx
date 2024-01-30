@@ -44,7 +44,7 @@ export default function Album() {
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {bookContent.map((item, idx) => (
-              <Grid item key={idx} xs={12} sm={6} md={4}>
+              <Grid item key={idx} xs={12} sm={12} md={12}>
                 <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <CardMedia
                     component="div"

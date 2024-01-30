@@ -29,6 +29,9 @@ const MainRecord = Loadable(lazy(() => import('views/pages/authentication/booksh
 // 도서관
 const CLibrary = Loadable(lazy(() => import('views/pages/authentication/library/CLibrary')));
 const RecommandedUser = Loadable(lazy(() => import('views/pages/authentication/library/RecommandedUser')));
+const HotUser = Loadable(lazy(() => import('views/pages/authentication/library/UserRanking')));
+const SameAge = Loadable(lazy(() => import('views/pages/authentication/library/UserAge')));
+
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
 const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
@@ -126,6 +129,14 @@ const AuthenticationRoutes = {
     {
       path: 'readme/library/recommand',
       element: <RecommandedUser />
+    },
+    {
+      path: 'readme/library/hot',
+      element: <HotUser />
+    },
+    {
+      path: 'readme/library/age',
+      element: <SameAge />
     },
     {
       path: 'readme/map',

@@ -268,13 +268,9 @@ const Register = () => {
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                              <Button
-                                onClick={() => {
-                                  setChoosed('ages');
-                                }}
-                              >
-                                이동하기
-                              </Button>
+                              <Link to="age">
+                                <Button>이동하기</Button>
+                              </Link>
                               <Button onClick={handleClose2} autoFocus>
                                 닫기
                               </Button>
@@ -293,16 +289,12 @@ const Register = () => {
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                              <Button
-                                onClick={() => {
-                                  setChoosed('ranking');
-                                }}
-                              >
-                                이동하기
-                              </Button>
-                              <Button onClick={handleClose3} autoFocus>
-                                닫기
-                              </Button>
+                              <Link to="hot">
+                                <Button>이동하기</Button>
+                                <Button onClick={handleClose3} autoFocus>
+                                  닫기
+                                </Button>
+                              </Link>
                             </DialogActions>
                           </Dialog>
                         </FormControl>
