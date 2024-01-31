@@ -74,8 +74,8 @@
     <footer class="site-footer">
       <div class="footer-inner bg-white">
         <div class="row">
-          <div class="col-sm-6">Copyright &copy; 2024 Read Me</div>
-          <div class="col-sm-6 text-right">Designed by <a href="http://118.217.203.37:3000/free/readme/start">Read Me</a></div>
+          <div class="col-sm-6">Copyright &copy; 2024 ReadMe</div>
+          <div class="col-sm-6 text-right">Designed by <a href="http://118.217.203.44:3000/free/readme/start">ReadMe</a></div>
         </div>
       </div>
     </footer>

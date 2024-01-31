@@ -1,12 +1,9 @@
 package com.example.controller;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +27,7 @@ public class ChatLogController {
 	@PostMapping("/chating")
 	public String chating(ChatLog dto) {
 		try {
+			System.out.println("[ChatDataController/chating] 요청");
 			// 문장 전처리
 			String sentence = dto.getSentence().replaceAll("^(\\s+)|(\\s+)$", "");
 
@@ -38,13 +36,6 @@ public class ChatLogController {
 			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, sentence);
 			pb.directory(new File(System.getProperty("user.dir")));
 			Process process = pb.start();
-
-			// .py로 문자열 전달
-			// OutputStream outputStream = process.getOutputStream();
-			// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-			// System.out.println("문장 전달 > " + sentence);
-			// writer.write("msg=" + sentence + "\n");
-			// writer.close();
 
 			// 프로세스 종료 대기
             int exitCode = process.waitFor();

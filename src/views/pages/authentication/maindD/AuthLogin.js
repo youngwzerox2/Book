@@ -84,18 +84,23 @@ const FirebaseLogin = ({ ...others }) => {
     session.setItem('loginId', mid);
     session.setItem('loginPassword', mpassword);
     console.log(session.getItem('loginId'));
-    if (mpassword == '123') {
-      alert('비밀번호가 틀렸습니다');
-    } else {
-      if (mid === '0woo' || mid === 'test1') {
-        const answer = confirm('관리자 페이지로 이동하시겠습니까/');
-        if (answer == true) {
-          location = 'http://localhost:8080/adminmain';
+
+    axios.post(`/user/login?memberId=${mid}&memberPassword=${mpassword}`).then((re) => {
+      if (re.data == 1) {
+        // 로그인 성공
+        if (mid === '0woo' || mid === 'test1') {
+          const answer = confirm('관리자 페이지로 이동하시겠습니까?');
+          if (answer == true) {
+            location = 'http://localhost:8080/adminmain';
+          }
+        } else {
+          window.location.replace('/free/readme/main');
         }
       } else {
-        window.location.replace('/free/readme/main');
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        window.reload();
       }
-    }
+    });
   };
 
   // --------------------------------------------------------------
@@ -334,7 +339,7 @@ const FirebaseLogin = ({ ...others }) => {
                           margin="dense"
                           id="memberTel"
                           name="email"
-                          label="전화번호"
+                          label="전화번호 ( ' - ' 없이 입력 )"
                           type="tel"
                           fullWidth
                           variant="standard"
@@ -377,7 +382,7 @@ const FirebaseLogin = ({ ...others }) => {
                           margin="dense"
                           id="memberTel"
                           name="email"
-                          label="전화번호"
+                          label="전화번호 ( ' - ' 없이 입력 )"
                           type="tel"
                           fullWidth
                           variant="standard"
