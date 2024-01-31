@@ -24,6 +24,20 @@
         pre {
             white-space: pre-wrap;
         }
+
+        .notice-content {
+            white-space: pre-line; /* pre-line 값은 줄 바꿈은 유지하되 여러 공백은 하나로 처리 */
+            padding-left: 1em; /* 또는 다른 적절한 단위를 선택하세요 */
+        }
+
+        .nav-pills {
+            display: flex;
+            justify-content: space-between; /* 탭들을 좌우에 고르게 배치 */
+        }
+
+        .nav-item {
+            flex: 1; /* 각 탭이 동일한 너비를 가지도록 설정 */
+        }
     </style>
 </head>
 
@@ -40,32 +54,34 @@
         <%@ include file="header.jsp" %>
         <div class="content">
 
-            <div class="card-body">
+            <div class="container mt-5">
                 <h3>이용 약관</h3>
-
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <c:forEach items="${termsList}" var="terms" varStatus="loop">
-                        <li class="nav-item">
-                            <a class="nav-link ${loop.first ? 'active' : ''}" id="pills-${loop.index + 1}-tab"
-                                data-toggle="pill" href="#pills-${loop.index + 1}" role="tab"
-                                aria-controls="pills-${loop.index + 1}" aria-selected="${loop.first}">
-                                ${terms.noticeTitle}
-                            </a>
-                        </li>
-                    </c:forEach>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <c:forEach items="${termsList}" var="terms" varStatus="loop">
-                        <div class="tab-pane fade ${loop.first ? 'show active' : ''}" id="pills-${loop.index + 1}"
-                            role="tabpanel" aria-labelledby="pills-${loop.index + 1}-tab">
-                            <p><a href="termsDetail?noticeNumber=${terms.noticeNumber}">${terms.noticeContent}</a></p>
+                    <div class="card">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <c:forEach items="${termsList}" var="terms" varStatus="loop">
+                                <li class="nav-item">
+                                    <a class="nav-link ${loop.first ? 'active' : ''}" id="pills-${loop.index + 1}-tab"
+                                        data-toggle="pill" href="#pills-${loop.index + 1}" role="tab"
+                                        aria-controls="pills-${loop.index + 1}" aria-selected="${loop.first}">
+                                        ${terms.noticeTitle}
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <c:forEach items="${termsList}" var="terms" varStatus="loop">
+                                <div class="tab-pane fade ${loop.first ? 'show active' : ''}" id="pills-${loop.index + 1}" role="tabpanel" aria-labelledby="pills-${loop.index + 1}-tab">
+                                    <p class="notice-content">
+                                        ${terms.noticeContent}
+                                    </p>
+                                    <button class="btn btn-outline-warning btn-sm float-right" onclick="writeAction('${terms.noticeNumber}')">글 수정</button>
+                                </div>
+                            </c:forEach>
                         </div>
-                    </c:forEach>
-                </div>
+                    </div>
             </div>
             <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
                         <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
-            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
         </div><!-- .content -->
 
         <!-- 푸터 -->
@@ -77,11 +93,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function writeAction() {
-            // 글쓰기 버튼 클릭 시 동작
-            alert("글을 작성합니다.");
+        function writeAction(noticeNumber) {
+            // 글 수정 버튼을 클릭했을 때 noticeNumber 값을 가져와 URL을 생성
+            var url = "termsDetail?noticeNumber=" + noticeNumber;
+    
+            // 수정 페이지로 리다이렉션
+            window.location.href = url;
         }
     </script>
+
 </body>
 
 </html>

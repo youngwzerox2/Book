@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Ask;
 import com.example.domain.Book;
 import com.example.domain.Complain;
+import com.example.domain.Login;
 import com.example.domain.Merchant;
 import com.example.domain.Notice;
 import com.example.domain.RecordDTO;
@@ -19,6 +20,7 @@ import com.example.service.AskService;
 import com.example.service.BookService;
 import com.example.service.ComplainService;
 import com.example.service.FaqService;
+import com.example.service.LoginService;
 import com.example.service.MerchantService;
 import com.example.service.NoticeService;
 import com.example.service.RecordService;
@@ -64,6 +66,10 @@ public class AdminController {
     @Autowired
     private MerchantService merchantService;
 
+    // 오늘 접속자 수
+    @Autowired
+    private LoginService loginService;
+
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
         return step;
@@ -88,18 +94,21 @@ public class AdminController {
     // 메인 제재명단, 문의건수
     @RequestMapping("/adminmain")
     public String index(Model m) {
-        List<User> user = userService.memberList();             // 제재명단
+        List<User> user = userService.memberList();                             // 제재명단
         m.addAttribute("memberList", user);
-        List<Ask> dailyAsk = askService.dailyAsk();             // 일별 문의건수
+        List<Ask> dailyAsk = askService.dailyAsk();                             // 일별 문의건수
         m.addAttribute("dailyAsk", dailyAsk);
-        List<User> getAge = userService.getAge();               // 연령대 분석
+        List<User> getAge = userService.getAge();                               // 연령대 분석
         m.addAttribute("getAge", getAge);
-        List<Book> bookRank = bookService.bookRank();           // 도서 인기순위
+        List<Book> bookRank = bookService.bookRank();                           // 도서 인기순위
         m.addAttribute("bookRank", bookRank);
-        List<Merchant> todaySum = merchantService.todaySum();   // 오늘 총 매출
+        List<Merchant> todaySum = merchantService.todaySum();                   // 오늘 총 매출
         m.addAttribute("todaySum", todaySum.get(0));
-        List<User> newUser = userService.newUser();             // 신규 가입자 수
+        List<User> newUser = userService.newUser();                             // 신규 가입자 수
         m.addAttribute("newUser", newUser.get(0));
+        List<Login> todayLogin = loginService.todayLogin();                     // 오늘 접속자 수
+        m.addAttribute("todayLogin", todayLogin.get(0));
+        // System.out.println(todayLogin);
         // System.out.println(newUser);
         // System.out.println(bookRank);
         // System.out.println(getAge);
@@ -218,6 +227,10 @@ public class AdminController {
         Notice notice = noticeService.noticeDetail(vo);
         System.out.println("noticeDetail.jsp호출");
         m.addAttribute("notice", notice);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // 공지사항 정보수정
@@ -239,6 +252,10 @@ public class AdminController {
     @RequestMapping("/insertNotice")
     public void insertNotice(Model m, Notice vo) {
         noticeService.insertNotice(vo);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // *************************************** 이용약관 ****************************************
@@ -256,6 +273,10 @@ public class AdminController {
         Notice terms = termsService.termsDetail(vo);
         System.out.println("termsDetail.jsp호출");
         m.addAttribute("terms", terms);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // 이용약관 정보수정
@@ -281,6 +302,10 @@ public class AdminController {
         Notice faq = faqService.faqDetail(vo);
         System.out.println("faqDetail.jsp호출");
         m.addAttribute("faq", faq);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // FAQ 정보수정
@@ -302,6 +327,10 @@ public class AdminController {
     @RequestMapping("/insertFaq")
     public void insertFaq(Model m, Notice vo) {
         faqService.insertFaq(vo);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // *************************************** 문의 ****************************************
@@ -345,6 +374,10 @@ public class AdminController {
     @RequestMapping("/insertAsk")
     public void insertAsk(Model m, Ask vo) {
         askService.insertAsk(vo);
+
+        // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
+        List<String> adminMemberIds = userService.getAdminMemberIds();
+        m.addAttribute("adminMemberIds", adminMemberIds);
     }
 
     // *************************************** 독서기록 ****************************************

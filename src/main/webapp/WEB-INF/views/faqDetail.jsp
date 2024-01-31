@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -36,13 +39,23 @@
                                 <label for="company" class="form-control-label">답변</label>
                                 <textarea class="form-control" name="noticeContent" style="height: 200px;">${faq.noticeContent}</textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="company" class="form-control-label">처리담당자</label>
+                                <select class="form-control" name="memberId">
+                                    <c:forEach var="adminId" items="${adminMemberIds}">
+                                        <option value="${adminId}" <c:if test="${adminId eq faq.memberId}">selected</c:if>>${adminId}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-outline-primary">수정</button>
-                            <a href="deleteFaq?noticeNumber=${faq.noticeNumber}"
-                                class="btn btn-outline-danger"
-                                onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
-                            <a href="faq" class="btn btn-outline-secondary">뒤로가기</a>
+                        <div class="form-group row justify-content-end">
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-outline-warning">수정</button>
+                                <a href="deleteFaq?noticeNumber=${faq.noticeNumber}"
+                                    class="btn btn-outline-danger"
+                                    onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+                                <a href="faq" class="btn btn-outline-secondary">뒤로가기</a>
+                            </div>
                         </div>
                     </form>
                 </div>

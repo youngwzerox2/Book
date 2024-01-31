@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import mysql.connector
-from mysql.connector import Error
 
-# MySQL 연결 설정
+# MySQL 연결 정보
 db_config = {
     'host': '118.217.203.37',
     'user': 'readme',
@@ -11,105 +10,93 @@ db_config = {
     'database': 'readme'
 }
 
-# MySQL 연결
+# MySQL 연결 설정
 conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 
-# 각 페이지에서 수집한 정보를 저장할 리스트
-all_books = []
+# 도서 정보 삽입을 위한 SQL 쿼리
+insert_query = """
+INSERT INTO book (bookImageURL, bookname, authors, publisher, publication_year, book_isbn13)
+VALUES (%s, %s, %s, %s, %s, %s)
+"""
 
-for page_number in range(1, 349):
-    url = f"https://www.yes24.com/24/Category/NewProductList/001?SumGb=04&PageNumber={page_number}"
+# 중복 체크를 위한 SQL 쿼리
+check_query = "SELECT COUNT(*) FROM book WHERE book_isbn13 = %s"
+
+base_url = "https://www.yes24.com/Product/Category/NewProduct?categoryNumber=001&pageNumber="
+detail_url_base = "https://www.yes24.com/Product/Goods/"
+
+start_page = 1
+end_page = 555
+
+for page in range(start_page, end_page + 1):
+    url = base_url + str(page)
     response = requests.get(url)
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # 특정 테이블 찾기
-        category_table = soup.find("table", id="category_layout")
+        # 도서 정보
+        book_info_list = soup.select('li[data-goods-no]')
 
-        if category_table:
-            # 테이블의 각 행을 찾기
-            rows = category_table.find_all("tr")
+        for book_info in book_info_list:
+            # 도서번호
+            goods_number = book_info['data-goods-no']
 
-            for row in rows:
-                # 행에서 각 책의 정보가 들어있는 요소 찾기
-                book_image_element = row.find("div", class_="goodsImgW")
+            # 도서 이미지
+            bookImageURL_elem = book_info.select_one('em.img_bdr > img')
+            bookImageURL = bookImageURL_elem['src'] if bookImageURL_elem else "-"
 
-                # 각 행에서 독립적으로 책 정보 찾기
-                book_info_element = row.find("td", class_="goodsTxtInfo")
+            # 도서 제목
+            bookname_elem = book_info.select_one('em.img_bdr > img')
+            bookname = bookname_elem['alt'] if bookname_elem else "-"
 
-                # 책 이미지
-                if book_image_element:
-                    book_image_tag = book_image_element.find("img")
-                    book_image = book_image_tag.get("src", "") if book_image_tag else ""
+            # 도서 저자
+            author_elem = book_info.select_one('span.authPub.info_auth > a')
+            author = author_elem.text if author_elem else "-"
+
+            # 출판사
+            publisher_elem = book_info.select_one('span.authPub.info_pub > a')
+            publisher = publisher_elem.text if publisher_elem else "-"
+
+            # 출판년도
+            publication_year_elem = book_info.select_one('span.authPub.info_date')
+            publication_year = publication_year_elem.text if publication_year_elem else "-"
+
+            # 도서의 상세 페이지로 이동하여 ISBN-13 정보 가져오기
+            detail_url = detail_url_base + goods_number
+            detail_response = requests.get(detail_url)
+            if detail_response.status_code == 200:
+                detail_soup = BeautifulSoup(detail_response.text, 'html.parser')
+
+                # ISBN-13 정보의 위치 확인
+                isbn13_elem_3rd = detail_soup.select_one('.b_size tr:nth-of-type(3) td')
+                isbn13_elem_4th = detail_soup.select_one('.b_size tr:nth-of-type(4) td')
+
+                # 텍스트가 있는지 확인 후 처리
+                def is_valid_isbn13(text):
+                    return text and text.strip().isdigit() and len(text.strip()) == 13
+
+                if isbn13_elem_3rd and is_valid_isbn13(isbn13_elem_3rd.text):
+                    book_isbn13 = isbn13_elem_3rd.text.strip()
+                elif isbn13_elem_4th and is_valid_isbn13(isbn13_elem_4th.text):
+                    book_isbn13 = isbn13_elem_4th.text.strip()
                 else:
-                    book_image = ""
+                    book_isbn13 = "-"
 
-                # 책 제목
-                if book_info_element:
-                    book_title_tag = book_info_element.find("p")
-                    book_title = book_title_tag.text.strip() if book_title_tag else ""
+                # 중복 체크 후 삽입
+                cursor.execute(check_query, (book_isbn13,))
+                count = cursor.fetchone()[0]
+                if count == 0:
+                    cursor.execute(insert_query, (bookImageURL, bookname, author, publisher, publication_year, book_isbn13))
+                    conn.commit()
                 else:
-                    book_title = ""
+                    print(f"중복된 도서번호입니다. ISBN-13: {book_isbn13}")
 
-                # 책 저자 및 출판사 정보가 포함된 요소 찾기
-                if book_info_element:
-                    author_element = book_info_element.find("div", class_="aupu").find_all("a")
-                    book_author = author_element[0].text if len(author_element) > 0 else ""
-                    publisher_element = author_element[1].text if len(author_element) > 1 else ""
-                else:
-                    book_author = ""
-                    publisher_element = ""
+            else:
+                print(f"페이지 {page}를 가져오는 데 실패했습니다. 상태 코드: {response.status_code}")
 
-                # isbn13 정보를 가져오기 위해 링크 접근
-                book_link_element = row.find("a", class_="goodsImg")
-                if book_link_element:
-                    book_link = book_link_element.get("href", "")
-                    isbn13_response = requests.get(f"https://www.yes24.com{book_link}")
-                    isbn13_soup = BeautifulSoup(isbn13_response.text, 'html.parser')
-                    isbn13_element = isbn13_soup.find("td", class_="txt lastCol")
-                    isbn13 = isbn13_element.text.strip() if isbn13_element else ""
-                else:
-                    isbn13 = ""
 
-                # 책 정보가 모두 존재하고 isbn13이 존재할 경우에만 데이터베이스에 삽입
-                if isbn13:
-                    book_data = {
-                        'book_image': book_image,
-                        'book_title': book_title,
-                        'book_author': book_author,
-                        'publisher': publisher_element,
-                        'isbn13': isbn13
-                    }
-
-                    all_books.append(book_data)
-
-                    try:
-                        # SQL 쿼리 작성
-                        insert_query = "INSERT INTO book (bookImageURL, bookname, authors, publisher, book_isbn13) VALUES (%s, %s, %s, %s, %s)"
-                        insert_values = (book_image, book_title, book_author, publisher_element, isbn13)
-
-                        # 쿼리 실행
-                        cursor.execute(insert_query, insert_values)
-
-                        # 변경사항 커밋
-                        conn.commit()
-
-                        # 페이지별로 수집한 정보 출력
-                        print(f"Page {page_number}, Book Image: {book_image}, Title: {book_title}, Author: {book_author}, Publisher: {publisher_element}, ISBN13: {isbn13}")
-
-                    except Error as e:
-                        print("오류:", e)
-                        # 오류가 발생한 경우 트랜잭션을 롤백할 수 있습니다.
-                        conn.rollback()
-
-        else:
-            print(f"Table with id 'category_layout' not found on the page {page_number}.")
-
-    else:
-        print(f"Failed to retrieve the page {page_number}. Status code:", response.status_code)
-
-# 연결 종료
+# MySQL 연결 종료
 cursor.close()
 conn.close()

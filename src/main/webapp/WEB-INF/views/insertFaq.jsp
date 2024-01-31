@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
     <!DOCTYPE html>
     <html>
 
@@ -42,31 +45,39 @@
 
                             <div class="card">
                                 <form id="noticeForm" action="insertFaq" method="post" onsubmit="return submitForm()">
-                                    <input name="notice_number" type="hidden" value="${faq.notice_number}" />
-                                    <input name="notice_date" type="hidden" value="${faq.notice_date}" />
-                                    <input name="notice_display" type="hidden" value="${faq.notice_display}" />
+                                    <input name="noticeNumber" type="hidden" value="${faq.noticeNumber}" />
+                                    <input name="noticeDate" type="hidden" value="${faq.noticeDate}" />
+                                    <input name="noticeDisplay" type="hidden" value="${faq.noticeDisplay}" />
 
                                     <div class="card-body card-block">
                                         <div class="form-group"><label for="company"
                                             class=" form-control-label">카테고리</label><input type="text"
-                                             class="form-control" name="notice_type">
+                                             class="form-control" name="noticeType">
                                         </div>
                                         <div class="form-group"><label for="company"
                                             class=" form-control-label">제목</label><input type="text"
-                                             class="form-control" name="notice_title">
+                                             class="form-control" name="noticeTitle">
                                         </div>
                                         <div class="form-group">
                                             <label for="company" class="form-control-label">내용</label>
-                                            <textarea class="form-control" name="notice_content" style="height: 200px;">${notice.notice_content}</textarea>
+                                            <textarea class="form-control" name="noticeContent" style="height: 200px;"></textarea>
                                         </div>
-                                        <div class="form-group"><label for="company"
-                                            class=" form-control-label">담당자아이디</label><input type="text"
-                                            class="form-control" name="member_id">
+                                        <div class="form-group">
+                                            <label for="company" class="form-control-label">처리담당자</label>
+                                            <select class="form-control" name="memberId">
+                                                <c:forEach var="adminId" items="${adminMemberIds}">
+                                                    <option value="${adminId}" <c:if test="${adminId eq faq.memberId}">selected</c:if>>${adminId}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-outline-primary">등록</button>
-                                        <a href="faq" class="btn btn-outline-secondary">뒤로가기</a>
+                                    <div class="row justify-content-end">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-outline-primary">등록</button>
+                                                <a href="faq" class="btn btn-outline-secondary">뒤로가기</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -24,7 +24,7 @@
 	<!-- FAQ 정보수정 -->
 	<update id="updateFaq" parameterType="Notice">
 		UPDATE notice
-		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}, member_id=#{memberId}
 		WHERE notice_number=#{noticeNumber} AND notice_type = 'faq'
 	</update>
 

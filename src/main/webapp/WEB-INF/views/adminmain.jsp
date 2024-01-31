@@ -126,7 +126,7 @@
                                                     <div class="stat-content">
                                                         <div class="text-left dib">
                                                             <div class="stat-heading">오늘 접속자 수</div>
-                                                            <div class="stat-text">2986</div>
+                                                            <div class="stat-text">${todayLogin}</div>
                                                         </div>
                                                     </div>
                                                 </div>

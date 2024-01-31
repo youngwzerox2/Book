@@ -7,7 +7,7 @@
 
     <!-- 오늘 총 매출 -->
 	<select id="todaySum" resultType="Integer">
-		SELECT SUM(merchant_cost) AS total_merchant_cost
+		SELECT IFNULL(SUM(merchant_cost), 0) AS total_merchant_cost
 		FROM merchant
 		WHERE DATE(start_date) = CURDATE();
 	</select>

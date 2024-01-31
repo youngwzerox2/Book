@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- *********************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.LoginDAO">
+
+    <!-- ****************************** 로그인 ******************************** -->
+    <!-- 오늘 접속자 수 -->
+    <select id="todayLogin" resultType="Integer">
+        SELECT COUNT(DISTINCT member_id) AS today_login_count
+        FROM login_logs
+        WHERE DATE(login_time) = CURDATE();
+    </select>
+
+</mapper>

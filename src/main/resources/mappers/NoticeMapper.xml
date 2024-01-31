@@ -24,7 +24,7 @@
 	<!-- 공지사항 정보수정 -->
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE notice
-		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+		SET notice_title=#{noticeTitle}, notice_content=#{noticeContent}, member_id=#{memberId}
 		WHERE notice_number=#{noticeNumber} AND notice_type = 'notice'
 	</update>
 
@@ -36,7 +36,8 @@
 
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="Notice">
-		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) VALUES (#{noticeType}, #{noticeTitle}, #{noticeContent}, now(), 1, #{memberId})
+		INSERT INTO notice (notice_type, notice_title, notice_content, notice_date, notice_display, member_id) 
+		VALUES (#{noticeType}, #{noticeTitle}, #{noticeContent}, now(), 1, #{memberId})
 	</insert>
 
 </mapper>

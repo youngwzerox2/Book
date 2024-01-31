@@ -33,17 +33,17 @@
                 <div class="card">
                     <div class="card-body">
                         <c:forEach items="${noticeList}" var="notice">
-                            <!-- <h5 class="card-title">${notice.noticeDate}</h5> -->
                             <h5><fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd" /></h5>
+                            <button class="btn btn-outline-warning btn-sm float-right" onclick="writeAction('${notice.noticeNumber}')">글 수정</button>
                             <!-- <td><fmt:formatDate value="${member.memberBirthday}" pattern="yyyy-MM-dd" /></td> -->
-                            <h3 class="card-title"><a href="noticeDetail?noticeNumber=${notice.noticeNumber}">${notice.noticeTitle}</a></h3>
+                            <h3 class="card-title">${notice.noticeTitle}</h3>
                             <p class="card-text">${notice.noticeContent}</p>
                             <hr/>
                         </c:forEach>
                     </div>
                 </div>
 
-                <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글등록</button>
+                <button class="btn btn-outline-primary btn-sm float-right" onclick="insertAction()">글등록</button>
 
             </div><!-- .content -->
 
@@ -62,8 +62,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function writeAction() {
+        function insertAction() {
             window.location.href = 'insertNotice';
+        }
+
+        function writeAction(noticeNumber) {
+            // 글 수정 버튼을 클릭했을 때 noticeNumber 값을 가져와 URL을 생성
+            var url = "noticeDetail?noticeNumber=" + noticeNumber;
+    
+            // 수정 페이지로 리다이렉션
+            window.location.href = url;
         }
     </script>
 </body>

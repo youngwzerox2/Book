@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
     <!DOCTYPE html>
     <html>
 
@@ -57,11 +60,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="company" class="form-control-label">내용</label>
-                                            <textarea class="form-control" name="noticeContent" style="height: 200px;">${notice.noticeContent}</textarea>
+                                            <textarea class="form-control" name="noticeContent" style="height: 200px;"></textarea>
                                         </div>
-                                        <div class="form-group"><label for="company"
-                                            class=" form-control-label">담당자아이디</label><input type="text"
-                                            class="form-control" name="memberId">
+                                        <div class="form-group">
+                                            <label for="company" class="form-control-label">처리담당자</label>
+                                            <select class="form-control" name="memberId">
+                                                <c:forEach var="adminId" items="${adminMemberIds}">
+                                                    <option value="${adminId}" <c:if test="${adminId eq notice.memberId}">selected</c:if>>${adminId}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row justify-content-end">

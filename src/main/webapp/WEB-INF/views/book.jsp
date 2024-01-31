@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
             <!doctype html>
             <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -116,26 +116,18 @@
                                                                         <!-- <td>${book.authors}</td> -->
                                                                         <!-- <td>${book.publisher}</td> -->
                                                                         <!-- <td>${book.publicationYear}</td> -->
-                                                                        <td><a
-                                                                                href="bookDetail?bookIsbn13=${book.bookIsbn13}">${book.bookIsbn13}</a>
-                                                                        </td>
+                                                                        <td><a href="bookDetail?bookIsbn13=${book.bookIsbn13}">${book.bookIsbn13}</a></td>
                                                                         <td>${book.additionSymbol}</td>
                                                                         <!-- <td>${book.vol}</td> -->
                                                                         <!-- <td>${book.classNo}</td> -->
                                                                         <!-- <td>${book.classNm}</td> -->
                                                                         <!-- <td>${book.loanCount}</td> -->
-                                                                        <td><a href="${book.bookImageUrl}"
-                                                                                target="_blank">책
-                                                                                이미지 링크</a></td>
-                                                                        <td><a href="${book.bookDtlUrl}"
-                                                                                target="_blank">책
-                                                                                데이터 링크</a></td>
+                                                                        <td><a href="${book.bookImageUrl}" target="_blank">책 이미지 링크</a></td>
+                                                                        <td><a href="${book.bookDtlUrl}" target="_blank">책 데이터 링크</a></td>
                                                                         <td>
                                                                             <c:choose>
                                                                                 <c:when
-                                                                                    test="${fn:length(book.description) > 30}">
-                                                                                    ${fn:substring(book.description, 0,
-                                                                                    30)}...
+                                                                                    test="${fn:length(book.description) > 30}"> ${fn:substring(book.description, 0, 30)}...
                                                                                 </c:when>
                                                                                 <c:otherwise>
                                                                                     ${book.description}
@@ -149,12 +141,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">도서 등록</button>
                                         </div>
                                     </div><!-- .animated -->
-                                    <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-            <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
-                                    <button class="btn btn-outline-primary btn-sm float-right"
-                                        onclick="writeAction()">도서 등록</button>
+                                       
                                 </div><!-- .content -->
 
 
@@ -198,24 +188,18 @@
 
                             <script>
                                 function writeAction() {
-                                    // 도서 등록 버튼 클릭 시 동작
-                                    fetch('/api/runPythonScript')
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response.text();
-                                        })
-                                        .then(data => {
-                                            console.log('Python Script Result:', data); // 콘솔에 결과를 출력
-                                            alert(data);  // Python 스크립트의 결과를 알림으로 표시
-                                        })
-                                        .catch(error => {
-                                            console.error('Error:', error);
-                                            alert('An error occurred. See console for details.');
-                                        });
+                                    // AJAX를 사용하여 서버에 요청을 보냄
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/pythonController/executePythonScript",  // PythonController의 매핑 주소
+                                        success: function(response) {
+                                            console.log("서버 응답:", response);  // 서버에서 받은 응답을 콘솔에 출력 (optional)
+                                        },
+                                        error: function(error) {
+                                            console.error(error);  // 에러 처리 (optional)
+                                        }
+                                    });
                                 }
-
                             </script>
 
 
