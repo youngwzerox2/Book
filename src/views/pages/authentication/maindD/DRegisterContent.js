@@ -145,13 +145,13 @@ const FirebaseRegister = ({ ...others }) => {
         <Grid item xs={12}>
           <AnimateButton>
             <Button
-              variant="outlined"
+              variant="filled"
               fullWidth
               onClick={googleHandler}
               size="medium"
               sx={{
                 color: 'grey.700',
-                backgroundColor: theme.palette.grey[50],
+                backgroundColor: 'inherit',
                 borderColor: theme.palette.grey[100]
               }}
             >

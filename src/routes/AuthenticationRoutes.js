@@ -7,11 +7,13 @@ import MinimalLayout from 'layout/MinimalLayout';
 // login option 3 routing
 const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/mainC/Login3')));
 const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/mainC/Register3')));
+
 // 시작, 로그인, 회원가입, 메인
 const CRegister = Loadable(lazy(() => import('views/pages/authentication/mainC/CRegister')));
 const CstartPage = Loadable(lazy(() => import('views/pages/authentication/mainC/CStartPage')));
 const CLogin = Loadable(lazy(() => import('views/pages/authentication/mainC/CLogin')));
 const CMainpage = Loadable(lazy(() => import('views/pages/authentication/mainC/CMainpage')));
+
 // 마이페이지 - 메인, 회원정보, 결제, 찜, 차단, 고객센터
 const CMypage = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypage')));
 const CMypage_info = Loadable(lazy(() => import('views/pages/authentication/mypage/CMypageInfo')));
@@ -26,14 +28,21 @@ const MainRecommanded = Loadable(lazy(() => import('views/pages/authentication/b
 const MainRecommanding = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecommanding')));
 const MainHotBook = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainHotBook')));
 const MainRecord = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecord')));
+
 // 도서관
 const CLibrary = Loadable(lazy(() => import('views/pages/authentication/library/CLibrary')));
 const RecommandedUser = Loadable(lazy(() => import('views/pages/authentication/library/RecommandedUser')));
 const HotUser = Loadable(lazy(() => import('views/pages/authentication/library/UserRanking')));
 const SameAge = Loadable(lazy(() => import('views/pages/authentication/library/UserAge')));
-
+const Community = Loadable(lazy(() => import('views/pages/authentication/library/Community')));
+const OthersBookshelf = Loadable(lazy(() => import('views/pages/authentication/library/OthersBookshelf')));
+// 도서
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
 const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));
+
+// 달력
+const Calendar = Loadable(lazy(() => import('views/pages/authentication/calendar/Maincalendar')));
+
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 // 시작페이지 readme/start
@@ -57,6 +66,7 @@ const AuthenticationRoutes = {
       path: '/pages/register/register3',
       element: <AuthRegister3 />
     },
+    // =====================================================
     // By ReadMe
     {
       path: '/readme/register',
@@ -74,6 +84,8 @@ const AuthenticationRoutes = {
       path: '/readme/main',
       element: <CMainpage />
     },
+    // ====================================================
+    // ================= || 마이페이지 || ==================
     {
       path: '/readme/mypage',
       element: <CMypage />
@@ -102,6 +114,8 @@ const AuthenticationRoutes = {
       path: 'readme/cs',
       element: <CMypage_notice /> // 모든 고객센터 메뉴 이씅ㅁ.
     },
+    // ==========================================================
+    // ====================== || 책장 || ========================
     {
       path: 'readme/bookshelf',
       element: <CBookshelf />
@@ -122,10 +136,9 @@ const AuthenticationRoutes = {
       path: 'readme/bookshelf/record',
       element: <MainRecord />
     },
-    {
-      path: 'readme/book',
-      element: <Books />
-    },
+
+    // ====================================================
+    // =================== || 도서관 || ====================
     {
       path: 'readme/library/recommand',
       element: <RecommandedUser />
@@ -139,8 +152,26 @@ const AuthenticationRoutes = {
       element: <SameAge />
     },
     {
+      path: 'readme/library/community',
+      element: <Community />
+    },
+    {
+      path: 'readme/library/others',
+      element: <OthersBookshelf />
+    },
+    // =====================================================
+    // =================== || 도서 || ======================
+    {
+      path: 'readme/book',
+      element: <Books />
+    },
+    {
       path: 'readme/map',
       element: <Map />
+    },
+    {
+      path: 'readme/calendar',
+      element: <Calendar />
     }
   ]
 };

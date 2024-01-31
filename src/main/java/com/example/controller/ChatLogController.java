@@ -30,9 +30,10 @@ public class ChatLogController {
 	@PostMapping("/chating")
 	public String chating(ChatLog dto) {
 		try {
+			System.out.println("채팅이 컨트롤러까지 요청이 오는가");
 			// 문장 전처리
 			String sentence = dto.getSentence().replaceAll("^(\\s+)|(\\s+)$", "");
-
+			// System.out.println(sentence);
 			// .py 파일 실행
 			String pythonFile = "src\\main\\resources\\static\\python\\client_chat.py";
 			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, sentence);

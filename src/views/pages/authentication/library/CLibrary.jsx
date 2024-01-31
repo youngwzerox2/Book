@@ -152,17 +152,16 @@ const Register = () => {
                               shape="rect"
                               onClick={handleClickOpen3}
                             />
-                            <area
-                              target="_self"
-                              alt="카페 방문"
-                              title="카페 방문"
-                              role="presentation"
-                              coords="110,285,621,328"
-                              shape="rect"
-                              onClick={() => {
-                                setChoosed('community');
-                              }}
-                            />
+                            <Link to="community">
+                              <area
+                                target="_self"
+                                alt="카페 방문"
+                                title="카페 방문"
+                                role="presentation"
+                                coords="110,285,621,328"
+                                shape="rect"
+                              />
+                            </Link>
                             <Link to="/readme/main">
                               <area
                                 target="_self"
