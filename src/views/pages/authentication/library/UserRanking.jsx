@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import theimg from '../../../../assets/images/bookcaseB_meng_Basic.png';
+import theimg from '../../../../assets/images/bookcaseB_meng_Lank.png';
 import { Divider, Grid, Typography } from '@mui/material';
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';

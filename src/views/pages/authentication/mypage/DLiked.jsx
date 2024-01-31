@@ -41,10 +41,9 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ minWidth: '300px' }}>
       <Typography variant="h2" padding={'20px'}>
-        {' '}
-        고객센터{' '}
+        찜
       </Typography>
       <Divider></Divider>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

@@ -794,7 +794,7 @@ const Register = () => {
                               color="primary"
                               sx={{ position: 'absolute', top: '92%', left: '44%' }}
                               onClick={() => {
-                                location.reload();
+                                location = '/free/readme/library';
                               }}
                             >
                               뒤로가기
