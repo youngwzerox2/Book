@@ -7,7 +7,8 @@ db_config = {
     'host': '118.217.203.37',
     'user': 'readme',
     'password': 'pwreadme',
-    'database': 'readme'
+    'database': 'readme',
+    'use_pure': True  # 이 옵션을 추가합니다.
 }
 
 # MySQL 연결 설정
@@ -88,8 +89,10 @@ for page in range(start_page, end_page + 1):
                 cursor.execute(check_query, (book_isbn13,))
                 count = cursor.fetchone()[0]
                 if count == 0:
+                    print(f"데이터베이스에 추가 중: {bookImageURL}, {bookname}, {author}, {publisher}, {publication_year}, {book_isbn13}")
                     cursor.execute(insert_query, (bookImageURL, bookname, author, publisher, publication_year, book_isbn13))
                     conn.commit()
+                    print("데이터베이스에 추가 완료!")
                 else:
                     print(f"중복된 도서번호입니다. ISBN-13: {book_isbn13}")
 

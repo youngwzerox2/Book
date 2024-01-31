@@ -88,8 +88,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
                             <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
@@ -100,11 +98,24 @@
         <!-- /#header -->
     
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 로그아웃 링크를 클릭했을 때의 이벤트 처리
+            $(".user-menu .nav-link").on("click", function(e) {
+                e.preventDefault();  // 기본 클릭 이벤트를 막습니다.
+        
+                // 리다이렉션을 수행합니다.
+                window.location.href = "http://118.217.203.37:3000/free/readme/start";
+            });
+        });
+        </script>
 
 </body>
 </html>

@@ -47,29 +47,40 @@ public class PythonController {
 			InputStream inputStream = process.getInputStream();
 			InputStream errorStream = process.getErrorStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-			BufferedReader error = new BufferedReader(new InputStreamReader(errorStream));
+			BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
 			String line; // 읽어온 각 줄의 내용을 담을 변수
 			String errorLine;
-			StringBuilder sb = new StringBuilder();
+			// StringBuilder sb = new StringBuilder();
 
             // 정상 출력 - 한 줄이라 '\n' 붙이지 않음
 			while ((line = reader.readLine()) != null) {
-				sb.append(line);
+				System.out.println(line);
 			}
 
 			// 에러 출력
-			while ((errorLine = error.readLine()) != null) {
+			while ((errorLine = errorReader.readLine()) != null) {
 				System.err.println("[Error] > " + errorLine);
 			}
 
-			reader.close();
-			error.close();
+            // 2. 프로세스 종료 대기
+            int exitCode2 = process.waitFor();
+            System.out.println("종료 코드: " + exitCode2);
 
-            String output = sb.toString();
-			System.out.println(output);
-			System.out.println("[Dolmeng] > " + output);
+            // 3. 프로세스 강제 종료
+            process.destroy();
 
-            return output;
+            // 4. 종료 코드 확인
+            int exitCode3 = process.exitValue();
+            System.out.println("외부 프로그램 종료 코드: " + exitCode3);
+
+			// reader.close();
+			// error.close();
+
+            // String output = sb.toString();
+			// System.out.println(output);
+			// System.out.println("[Dolmeng] > " + output);
+
+            return "Python 스크립트 실행 성공.";
 
             // // 성공적으로 실행된 경우 응답
             // return "Python 스크립트가 성공적으로 실행되었습니다.";
