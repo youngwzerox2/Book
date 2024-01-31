@@ -1,7 +1,7 @@
 package com.example.userservice;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,13 @@ public class UserLibraryServiceImpl implements UserLibraryService {
     }
 
     @Override
-    public List<User> rankingBookshelf() {
-        return libraryDAO.rankingBookshelf();
+    public List<Map<String, Object>> getRanker() {
+        return libraryDAO.getRanker();
+    }
+
+    @Override
+    public List<User> rankingBookshelf(String joinedId) {
+        return libraryDAO.rankingBookshelf(joinedId);
     }
     
 }

@@ -29,4 +29,12 @@ public class User {
 	// **************************** 통계 *****************************
 	private String ageGroup;			// 연령대분석-나이대 
 	private Integer count; 
+
+	// **************************** 책장 *****************************
+	private String	recommandingId;		// 추천 책장 번호
+	private String	recommandingTitle;	// 추천 책장 제목
+	private String	recommandingTag;	// 추천 책장 태그
+	private String	bookIsbn1;			// 추천 책 1
+	private String	bookname;			// 책 제목
+	private String	bookImageURL;		// 책 이미지
 }

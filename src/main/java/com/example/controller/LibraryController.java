@@ -5,8 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -179,8 +179,22 @@ public class LibraryController {
     @ResponseBody
     public List<User> rankingBookshelf() {
         System.out.println("[LibraryController/rankingBookshelf] 요청");
-        List<User> result = libraryService.rankingBookshelf();
-        System.out.println("[LibraryController/rankingBookshelf] " + result);
-        return result;
+        // 인기 유저 리스트 추출
+        List<Map<String, Object>> userList = libraryService.getRanker();
+        List<String> result = new ArrayList<String>();
+
+        for (Map<String, Object> entry : userList) {
+            String value = (String) entry.get("likedElement");
+            result.add("'" + value + "'");
+        }
+
+        // 여기 이상함
+        String joinedId = String.join(", ", result);
+        System.out.println(joinedId);
+        
+        List<User> realResult = libraryService.rankingBookshelf(joinedId);
+        System.out.println("[LibraryController/rankingBookshelf] " + realResult);
+
+        return realResult;
     }
 }
