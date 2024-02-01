@@ -10,6 +10,8 @@ import com.example.domain.Book;
 public interface UserBookDAO {
 
     List<Book> selectByTitle(String bookname);
+
+    List<Book> selectByTitle10(String bookname);
     
     Book selectByNum(String bookIsbn13);
 

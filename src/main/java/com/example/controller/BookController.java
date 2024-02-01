@@ -35,6 +35,20 @@ public class BookController {
 		}
 	}
 
+	// 제목으로 도서 검색 LIMIT 10
+	@GetMapping("/selectByTitle10")
+	public List<Book> selectByTitle10(@RequestParam(name = "bookname") String bookname) {
+		try {
+			System.out.println("[BookController/selectByTitle] 요청");
+			List<Book> result = bookService.selectByTitle(bookname);
+			// System.out.println("[BookController/selectByTitle] " + result);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
     // 특정 도서 정보 출력
 	@GetMapping("/selectByNum")
 	public Book selectByNum(@RequestParam(name = "bookIsbn13") String bookIsbn13) {

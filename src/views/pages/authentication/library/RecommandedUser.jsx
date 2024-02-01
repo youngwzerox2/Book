@@ -360,9 +360,11 @@ const Register = () => {
                                   </Typography>
                                 </DialogContent>
                                 <DialogActions>
-                                  <Button autoFocus onClick={handleClose0}>
-                                    책장 방문하기
-                                  </Button>
+                                  <Link to="/readme/library/others">
+                                    <Button autoFocus onClick={handleClose0}>
+                                      책장 방문하기
+                                    </Button>
+                                  </Link>
                                 </DialogActions>
                               </BootstrapDialog>
                               <BootstrapDialog onClose={handleClose1} aria-labelledby="customized-dialog-title" open={open1}>

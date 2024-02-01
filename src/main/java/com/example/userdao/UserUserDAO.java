@@ -15,6 +15,8 @@ public interface UserUserDAO {
 	
 	Integer update(User dto);
 
+	Integer updateImg(User dto);
+
 	void changeToTempPw(String memberId, String tempPw);
 
 	Integer checkId(String memberId);

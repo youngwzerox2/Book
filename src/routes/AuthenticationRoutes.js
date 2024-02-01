@@ -35,7 +35,7 @@ const RecommandedUser = Loadable(lazy(() => import('views/pages/authentication/l
 const HotUser = Loadable(lazy(() => import('views/pages/authentication/library/UserRanking')));
 const SameAge = Loadable(lazy(() => import('views/pages/authentication/library/UserAge')));
 const Community = Loadable(lazy(() => import('views/pages/authentication/library/Community')));
-const OthersBookshelf = Loadable(lazy(() => import('views/pages/authentication/library/OthersBookshelf')));
+const OthersBookshelf = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecommandingTest97')));
 // 도서
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
 const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));

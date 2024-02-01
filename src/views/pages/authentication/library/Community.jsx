@@ -16,10 +16,10 @@ import {
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReportIcon from '@mui/icons-material/Report';
-import ShareIcon from '@mui/icons-material/Share';
+// import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Background from '../Abackground';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BasicFrame from '../BbasicFrame';
 import { useEffect } from 'react';
 import Logo from '../../../../assets/images/ReadMe2.png';
@@ -34,6 +34,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import { red } from '@mui/material/colors';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import meng0 from '../../../../assets/images/costume/coutum0.png';
+import meng6 from '../../../../assets/images/costume/costume6.png';
+import meng10 from '../../../../assets/images/costume/costume10.png';
+
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 const ExpandMore = styled((props) => {
   // const { expand, ...other } = props;
@@ -135,20 +140,17 @@ const Register = () => {
                         <FormControl fullWidth>
                           {viewContent.map((item) => {
                             return (
-                              <Card variant="outlined" sx={{ width: '100%', margin: '15px' }} key={item.community_board_id}>
+                              <Card variant="outlined" sx={{ width: '100%', marginBottom: '15px' }} key={item.community_board_id}>
                                 <CardHeader
-                                  avatar={
-                                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                      R
-                                    </Avatar>
-                                  }
-                                  action={
-                                    <IconButton aria-label="settings">
-                                      <MoreVertIcon />
-                                    </IconButton>
-                                  }
+                                  avatar={<Avatar sx={{ bgcolor: red[50] }} src={meng0} aria-label="recipe"></Avatar>}
+                                  // action={
+                                  //   <IconButton aria-label="settings">
+                                  //     <MoreVertIcon />
+                                  //   </IconButton>
+                                  // }
                                   // title="Shrimp and Chorizo Paella"
                                   subheader={item.member_id}
+                                  sx={{ marginRight: '5%' }}
                                 />
                                 {/* <CardMedia component="img" height="194" image="/static/images/cards/paella.jpg" alt="" /> */}
                                 <CardContent>
@@ -157,12 +159,16 @@ const Register = () => {
                                   </Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
-                                  <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
-                                  </IconButton>
-                                  <IconButton aria-label="share">
-                                    <ShareIcon />
-                                  </IconButton>
+                                  <Tooltip title="좋아요">
+                                    <IconButton aria-label="add to favorites">
+                                      <FavoriteIcon />
+                                    </IconButton>
+                                  </Tooltip>
+                                  <Tooltip title="신고하기">
+                                    <IconButton aria-label="report">
+                                      <ReportIcon />
+                                    </IconButton>
+                                  </Tooltip>
                                   <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
                                     <ExpandMoreIcon />
                                   </ExpandMore>
@@ -170,11 +176,7 @@ const Register = () => {
                                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                                   <CardHeader
                                     variant="outlined"
-                                    avatar={
-                                      <Avatar sx={{ bgcolor: red[50] }} aria-label="recipe">
-                                        R
-                                      </Avatar>
-                                    }
+                                    avatar={<Avatar sx={{ bgcolor: red[50] }} src={meng10} aria-label="recipe"></Avatar>}
                                     action={
                                       <Tooltip title="신고하기">
                                         <IconButton aria-label="settings">
@@ -192,15 +194,11 @@ const Register = () => {
                                       width: '95%'
                                     }}
                                     // title="Shrimp and Chorizo Paella"
-                                    subheader="댓글을 달아볼게요"
+                                    subheader="이 글을 보고 언젠가는 꼭 사야지 했는데 드디어 샀네요"
                                   />
                                   <CardHeader
                                     variant="outlined"
-                                    avatar={
-                                      <Avatar sx={{ bgcolor: red[50] }} aria-label="recipe">
-                                        R
-                                      </Avatar>
-                                    }
+                                    avatar={<Avatar sx={{ bgcolor: red[50] }} aria-label="recipe" src={meng6}></Avatar>}
                                     action={
                                       <Tooltip title="신고하기">
                                         <IconButton aria-label="settings">
@@ -218,10 +216,10 @@ const Register = () => {
                                       width: '95%'
                                     }}
                                     // title="Shrimp and Chorizo Paella"
-                                    subheader="댓글을 달아볼게요"
+                                    subheader="저거 만화 아님? 왤케 진지함?"
                                   />
                                   <OutlinedInput sx={{ width: '95%', marginBottom: '1px' }} />{' '}
-                                  <Button variant="outlined" sx={{ marginBottom: '5px' }}>
+                                  <Button variant="outlined" sx={{ marginTop: '5px', marginBottom: '7px' }}>
                                     등록
                                   </Button>
                                 </Collapse>

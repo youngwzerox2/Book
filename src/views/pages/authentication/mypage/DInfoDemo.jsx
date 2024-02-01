@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+// import axios from 'axios';
+// import { useState } from 'react';
 
 function Copyright() {
   return (
@@ -83,12 +85,12 @@ export default function Checkout() {
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
+                    취소
                   </Button>
                 )}
 
                 <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
-                  {activeStep === steps.length - 1 ? 'Place order' : '수정'}
+                  수정
                 </Button>
               </Box>
             </React.Fragment>

@@ -11,6 +11,9 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 
+// import 멩이s
+import meng0 from '../../../../assets/images/costume/coutum0.png';
+
 export default function AlignItemsList() {
   const sess = localStorage;
   const [viewContent, setViewContent] = useState([]);
@@ -26,7 +29,7 @@ export default function AlignItemsList() {
   }, []);
 
   const deleting = () => {
-    alert('ㅎㅇㅎㅇ');
+    // alert('ㅎㅇㅎㅇ');
     axios.post(`/blocking/delete?blockedNumber=${item.blocked_number}`).then((re) => {
       console.log('결과', re.data);
     });
@@ -40,7 +43,7 @@ export default function AlignItemsList() {
           <>
             <ListItem alignItems="flex-start" key={numbers}>
               <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar alt="Remy Sharp" src={meng0} />
               </ListItemAvatar>
               <ListItemText
                 primary={`${item.blocked_member} / ${item.blocked_date}`}

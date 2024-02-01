@@ -2,6 +2,8 @@ package com.example.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -14,6 +16,7 @@ public class User {
 	private String	memberEmail;		// 이메일
 	private String	memberNickname;		// 닉네임
 	private String	memberGender;		// 성별
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date	memberBirthday;		// 생년월일
 	private String	memberTel;			// 전화번호
 	private Date	joinDate;			// 가입일

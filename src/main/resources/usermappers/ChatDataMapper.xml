@@ -48,7 +48,7 @@
 				 		INNER JOIN book b3
 				 ON cd.recommanded_book3 = b3.book_isbn13
 		WHERE	 cd.member_id=#{memberId}
-		ORDER BY cd.chat_data_date DESC
+		ORDER BY cd.chat_number DESC
 	</select>
 	
 	<!-- 특정 채팅 기록 출력 -->
@@ -93,7 +93,6 @@
 				 		INNER JOIN book b3
 				 ON cd.recommanded_book3 = b3.book_isbn13
 		WHERE	 cd.chat_number=#{chatNumber}
-		ORDER BY cd.chat_data_date DESC
 	</select>
 	
 	<!-- *** INSERT  *********************************************************** -->
@@ -116,7 +115,7 @@
             , #{recommandedBook1}
             , #{recommandedBook2}
             , #{recommandedBook3}
-            , #{pickedBook}
+            , #{recommandedBook1}
             , #{emotion}
             , now()
 		)

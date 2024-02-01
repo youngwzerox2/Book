@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.mail.Authenticator;
@@ -46,6 +47,7 @@ public class UserController {
 			if(result.getMemberNickname().equals(null) | result.getMemberNickname().equals("")) {
 				result.setMemberNickname("닉네임이 없습니다.");
 			}
+			System.out.println(result);
 			return result;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -105,6 +107,25 @@ public class UserController {
 			System.out.println("[UserController/update] 요청");
 			Integer result = userService.update(dto);
 			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// 프로필 사진 변경
+	@PostMapping("/updateImg")
+	public Integer updateImg(User dto) {
+		try {
+			System.out.println("[UserController/updateImg] 요청");
+			User user = userService.selectByNum(dto.getMemberId());
+			String memberGrade = user.getMemberGrade();
+			if(memberGrade.equals("admin") || memberGrade.equals("plus")) {
+				userService.updateImg(dto);
+				return 1;
+			} else {
+				return 0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

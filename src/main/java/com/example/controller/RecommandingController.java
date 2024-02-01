@@ -26,7 +26,7 @@ public class RecommandingController {
     @GetMapping("/selectByUser")
 	public List<Recommanding> selectByUser(@RequestParam(name = "memberId") String memberId) {
 		try {
-			System.out.println("[RecommandingController/selectByUser] 요청");
+			System.out.println("[RecommandingController/selectByUser] 요청" + memberId);
 			List<Recommanding> result = recommandingService.selectByUser(memberId);
 			System.out.println("[RecommandingController/selectByUser] " + result);
 			return result;

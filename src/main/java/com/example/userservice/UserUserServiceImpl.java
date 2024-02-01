@@ -33,6 +33,11 @@ public class UserUserServiceImpl implements UserUserService {
     }
 
     @Override
+    public Integer updateImg(User dto) {
+        return userDAO.updateImg(dto);
+    }
+
+    @Override
     public void changeToTempPw(String memberId, String tempPw) {
         userDAO.changeToTempPw(memberId, tempPw);
     }
