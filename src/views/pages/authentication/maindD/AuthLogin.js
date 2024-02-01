@@ -91,14 +91,14 @@ const FirebaseLogin = ({ ...others }) => {
         if (mid === '0woo' || mid === 'test1') {
           const answer = confirm('관리자 페이지로 이동하시겠습니까?');
           if (answer == true) {
-            location = 'http://localhost:8080/adminmain';
+            location = 'http://118.217.203.44:8080/adminmain';
           }
         } else {
           window.location.replace('/free/readme/main');
         }
       } else {
         alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-        window.reload();
+        location.reload();
       }
     });
   };
