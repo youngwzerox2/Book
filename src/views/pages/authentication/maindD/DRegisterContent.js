@@ -99,11 +99,17 @@ const FirebaseRegister = ({ ...others }) => {
 
   // -------------------------------------------------------------
   // 아이디 중복체크
-  const idCheck = () => {
+  const checkId = () => {
     if (mid == '') {
       alert('아이디를 입력해주세요');
     } else {
-      axios.post('/member/idcheck', null, { memberId: mid });
+      axios.post(`/user/checkId?memberId=${mid}`).then((re) => {
+        if (re.data == 1) {
+          alert('사용 가능한 아이디입니다.');
+        } else {
+          alert('이미 존재하는 아이디입니다.');
+        }
+      });
     }
   };
   // -------------------------------------------------------------
@@ -240,7 +246,7 @@ const FirebaseRegister = ({ ...others }) => {
                 <Box sx={{ mb: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                      <Button onClick={idCheck}>아이디 중복체크</Button>
+                      <Button onClick={checkId}>아이디 중복체크</Button>
                     </Grid>
                     <Grid item>
                       <Typography variant="subtitle1" fontSize="0.75rem">
@@ -445,7 +451,7 @@ const FirebaseRegister = ({ ...others }) => {
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation onClick={register} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Sign up
+                  회원가입
                 </Button>
               </AnimateButton>
             </Box>

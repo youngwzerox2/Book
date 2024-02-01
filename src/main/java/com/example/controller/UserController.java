@@ -218,7 +218,7 @@ public class UserController {
 	// *** 회원가입 아이디 중복체크 ************************************************************
 	@PostMapping("/checkId")
 	public Integer checkId(@RequestParam(name = "memberId") String memberId) {
-
+		System.out.println("[UserController/checkId] 요청");
 		Integer result = userService.checkId(memberId);
 		if(result == 0) {
 			// 해당 아이디를 가진 사용자가 없다면

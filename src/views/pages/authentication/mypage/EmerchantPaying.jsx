@@ -37,7 +37,7 @@ export default function NestedList() {
   console.log('payUrl 출력', payUrl);
 
   const payingBtnKakao = async () => {
-    alert(`${memberId}`);
+    // alert(`${memberId}`);
     try {
       const response = await axios
         .post('/pay/kakaopay', null, {
