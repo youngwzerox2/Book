@@ -11,8 +11,8 @@
         <!-- 부트스트랩 CDN 사용 -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-        <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-        <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -95,6 +95,30 @@
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
                  
+                    <script>
+                        $(document).ready(function () {
+                            // 폼 제출 시 처리
+                            $('form').submit(function (e) {
+                                e.preventDefault(); // 기본 제출 동작 방지
+                                var form = $(this);
+                    
+                                // Ajax를 사용하여 폼 데이터를 서버로 전송
+                                $.ajax({
+                                    type: form.attr('method'),
+                                    url: form.attr('action'),
+                                    data: form.serialize(),
+                                    success: function (data) {
+                                        // 등록이 성공하면 notice 페이지로 이동
+                                        window.location.href = 'notice';
+                                    },
+                                    error: function (error) {
+                                        console.log('등록 실패', error);
+                                        // 실패 시 필요한 처리를 여기에 추가
+                                    }
+                                });
+                            });
+                        });
+                    </script>
     </body>
 
     </html>

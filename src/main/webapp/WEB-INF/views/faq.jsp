@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQ 페이지</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
         .center-button {
@@ -53,9 +55,9 @@
         <!-- 헤더 -->
         <%@ include file="header.jsp" %>
         <div class="content">
-            <div class="card first-card">
+            <!-- <div class="card first-card"> -->
                 <div class="container mt-5">
-                    <h2 style="margin-bottom: 20px;">자주 묻는 질문 (FAQ)</h2>
+                    <h2 style="margin-bottom: 20px; margin-left: 20px;">자주 묻는 질문 (FAQ)</h2>
                         <div class="card">
                             <div class="accordion" id="faqAccordion">
                                 <c:forEach items="${faqList}" var="faq" varStatus="loop">
@@ -70,21 +72,21 @@
                                     </div>
                                     <div id="answer${loop.index}" class="collapse" aria-labelledby="question${loop.index}" data-parent="#faqAccordion">
                                         <div class="card-body">
-                                            <p>${faq.noticeContent}</p>
+                                            <p style="padding-left: 15px;">${faq.noticeContent}</p> 
+                                            <button class="btn btn-outline-success btn-sm float-right" onclick="writeAction('${faq.noticeNumber}')">글 수정</button>
                                         </div>
-                                        <button class="btn btn-outline-warning btn-sm float-right" onclick="writeAction('${faq.noticeNumber}')">글 수정</button>
                                     </div>
                                 </c:forEach>
                             </div>
                         </div>
-                        <button class="btn btn-outline-primary btn-sm float-right" onclick="insertAction()">글등록</button>
+                        <button class="btn btn-outline-primary btn-sm float-right" onclick="insertAction()" style="margin-bottom: 20px;">글등록</button>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
+        <%@ include file="footer.jsp" %>
            
         </div><!-- .content -->
         <!-- 푸터 -->
-        <%@ include file="footer.jsp" %>
 
     </div><!-- /#right-panel -->
 

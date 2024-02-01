@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이용약관</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- 부트스트랩 CDN 사용 -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -52,20 +54,23 @@
 
         <!-- 헤더 -->
         <%@ include file="header.jsp" %>
+
         <div class="content">
 
             <div class="container mt-5">
-                <h3>이용 약관</h3>
+                <h3 style="margin-bottom: 10px;">이용 약관</h3>
                     <div class="card">
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <c:forEach items="${termsList}" var="terms" varStatus="loop">
                                 <li class="nav-item">
-                                    <a class="nav-link ${loop.first ? 'active' : ''}" id="pills-${loop.index + 1}-tab"
+                                    <a class="nav-link ${loop.first ? 'active' : ''}  text-center" id="pills-${loop.index + 1}-tab"
                                         data-toggle="pill" href="#pills-${loop.index + 1}" role="tab"
                                         aria-controls="pills-${loop.index + 1}" aria-selected="${loop.first}">
                                         ${terms.noticeTitle}
+                                        <hr class="border-bottom">
                                     </a>
                                 </li>
+                                
                             </c:forEach>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
@@ -74,7 +79,7 @@
                                     <p class="notice-content">
                                         ${terms.noticeContent}
                                     </p>
-                                    <button class="btn btn-outline-warning btn-sm float-right" onclick="writeAction('${terms.noticeNumber}')">글 수정</button>
+                                    <button class="btn btn-outline-success btn-sm float-right" onclick="writeAction('${terms.noticeNumber}')" style="margin-right: 20px; margin-bottom: 20px;">글 수정</button>
                                 </div>
                             </c:forEach>
                         </div>

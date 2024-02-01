@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>1:1문의 페이지</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
         table {
@@ -15,7 +17,25 @@
         }
         th {
             text-align: center;
+            white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
         }
+
+        @media (max-width: 768px) {
+            /* 창이 768px 이하일 때 적용되는 스타일 */
+            th {
+                white-space: nowrap; /* 긴 텍스트가 잘리지 않도록 설정 */
+            }
+        }
+
+        .card-body {
+            display: flex;
+            height: 100%; /* 높이 100% 설정 */
+        }
+        
+        .mr-3 {
+            /* 기존 스타일 유지 */
+        }
+        
     </style>
 </head>
 
@@ -31,7 +51,7 @@
         <%@ include file="header.jsp" %>
         
         <div class="content">
-            <div class="col-md-8 mx-auto">
+            <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">1:1 문의</strong>
@@ -40,13 +60,13 @@
                         <div class="mr-3" style="margin-left: 10px;" >
                             <button class="btn btn-outline-primary btn-sm" id="showAll">전체 글보기</button>
                             <hr />
-                            <button class="btn btn-outline-primary btn-sm" id="showUnanswered">답변 미완료 글 보기</button>
+                            <button class="btn btn-outline-warning btn-sm" id="showUnanswered">답변 미완료 글 보기</button>
                             <hr />
-                            <button class="btn btn-outline-primary btn-sm" id="showAnswered">답변 완료한 글 보기</button>
+                            <button class="btn btn-outline-success btn-sm" id="showAnswered">답변 완료한 글 보기</button>
                         </div>
 
                         <div style="max-height: 400px; overflow-y: auto; margin-left: 100px;">
-                            <table id="askTable" class="table table-striped" style="width: 100%; max-width: none; margin: 0 auto;">
+                            <table id="askTable" class="table table-striped" >
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -58,7 +78,7 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${askList}" var="ask">
-                                        <tr class="${ask.askReplyDone eq 'yes' ? 'answered' : 'unanswered'}">
+                                        <tr class="${ask.askReplyDone eq 'yes' ? 'answered' : 'unanswered'}" style="background-color: white;">
                                             <td>${ask.askId}</td>
                                             <!-- <td>${ask.askDate}</td> -->
                                             <td><fmt:formatDate value="${ask.askDate}" pattern="yyyy-MM-dd" /></td>

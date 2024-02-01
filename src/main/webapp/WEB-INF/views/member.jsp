@@ -11,13 +11,13 @@
 
             <head>
                 <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
                 <title>회원 관리</title>
                 <meta name="description" content="Ela Admin - HTML5 Admin Template">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-                <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+                <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+                <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -50,25 +50,11 @@
                         <!-- 헤더 -->
                         <%@ include file="header.jsp" %>
 
-                            <!-- <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>회원관리</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
                             <div class="content">
                                 <div class="animated fadeIn">
                                     <div class="row">
 
-                                        <div class="col-lg-8 mx-auto">
+                                        <div class="col-lg-9 mx-auto">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <strong class="card-title">회원리스트</strong>
@@ -81,11 +67,11 @@
                                                                 <tr>
                                                                     <th>아이디</th>
                                                                     <th>이름</th>
-                                                                    <th>이메일</th>
+                                                                    <!-- <th>이메일</th> -->
                                                                     <!-- <th>닉네임</th> -->
-                                                                    <th>성별</th>
-                                                                    <th>생년월일</th>
-                                                                    <th>전화번호</th>
+                                                                    <!-- <th>성별</th> -->
+                                                                    <!-- <th>생년월일</th> -->
+                                                                    <!-- <th>전화번호</th> -->
                                                                     <!-- <th>가입일</th> -->
                                                                     <!-- <th>탈퇴일</th> -->
                                                                     <!-- <th>책장방문허용여부</th> -->
@@ -100,16 +86,16 @@
                                                                                 href="memberDetail?memberId=${member.memberId}">${member.memberId}</a>
                                                                         </td>
                                                                         <td>${member.memberName}</td>
-                                                                        <td>${member.memberEmail}</td>
+                                                                        <!-- <td>${member.memberEmail}</td> -->
                                                                         <!-- <td>${member.memberNickname}</td> -->
-                                                                        <td>${member.memberGender}</td>
+                                                                        <!-- <td>${member.memberGender}</td> -->
                                                                         <!-- <td>${member.memberBirthday}</td> -->
-                                                                        <td>
+                                                                        <!-- <td>
                                                                             <fmt:formatDate
                                                                                 value="${member.memberBirthday}"
                                                                                 pattern="yyyy-MM-dd" />
-                                                                        </td>
-                                                                        <td>${member.memberTel}</td>
+                                                                        </td> -->
+                                                                        <!-- <td>${member.memberTel}</td> -->
                                                                         <!-- <td>${member.joinDate}</td>
                                                                         td>${member.quitDate}</td> -->
                                                                         <!-- <td><fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd" /></td> -->

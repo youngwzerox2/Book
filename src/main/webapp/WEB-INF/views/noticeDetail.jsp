@@ -10,8 +10,8 @@
     <!-- 부트스트랩 CDN 사용 -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-outline-warning">수정</button>
+                                <button type="submit" class="btn btn-outline-primary">수정</button>
                                 <a href="deleteNotice?noticeNumber=${notice.noticeNumber}"
                                     class="btn btn-outline-danger"
                                     onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>

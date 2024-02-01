@@ -47,7 +47,8 @@
         book b ON c.recommanded_book1 = b.book_isbn13
         WHERE
         b.bookname NOT LIKE '%:%' AND
-        b.bookname NOT LIKE '%=%'
+        b.bookname NOT LIKE '%=%' AND
+        b.bookname NOT LIKE '%,%'
         GROUP BY
         b.bookname
         HAVING
@@ -56,13 +57,5 @@
         recommanded_book1_count DESC
         LIMIT 5;
     </select>
-    <!-- <select id="bookRank" resultType="hashmap">
-        SELECT ROW_NUMBER() OVER (ORDER BY ranking) AS newranking, bookname
-        FROM book
-        WHERE ranking IS NOT NULL
-        GROUP BY ranking, bookname
-        ORDER BY ranking
-        LIMIT 10;
-    </select> -->
 
 </mapper>
