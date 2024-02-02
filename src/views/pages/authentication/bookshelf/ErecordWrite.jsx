@@ -3,20 +3,28 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Button, IconButton, TextField, Tooltip } from '@mui/material';
+import { Button, IconButton, TextField, Tooltip, Divider, Typography, FormControl } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import { useTheme } from '@mui/material/styles';
 import ClearIcon from '@mui/icons-material/Clear';
-//
+import Background from '../Abackground';
+import BasicFrame from '../BstartPage';
 import Note from '../../../../assets/images/springNote.png';
+import { Link } from 'react-router-dom';
+import Logo from '../../../../assets/images/ReadMe2.png';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 // import { InputLabel, OutlinedInput } from '@mui/material';
 
 export default function BasicGrid() {
   const [value, setValue] = React.useState(2);
+  const session = localStorage;
   const [hover, setHover] = React.useState(-1);
+  const theme = useTheme();
+  const customization = useSelector((state) => state.customization);
 
   // 각 태그들 받아올 값
   const [isbn13, setIsbn13] = useState('');
@@ -24,7 +32,7 @@ export default function BasicGrid() {
   const [tags, setTags] = useState('');
   const [ltext, setLtext] = useState('');
   const reloading = () => {
-    window.location.replace('/free/readme/bookshelf/record');
+    window.location.replace('/free/readme/bookshelf/recommanding');
   };
   // 등록 버튼 클릭 시 독서기록 작성
   const RecordSend = () => {
@@ -52,92 +60,166 @@ export default function BasicGrid() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <img src={Note} alt="노트" width="100%" />
-      <Grid
-        container
-        spacing={1}
-        sx={{ position: 'absolute', top: '10%', maxWidth: '450px', left: '25%', display: 'flex' }}
-        alignContent="center"
-      >
+    <Background>
+      <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
-          <Autocomplete
-            disablePortal
-            display="flex"
-            id="combo-box-demo"
-            options={top100Films}
-            sx={{ width: '100%' }}
-            renderInput={(params) => <TextField {...params} label="제목" />}
-            onChange={() => {
-              setIsbn13('8809105873012');
-            }}
-          />
-        </Grid>
+          <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
+            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+              <BasicFrame>
+                <Grid container spacing={2} alignItems="center" justifyContent="center">
+                  <Grid item xs={12} textAlign="center">
+                    <img id="logo-image" src={Logo} alt="logo" width="250px" />
+                    <React.Fragment>
+                      <Grid container direction="column" justifyContent="center" spacing={2}>
+                        <Grid item xs={12} sm={12} md={12}></Grid>
 
-        <Grid item xs={12}>
-          <Box
-            padding="20px"
-            sx={{
-              maxWidth: '300px',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={value}
-              precision={1}
-              getLabelText={getLabelText}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              onChangeActive={(event, newHover) => {
-                setHover(newHover);
-              }}
-              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-            />
-            {value !== null && <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>}
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="standard-basic"
-            label="#태그입력"
-            variant="standard"
-            sx={{ width: '100%' }}
-            onChange={(e) => {
-              setTags(e.target.value);
-            }}
-          />
-        </Grid>
+                        <Grid item xs={12} textAlign="center">
+                          <Box sx={{ alignItems: 'center', display: 'flex' }}>
+                            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
+                            <Button
+                              id="exit-test"
+                              // style={`background : url(${theimg}); width : 100px`}
+                              variant="outlined"
+                              sx={{
+                                // cursor: 'unset',
+                                m: 2,
+                                py: 0.5,
+                                px: 7,
+                                borderColor: `${theme.palette.grey[100]} !important`,
+                                color: `${theme.palette.grey[900]}!important`,
+                                fontWeight: 500,
+                                borderRadius: `${customization.borderRadius}px`
+                              }}
+                              disableRipple
+                              // disabled
+                            >
+                              {session.getItem('loginId')}의 책장
+                            </Button>
+                            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      <FormControl fullWidth>
+                        <Box sx={{ flexGrow: 1 }}>
+                          <img src={Note} alt="노트" width="100%" />
+                          <Grid
+                            container
+                            spacing={1}
+                            sx={{ position: 'absolute', top: '10%', maxWidth: '450px', left: '25%', display: 'flex' }}
+                            alignContent="center"
+                          >
+                            <Grid item xs={12}>
+                              <Autocomplete
+                                disablePortal
+                                display="flex"
+                                id="combo-box-demo"
+                                options={top100Films}
+                                sx={{ width: '100%' }}
+                                renderInput={(params) => <TextField {...params} label="제목" />}
+                                onChange={() => {
+                                  setIsbn13('8809105873012');
+                                }}
+                              />
+                            </Grid>
 
-        <Grid item xs={12}>
-          <TextField
-            id="outlined-multiline-static"
-            multiline
-            rows={15}
-            variant="standard"
-            fullWidth
-            placeholder="내용을 입력해주세요"
-            opacity="1"
-            onChange={(e) => {
-              setLtext(e.target.value);
-            }}
-          />
+                            <Grid item xs={12}>
+                              <Box
+                                padding="20px"
+                                sx={{
+                                  maxWidth: '300px',
+                                  display: 'flex',
+                                  alignItems: 'center'
+                                }}
+                              >
+                                <Rating
+                                  name="hover-feedback"
+                                  value={value}
+                                  precision={1}
+                                  getLabelText={getLabelText}
+                                  onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                  }}
+                                  onChangeActive={(event, newHover) => {
+                                    setHover(newHover);
+                                  }}
+                                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                />
+                                {value !== null && <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>}
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <TextField
+                                id="standard-basic"
+                                label="#태그입력"
+                                variant="standard"
+                                sx={{ width: '100%' }}
+                                onChange={(e) => {
+                                  setTags(e.target.value);
+                                }}
+                              />
+                            </Grid>
+
+                            <Grid item xs={12}>
+                              <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows={15}
+                                variant="standard"
+                                fullWidth
+                                placeholder="내용을 입력해주세요"
+                                opacity="1"
+                                onChange={(e) => {
+                                  setLtext(e.target.value);
+                                }}
+                              />
+                            </Grid>
+                            <Grid alignItems="center" item xs={8} margin="20px">
+                              {/* <Button sx={{ position: 'absolute', left: '45%' }}>등록</Button> */}
+                              <Button variant="contained" onClick={RecordSend}>
+                                등록
+                              </Button>
+                            </Grid>
+                          </Grid>
+                          <Tooltip title="나가기">
+                            <IconButton
+                              variant="contained"
+                              size="small"
+                              sx={{ position: 'absolute', right: '3%', top: '3%' }}
+                              onClick={reloading}
+                            >
+                              <ClearIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </Box>
+                      </FormControl>
+                    </React.Fragment>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid item container direction="column" alignItems="center" xs={12}>
+                      <Typography
+                        component={Link}
+                        to="/readme/main"
+                        variant="subtitle1"
+                        sx={{ textDecoration: 'none' }}
+                        onClick={() => {
+                          confirm('로그아웃하시겠습니까?');
+                        }}
+                      >
+                        로그아웃
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </BasicFrame>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid alignItems="center" item xs={8} margin="20px">
-          {/* <Button sx={{ position: 'absolute', left: '45%' }}>등록</Button> */}
-          <Button variant="contained" onClick={RecordSend}>
-            등록
-          </Button>
-        </Grid>
+        <Grid item xs={12} sx={{ m: 3, mt: 1 }}></Grid>
       </Grid>
-      <Tooltip title="나가기">
-        <IconButton variant="contained" size="small" sx={{ position: 'absolute', right: '3%', top: '3%' }} onClick={reloading}>
-          <ClearIcon />
-        </IconButton>
-      </Tooltip>
-    </Box>
+    </Background>
   );
 }
 

@@ -14,7 +14,8 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  TextField
+  TextField,
+  Card
   //   TextField,
 } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
@@ -28,7 +29,7 @@ import { Formik } from 'formik';
 
 // project imports
 import useScriptRef from 'hooks/useScriptRef';
-import AnimateButton from 'ui-component/extended/AnimateButton';
+// import AnimateButton from 'ui-component/extended/AnimateButton';
 
 // assets
 import { Link } from 'react-router-dom';
@@ -91,24 +92,24 @@ const FirebaseRegister = ({ ...others }) => {
         <Grid item xs={12}>
           <Box sx={{ alignItems: 'center', display: 'flex' }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-            <Link to="/readme/login">
-              <Button
-                variant="outlined"
-                sx={{
-                  cursor: 'unset',
-                  m: 2,
-                  py: 0.5,
-                  px: 7,
-                  borderColor: `${theme.palette.grey[100]} !important`,
-                  color: `${theme.palette.grey[900]}!important`,
-                  fontWeight: 500,
-                  borderRadius: `${customization.borderRadius}px`
-                }}
-                disableRipple
-              >
-                로그인하기
-              </Button>
-            </Link>
+
+            <Button
+              disabled
+              variant="outlined"
+              sx={{
+                cursor: 'unset',
+                m: 2,
+                py: 0.5,
+                px: 7,
+                borderColor: `${theme.palette.grey[100]} !important`,
+                color: `${theme.palette.grey[900]}!important`,
+                fontWeight: 500,
+                borderRadius: `${customization.borderRadius}px`
+              }}
+              disableRipple
+            >
+              시작하기
+            </Button>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>
         </Grid>
@@ -149,21 +150,36 @@ const FirebaseRegister = ({ ...others }) => {
               sx={{ ...theme.typography.customInput, position: 'relative' }}
             >
               <Grid item container direction="column" alignItems="center" xs={12}>
-                <AnimateButton>
+                <Card>
+                  <Link to="/readme/login">
+                    <Button
+                      // onClick={idCheck}
+                      disableElevation
+                      disabled={isSubmitting}
+                      size="large"
+                      sx={{ margin: '10px' }}
+                      type="submit"
+                      variant="outlined"
+                      color="primary"
+                    >
+                      로그인
+                    </Button>
+                  </Link>
                   <Link to="/readme/register">
                     <Button
                       // onClick={idCheck}
                       disableElevation
                       disabled={isSubmitting}
-                      size="medium"
+                      size="large"
                       type="submit"
+                      sx={{ margin: '10px' }}
                       variant="outlined"
                       color="primary"
                     >
-                      아직 계정이 없으신가요?
+                      회원가입
                     </Button>
                   </Link>
-                </AnimateButton>
+                </Card>
               </Grid>
             </FormControl>
 

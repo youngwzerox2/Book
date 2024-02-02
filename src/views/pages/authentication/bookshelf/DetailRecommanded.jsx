@@ -8,7 +8,15 @@ import { useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-// import Testing from '../../../../assets/images/book360.png';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Link } from 'react-router-dom';
 export default function ImgMediaCard(props) {
   // 데이터 로드
   const [viewContent, setViewContent] = useState([]);
@@ -22,6 +30,7 @@ export default function ImgMediaCard(props) {
       })
       .catch((err) => console.log('[에러!!', err));
   };
+
   const mapping = (e) => {
     axios.get(`/library/memberlibrary?isbn13=${e}`);
     window.open(`http://118.217.203.44:8080/library/memberlibrary?isbn13=${e}`);
@@ -33,6 +42,20 @@ export default function ImgMediaCard(props) {
   // pickedBook으로 지정하는 함수
   const pickBook = (e) => {
     axios.post(`/chatData/pickBook?chatNumber=${props.chatNumber}&bookIsbn13=${e}`);
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
   };
 
   return (
@@ -94,11 +117,13 @@ export default function ImgMediaCard(props) {
                 </Typography>
               </CardContent>
               <CardContent sx={{ flex: '1 0 auto' }}>
-                <Tooltip title="상세정보 보러가기">
-                  <IconButton aria-label="previous">
-                    <SearchIcon />
-                  </IconButton>
-                </Tooltip>
+                <Link to="/readme/bookshelf/detailbook">
+                  <Tooltip title="상세정보 보러가기">
+                    <IconButton aria-label="previous">
+                      <SearchIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Link>
                 <Tooltip title="선택도서로 지정">
                   <IconButton
                     onClick={() => {
@@ -109,14 +134,61 @@ export default function ImgMediaCard(props) {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="도서관 찾기">
-                  <IconButton
-                    onClick={() => {
-                      mapping(viewContent.recommandedBook1);
-                    }}
-                  >
+                  <IconButton onClick={handleClickOpen}>
                     <LocalLibraryIcon />
                   </IconButton>
                 </Tooltip>
+                <React.Fragment>
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">{'도서관 지역 선택하기'}</DialogTitle>
+                    <DialogContent>
+                      <Box sx={{ minWidth: 300 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">지역</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>서울특별시</MenuItem>
+                            <MenuItem value={20}>경기도</MenuItem>
+                            <MenuItem value={30}>인천광역시</MenuItem>
+                            <MenuItem value={40}>충청남도</MenuItem>
+                            <MenuItem value={50}>충청북도</MenuItem>
+                            <MenuItem value={60}>전라남도</MenuItem>
+                            <MenuItem value={70}>전라북도</MenuItem>
+                            <MenuItem value={80}>광주광역시</MenuItem>
+                            <MenuItem value={90}>경상남도</MenuItem>
+                            <MenuItem value={100}>경상북도</MenuItem>
+                            <MenuItem value={110}>강원도</MenuItem>
+                            <MenuItem value={120}>부산광역시</MenuItem>
+                            <MenuItem value={130}>대구광역시</MenuItem>
+                            <MenuItem value={140}>울산광역시</MenuItem>
+                            <MenuItem value={150}>제주특별자치도</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>취소</Button>
+                      <Button
+                        onClick={() => {
+                          mapping(viewContent.recommandedBook1);
+                        }}
+                        autoFocus
+                      >
+                        검색
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </React.Fragment>
               </CardContent>
             </Box>
           </Card>
@@ -144,9 +216,13 @@ export default function ImgMediaCard(props) {
                 </Typography>
               </CardContent>
               <CardContent sx={{ flex: '1 0 auto' }}>
-                <IconButton aria-label="previous">
-                  <SearchIcon />
-                </IconButton>
+                <Link to="/readme/bookshelf/detailbook">
+                  <Tooltip title="상세정보 보러가기">
+                    <IconButton aria-label="previous">
+                      <SearchIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Link>
                 <Tooltip title="선택도서로 지정">
                   <IconButton
                     onClick={() => {
@@ -157,14 +233,61 @@ export default function ImgMediaCard(props) {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="도서관 찾기">
-                  <IconButton
-                    onClick={() => {
-                      mapping(viewContent.recommandedBook2);
-                    }}
-                  >
+                  <IconButton onClick={handleClickOpen}>
                     <LocalLibraryIcon />
                   </IconButton>
                 </Tooltip>
+                <React.Fragment>
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">{'도서관 지역 선택하기'}</DialogTitle>
+                    <DialogContent>
+                      <Box sx={{ minWidth: 300 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">지역</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>서울특별시</MenuItem>
+                            <MenuItem value={20}>경기도</MenuItem>
+                            <MenuItem value={30}>인천광역시</MenuItem>
+                            <MenuItem value={40}>충청남도</MenuItem>
+                            <MenuItem value={50}>충청북도</MenuItem>
+                            <MenuItem value={60}>전라남도</MenuItem>
+                            <MenuItem value={70}>전라북도</MenuItem>
+                            <MenuItem value={80}>광주광역시</MenuItem>
+                            <MenuItem value={90}>경상남도</MenuItem>
+                            <MenuItem value={100}>경상북도</MenuItem>
+                            <MenuItem value={110}>강원도</MenuItem>
+                            <MenuItem value={120}>부산광역시</MenuItem>
+                            <MenuItem value={130}>대구광역시</MenuItem>
+                            <MenuItem value={140}>울산광역시</MenuItem>
+                            <MenuItem value={150}>제주특별자치도</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>취소</Button>
+                      <Button
+                        onClick={() => {
+                          mapping(viewContent.recommandedBook2);
+                        }}
+                        autoFocus
+                      >
+                        검색
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </React.Fragment>
               </CardContent>
             </Box>
           </Card>
@@ -192,9 +315,13 @@ export default function ImgMediaCard(props) {
                 </Typography>
               </CardContent>
               <CardContent sx={{ flex: '1 0 auto' }}>
-                <IconButton aria-label="previous">
-                  <SearchIcon />
-                </IconButton>
+                <Link to="/readme/bookshelf/detailbook">
+                  <Tooltip title="상세정보 보러가기">
+                    <IconButton aria-label="previous">
+                      <SearchIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Link>
                 <Tooltip title="선택도서로 지정">
                   <IconButton
                     onClick={() => {
@@ -205,14 +332,61 @@ export default function ImgMediaCard(props) {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="도서관 찾기">
-                  <IconButton
-                    onClick={() => {
-                      mapping(viewContent.recommandedBook3);
-                    }}
-                  >
+                  <IconButton onClick={handleClickOpen}>
                     <LocalLibraryIcon />
                   </IconButton>
                 </Tooltip>
+                <React.Fragment>
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">{'도서관 지역 선택하기'}</DialogTitle>
+                    <DialogContent>
+                      <Box sx={{ minWidth: 300 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">지역</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>서울특별시</MenuItem>
+                            <MenuItem value={20}>경기도</MenuItem>
+                            <MenuItem value={30}>인천광역시</MenuItem>
+                            <MenuItem value={40}>충청남도</MenuItem>
+                            <MenuItem value={50}>충청북도</MenuItem>
+                            <MenuItem value={60}>전라남도</MenuItem>
+                            <MenuItem value={70}>전라북도</MenuItem>
+                            <MenuItem value={80}>광주광역시</MenuItem>
+                            <MenuItem value={90}>경상남도</MenuItem>
+                            <MenuItem value={100}>경상북도</MenuItem>
+                            <MenuItem value={110}>강원도</MenuItem>
+                            <MenuItem value={120}>부산광역시</MenuItem>
+                            <MenuItem value={130}>대구광역시</MenuItem>
+                            <MenuItem value={140}>울산광역시</MenuItem>
+                            <MenuItem value={150}>제주특별자치도</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>취소</Button>
+                      <Button
+                        onClick={() => {
+                          mapping(viewContent.recommandedBook3);
+                        }}
+                        autoFocus
+                      >
+                        검색
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </React.Fragment>
               </CardContent>
             </Box>
           </Card>

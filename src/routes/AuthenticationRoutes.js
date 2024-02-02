@@ -28,6 +28,8 @@ const MainRecommanded = Loadable(lazy(() => import('views/pages/authentication/b
 const MainRecommanding = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecommanding')));
 const MainHotBook = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainHotBook')));
 const MainRecord = Loadable(lazy(() => import('views/pages/authentication/bookshelf/MainRecord')));
+const DetailKakao = Loadable(lazy(() => import('views/pages/authentication/bookshelf/DetailKakao')));
+const Write = Loadable(lazy(() => import('views/pages/authentication/bookshelf/ErecordWrite')));
 
 // 도서관
 const CLibrary = Loadable(lazy(() => import('views/pages/authentication/library/CLibrary')));
@@ -135,6 +137,14 @@ const AuthenticationRoutes = {
     {
       path: 'readme/bookshelf/record',
       element: <MainRecord />
+    },
+    {
+      path: 'readme/bookshelf/detailbook',
+      element: <DetailKakao />
+    },
+    {
+      path: 'readme/bookshelf/write',
+      element: <Write />
     },
 
     // ====================================================

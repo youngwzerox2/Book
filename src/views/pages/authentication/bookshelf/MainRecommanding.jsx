@@ -3,14 +3,11 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import EmptyCase from '../../../../assets/images/bookcaseB_empty.png';
-// material-ui
-// import { useTheme } from '@mui/material/styles';
-// import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import CreateIcon from '@mui/icons-material/Create';
 import { Divider, Grid, Typography, Box, Card, Button, FormControl, CardMedia } from '@mui/material';
 // project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
-// import imageTest from '../../../../assets/images/Untitled.png';
 import Logo from '../../../../assets/images/ReadMe2.png';
 // assets
 import { useState } from 'react';
@@ -221,6 +218,15 @@ const MainRecommanded = () => {
                                   }}
                                 >
                                   뒤로가기
+                                </Button>
+                                <Button
+                                  variant="contained"
+                                  sx={{ position: 'absolute', top: '93%', right: '2%' }}
+                                  onClick={() => {
+                                    location.replace('/free/readme/bookshelf/write');
+                                  }}
+                                >
+                                  <CreateIcon fontSize="small" />
                                 </Button>
                               </React.Fragment>
                             </Card>

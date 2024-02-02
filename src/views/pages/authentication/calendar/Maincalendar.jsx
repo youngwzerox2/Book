@@ -32,7 +32,7 @@ const Register = () => {
                         defaultView="dayGridMonth"
                         plugins={[dayGridPlugin]}
                         events={[
-                          { title: '시돌 매직쇼', date: '2024-02-01' },
+                          { title: '시돌 매직쇼', date: '2024-02-02' },
                           { title: '굿바이 리드미', date: '2024-02-08' }
                         ]}
                       />

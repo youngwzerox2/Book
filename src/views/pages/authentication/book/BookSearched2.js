@@ -18,7 +18,9 @@ import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
-import { OutlinedInput } from '@mui/material';
+// import { OutlinedInput } from '@mui/material';
+import { TextField } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '@mui/icons-material/Search';
 import MainFeaturedPost from './MainFeaturedPost';
 import BookLayout from './BookLayout';
@@ -43,6 +45,7 @@ export default function Blog() {
       })
       .catch((err) => console.log('[에러!!', err));
   };
+
   useEffect(() => {
     // console.log('viewContent 0번째 => ', viewContent[0]);
     boardLoad();
@@ -58,54 +61,6 @@ export default function Blog() {
     linkText: 'Continue reading…'
   };
 
-  // -----------------------------------------------------------------------------------
-
-  // if (nowpage === 'start') {
-  //   return (
-  //     <ThemeProvider theme={defaultTheme}>
-  //       <CssBaseline />
-  //       <Container maxWidth="lg">
-  //         {/* <Header title="도서검색" sections={null}> */}
-  //         <React.Fragment>
-  //           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-  //             <Typography component="h2" variant="h5" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
-  //               도서검색?
-  //             </Typography>
-  //             <Tooltip title="나가기">
-  //               <Link to="/readme/library">
-  //                 <IconButton>
-  //                   <DisabledByDefaultIcon />
-  //                 </IconButton>
-  //               </Link>
-  //             </Tooltip>
-  //           </Toolbar>
-  //           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-  //             <OutlinedInput
-  //               fullWidth
-  //               onChange={(e) => {
-  //                 setStext(e.target.value);
-  //               }}
-  //             />
-  //             <Tooltip title="검색">
-  //               <IconButton sx={{ position: 'absolute', right: '3%' }} onClick={boardLoad}>
-  //                 <SearchIcon />
-  //               </IconButton>
-  //             </Tooltip>
-  //           </Toolbar>
-  //           {/* <Toolbar component="nav" variant="dense" sx={{ justifyContent: 'space-between', overflowX: 'auto' }}>
-  //         {sections.map((section) => (
-  //           <Link color="inherit" noWrap key={section.title} variant="body2" href={section.url} sx={{ p: 1, flexShrink: 0 }}>
-  //             {section.title}
-  //           </Link>
-  //         ))}
-  //       </Toolbar> */}
-  //         </React.Fragment>
-
-  //       </Container>
-  //       <Footer title="Footer" description="Something here to give the footer a purpose!" />
-  //     </ThemeProvider>
-  //   );
-  // } else {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -126,14 +81,25 @@ export default function Blog() {
             </Tooltip>
           </Toolbar>
           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <OutlinedInput
+            {/* <OutlinedInput
               fullWidth
               onChange={(e) => {
                 setStext(e.target.value);
               }}
+            /> */}
+            <Autocomplete
+              disablePortal
+              fullWidth
+              id="combo-box-demo"
+              options={top100Films}
+              sx={{ width: '100%' }}
+              renderInput={(params) => <TextField {...params} label="제목" />}
+              onClick={(e) => {
+                setStext(e.target.value);
+              }}
             />
             <Tooltip title="검색">
-              <IconButton sx={{ position: 'absolute', right: '3%' }} onClick={boardLoad}>
+              <IconButton sx={{ position: 'absolute', right: '5%' }} onClick={boardLoad}>
                 <SearchIcon />
               </IconButton>
             </Tooltip>
@@ -213,3 +179,12 @@ export default function Blog() {
   );
   // }
 }
+const top100Films = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Godfather: Part II', year: 1974 },
+  { label: 'The Dark Knight', year: 2008 },
+  { label: '12 Angry Men', year: 1957 },
+  { label: "Schindler's List", year: 1993 },
+  { label: 'Pulp Fiction', year: 1994 }
+];
