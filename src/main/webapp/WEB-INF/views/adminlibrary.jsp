@@ -12,8 +12,8 @@
             height: 80vh; 
         }
     </style>
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -49,11 +49,12 @@
         <div class="content">
 
             <div id="map"></div>
-             <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=48ce9248aa11f6b0e1b6054fdeaa1e8c&libraries=services"></script> -->
 
-            <!-- <input type="file" id="fileInput" accept=".csv" class="btn btn-outline-danger"> -->
-            <button id="showPositionButton" class="btn btn-outline-primary">현재 위치 표시</button>
-            <!-- <button id="showLibraryLocationsButton" class="btn btn-outline-success">도서관 위치 표시</button> -->
+            <div class="d-flex align-items-center mt-4">
+                <!-- <button id="showPositionButton" class="btn btn-outline-primary mx-auto">현재 위치 표시</button> -->
+            </div>
+            
+            
 
         </div><!-- .content -->
         <!-- 푸터 -->

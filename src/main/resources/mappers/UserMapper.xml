@@ -57,7 +57,8 @@
     			END AS age_group
   			FROM user
 		) AS age_groups
-		GROUP BY age_group;
+		GROUP BY age_group
+		ORDER BY FIELD(age_group, '10대 이하', '20대', '30대', '40대', '50대', '60대 이상');
 	</select>
 
 	<!-- 신규 가입자 수 -->

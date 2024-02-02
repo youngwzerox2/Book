@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQ 상세 페이지</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
@@ -50,7 +52,7 @@
                         </div>
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-outline-warning">수정</button>
+                                <button type="submit" class="btn btn-outline-primary">수정</button>
                                 <a href="deleteFaq?noticeNumber=${faq.noticeNumber}"
                                     class="btn btn-outline-danger"
                                     onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>

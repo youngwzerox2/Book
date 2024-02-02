@@ -3,16 +3,17 @@
         <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
             <!DOCTYPE html>
-            <html>
+            <html class="no-js" lang="">
 
             <head>
                 <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <title>커뮤니티 관리</title>
                 <meta name="description" content="Ela Admin - HTML5 Admin Template">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-                <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+                <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+                <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -47,7 +48,7 @@
                                 <div class="animated fadeIn">
                                     <div class="row">
 
-                                        <div class="col-md-8 mx-auto">
+                                        <div class="col-md-9 mx-auto">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <strong class="card-title">컴플레인 신고 리스트</strong>
@@ -60,15 +61,15 @@
                                                                 <tr>
                                                                     <th>회원아이디</th>
                                                                     <th>신고글 번호</th>
-                                                                    <th>신고항목</th>
+                                                                    <!-- <th>신고항목</th> -->
                                                                     <!-- <th>신고받은 글 번호</th> -->
                                                                     <!-- <th>신고내용</th> -->
                                                                     <!-- <th>신고글 작성시간</th> -->
                                                                     <th>신고글 처리여부</th>
                                                                     <!-- <th>신고글 답변</th> -->
                                                                     <!-- <th>신고글 답변 작성시간</th> -->
-                                                                    <th>신고받은 글 작성자</th>
-                                                                    <th>처리담당자</th>
+                                                                    <!-- <th>신고받은 글 작성자</th> -->
+                                                                    <!-- <th>처리담당자</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -78,7 +79,7 @@
                                                                         <td> <a
                                                                                 href="complainDetail?complainId=${complain.complainId}">${complain.complainId}</a>
                                                                         </td>
-                                                                        <td> ${complain.complainType} </td>
+                                                                        <!-- <td> ${complain.complainType} </td> -->
                                                                         <!-- <td> ${complain.complainTargetId}</td> -->
                                                                         <!-- <td> ${complain.complainContent} </td> -->
                                                                         <!-- <td> ${complain.complainDate}
@@ -88,8 +89,8 @@
                                                                         <!-- <td> <span
                                                                         class="name">${complain.complainReplyDate}</span>
                                                                         </td> -->
-                                                                        <td> ${complain.complainTargetUser}</td>
-                                                                        <td> ${complain.complainReplyAdmin}</td>
+                                                                        <!-- <td> ${complain.complainTargetUser}</td> -->
+                                                                        <!-- <td> ${complain.complainReplyAdmin}</td> -->
                                                                     </tr>
                                                                 </c:forEach>
                                                             </tbody>
@@ -102,7 +103,7 @@
                                 </div><!-- .animated -->
                             </div><!-- .content -->
 
-                            <div class="clearfix"></div>
+                            <!-- <div class="clearfix"></div> -->
 
                             <!-- 푸터 -->
                             <%@ include file="footer.jsp" %>

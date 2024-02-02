@@ -8,8 +8,22 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- 부트스트랩 CDN 사용 -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .notice-date {
+            margin-bottom: 10px; /* 원하는 간격 값으로 조절 */
+            font-size: 14px; /* 날짜 폰트 크기 조절 */
+            color: #333; /* 진한 회색 색상 설정 */
+        }
+
+        .notice-title {
+            font-size: 22px; /* 제목 폰트 크기 조절 */
+        }
+    </style>
 </head>
 
 <body>
@@ -33,10 +47,10 @@
                 <div class="card">
                     <div class="card-body">
                         <c:forEach items="${noticeList}" var="notice">
-                            <h5><fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd" /></h5>
-                            <button class="btn btn-outline-warning btn-sm float-right" onclick="writeAction('${notice.noticeNumber}')">글 수정</button>
+                            <h5 class="notice-date"><fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd" /></h5>
+                            <button class="btn btn-outline-success btn-sm float-right" onclick="writeAction('${notice.noticeNumber}')">글 수정</button>
                             <!-- <td><fmt:formatDate value="${member.memberBirthday}" pattern="yyyy-MM-dd" /></td> -->
-                            <h3 class="card-title">${notice.noticeTitle}</h3>
+                            <h3 class="card-title notice-title">${notice.noticeTitle}</h3>
                             <p class="card-text">${notice.noticeContent}</p>
                             <hr/>
                         </c:forEach>
