@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 
 // import 멩이s
-import meng0 from '../../../../assets/images/costume/coutum0.png';
+import meng0 from '../../../../assets/images/costume/costume0.png';
 
 export default function AlignItemsList() {
   const sess = localStorage;
