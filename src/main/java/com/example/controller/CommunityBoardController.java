@@ -19,7 +19,8 @@ import com.example.userservice.UserCommunityBoardServiceImpl;
 
 @RestController
 @RequestMapping("communityBoard")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+// @CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://114.207.167.82:3000")
 public class CommunityBoardController {
 
     @Autowired

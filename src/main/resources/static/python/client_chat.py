@@ -16,7 +16,8 @@
 import requests
 import sys
 
-server3_url = "http://118.217.203.44:5100/give_answer"  # 채팅
+# server3_url = "http://118.217.203.44:5100/give_answer"  # 채팅
+server3_url = "http://118.217.203.46:5100/give_answer"  # 채팅
 
 # 사용자가 입력한 문장
 msg = sys.argv[1]

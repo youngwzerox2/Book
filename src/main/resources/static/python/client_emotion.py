@@ -17,8 +17,10 @@ import requests
 import sys
 
 # +
-server1_url = "http://118.217.203.44:5100/analyze_emotion"  # 감정 예측
-server2_url = "http://118.217.203.44:5100/book_recommend"   # 책 추천
+# server1_url = "http://118.217.203.44:5100/analyze_emotion"  # 감정 예측
+# server2_url = "http://118.217.203.44:5100/book_recommend"   # 책 추천
+server1_url = "http://118.217.203.46:5100/analyze_emotion"  # 감정 예측
+server2_url = "http://118.217.203.46:5100/book_recommend"   # 책 추천
 
 # 현재 사용자의 member_id
 id = sys.argv[1]

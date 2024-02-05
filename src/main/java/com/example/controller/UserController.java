@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.mail.Authenticator;
@@ -25,7 +24,8 @@ import jakarta.mail.internet.MimeMessage;
 
 @RestController
 @RequestMapping("user")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+// @CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://114.207.167.82:3000")
 public class UserController {
 
 	public static HashMap<String, String> codeStorage = new HashMap<String, String>();
