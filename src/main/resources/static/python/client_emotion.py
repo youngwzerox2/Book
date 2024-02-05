@@ -14,23 +14,16 @@
 # ---
 
 import requests
-import json
 import sys
-import re
 
 # +
 server1_url = "http://118.217.203.44:5100/analyze_emotion"  # 감정 예측
-server2_url = "http://118.217.203.44:5200/book_recommend"   # 책 추천
+server2_url = "http://118.217.203.44:5100/book_recommend"   # 책 추천
 
 # 현재 사용자의 member_id
 id = sys.argv[1]
 # 사용자가 입력한 문장
 msg = sys.argv[2]
-
-# [확인]
-# id = 'test15'
-# msg = '나 집에 갈래.'
-# print("Java에서 온 msg: ({}) {}".format(id, msg))
 
 # server1에 감정 분석 요청
 response_server1 = requests.post(server1_url, json={'sentence': msg})
@@ -51,15 +44,6 @@ if response_server1.status_code == 200:
         recommend_info = response_server2.json()
         # print('서버2에서 받은 응답:', recommend_info)
         # print('서버2에서 받은 응답:', recommend_info['emotion'])
-
-        # # 서버2에서 받은 응답에서 추천 도서 정보 추출
-        # if 'recommend1' in recommend_info:
-        #     print('추천 도서 1: {}'.format(recommend_info["recommend1"]))
-        # if 'recommend2' in recommend_info:
-        #     print('추천 도서 2: {}'.format(recommend_info["recommend2"]))
-        # if 'recommend3' in recommend_info:
-        #     print('추천 도서 3: {}'.format(recommend_info["recommend3"]))
-
 
         # 실제 데이터 출력
         print(recommend_info['emotion'])
