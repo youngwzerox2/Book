@@ -19,35 +19,21 @@
       // libraryLocations와 apiResponses를 JSP에서 읽음
       const libraryLocationsString = '${libraryLocations}';
       const parsedLibraryLocations = JSON.parse(libraryLocationsString);
-      // console.log("도서관위치:", parsedLibraryLocations);
 
       // API 응답 데이터를 문자열로 받아오기
       const apiResponsesString = '${apiresponses}';
 
-      // 문자열을 배열로 변환
+      // apiResponsesString 문자열에서 첫 번째와 마지막 문자를 제거하고 쉼표와 공백을 기준으로 분할하여 배열 생성
       const apiResponsesArray = apiResponsesString.slice(1, -1).split(', ');
 
-      // XML 파서를 사용하여 문자열을 XML 문서로 파싱
+      // DOMParser 인스턴스 생성
       const parser = new DOMParser();
 
       // 각 XML 문자열을 개별적으로 파싱
       const xmlDocArray = apiResponsesArray.map((xmlString) => parser.parseFromString(xmlString, 'application/xml'));
 
-      // 파싱된 XML 문서들을 확인
-      // console.log("파싱된 xml:", xmlDocArray);
-
-      // 'hasBook' 및 'loanAvailable' 값 얻기
-      const hasBookValues = xmlDocArray.map((xmlDoc) => xmlDoc.getElementsByTagName('hasBook')[0].textContent);
+      // 'loanAvailable' 값 얻기
       const loanAvailableValues = xmlDocArray.map((xmlDoc) => xmlDoc.getElementsByTagName('loanAvailable')[0].textContent);
-
-      // 알림창 띄우기
-      // if (loanAvailableValues[index] === 'N') {
-      //     alert(name + ' 도서관: 대출 가능한 도서가 없습니다.');
-      //     alert('test');
-      // }
-
-      // console.log('hasBook 값:', hasBookValues);
-      console.log('loanAvailable 값:', loanAvailableValues);
 
       // 'loanAvailable' 값이 'Y'인 데이터 추출
       const availableData = xmlDocArray.filter((xmlDoc) => {
@@ -55,26 +41,8 @@
         return loanAvailable === 'Y';
       });
 
-      console.log('available data:', availableData);
-
-      // 'loanAvailable' 값이 'N'인 데이터 추출
-      const unavailableData = xmlDocArray.filter((xmlDoc) => {
-        const loanAvailable = xmlDoc.getElementsByTagName('loanAvailable')[0].textContent;
-        return loanAvailable === 'N';
-      });
-
-      console.log('Unavailable data:', unavailableData);
-
       // 'Y'인 도서관의 libCode를 가져오기
       const availableLibCodes = availableData.map((xmlDoc) => xmlDoc.getElementsByTagName('libCode')[0].textContent);
-
-      // console.log('availableLibCodes 값:', availableLibCodes);
-
-      // console.log('loanAvailable이 Y인 데이터 개수:', availableData.length);
-      // console.log('loanAvailable이 Y인 데이터:', availableData);
-      // console.log('loanAvailable이 Y인 값의 libCode:', availableLibCodes);
-
-      // console.log('API 호출데이터:', apiResponsesString);
 
       // Kakao Maps SDK 비동기로 로드
       const script = document.createElement('script');
@@ -100,6 +68,7 @@
               navigator.geolocation.getCurrentPosition(
                 function (position) {
                   const userPosition = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
                   // 사용자 위치에 마커 추가
                   const userMarker = new kakao.maps.Marker({
                     position: userPosition,
@@ -131,17 +100,10 @@
           // 'Y'인 도서관을 찾아서 지도에 마커 표시
           parsedLibraryLocations.forEach((location) => {
             const libCode = location.libraryNum;
-            console.log('libCode:', libCode);
-            console.log(
-              'loanAvailableValues[availableLibCodes.indexOf(libCode)]:',
-              loanAvailableValues[availableLibCodes.indexOf(libCode)]
-            );
 
             // 'Y'인 도서관만 처리
             if (availableLibCodes.includes(libCode)) {
               const index = availableLibCodes.indexOf(libCode);
-
-              console.log('loanAvailableValues[', index, ']:', loanAvailableValues[index]);
 
               const markerPosition = new kakao.maps.LatLng(location.libraryLa, location.libraryLo);
               // 마커 생성
@@ -165,16 +127,12 @@
                 'mouseover',
                 (function (name) {
                   return function () {
-                    // console.log("도서관 이름 확인:", name);
 
                     const contents = '<div style="padding:5px;">' + name + '</div>';
-                    // console.log("인포윈도우에 들어갈 내용 확인:", contents); // 콘솔에 내용 로그 출력
 
                     infowindow.setContent(contents);
-                    // console.log("인포윈도우 열기 전"); // 콘솔에 로그 출력
 
                     infowindow.open(map, marker);
-                    // console.log("인포윈도우 열린 후"); // 콘솔에 로그 출력
 
                     // 알림창 띄우기
                     if (loanAvailableValues[index] === 'N') {
@@ -193,7 +151,6 @@
         });
       };
     </script>
-    <!-- <script src="assets/js/memberlibrary.js"></script> -->
   </head>
   <body>
     <div id="map"></div>

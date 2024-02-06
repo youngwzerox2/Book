@@ -30,18 +30,14 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet'
         type='text/css'>
-
-
     
 </head>
 
 <body>
-
     <!-- 사이드바 -->
     <%@ include file="sidebar.jsp" %>
 
     <!-- Right Panel -->
-
     <div id="right-panel" class="right-panel">
 
         <!-- 헤더 -->
@@ -51,10 +47,8 @@
             <div id="map"></div>
 
             <div class="d-flex align-items-center mt-4">
-                <!-- <button id="showPositionButton" class="btn btn-outline-primary mx-auto">현재 위치 표시</button> -->
+                <button id="showPositionButton" class="btn btn-outline-primary mx-auto">현재 위치 표시</button>
             </div>
-            
-            
 
         </div><!-- .content -->
         <!-- 푸터 -->

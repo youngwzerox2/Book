@@ -111,10 +111,10 @@
         $(document).ready(function() {
             // 로그아웃 링크를 클릭했을 때의 이벤트 처리
             $(".user-menu .nav-link").on("click", function(e) {
-                e.preventDefault();  // 기본 클릭 이벤트를 막습니다.
+                e.preventDefault();  
         
                 // 리다이렉션을 수행합니다.
-                window.location.href = "http://118.217.203.37:3000/free/readme/start";
+                window.location.href = "http://114.207.167.82:3000/free/readme/start";
             });
         });
         </script>

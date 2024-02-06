@@ -59,7 +59,6 @@ function fetchCurrentMonthCSV() {
     fetch(csvFilePath)
         .then(response => response.text())
         .then(csv => {
-            // console.log('csv데이터:', csv);
             processData(csv);
         })
         .catch(error => console.error('CSV 파일을 가져오는 중 오류 발생:', error));

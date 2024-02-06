@@ -25,20 +25,6 @@ public class PythonController {
             Process process = pb.start();
             System.out.println("process시작"+ process);
 
-            // // 프로세스의 출력을 확인
-            // BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            // String line;
-            // while ((line = reader.readLine()) != null) {
-            //     System.out.println(line);
-            // }
-
-            // // 프로세스의 에러 출력을 확인
-            // BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            // String errorLine;
-            // while ((errorLine = errorReader.readLine()) != null) {
-            //     System.err.println("[Error] " + errorLine);
-            // }
-
             // 프로세스 종료 대기
             int exitCode = process.waitFor();
             System.out.println("Exit Code: " + exitCode);
@@ -50,7 +36,6 @@ public class PythonController {
 			BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorStream));
 			String line; // 읽어온 각 줄의 내용을 담을 변수
 			String errorLine;
-			// StringBuilder sb = new StringBuilder();
 
             // 정상 출력 - 한 줄이라 '\n' 붙이지 않음
 			while ((line = reader.readLine()) != null) {
@@ -73,17 +58,8 @@ public class PythonController {
             int exitCode3 = process.exitValue();
             System.out.println("외부 프로그램 종료 코드: " + exitCode3);
 
-			// reader.close();
-			// error.close();
-
-            // String output = sb.toString();
-			// System.out.println(output);
-			// System.out.println("[Dolmeng] > " + output);
 
             return "Python 스크립트 실행 성공.";
-
-            // // 성공적으로 실행된 경우 응답
-            // return "Python 스크립트가 성공적으로 실행되었습니다.";
 
         } catch (Exception e) {
             e.printStackTrace();

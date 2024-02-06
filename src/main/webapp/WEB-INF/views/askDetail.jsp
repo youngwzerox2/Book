@@ -10,7 +10,6 @@
     <title>문의 상세 페이지</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -31,7 +30,6 @@
                     <div class="card">
                         <form id="updateAskForm" action="updateAsk" method="post">
                             <input name="askId" type="hidden" value="${ask.askId}" />
-                            <!-- <input name="askReplyTime" type="hidden" value="<fmt:formatDate value='${ask.askReplyTime}' pattern='yyyy-MM-dd' />" /> -->
                             <input name="askReplyTime" type="hidden" value="${ask.askReplyTime}" />
                             <div class="card-body card-block">
                                 <div class="form-group">
@@ -42,16 +40,10 @@
                                     <label for="company" class="form-control-label">문의내용</label>
                                     <input type="text" value="${ask.askContent}" class="form-control" name="askContent" readonly>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label for="company" class="form-control-label">문의날짜</label>
-                                    <input type="text" value="${ask.askDate}" class="form-control" name="askDate" readonly>
-                                </div> -->
-
                                 <div class="form-group"><label for="company"
                                     class=" form-control-label">문의날짜</label><input type="text"
                                     value="<fmt:formatDate value='${ask.askDate}' pattern='yyyy-MM-dd' />" class="form-control" readonly>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="company" class="form-control-label">답변</label>
                                     <textarea class="form-control" name="askReplyContent" style="height: 200px;">${ask.askReplyContent}</textarea>
@@ -94,27 +86,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script>
-        // 폼 제출 함수
-        function submitForm() {
-            // askReplyTime을 가공하여 hidden 필드에 설정
-            var formattedDate = formatDate($('#askReplyTime').val());
-            $('#askReplyTime').val(formattedDate);
-
-            // 폼 제출
-            $('#updateAskForm').submit();
-        }
-
-        // 날짜 형식 가공 함수
-        function formatDate(inputDate) {
-            var date = new Date(inputDate);
-            var year = date.getFullYear();
-            var month = ('0' + (date.getMonth() + 1)).slice(-2);
-            var day = ('0' + date.getDate()).slice(-2);
-            return year + '-' + month + '-' + day;
-        }
-    </script>
 
 </body>
 

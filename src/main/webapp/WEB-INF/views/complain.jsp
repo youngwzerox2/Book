@@ -79,18 +79,7 @@
                                                                         <td> <a
                                                                                 href="complainDetail?complainId=${complain.complainId}">${complain.complainId}</a>
                                                                         </td>
-                                                                        <!-- <td> ${complain.complainType} </td> -->
-                                                                        <!-- <td> ${complain.complainTargetId}</td> -->
-                                                                        <!-- <td> ${complain.complainContent} </td> -->
-                                                                        <!-- <td> ${complain.complainDate}
-                                                                        </td> -->
                                                                         <td> ${complain.complainDone}</td>
-                                                                        <!-- <td> ${complain.complainReply}</td> -->
-                                                                        <!-- <td> <span
-                                                                        class="name">${complain.complainReplyDate}</span>
-                                                                        </td> -->
-                                                                        <!-- <td> ${complain.complainTargetUser}</td> -->
-                                                                        <!-- <td> ${complain.complainReplyAdmin}</td> -->
                                                                     </tr>
                                                                 </c:forEach>
                                                             </tbody>

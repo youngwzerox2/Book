@@ -51,7 +51,7 @@
         <%@ include file="header.jsp" %>
         
         <div class="content">
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">1:1 문의</strong>
@@ -80,7 +80,6 @@
                                     <c:forEach items="${askList}" var="ask">
                                         <tr class="${ask.askReplyDone eq 'yes' ? 'answered' : 'unanswered'}" style="background-color: white;">
                                             <td>${ask.askId}</td>
-                                            <!-- <td>${ask.askDate}</td> -->
                                             <td><fmt:formatDate value="${ask.askDate}" pattern="yyyy-MM-dd" /></td>
                                             <td><a href="askDetail?askId=${ask.askId}">${ask.memberId}</a></td>
                                             <td>
@@ -102,8 +101,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <button class="btn btn-outline-primary btn-sm float-right" onclick="writeAction()">글 등록</button> -->
 
         </div><!-- .content -->
         <div style="margin-bottom: 20px;"></div>

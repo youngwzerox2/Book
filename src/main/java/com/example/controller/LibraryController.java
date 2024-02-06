@@ -30,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // @RestController
 @Controller
 @RequestMapping("library")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://114.207.167.82:3000")
 public class LibraryController {
 
     @Autowired
@@ -59,19 +59,13 @@ public class LibraryController {
         List<String> apiResponses = new ArrayList<>();
         String apiUrl = "https://data4library.kr/api/bookExist";
         String authKey = "9ea76f31c20ce4c02d3eeb25892c0bd248634fd7a525883db2c87e65125d07d5";
-        // String isbn13 = "9788952870582"; 
         String isbn13 = Inputisbn13; 
         for (KakaoLibrary library : libraryLocations) {
-            String libCode = library.getLibraryNum(); // 또는 다른 방식으로 libraryNum을 가져와야 할 수 있음
+            String libCode = library.getLibraryNum(); 
             String apiResponse = callExternalApi(apiUrl, authKey, libCode, isbn13);
             apiResponses.add(apiResponse);
-             // 콘솔에 API 응답 출력
-            System.out.println("API 응답 for library " + libCode + ": " + apiResponse);
         }
         m.addAttribute("apiresponses", apiResponses);
-        // System.out.println("apiResponses@@@@:"+ apiResponses);
-        System.out.println("memberlibrary.jsp 호출");
-        // return "memberlibrary";
     }
 
     private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
