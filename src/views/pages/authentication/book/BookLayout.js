@@ -165,7 +165,7 @@ export default function Blog({ isbn }) {
                       <AccountBoxIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="수육밥국" secondary="시간 날 때 읽어보기 좋은 정도. 독서를 처음하는 사람들도 ..." />
+                  <ListItemText primary="test50" secondary="독후감 숙제때문에 봄" />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -173,7 +173,7 @@ export default function Blog({ isbn }) {
                       <AccountBoxIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="aleeece" secondary="평소 좋아하던 작가의 책이라 바로 읽어보았다. 하지만 내 기 ..." />
+                  <ListItemText primary="싱돌이" secondary="나는 독서한다. 고로 존재한다. 나는 독서한다. 고로 존재..." />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -181,7 +181,7 @@ export default function Blog({ isbn }) {
                       <AccountBoxIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="지밍잉" secondary="무난함." />
+                  <ListItemText primary="아이티" secondary="어린왕자 지금 생각해보면 걍 답답이임." />
                   <Link href="https://www.naver.com">
                     <Typography fontSize="small">더보기</Typography>
                   </Link>

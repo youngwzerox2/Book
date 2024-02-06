@@ -27,13 +27,13 @@ const defaultTheme = createTheme();
 export default function Blog() {
   const [viewContent, setViewContent] = useState([]);
   const [stext, setStext] = useState('isbn 기반 상세 페이지');
-  const [isbn13, setIsbn13] = useState('9791161571188');
+  const [isbn13, setIsbn13] = useState('9788943800604');
 
   // ================================================================================
   // 검색어에 맞는 책 검색
   const boardLoad = () => {
     axios
-      .get('/book/selectByTitle', { params: { bookname: stext } })
+      .get('/book/selectByTitle', { params: { bookname: '어린 왕자' } })
       .then((re) => {
         setViewContent(re.data);
 

@@ -295,6 +295,17 @@ const FirebaseRegister = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
+            {strength !== 0 && (
+              <FormControl fullWidth>
+                <Box sx={{ mb: 2 }}>
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item>
+                      <Button onClick={checkId}>이메일 인증하기</Button>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </FormControl>
+            )}
 
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-password-register">비밀번호</InputLabel>

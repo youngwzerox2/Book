@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import Logo from '../../../../assets/images/ReadMe2.png';
 // import Library from './DLibrary';
 // assets
-import theimg from '../../../../assets/images/library.png';
+import theimg from '../../../../assets/images/libraryFinal.png';
 // 기본 폼
 import { FormControl } from '@mui/material';
 // 버튼 관련 속성. Button.d.ts 파일에 종류 있음. - variant, fullwidth 사용중
