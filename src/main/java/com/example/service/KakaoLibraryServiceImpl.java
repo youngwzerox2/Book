@@ -18,7 +18,6 @@ public class KakaoLibraryServiceImpl implements KakaoLibraryService{
     // 도서관 위치 부르기
     @Override
     public List<KakaoLibrary> getAllLocations() {
-        System.out.println("serviceImpl호출:");
         return kakaoLibraryDAO.getAllLocations();
     }
 }

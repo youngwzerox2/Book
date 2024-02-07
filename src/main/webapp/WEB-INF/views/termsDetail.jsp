@@ -46,7 +46,6 @@
                 <div class="card">
                     <form action="updateTerms" method="post">
                         <input name="noticeNumber" type="hidden" value="${terms.noticeNumber}" />
-                        <!-- <input name="noticeDate" type="hidden" value="${terms.noticeDate}" /> -->
                         <div class="card-body card-block">
                             <div class="form-group"><label for="company"
                                     class=" form-control-label">제목</label><input type="text"
@@ -60,9 +59,6 @@
                         <div class="form-group row justify-content-end">
                             <div class="col-sm-3">
                                 <button type="submit" class="btn btn-outline-primary">수정</button>
-                                <!-- <a href="deleteNotice?noticeNumber=${notice.noticeNumber}"
-                                    class="btn btn-outline-danger"
-                                    onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a> -->
                                 <a href="terms" class="btn btn-outline-secondary">뒤로가기</a>
                             </div>
                         </div>

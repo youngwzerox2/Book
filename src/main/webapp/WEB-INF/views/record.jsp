@@ -66,10 +66,6 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>독서기록 번호</th>
-                                                                    <!-- <th>독서기록 내용</th> -->
-                                                                    <!-- <th>독서기록 평점</th> -->
-                                                                    <!-- <th>독서기록 등록시간</th> -->
-                                                                    <!-- <th>도서 태그</th> -->
                                                                     <th>고객아이디</th>
                                                                     <th>청구기호 13자리</th>
                                                                 </tr>
@@ -80,14 +76,6 @@
                                                                         <td><a
                                                                                 href="recordDetail?recordBookNum=${record.recordBookNum}">${record.recordBookNum}</a>
                                                                         </td>
-                                                                        <!-- <td>${record.recordBookContent}</td> -->
-                                                                        <!-- <td>${record.recordBookScore}</td> -->
-                                                                        <!-- <td>
-                                                                            <fmt:formatDate
-                                                                                value="${record.recordBookTime}"
-                                                                                pattern="yyyy-MM-dd" />
-                                                                        </td> -->
-                                                                        <!-- <td>${record.recordBookTag1}</td> -->
                                                                         <td>${record.memberId}</td>
                                                                         <td>${record.bookIsbn13}</td>
                                                                     </tr>

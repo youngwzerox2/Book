@@ -76,21 +76,6 @@ public class AdminController {
     }
 
     // *************************************** 메인 ****************************************
-    // 메인
-    // @RequestMapping("/index")
-    // public String index() {
-    // System.out.println("index.jsp호출");
-    // return "index";
-    // }
-
-    // 메인
-    // @RequestMapping("/")
-    // public void main(Model m) {
-    //     List<User> list = userService.memberList();
-    //     m.addAttribute("memberList", list);
-    //     System.out.println("index.jsp호출");
-    // }
-
     // 메인 제재명단, 문의건수
     @RequestMapping("/adminmain")
     public String index(Model m) {
@@ -108,12 +93,6 @@ public class AdminController {
         m.addAttribute("newUser", newUser.get(0));
         List<Login> todayLogin = loginService.todayLogin();                     // 오늘 접속자 수
         m.addAttribute("todayLogin", todayLogin.get(0));
-        // System.out.println(todayLogin);
-        // System.out.println(newUser);
-        // System.out.println(bookRank);
-        // System.out.println(getAge);
-        // System.out.println(dailyAsk);
-        System.out.println("adminmain.jsp호출");
         return "adminmain";
     }
 
@@ -123,21 +102,18 @@ public class AdminController {
     public void memberList(Model m) {
         List<User> list = userService.memberList();
         m.addAttribute("memberList", list);
-        System.out.println("member.jsp호출");
     }
 
     // 회원상세정보
     @RequestMapping("/memberDetail")
     public void memberDetail(Model m, User vo) {
         User member = userService.memberDetail(vo);
-        System.out.println("memberDetail.jsp호출");
         m.addAttribute("member", member);
     }
 
     // 회원정보수정
     @RequestMapping("/updateMember")
     public String updateMember(User vo) {
-        System.out.println("회원정보수정:" + vo);
         userService.updateMember(vo);
         return "redirect:member";
     }
@@ -155,22 +131,18 @@ public class AdminController {
     public void bookList(Model m) {
         List<Book> list = bookService.bookList();
         m.addAttribute("bookList", list);
-        System.out.println("book.jsp호출");
     }
 
     // 도서상세정보
     @RequestMapping("/bookDetail")
     public void bookDetail(Model m, Book vo) {
         Book book = bookService.bookDetail(vo);
-        System.out.println("bookDetail.jsp호출");
-        // System.out.println("도서상세정보"+ book);
         m.addAttribute("book", book);
     }
 
     // 도서정보수정
     @RequestMapping("/updateBook")
     public String updateBook(Book vo) {
-        System.out.println("도서정보수정:" + vo);
         bookService.updateBook(vo);
         return "redirect:book";
     }
@@ -188,14 +160,12 @@ public class AdminController {
     public void complainList(Model m) {
         List<Complain> list = complainService.complainList();
         m.addAttribute("complainList", list);
-        System.out.println("complain.jsp호출");
     }
 
     // 컴플레인 상세정보
     @RequestMapping("/complainDetail")
     public void complainDetail(Model m, Complain vo) {
         Complain complain = complainService.complainDetail(vo);
-        System.out.println("complainDetail.jsp호출");
         m.addAttribute("complain", complain);
 
         // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
@@ -206,7 +176,6 @@ public class AdminController {
     // 컴플레인 정보수정
     @RequestMapping("/updateComplain")
     public String updateComplain(Complain vo) {
-        System.out.println("컴플레인 정보수정:" + vo);
         complainService.updateComplain(vo);
         return "redirect:complain";
     }
@@ -215,17 +184,14 @@ public class AdminController {
     // 공지사항 관리
     @RequestMapping("/notice")
     public void noticeList(Model m) {
-        // AdminVO vo = new AdminVO();
         List<Notice> list = noticeService.noticeList();
         m.addAttribute("noticeList", list);
-        System.out.println("notice.jsp호출");
     }
 
     // 공지사항 상세정보
     @RequestMapping("/noticeDetail")
     public void noticeDetail(Model m, Notice vo) {
         Notice notice = noticeService.noticeDetail(vo);
-        System.out.println("noticeDetail.jsp호출");
         m.addAttribute("notice", notice);
 
         // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
@@ -236,7 +202,6 @@ public class AdminController {
     // 공지사항 정보수정
     @RequestMapping("/updateNotice")
     public String updateNotice(Notice vo) {
-        System.out.println("공지사항정보수정:" + vo);
         noticeService.updateNotice(vo);
         return "redirect:notice";
     }
@@ -264,14 +229,12 @@ public class AdminController {
     public void termsList(Model m) {
         List<Notice> list = termsService.termsList();
         m.addAttribute("termsList", list);
-        System.out.println("terms.jsp호출");
     }
 
     // 이용약관 상세정보
     @RequestMapping("/termsDetail")
     public void termsDetail(Model m, Notice vo) {
         Notice terms = termsService.termsDetail(vo);
-        System.out.println("termsDetail.jsp호출");
         m.addAttribute("terms", terms);
 
         // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
@@ -282,7 +245,6 @@ public class AdminController {
     // 이용약관 정보수정
     @RequestMapping("/updateTerms")
     public String updateTerms(Notice vo) {
-        System.out.println("이용약관 정보수정:" + vo);
         termsService.updateTerms(vo);
         return "redirect:terms";
     }
@@ -293,14 +255,12 @@ public class AdminController {
     public void faqList(Model m) {
         List<Notice> list = faqService.faqList();
         m.addAttribute("faqList", list);
-        System.out.println("faq.jsp호출");
     }
 
     // FAQ 상세정보
     @RequestMapping("/faqDetail")
     public void faqDetail(Model m, Notice vo) {
         Notice faq = faqService.faqDetail(vo);
-        System.out.println("faqDetail.jsp호출");
         m.addAttribute("faq", faq);
 
         // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
@@ -311,7 +271,6 @@ public class AdminController {
     // FAQ 정보수정
     @RequestMapping("/updateFaq")
     public String updateFaq(Notice vo) {
-        System.out.println("FAQ 정보수정:" + vo);
         faqService.updateFaq(vo);
         return "redirect:faq";
     }
@@ -339,7 +298,6 @@ public class AdminController {
     public String askList(Model m) {
         List<Ask> list = askService.askList();
         m.addAttribute("askList", list);
-        System.out.println("ask.jsp호출");
         return "ask";
     }
 
@@ -347,7 +305,6 @@ public class AdminController {
     @RequestMapping("/askDetail")
     public void askDetail(Model m, Ask vo) {
         Ask ask = askService.askDetail(vo);
-        System.out.println("askDetail.jsp호출");
         m.addAttribute("ask", ask);
 
         // 관리자 회원 ID 목록 중 member_grade가 admin인 것만 가져오기
@@ -358,7 +315,6 @@ public class AdminController {
     // 문의 정보수정
     @RequestMapping("/updateAsk")
     public String updateAsk(Ask vo) {
-        // System.out.println("문의 정보수정:" + vo);
         askService.updateAsk(vo);
         return "redirect:ask";
     }
@@ -386,21 +342,18 @@ public class AdminController {
     public void recordList(Model m) {
         List<RecordDTO> list = recordService.recordList();
         m.addAttribute("recordList", list);
-        System.out.println("record.jsp호출");
     }
 
     // 독서기록 상세정보
     @RequestMapping("/recordDetail")
     public void recordDetail(Model m, RecordDTO vo) {
         RecordDTO record = recordService.recordDetail(vo);
-        System.out.println("recordDetail.jsp호출");
         m.addAttribute("record", record);
     }
 
     // 독서기록 정보수정
     @RequestMapping("/updateRecord")
     public String updateRecord(RecordDTO vo) {
-        System.out.println("회원정보수정:" + vo);
         recordService.updateRecord(vo);
         return "redirect:record";
     }
@@ -416,78 +369,13 @@ public class AdminController {
     // 통계관리
     @RequestMapping("/charts")
     public void charts() {
-        System.out.println("charts.jsp호출");
     }
 
     // *************************************** 관리자 도서관 ****************************************
     // 도서관관리
     @RequestMapping("/adminlibrary")
     public void adminlibrary() {
-        System.out.println("adminlibrary.jsp호출");
     }
-
-    // *************************************** 회원 도서관 ****************************************
-    // 회원 도서관 위치 부르기
-    // @RequestMapping("/memberlibrary")
-    // public String memberlibrary(Model m) {
-    //     List<KakaoLibrary> libraryLocations = kakaoLibraryService.getAllLocations();
-
-    //     // 모델에 JSON 형식으로 데이터 추가
-    //     ObjectMapper objectMapper = new ObjectMapper();
-    //     String libraryLocationsJson;
-    //     try {
-    //         libraryLocationsJson = objectMapper.writeValueAsString(libraryLocations);
-    //         // System.out.println(libraryLocationsJson);
-    //     } catch (JsonProcessingException e) {
-    //         // 예외 처리
-    //         e.printStackTrace();
-    //         libraryLocationsJson = "[]"; // 기본적으로 빈 배열로 설정
-    //     }
-    //     m.addAttribute("libraryLocations", libraryLocationsJson);
-
-    //     // 각 libraryNum에 대한 외부 API 호출 및 응답 받기
-    //     List<String> apiResponses = new ArrayList<>();
-    //     String apiUrl = "https://data4library.kr/api/bookExist";
-    //     String authKey = "9ea76f31c20ce4c02d3eeb25892c0bd248634fd7a525883db2c87e65125d07d5";
-    //     String isbn13 = "8809105873012";
-
-    //     for (KakaoLibrary library : libraryLocations) {
-    //         String libCode = library.getLibraryNum(); // 또는 다른 방식으로 libraryNum을 가져와야 할 수 있음
-    //         String apiResponse = callExternalApi(apiUrl, authKey, libCode, isbn13);
-    //         apiResponses.add(apiResponse);
-
-    //          // 콘솔에 API 응답 출력
-    //         System.out.println("API 응답 for library " + libCode + ": " + apiResponse);
-    //     }
-
-    //     m.addAttribute("apiresponses", apiResponses);
-    //     // System.out.println("apiResponses@@@@:"+ apiResponses);
-
-    //     System.out.println("memberlibrary.jsp 호출");
-    //     return "memberlibrary";
-    // }
-
-    // private String callExternalApi(String apiUrl, String authKey, String libCode, String isbn13) {
-    //     // WebClient를 사용해서 외부 API 호출
-    //     WebClient webClient = WebClient.create();
-
-    //     // API 호스트 정보 추가
-    //     URI uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
-    //             .queryParam("authKey", authKey)
-    //             .queryParam("libCode", libCode)
-    //             .queryParam("isbn13", isbn13)
-    //             .build()
-    //             .toUri();
-
-    //     // API 호출 및 응답 받기
-    //     String apiResponse = webClient.get()
-    //             .uri(uri)
-    //             .retrieve()
-    //             .bodyToMono(String.class)
-    //             .block();
-
-    //     return apiResponse;
-    // }
    
 }
 

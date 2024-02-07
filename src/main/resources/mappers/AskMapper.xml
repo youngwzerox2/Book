@@ -12,20 +12,6 @@
         ORDER BY ask_id DESC
     </select>
 
-    <!-- 미완료 답변 문의 리스트 -->
-    <select id="getUnansweredList" resultType="Ask">
-        SELECT *
-        FROM ask
-        WHERE ask_reply_done = "no"
-    </select>
-
-    <!-- 완료 답변 문의 리스트 -->
-    <select id="getAnsweredList" resultType="Ask">
-        SELECT *
-        FROM ask
-        WHERE ask_reply_done = "yes"
-    </select>
-
     <!-- 문의 상세정보 -->
     <select id="askDetail" resultType="Ask">
         SELECT *
@@ -46,17 +32,6 @@
         DELETE FROM ask
         WHERE ask_id=#{askId}
     </delete>
-
-    <!-- 문의 등록 -->
-    <!-- <insert id="insertFaq" parameterType="AdminVO">
-        INSERT INTO ask (ask_title, ask_content, ask_reply_time, notice_display, member_id) VALUES (#{noticeType}, #{noticeTitle}, #{noticeContent}, now(), 1, #{memberId})
-    </insert> -->
-
-    <!-- 문의건수 -->
-    <!-- <select id="askCount" resultType="Ask">
-        SELECT ask_date
-        FROM ask;
-    </select> -->
 
     <!-- 최근 7일간 문의건수 -->
     <select id="dailyAsk" resultType="hashmap">

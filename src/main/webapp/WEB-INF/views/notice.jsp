@@ -49,7 +49,6 @@
                         <c:forEach items="${noticeList}" var="notice">
                             <h5 class="notice-date"><fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd" /></h5>
                             <button class="btn btn-outline-success btn-sm float-right" onclick="writeAction('${notice.noticeNumber}')">글 수정</button>
-                            <!-- <td><fmt:formatDate value="${member.memberBirthday}" pattern="yyyy-MM-dd" /></td> -->
                             <h3 class="card-title notice-title">${notice.noticeTitle}</h3>
                             <p class="card-text">${notice.noticeContent}</p>
                             <hr/>

@@ -18,9 +18,7 @@
     <select id="bookDetail" resultType="Book">
         SELECT *
         FROM book
-        <!-- WHERE NO=#{no} -->
         WHERE book_isbn13=#{bookIsbn13}
-        <!-- WHERE NO=#{no} and book_isbn13=#{bookIsbn13} -->
     </select>
 
     <!-- 도서정보수정 -->

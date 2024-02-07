@@ -11,7 +11,6 @@
 		SELECT *
 		FROM notice
 		WHERE notice_type = 'faq'
-		<!-- ORDER BY notice_date DESC -->
 	</select>
 
 	<!-- FAQ 상세정보 -->

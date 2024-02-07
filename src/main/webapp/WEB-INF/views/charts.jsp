@@ -46,7 +46,6 @@
         ></iframe>
       </div>
       <!-- /.content -->
-      <!-- <div class="clearfix"></div> -->
       <!-- Footer -->
       <%@ include file="footer.jsp" %>
       <!-- /.site-footer -->

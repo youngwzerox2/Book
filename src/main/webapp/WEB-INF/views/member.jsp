@@ -11,7 +11,6 @@
 
             <head>
                 <meta charset="utf-8">
-                <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
                 <title>회원 관리</title>
                 <meta name="description" content="Ela Admin - HTML5 Admin Template">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +34,6 @@
                 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet'
                     type='text/css'>
 
-                <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
             </head>
 
@@ -67,16 +65,7 @@
                                                                 <tr>
                                                                     <th>아이디</th>
                                                                     <th>이름</th>
-                                                                    <!-- <th>이메일</th> -->
-                                                                    <!-- <th>닉네임</th> -->
-                                                                    <!-- <th>성별</th> -->
-                                                                    <!-- <th>생년월일</th> -->
-                                                                    <!-- <th>전화번호</th> -->
-                                                                    <!-- <th>가입일</th> -->
-                                                                    <!-- <th>탈퇴일</th> -->
-                                                                    <!-- <th>책장방문허용여부</th> -->
                                                                     <th>회원상태</th>
-                                                                    <!-- <th>신고건수</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -86,26 +75,7 @@
                                                                                 href="memberDetail?memberId=${member.memberId}">${member.memberId}</a>
                                                                         </td>
                                                                         <td>${member.memberName}</td>
-                                                                        <!-- <td>${member.memberEmail}</td> -->
-                                                                        <!-- <td>${member.memberNickname}</td> -->
-                                                                        <!-- <td>${member.memberGender}</td> -->
-                                                                        <!-- <td>${member.memberBirthday}</td> -->
-                                                                        <!-- <td>
-                                                                            <fmt:formatDate
-                                                                                value="${member.memberBirthday}"
-                                                                                pattern="yyyy-MM-dd" />
-                                                                        </td> -->
-                                                                        <!-- <td>${member.memberTel}</td> -->
-                                                                        <!-- <td>${member.joinDate}</td>
-                                                                        td>${member.quitDate}</td> -->
-                                                                        <!-- <td><fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd" /></td> -->
-                                                                        <!-- <td>
-                                                                            <fmt:formatDate value="${member.quitDate}"
-                                                                                pattern="yyyy-MM-dd" />
-                                                                        </td> -->
-                                                                        <!-- <td>${member.memberVisitAgree}</td> -->
                                                                         <td>${member.memberGrade}</td>
-                                                                        <!-- <td>${member.memberGrade}</td> -->
                                                                     </tr>
                                                                 </c:forEach>
                                                             </tbody>

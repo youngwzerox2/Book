@@ -85,8 +85,6 @@
                         </div>
                     </div>
             </div>
-            <!-- <button class="btn btn-outline-danger btn-sm float-right" onclick="deleteAction()">삭제</button>
-                        <button class="btn btn-outline-warning btn-sm float-right" onclick="editAction()">수정</button> -->
         </div><!-- .content -->
 
         <!-- 푸터 -->

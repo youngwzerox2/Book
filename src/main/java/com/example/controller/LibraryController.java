@@ -27,7 +27,6 @@ import com.example.userservice.UserLibraryServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-// @RestController
 @Controller
 @RequestMapping("library")
 @CrossOrigin(origins = "http://114.207.167.82:3000")
@@ -48,7 +47,6 @@ public class LibraryController {
         String libraryLocationsJson;
         try {
             libraryLocationsJson = objectMapper.writeValueAsString(libraryLocations);
-            // System.out.println(libraryLocationsJson);
         } catch (JsonProcessingException e) {
             // 예외 처리
             e.printStackTrace();

@@ -22,12 +22,6 @@ public interface AskService {
     // 문의 등록
     void insertAsk(Ask vo);
 
-    // 미완료된 답변이 있는 문의 리스트
-    List<Ask> getUnansweredList();
-
-    // 완료된 답변이 있는 문의 리스트
-    List<Ask> getAnsweredList();
-
     // 문의건수
     List<Ask> askCount();
 

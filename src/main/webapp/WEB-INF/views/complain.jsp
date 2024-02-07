@@ -31,7 +31,6 @@
                 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet'
                     type='text/css'>
 
-                <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
             </head>
 
             <body>
@@ -61,15 +60,7 @@
                                                                 <tr>
                                                                     <th>회원아이디</th>
                                                                     <th>신고글 번호</th>
-                                                                    <!-- <th>신고항목</th> -->
-                                                                    <!-- <th>신고받은 글 번호</th> -->
-                                                                    <!-- <th>신고내용</th> -->
-                                                                    <!-- <th>신고글 작성시간</th> -->
                                                                     <th>신고글 처리여부</th>
-                                                                    <!-- <th>신고글 답변</th> -->
-                                                                    <!-- <th>신고글 답변 작성시간</th> -->
-                                                                    <!-- <th>신고받은 글 작성자</th> -->
-                                                                    <!-- <th>처리담당자</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
