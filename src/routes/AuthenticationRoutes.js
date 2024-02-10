@@ -41,6 +41,7 @@ const OthersBookshelf = Loadable(lazy(() => import('views/pages/authentication/b
 // 도서
 const Books = Loadable(lazy(() => import('views/pages/authentication/book/BookSearched2')));
 const Map = Loadable(lazy(() => import('views/pages/authentication/library/LibraryMap')));
+const TestLP = Loadable(lazy(() => import('views/pages/authentication/book/DetailLP')));
 
 // 달력
 const Calendar = Loadable(lazy(() => import('views/pages/authentication/calendar/Maincalendar')));
@@ -182,6 +183,10 @@ const AuthenticationRoutes = {
     {
       path: 'readme/calendar',
       element: <Calendar />
+    },
+    {
+      path: 'readme/book/searched',
+      element: <TestLP />
     }
   ]
 };

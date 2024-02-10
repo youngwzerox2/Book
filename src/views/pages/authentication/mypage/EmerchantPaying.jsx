@@ -68,12 +68,12 @@ export default function NestedList() {
         pay_method: 'card',
         merchant_uid: 'DolmengPlus-' + new Date().getTime(),
         name: '리드미 플러스',
-        amount: 500,
-        buyer_email: 'abc@gmail.com',
-        buyer_name: memberId,
-        buyer_tel: '01000000000',
-        buyer_addr: '서울특별시 강남구 신사동',
-        buyer_postcode: '01181'
+        amount: 3900,
+        // buyer_email: 'abc@gmail.com',
+        buyer_name: memberId
+        // buyer_tel: '01000000000',
+        // buyer_addr: '서울특별시 강남구 신사동',
+        // buyer_postcode: '01181'
       },
       function (rsp) {
         // callback
@@ -81,7 +81,7 @@ export default function NestedList() {
           // 결제성공시 로직
           alert('리드미 플러스가 결제되었습니다.');
           // axios.post('/merchant/write')
-          location.href = 'http://118.217.203.37:3000/free/readme/mypage/pay';
+          location.href = 'http://127.0.0.1:3000/free/readme/mypage/pay';
         } else {
           // 결제 실패시
           alert(rsp.error_msg);

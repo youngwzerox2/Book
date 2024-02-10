@@ -6,7 +6,7 @@ import EmptyCase from '../../../../assets/images/bookcaseB_empty.png';
 // material-ui
 // import { useTheme } from '@mui/material/styles';
 // import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
-import { Divider, Grid, Typography, Box, Card, Button, FormControl, CardMedia } from '@mui/material';
+import { Divider, Grid, Typography, Box, Card, Button, FormControl, CardMedia, IconButton } from '@mui/material';
 // project imports
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
@@ -17,6 +17,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import DetailRecommanding from './DetailRecommanding';
+import { Favorite } from '@mui/icons-material';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
@@ -80,6 +82,7 @@ const MainRecommanded = () => {
                               >
                                 test97의 책장
                               </Button>
+
                               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
                             </Box>
                           </Grid>
@@ -225,6 +228,14 @@ const MainRecommanded = () => {
                             </Card>
                           )}
                           {status === 'detail' && <DetailRecommanding num={recommandingNum} />}
+                          <Grid sx={{ position: 'absolute', top: '3%', right: '1%' }}>
+                            <IconButton>
+                              <Favorite />
+                            </IconButton>
+                            <IconButton>
+                              <ErrorOutlineIcon />
+                            </IconButton>
+                          </Grid>
                         </FormControl>
                       </React.Fragment>
                     </Grid>

@@ -91,7 +91,7 @@ const FirebaseLogin = ({ ...others }) => {
         if (mid === '0woo' || mid === 'test1') {
           const answer = confirm('관리자 페이지로 이동하시겠습니까?');
           if (answer == true) {
-            location = 'http://118.217.203.44:8080/adminmain';
+            location = 'http://118.217.203.46:8080/adminmain';
           }
         } else {
           window.location.replace('/free/readme/main');

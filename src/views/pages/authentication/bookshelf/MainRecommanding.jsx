@@ -9,6 +9,7 @@ import { Divider, Grid, Typography, Box, Card, Button, FormControl, CardMedia } 
 import Background from '../Abackground';
 import BasicFrame from '../BbasicFrame';
 import Logo from '../../../../assets/images/ReadMe2.png';
+import BookImage from '../../../../assets/images/book_01.png';
 // assets
 import { useState } from 'react';
 import axios from 'axios';
@@ -115,9 +116,7 @@ const MainRecommanded = () => {
                                     getValue(viewContent[2].recommandingId);
                                   }}
                                 >
-                                  {viewContent[2] != undefined && (
-                                    <img src={viewContent[2].bookImageURL} alt="이미지입니다" height="100px" />
-                                  )}
+                                  {viewContent[2] != undefined && <img src={BookImage} alt="이미지입니다" height="100px" />}
                                 </Box>
                                 <Box
                                   sx={{ position: 'absolute', top: '29%', left: '27%' }}

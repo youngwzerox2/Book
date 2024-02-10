@@ -109,7 +109,7 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        <Tab label="자주 묻는 질문" {...a11yProps(0)} />
+        <Tab label="FAQ" {...a11yProps(0)} />
 
         <Tab label="문의내역" {...a11yProps(1)} />
         <Tab label="문의하기" {...a11yProps(2)} />

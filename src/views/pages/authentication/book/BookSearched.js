@@ -195,7 +195,7 @@ export default function Blog() {
             })}
           </main>
         </Container>
-        <Footer title="Footer" description="Something here to give the footer a purpose!" />
+        <Footer title="Footer" description="시돌시돌한 시돌컴퍼니의 두번째 프로젝트 리드미." />
       </ThemeProvider>
     );
   }
