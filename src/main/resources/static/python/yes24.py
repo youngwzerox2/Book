@@ -115,9 +115,5 @@ def collect_book_info():
     cursor.close()
     conn.close()
 
-# 매일 08:00에 collect_book_info 함수 실행
+# 매일 08:00에 실행
 schedule.every().day.at("08:00").do(collect_book_info)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
