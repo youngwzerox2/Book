@@ -76,8 +76,6 @@ public class ChatDataController {
 	public String recommend(@RequestParam(name = "memberId") String memberId) {
 		try {
 			System.out.println("[ChatDataController/recommend] 요청");
-			// String id = "test1";
-			// userInput.add("너무 행복해서 집 가고 싶다.");
 
 			// DB에서 문장 받아오기
 			List<String> sentences;
@@ -99,13 +97,6 @@ public class ChatDataController {
 			ProcessBuilder pb = new ProcessBuilder("python.exe", pythonFile, memberId, sentence);
 			pb.directory(new File(System.getProperty("user.dir")));
 			Process process = pb.start();
-
-			// .py로 문자열 전달
-			// OutputStream outputStream = process.getOutputStream();
-			// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-			// System.out.println("python으로 전달 > " + sentence);
-			// writer.write("msg=" + sentence + "\n");
-			// writer.close();
 
 			// 프로세스 종료 대기
             int exitCode = process.waitFor();

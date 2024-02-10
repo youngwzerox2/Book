@@ -15,7 +15,8 @@ import com.example.userservice.UserRecommandingServiceImpl;
 
 @RestController
 @RequestMapping("recommanding")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+// @CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://114.207.167.82:3000")
 public class RecommandingController {
 
     @Autowired

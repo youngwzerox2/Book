@@ -14,7 +14,8 @@ import com.example.userservice.UserBookServiceImpl;
 
 @RestController
 @RequestMapping("book")
-@CrossOrigin(origins = "http://118.217.203.37:3000")
+// @CrossOrigin(origins = "http://118.217.203.37:3000")
+@CrossOrigin(origins = "http://114.207.167.82:3000")
 public class BookController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class BookController {
 		try {
 			System.out.println("[BookController/selectByTitle] 요청");
 			List<Book> result = bookService.selectByTitle(bookname);
-			// System.out.println("[BookController/selectByTitle] " + result);
+			System.out.println("[BookController/selectByTitle] " + result);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +42,7 @@ public class BookController {
 		try {
 			System.out.println("[BookController/selectByTitle] 요청");
 			List<Book> result = bookService.selectByTitle(bookname);
-			// System.out.println("[BookController/selectByTitle] " + result);
+			System.out.println("[BookController/selectByTitle] " + result);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();

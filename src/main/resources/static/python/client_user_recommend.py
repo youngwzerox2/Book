@@ -14,15 +14,13 @@
 # ---
 
 import requests
-import json
 import sys
-import re
 
 # +
-server4_url = "http://118.217.203.44:5400/user_recommend"  # 사용자 추천
+# server4_url = "http://118.217.203.44:5100/user_recommend"  # 사용자 추천
+server4_url = "http://118.217.203.46:5100/user_recommend"  # 사용자 추천
 
 # 현재 사용자의 id
-# id = 'test77'
 id = sys.argv[1]
 
 # server4에 사용자 아이디를 전달하여 사용자 추천 요청

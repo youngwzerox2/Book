@@ -35,7 +35,7 @@ import axios from 'axios';
 import { red } from '@mui/material/colors';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import meng0 from '../../../../assets/images/costume/coutum0.png';
+import meng0 from '../../../../assets/images/costume/costume0.png';
 import meng6 from '../../../../assets/images/costume/costume6.png';
 import meng10 from '../../../../assets/images/costume/costume10.png';
 
